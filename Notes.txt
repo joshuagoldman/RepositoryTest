@@ -1,3 +1,2 @@
 Hello, my name is Joshua Goldman, this is a test for learning some GIT
-which, in my case, could be useful to improve my skills. Today is monday, and thus, I am adding this particluar text
-to hence make a change in this textfile.
+which, in my case, could be useful to improve my skills. 
