@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Start>
-	<Begin Value = "Begin">
-	<Countries Value="Countries">
-		<Country Value="Sweden">
-		</Country>
-	</Countries>
-	</Begin>
-</Start>
+<Countries>
+  <Country Value = "Sweden">
+  <Language>Swedish</Language>
+  </Country>
+</Countries>
