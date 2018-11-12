@@ -30,23 +30,25 @@ namespace Main.XmlDoc
             var Result = ExistanceCheck();            
             if (NeitherExist(Result) && FromRoot != null)
             {            
-                var newEl = new XElement(FromRoot[0],
-                                new XAttribute(FromRoot[1], FromRoot[2]),
-                                    new XElement(Child[0],
-                                        new XAttribute(Child[1], Child[2]),
-                                            new XElement(Node[0], Node[1])));
+                var newEl = new XElement(Child[0],
+                                new XAttribute(Child[1], Child[2]),
+                                    new XElement(Node[0], Node[1]));
+
                 fxl.FindByElement(FromRoot);
                 fxl.ChildParentElement.Add(newEl);
                 Xdoc.Save(FilePath);
             }
-            if (ChildDoesExist(Result) && NeitherExist(Result))
+            if (ChildDoesExist(Result) || NodeDoesExist(Result) && DoReplicate(ReplicateChoice))
             {
-                var newEl = new XElement(Child[0],
-                                new XAttribute(Child[1], Child[2]),
-                                    new XElement(Node[0], Node[1]));
+                var newEl = new XElement(Node[1], Node[2]);
+
                 if (NeitherExist(Result))
                 {
                     Xdoc.Root.Add(newEl);
+                }
+                else if (NodeDoesExist(Result) && DoReplicate(ReplicateChoice))
+                {
+                    fxl.FindByElement(Node);
                 }
                 else
                 {
@@ -54,13 +56,6 @@ namespace Main.XmlDoc
                     fxl.ChildParentElement.Add(newEl);
                     Xdoc.Save(FilePath);
                 }
-            }
-            else if (NodeDoesExist(Result) || NodeDoesExist(Result) && DoReplicate(ReplicateChoice))
-            {
-                var newEl = new XElement(Node[0], Node[1]);
-                fxl.FindByElement(Node);
-                fxl.ChildParentElement.Add(newEl);
-                Xdoc.Save(FilePath);
             }
             else
             {

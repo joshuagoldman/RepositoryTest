@@ -10,8 +10,9 @@ namespace Main.XmlDoc
 {
     public partial class ExEmEl
     {
-        delegate bool ElementAncestorExistanceDelegate(XmlNode node);   
-        private ElementExistance ExistanceCheck()
+        delegate bool ElementAncestorExistanceDelegate(XmlNode node); 
+
+    private ElementExistance ExistanceCheck()
         {
             List<string> SearchKeys = new List<string>
             {
@@ -22,26 +23,26 @@ namespace Main.XmlDoc
             };
             var xmlFromRoot = FromRoot == null ? null : doc.SelectSingleNode(SearchKeys[0]);
 
-            var xmlChild = doc.SelectSingleNode(SearchKeys[1]);
+           var xmlChild = doc.SelectSingleNode(SearchKeys[1]);
 
-            var xmlNode = doc.SelectSingleNode(SearchKeys[0]);
+            var xmlNode = doc.SelectSingleNode(SearchKeys[2]);
 
-            bool NodeWSpecificAncestorsDoesExist(XmlNode node)
-                => node != null && node.ParentNode == xmlChild && node.ParentNode.ParentNode == xmlFromRoot ? true : false;
+            ElementAncestorExistanceDelegate NodeWSpecificAncestorsDoesExist = 
+                (XmlNode node) => node != null && node.ParentNode == xmlChild && node.ParentNode.ParentNode == xmlFromRoot ? true : false;
 
-            bool ChildWSpecificNodeDoesExist(XmlNode node) 
-                => node != null && node.SelectSingleNode(SearchKeys[2]) == xmlFromRoot ? true : false;
+            ElementAncestorExistanceDelegate ChildDoesExist = 
+                (XmlNode node) => node != null ? true : false;
 
-            bool ChosenRootDoesExist(XmlNode node)
-                => node != null ? true : false;
+            ElementAncestorExistanceDelegate ChosenRootDoesExist = 
+                (XmlNode node) => node != null ? true : false;
 
             ElementExistance Result = NodeWSpecificAncestorsDoesExist(xmlNode) ?
-                                      ChildWSpecificNodeDoesExist(xmlChild) ?
-                                      ChosenRootDoesExist(xmlFromRoot) ?                                                                             
                                       ElementExistance.NodeExists :
+                                      ChildDoesExist(xmlChild) ?
                                       ElementExistance.ChildExists :
+                                      ChosenRootDoesExist(xmlFromRoot) ?
                                       ElementExistance.RootExists :
-                                      ElementExistance.NoneExist;
+                                      ElementExistance.NoneExist;                                      
             return Result; 
         }
     }

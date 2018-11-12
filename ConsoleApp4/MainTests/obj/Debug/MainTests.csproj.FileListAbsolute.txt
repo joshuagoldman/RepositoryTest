@@ -85,3 +85,14 @@ C:\Users\jogo\Documents\git_Test\RepositoryTest\ConsoleApp4\MainTests\obj\Debug\
 C:\Users\jogo\Documents\git_Test\RepositoryTest\ConsoleApp4\MainTests\obj\Debug\MainTests.csproj.CopyComplete
 C:\Users\jogo\Documents\git_Test\RepositoryTest\ConsoleApp4\MainTests\obj\Debug\MainTests.dll
 C:\Users\jogo\Documents\git_Test\RepositoryTest\ConsoleApp4\MainTests\obj\Debug\MainTests.pdb
+C:\Users\DELL\Documents\GitRepoJosh\ConsoleApp4\MainTests\bin\Debug\NUnit3.TestAdapter.dll
+C:\Users\DELL\Documents\GitRepoJosh\ConsoleApp4\MainTests\bin\Debug\NUnit3.TestAdapter.pdb
+C:\Users\DELL\Documents\GitRepoJosh\ConsoleApp4\MainTests\bin\Debug\nunit.engine.dll
+C:\Users\DELL\Documents\GitRepoJosh\ConsoleApp4\MainTests\bin\Debug\nunit.engine.api.dll
+C:\Users\DELL\Documents\GitRepoJosh\ConsoleApp4\MainTests\bin\Debug\MainTests.dll.config
+C:\Users\DELL\Documents\GitRepoJosh\ConsoleApp4\MainTests\bin\Debug\Castle.Core.dll
+C:\Users\DELL\Documents\GitRepoJosh\ConsoleApp4\MainTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\DELL\Documents\GitRepoJosh\ConsoleApp4\MainTests\bin\Debug\NSubstitute.dll
+C:\Users\DELL\Documents\GitRepoJosh\ConsoleApp4\MainTests\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\DELL\Documents\GitRepoJosh\ConsoleApp4\MainTests\bin\Debug\UnitTestUtilities.dll
+C:\Users\DELL\Documents\GitRepoJosh\ConsoleApp4\MainTests\bin\Debug\System.Threading.Tasks.Extensions.xml

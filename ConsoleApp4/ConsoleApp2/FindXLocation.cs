@@ -49,7 +49,8 @@ namespace Main.XmlDoc
             for (int j = 0; j < Len; j++)
             {
                 ChildParentElement = ChildParentElement.Element(RootSearchKeyList[Len - (j+1)]);
-            }            
+            }
+            ChildParentElement = ChildParentElement.Element(Child[0]);
         }
     }
 }

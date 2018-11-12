@@ -32,7 +32,6 @@ namespace Main.XmlDoc.Tests
             ExEmEl.NewDocument.No);
             xml.XmlSearchInfo(child, node, replicatechoice);
             xml.WriteNodeToXml();
-            Assert.Fail();
         }
 
         [TestCase("C:/Users/jogo/Documents/git_Test/Countries.xml")]

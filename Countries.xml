@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Countries>
-  <Country Value = "Sweden">
-  <Language>Swedish</Language>
-  </Country>
-</Countries>
+<Document Value="Document">
+  <Countries Value="Sweden">
+    <Country Value="Sweden">
+      <Value>1.3e+06</Value>
+    </Country>
+  </Countries>
+</Document>
