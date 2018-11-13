@@ -1,5 +1,43 @@
 # Castle Core Changelog
 
+## 4.3.1 (2018-06-21)
+
+Enhancements:
+ - Use shared read locking to reduce lock contention in InvocationHelper and ProxyUtil (@TimLovellSmith, #377)
+
+Bugfixes:
+- Prevent interceptors from being able to modify `in` parameters (@stakx, #370)
+- Make default value replication of optional parameters more tolerant of default values that are represented in metadata with a mismatched type (@stakx, #371)
+- Fix a concurrency issue (writing without taking a write lock first) in `BaseProxyGenerator.ObtainProxyType` (@stakx, #383)
+
+Deprecations:
+- `Castle.DynamicProxy.Generators.Emitters.ArgumentsUtil.IsAnyByRef` (@stakx, #370)
+
+## 4.3.0 (2018-06-07)
+
+Enhancements:
+- Added .NET Standard/.NET Core support for NLog (@snakefoot, #200)
+- Added .NET Standard/.NET Core support for log4net (@snakefoot, #201)
+- DynamicProxy supported C# `in` parameter modifiers only on the .NET Framework up until now. Adding .NET Standard 1.5 as an additional target to the NuGet package makes them work on .NET Core, too (@stakx, #339)
+- Replicate custom attributes on constructor parameters in the generated proxy type constructors to fulfill introspection of constructors. This does not change the proxying behavior. (@stakx, #341)
+- Improve performance of InvocationHelper cache lookups (@tangdf, #358)
+- Improve fidelity of default value replication of optional parameters to fulfill inspection of the generated proxies. This does not change the proxying behavior. (@stakx, #356)
+- Improve cache performance of MethodFinder.GetAllInstanceMethods (@tangdf, #357)
+
+Bugfixes:
+- Fix Castle.Services.Logging.Log4netIntegration assembly file name casing which breaks on Linux (@beginor, #324)
+- Fix Castle.DynamicProxy.Generators.AttributesToAvoidReplicating not being thread safe (InvalidOperationException "Collection was modified; enumeration operation may not execute.") (@BrunoJuchli, #334)
+- Fix TraceLoggerFactory to allow specifying the default logger level (@acjh, #342)
+- Ensure that DynamicProxy doesn't create invalid dynamic assemblies when proxying types from non-strong-named assemblies (@stakx, #327)
+- Fix interceptor selectors being passed `System.RuntimeType` for class proxies instead of the target type (@stakx, #359)
+- Replace NullReferenceException with descriptive one thrown when interceptors swallow exceptions and cause a null value type to be returned (@jonorossi, #85)
+
+## 4.2.1 (2017-10-11)
+
+Bugfixes:
+- Add missing equality checks in `MethodSignatureComparer.EqualSignatureTypes` to fix `TypeLoadException`s ("Method does not have an implementation") (@stakx, #310)
+- Add missing XML documentation files to NuGet packages (@fir3pho3nixx, #312)
+
 ## 4.2.0 (2017-09-28)
 
 Enhancements:
@@ -115,7 +153,7 @@ Bugfixes:
 - implemented #42 - move complicated BuildInternalsVisibleMessageForType method out of DynamicProxyBuilder - contributed by Blair Conrad (@blairconrad)
 - fixed #47 - Calling DynamicProxy proxy methods with multidimensional array parameters - contributed by  Ed Parcell (@edparcell)
 - fixed #44 - DictionaryAdapter FetchAttribute on type has no effect
-- fixed #34 and #39 - inaccessible type parameters should give better error messsages - contributed by Blair Conrad (@blairconrad)
+- fixed #34 and #39 - inaccessible type parameters should give better error messages - contributed by Blair Conrad (@blairconrad)
 
 ## 3.2.2 (2013-11-30)
 - fixed #35 - ParameterBuilder.SetConstant fails when using a default value of null - contributed by (@jonasro)
@@ -139,7 +177,7 @@ Bugfixes:
 
 ## 3.1.0 RC (2012-07-08)
 - support multiple inheritance of DA attributes on interfaces.
-- BREAKING CHANGE: removed propogate child notifications as it violated INotifyPropertyChanged contract
+- BREAKING CHANGE: removed propagated child notifications as it violated INotifyPropertyChanged contract
 - improved DictionaryAdapter performance
 - generalized IBindingList support for DictionaryAdapters
 - added reference support to XmlAdapter
@@ -197,11 +235,11 @@ Breaking Changes:
 	  will still filter them out though.
   * fix - whenever custom IProxyGenerationHook is used, user should account for System.Object's
 	  members being now passed to ShouldInterceptMethod and NonVirtualMemberNotification methods
-	  and if neccessary update the code to handle them appropriately.
+	  and if necessary update the code to handle them appropriately.
 
 Bugfixes:
 - fixed CORE-37 - TAB characters in the XML Configuration of a component parameter is read as String.Empty
-- fixed DYNPROXY-161 - Strong Named DynamicProxy Assembly Not Available in Silverligh
+- fixed DYNPROXY-161 - Strong Named DynamicProxy Assembly Not Available in Silverlight
 - fixed DYNPROXY-159 - Sorting MemberInfo array for serialization has side effects
 - fixed DYNPROXY-158 - Can't create class proxy with target and without target in same ProxyGenerator
 - fixed DYNPROXY-153 - When proxying a generic interface which has an interface as GenericType . No proxy can be created
@@ -213,7 +251,7 @@ Bugfixes:
 ## 2.5.2 (2010-11-15)
 - fixed DYNPROXY-150 - Finalizer should not be proxied
 - implemented DYNPROXY-149 - Make AllMethodsHook members virtual so it can be used as a base class
-- fixed DYNPROXY-147 - Can't crete class proxies with two non-public methods having same argument types but different return type
+- fixed DYNPROXY-147 - Can't create class proxies with two non-public methods having same argument types but different return type
 - fixed DYNPROXY-145 Unable to proxy System.Threading.SynchronizationContext (.NET 4.0)
 - fixed DYNPROXY-144 - params argument not supported in constructor
 - fixed DYNPROXY-143 - Permit call to reach "non-proxied" methods of inherited interfaces
@@ -229,7 +267,7 @@ Bugfixes:
 - Interface proxy with target Interface now accepts null as a valid target value (which can be replaced at a later stage).
 - DictionaryAdapter behavior overrides are now ordered with all other behaviors
 - BREAKING CHANGE: removed web logger so that by default Castle.Core works in .NET 4 client profile
-- added paramter to ModuleScope disabling usage of signed modules. This is to workaround issue DYNPROXY-134. Also a descriptive exception message is being thrown now when the issue is detected.
+- added parameter to ModuleScope disabling usage of signed modules. This is to workaround issue DYNPROXY-134. Also a descriptive exception message is being thrown now when the issue is detected.
 - Added IDictionaryBehaviorBuilder to allow grouping behaviors
 - Added GenericDictionaryAdapter to simplify generic value sources
 - fixed issue DYNPROXY-138 - Error message missing space
@@ -238,10 +276,10 @@ Bugfixes:
 
 ## 2.5.0 (2010-08-21)
 - DynamicProxy will now not replicate non-public attribute types
-- Applied patch from Kenneth Siewers M�ller which adds parameterless constructor to DefaultSmtpSender implementation, to be able to configure the inner SmtpClient from the application configuration file (system.net.smtp).
+- Applied patch from Kenneth Siewers Møller which adds parameterless constructor to DefaultSmtpSender implementation, to be able to configure the inner SmtpClient from the application configuration file (system.net.smtp).
 - added support for .NET 4 and Silverlight 4, updated solution to VisualStudio 2010
 - Removed obsolete overload of CreateClassProxy
-- Added class proxy with taget
+- Added class proxy with target
 - Added ability to intercept explicitly implemented generic interface methods on class proxy.
 - DynamicProxy does not disallow intercepting members of System.Object anymore. AllMethodsHook will still filter them out though.
 - Added ability to intercept explicitly implemented interface members on class proxy. Does not support generic members.

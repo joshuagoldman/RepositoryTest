@@ -16,9 +16,9 @@ namespace Main.XmlDoc.Tests
         static private object[] _sourceLists =
         {
                 new object[] {new List<string> { "Country", "Value", "Sweden" },
-                              new List<string> { "Population", "Value", "1.3e+06" },
+                              new List<string> { "Population", "1.3e+06" },
                               ExEmEl.Replicate.No,
-                              "a" }
+                              ""}
         };
 
         [Test, TestCaseSource("_sourceLists")]
@@ -34,36 +34,52 @@ namespace Main.XmlDoc.Tests
             xml.WriteNodeToXml();
         }
 
-        [TestCase("C:/Users/jogo/Documents/git_Test/Countries.xml")]
-        public void ExEmElTest(string FilePath)
-        {
-            //Arrange
-            //act
-            ExEmEl xml = new ExEmEl(FilePath,
-                                    ExEmEl.NewDocument.No);
-            //Assert
-        }
+        string Key { get; set; }
 
-        private static readonly object[] _Data =
+        [Test, TestCase("TestCases")]
+        public void FindXLocationTest(string key)
         {
-             new object[] {new List<string> { "Country", "Value", "Sweden" }, "test" }
-        };
-
-        [Test, TestCaseSource(nameof(_Data))]
-        public void FindXLocationTest(List<string> Child)
-        {
+            Key = key;
+            var Child = Testcases();
             //Arrange
-            ExEmEl xml = new ExEmEl("C:/Users/jogo/Documents/git_Test/Countries.xml",
+            ExEmEl xml = new ExEmEl(@"C:\Users\DELL\Documents\GitRepoJosh\Countries.xml",
                                    ExEmEl.NewDocument.No);
             FindXLocation fxl = new FindXLocation
             {
                 Doc = xml.doc,
-                XDoc = XDocument.Load("C:/Users/jogo/Documents/git_Test/Countries.xml")
+                XDoc = XDocument.Load(@"C:\Users\DELL\Documents\GitRepoJosh\Countries.xml")
             };
             //act
             fxl.FindByElement(Child);
             //Assert
-            Assert.AreEqual("Countries", fxl.ChildParentElement.Parent.Value.Contains("Countries"));
+            Assert.AreEqual(true, fxl.ChildParentElement.Parent.Name.ToString().Contains("Countries"));
+        }
+
+        [Test,TestCase("GetXmlInfoTestCase")]
+        public void GetXmlInfoTest(string key)
+        {
+            Key = key;
+            var InfoToFind = GetXmlInfoTestCase();
+
+            ExEmEl xml = new ExEmEl(
+            @"C:\Users\DELL\Documents\GitRepoJosh\Countries.xml",
+            ExEmEl.NewDocument.No);
+            xml.XmlSearchInfo(infotofind: InfoToFind);
+            var Result = xml.GetXmlInfo();
+
+            Assert.AreEqual(Result, "1.3e+06");
+        }
+
+        public List<string> Testcases()
+        {
+            var TestCases = new List<string> { "Country", "Value", "Sweden" };
+            return Key == "TestCases" ? TestCases : null;
+        }
+
+        public string GetXmlInfoTestCase()
+        {
+            var GetXmlInfoTestCase = "Country,Sweden,Population";
+            return Key == "GetXmlInfoTestCase" ? GetXmlInfoTestCase : null;
         }
     }
 }

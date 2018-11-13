@@ -23,14 +23,18 @@ namespace Main.XmlDoc
 
         public List<string> FromRoot { get; set; }
 
-        public void XmlSearchInfo(List<string> child,
+        public string InfoToFind { get; set; }
+
+        public void XmlSearchInfo(List<string> child = null,
                                   List<string> node = null,
                                   Replicate replicatechoice = Replicate.No,
                                   string nodenovalue = null,
-                                  List<string> fromroot = null)        
+                                  List<string> fromroot = null,
+                                  string infotofind = null)        
         {
             Child= child;
             Node =  node;
+            InfoToFind = infotofind;
             ReplicateChoice = replicatechoice;
             NodeNoValue = nodenovalue;
             FromRoot = fromroot;

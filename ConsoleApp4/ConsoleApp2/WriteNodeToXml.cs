@@ -40,7 +40,7 @@ namespace Main.XmlDoc
             }
             if (ChildDoesExist(Result) || NodeDoesExist(Result) && DoReplicate(ReplicateChoice))
             {
-                var newEl = new XElement(Node[1], Node[2]);
+                var newEl = new XElement(Node[0], Node[1]);
 
                 if (NeitherExist(Result))
                 {
