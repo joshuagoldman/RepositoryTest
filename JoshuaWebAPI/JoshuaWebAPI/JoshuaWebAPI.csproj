@@ -45,7 +45,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ConsoleApp1">
+      <HintPath>..\..\..\..\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\ConsoleApp1.dll</HintPath>
+    </Reference>
+    <Reference Include="Login">
+      <HintPath>..\..\..\..\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Login.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter">
+      <HintPath>..\..\..\..\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices">
+      <HintPath>..\..\..\..\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface">
+      <HintPath>..\..\..\..\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework">
+      <HintPath>..\..\..\..\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions">
+      <HintPath>..\..\..\..\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="SeleniumExtras.WaitHelpers">
+      <HintPath>..\..\..\..\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\SeleniumExtras.WaitHelpers.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -107,6 +131,12 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver">
+      <HintPath>..\..\..\..\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\..\..\..\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WebDriver.Support.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -184,7 +214,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="Controllers\WriteToXmlController.cs" />
+    <Compile Include="Controllers\ValuesController1.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,6 +222,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Documentation.xml" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -225,6 +256,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\JavaScript.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -245,9 +277,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
