@@ -16,7 +16,7 @@ namespace Main.InformationGather
                                    ExEmEl.NewDocument.No);
             xml.XmlSearchInfo("Country,Sweden",
                               "Language,Swedish",
-                              ExEmEl.Replicate.No);
+                              ExEmEl.ReplicateOrNewTree.DontRepl);
             xml.WriteNodeToXml();
             //act
             //Assert

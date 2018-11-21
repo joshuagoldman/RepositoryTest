@@ -13,7 +13,7 @@ namespace Main.XmlDoc
 
         delegate bool ExistanceDelegate(ElementExistance x);
 
-        delegate bool ElementExistanceDelegate(XmlDocument doc, string x);
+        delegate bool ReplicateDelegate(ReplicateOrNewTree x);
 
         ExistanceDelegate NeitherExist;
 
@@ -22,6 +22,10 @@ namespace Main.XmlDoc
         ExistanceDelegate ChildDoesExist;
 
         ExistanceDelegate NodeDoesExist;
+
+        ReplicateDelegate DoReplicate;
+
+        ReplicateDelegate WriteTree;
 
         private void EnumConditions()
         {
@@ -36,6 +40,12 @@ namespace Main.XmlDoc
 
             NodeDoesExist =
                 (ElementExistance x) => x == ElementExistance.NodeExists ? true : false;
+
+            DoReplicate =
+                (ReplicateOrNewTree x) => x == ReplicateOrNewTree.Repl ? true : false;
+
+            WriteTree =
+                (ReplicateOrNewTree x) => x == ReplicateOrNewTree.NewTree ? true : false;
         }
     }
 }

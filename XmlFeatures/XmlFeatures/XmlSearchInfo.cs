@@ -9,7 +9,7 @@ namespace Main.XmlDoc
 {
     public partial class ExEmEl
     {
-        public enum Replicate { Yes, No }
+        public enum ReplicateOrNewTree { Repl, DontRepl, NewTree }
 
         private enum SearchFor { Element, Attribute }
 
@@ -17,7 +17,9 @@ namespace Main.XmlDoc
 
         private List<string> Node { get; set; }
 
-        private Replicate ReplicateChoice;
+        private ReplicateOrNewTree ReplicateChoice;
+
+        private ReplicateOrNewTree WriteTreeChoice;
 
         private string NodeNoValue { get; set; }
 
@@ -27,18 +29,20 @@ namespace Main.XmlDoc
 
         public void XmlSearchInfo(string child = null,
                                   string node = null,
-                                  Replicate replicatechoice = Replicate.No,
+                                  ReplicateOrNewTree replicatechoice = ReplicateOrNewTree.DontRepl,
+                                  ReplicateOrNewTree writetreechoice = ReplicateOrNewTree.DontRepl,
                                   string nodenovalue = null,
                                   string fromroot = null,
                                   string infotofind = null)        
         {
-            Child= child?.Replace(' ','_')?.Split(',').ToList();
-            Node =  node?.Replace(' ', '_')?.Split(',').ToList();
-            InfoToFind = infotofind?.Replace(' ', '_')?.Split(',').ToList();
+            Child= child?.Split(',').Select(x => x.Trim().Replace(' ', '_')).ToList();
+            Node =  node?.Split(',').Select(x => x.Trim().Replace(' ', '_')).ToList();
+            InfoToFind = infotofind?.Split(',').Select(x => x.Trim().Replace(' ', '_')).ToList();
             ReplicateChoice = replicatechoice;
+            WriteTreeChoice = writetreechoice;
             NodeNoValue = nodenovalue;
-            var FromRootTemp = fromroot + ",All";
-            FromRoot = FromRootTemp?.Replace(' ', '_')?.Split(',').ToList();
+            var FromRootTemp = fromroot?.Trim() + ",All";
+            FromRoot = FromRootTemp?.Split(',').Select(x => x.Trim().Replace(' ', '_')).ToList();
             EnumConditions();
         }        
     }

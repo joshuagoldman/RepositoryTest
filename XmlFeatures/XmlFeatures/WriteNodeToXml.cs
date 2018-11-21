@@ -9,12 +9,7 @@ using System.Xml.Linq;
 namespace Main.XmlDoc
 {
     public partial class ExEmEl
-    {
-        delegate bool OverWriteDelegate(Replicate x);
-        
-        OverWriteDelegate DoReplicate =
-            (Replicate x) => x == Replicate.Yes ? true : false;
-
+    {        
         XDocument Xdoc;
 
         FindXLocation fxl;
@@ -30,9 +25,17 @@ namespace Main.XmlDoc
             var Result = ExistanceCheck();
             if (NeitherExist(Result))
             {
-                if (!string.IsNullOrEmpty((FromRoot[0])))
+                if (!string.IsNullOrEmpty((FromRoot[0])) &&
+                    WriteTree(WriteTreeChoice))
                 {
+                    var newEl = new XElement(FromRoot[0],
+                                    new XAttribute("Value", "All"),
+                                        new XElement(Child[0],
+                                            new XAttribute("Value", Child[1]),
+                                                new XElement(Node[0], Node[1])));
 
+                    fxl.XDoc.Root.Add(newEl);
+                    fxl.XDoc.Save(FilePath);
                 }
             }
             else if (RootExists(Result))
@@ -48,7 +51,7 @@ namespace Main.XmlDoc
             else if (ChildDoesExist(Result) ||
                      NodeDoesExist(Result) && DoReplicate(ReplicateChoice))
             {
-                var newEl = new XElement(Child[1], Node[1]);
+                var newEl = new XElement(Node[0], Node[1]);
 
                 fxl.FindByElement(Child);
                 fxl.ChildParentElement.Add(newEl);
@@ -56,7 +59,7 @@ namespace Main.XmlDoc
             }
             else
             {
-                throw new Exception("Node awith provided parent already exists. Allow Overwriting and retry.");
+                throw new Exception("Node with provided parent already exists. Allow Overwriting and retry.");
             }
         }
         ~ExEmEl() => Console.WriteLine("Finalizer Executing");

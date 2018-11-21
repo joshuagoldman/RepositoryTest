@@ -28,7 +28,7 @@ namespace Main.XmlDoc
             var xmlNode = doc.SelectSingleNode(SearchKeys[2]);
 
             ElementAncestorExistanceDelegate NodeWSpecificAncestorsDoesExist = 
-                (XmlNode node) => node != null && node.ParentNode == xmlChild && node.ParentNode.ParentNode == xmlFromRoot ? true : false;
+                (XmlNode node) => node != null && node.ParentNode == xmlChild ? true : false;
 
             ElementAncestorExistanceDelegate ChildDoesExist = 
                 (XmlNode node) => node != null ? true : false;

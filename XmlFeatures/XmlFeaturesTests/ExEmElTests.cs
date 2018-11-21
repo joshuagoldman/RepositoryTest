@@ -13,25 +13,24 @@ namespace Main.XmlDoc.Tests
     {
         static private object[] _sourceLists =
         {
-                new object[] {"Animals",
-                              "Animal,Elephant" ,
-                              "Color,Grey",
-                              ExEmEl.Replicate.No}
+                new object[] {"Fruit, Avocado",
+                              "Lacks,  Carbs",
+                               ExEmEl.ReplicateOrNewTree.DontRepl}
         };
 
         [Test, TestCaseSource("_sourceLists")]
-        public void WriteNodeToXmlTest(string fromroot,
-                                       string child,
+        public void WriteNodeToXmlTest(string child,
                                        string node,
-                                       ExEmEl.Replicate replicatechoice)
+                                       ExEmEl.ReplicateOrNewTree replicatechoice)
         {
             ExEmEl xml = new ExEmEl(
             @"C:\Users\DELL\Documents\GitRepoJosh\Data.xml",
             ExEmEl.NewDocument.No);
-            xml.XmlSearchInfo(fromroot: fromroot,
+            xml.XmlSearchInfo(
                               child: child,
                               node: node,
-                              replicatechoice: replicatechoice);
+                              replicatechoice: replicatechoice,
+                              writetreechoice: ExEmEl.ReplicateOrNewTree.NewTree);
             xml.WriteNodeToXml();
         }
 

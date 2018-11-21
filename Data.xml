@@ -34,10 +34,19 @@
     <Animal Value="Elephant">
       <Color>Grey</Color>
     </Animal>
+    <Animal Value="Zebra">
+      <Common_Pattern>Striped</Common_Pattern>
+      <Resembles>Horse</Resembles>
+    </Animal>
   </Animals>
   <foods Value="All">
     <food Value="Pasta">
       <Origin>_Italy</Origin>
     </food>
   </foods>
+  <Fruits Value="All">
+    <Fruit Value="Avocado">
+      <Lacks>Carbs</Lacks>
+    </Fruit>
+  </Fruits>
 </Document>
