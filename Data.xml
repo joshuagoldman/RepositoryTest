@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document Value="Document">
+  <Countries Countries="All">
+    <Country Value="Sweden">
+      <Population>1.3e+06</Population>
+      <Language>Swedish</Language>
+    </Country>
+    <Country Value="Israel">
+      <Language>Hebrew</Language>
+      <Capital>Tel-Aviv</Capital>
+      <National_Food>Hummus</National_Food>
+    </Country>
+  </Countries>
+  <InformationString Value="All">
+    <Store_New_Category>Store NEWOPT true NEWPROP Categories NEWOPT true 
+	NEWPROP Category NEWOPT true NEWOPT TextBox NEWPROP Subject NEWOPT true 
+	NEWPROP Fact NEWOPT true NEWPROP Value NEWOPT true NEWPROP Result NEWOPT false</Store_New_Category>
+    <Store_New_Subject>Store NEWOPT true NEWPROP Categories NEWOPT false 
+	NEWPROP Category NEWOPT true NEWOPT TextBox NEWPROP Subject NEWOPT true 
+	NEWPROP Fact NEWOPT true NEWPROP Value NEWOPT true NEWPROP Result NEWOPT false</Store_New_Subject>
+    <Obtain>Obtain NEWOPT true NEWPROP Categories NEWOPT true 
+	NEWPROP Category NEWOPT true NEWOPT TextBox NEWPROP Subject NEWOPT true 
+	NEWPROP Fact NEWOPT true NEWPROP Value NEWOPT false NEWPROP Result NEWOPT true</Obtain>
+  </InformationString>
+  <Cutleries Value="All">
+    <Cutlery Value="Fork">
+      <Material>Metal</Material>
+    </Cutlery>
+  </Cutleries>
+  <Animals Value="All">
+    <Animal Value="Human">
+      <Number_Of_Lems>_Four</Number_Of_Lems>
+    </Animal>
+    <Animal Value="Elephant">
+      <Color>Grey</Color>
+    </Animal>
+  </Animals>
+  <foods Value="All">
+    <food Value="Pasta">
+      <Origin>_Italy</Origin>
+    </food>
+  </foods>
+</Document>
