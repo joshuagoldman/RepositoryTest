@@ -15,14 +15,14 @@ namespace LogAnalyzerTest
     [TestFixture]
     public class RunSearchTest
     {
-        public readonly static TestModel TestCase = new TestModel(ProductNumber: "KRC 118*",
+        public readonly static TestModel TestCase = new TestModel(ProductNumber: "KRC 118 66/1",
                                                                   searchkeyname: "Linearization_problems, 2/-7, Rev C",
                                                                   RState: "*",
                                                                   SerialNumber: "*",
                                                                   hitsexpected: "1",
                                                                   // STRING OCCURRENCE PATTERN:
                                                                   // string_1, string_2, ..., String_N <NEXTFILE> string_1, string_2, ..., string_N
-                                                                  stringoccurrence: "0,0,0,0,0,0,0,0 <NEXTFILE> 0,0,0,0,0,0,0,0",                                                                                                                                    
+                                                                  stringoccurrence: "0,0",                                                                                                                                    
                                                                   searchkeygroup: "Radio");
 
         TestModel CurrentTestModel { get; set; }
@@ -60,6 +60,7 @@ namespace LogAnalyzerTest
             var HitsActual = GetActualHits();
             CurrentTestModel.LogFiles.ForEach(x => File.Delete(LogPath + "\\" + x));            
             //Assert
+            
             Assert.AreEqual(ExpectedSearchKeyHits, HitsActual,  HitsMessage);
         }
 
@@ -112,7 +113,7 @@ namespace LogAnalyzerTest
                                 CurrentTestModel.TestType,
                                 CurrentTestModel.ServiceLocation);
             int Hits = ResultModel.LogSearchKeysHits.Where(x => x.Name == CurrentTestModel.SearchKeyName).Count() > 0 ?
-                       ResultModel.LogSearchKeysHits.Count : 0;
+                       ResultModel.LogSearchKeysHits.Count : 0;            
             return Hits;
         }
     }

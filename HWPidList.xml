@@ -1,0 +1,3219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Document>
+	<DocumentNumber>1/131 22-CXP 901 5115/1</DocumentNumber>
+	<!-- According to documents:
+	===============================================
+	RS RBS 6000 Product Information Data (PID)
+	23/1056-HRB 105 600 Uen rev M and CR 11981,12652,12888,13095,13139,13239
+	===============================================
+  -->
+	<HWPidList>
+		<!-- Description of <Product/>
+		=======================
+			Attributes
+		=======================
+		Number: 			Product number
+		Name: 				Product name
+		ExemptionName: 		Product name that we have an exemption for. Insert multiple exemption names within "" with |-character as delimiter. Ex: "DUL|DUL2001".
+		ExemptionDate: 		Products manufactured before this date will pass (default is "None"). Ex: "20111201".
+		ExemptionCode: 		Products manufactured before ExemptionDate will pass with this code (default is "99")
+		RequiresRadioTest: 	Set to "YES" if radio test is required for the product (default is "NO")		
+		Power: 				Set to "80" if 80 Watt (default is "60")
+		CrossConnectTest:   Set to "TESTTONE" if product support testtone, set to "RXSUPERVISION" if product support RX supervision (default is "CCT_NOT_SUPPORTED").
+		NewDefault:			Set to "YES" if revision setting should be used for higher revisions to (default is "NO"). This attribute can only be used on revision level of product.
+		ACDCPower:			Set if the RRU product does not have std -48V connector and for AC products.
+								available AC100,AC110,AC115,AC120,AC127,AC220,AC230,AC240,DCP36,DCN48
+		ACFrequency:		Used together with ACDCPower when defining AC mains for product.
+								available ACF50HZ,ACF60HZ
+		=======================
+		=======================
+			!!! NOTE !!!
+		=======================
+		The attributes ExemptionName, ExemptionDate, ExemptionCode, RequiresRadioTest, CrossConnectTest, NewDefault and Power can be set on revision level of each product. 
+		The attribute NewDefault can only be set on revision level of product.
+		.......................
+		Ex:		
+		<Product Number="KRC 118 77/1" Name="RRUS 01 B9">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/> 
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+			<Rev Revision="R1B" RequiresRadioTest="YES" CrossConnectTest="TESTTONE" NewDefault="YES"/>
+			<Rev Revision="R1C" RequiresRadioTest="YES" Power="80" ExemptionName="RRUS" ExemptionDate="20130920" ExemptionCode="1"/>
+		</Product>			
+		=======================
+		ExemptionDate = latest allowed product produced date!
+	-->
+		<!-- Valid Products -->
+		<Product Number="1/BFL 901 009/1" Name="SUP 6601"/>
+		<Product Number="1/BFL 901 009/1" Name="CAB 6601"/>
+		<Product Number="1/BFL 901 009/3" Name="SUP 6601-24"/>
+		<Product Number="1/BFL 901 009/4" Name="SUP 6601"/>
+		<Product Number="1/BFL 901 009/5" Name="SUP 6601"/> <!--Added according to rev L of 23/1056-->
+		<Product Number="1/BFM 901 290/1" Name="CAB 6201"/>
+		<Product Number="1/BFM 901 290/2" Name="CAB 6201 V2"/>
+		<Product Number="1/BFM 901 292/1" Name="CAB 6102"/>
+		<Product Number="1/BFM 901 302/1" Name="CAB 6101"/>
+		<Product Number="1/KRC 118 023" Name="ARUS B2" RadioTestAllowed="YES" RF_A="B2;30W" RF_B="B2;30W">		<!--Added for PRTT-->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="1/KRC 118 027" Name="ARUS B1" RadioTestAllowed="YES" RF_A="B1;30W" RF_B="B1;30W">		<!--Added for PRTT-->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="1/KRC 118 030" Name="AIR 21 B1A B3P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;30W" RF_B="B1;30W">	<!-- Added for PRTT -->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="1/KRC 118 045" Name="AIR 21 B3A B1P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;30W" RF_B="B3;30W">	<!-- Added for PRTT -->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="1/KRC 118 046" Name="ARUS B4" RadioTestAllowed="YES" RF_A="B4;30W" RF_B="B4;30W">		<!--Added for PRTT-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="ARUS" Value="Yes"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="1/KRC 118 048" Name="AIR 21 B4A B12P B5P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;30W" RF_B="B4;30W">	<!-- Added for PRTT -->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="1/KRC 118 054" Name="AIR 21 B2A B12P B5P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;30W" RF_B="B2;30W">	<!-- Added for PRTT -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="ARUS" Value="Yes"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="1/KRC 118 055" Name="AIR 21 B2A B12P B8P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;30W" RF_B="B2;30W"/>	<!-- Added for PRTT -->
+		<Product Number="1/KRC 118 070" Name="AIR 21 B7A 2P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;30W" RF_B="B7;30W">	<!-- Added for PRTT -->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="1/KRC 118 156" Name="AIR 21 B1A B12P B8P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;30W" RF_B="B1;30W"/>	<!-- Added for PRTT -->
+		<Product Number="1/KRC 118 54" Name="ARUS B2" RadioTestAllowed="YES" RF_A="B2;30W" RF_B="B2;30W"/>			<!--Added for PRTT-->
+		<Product Number="1/KRC 118 93" Name="ARUS B20" RadioTestAllowed="YES" RF_A="B20;30W" RF_B="B20;30W">		<!--Added for PRTT-->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="1/KRC 118 97" Name="ARUS B8" RadioTestAllowed="YES" RF_A="B8;30W" RF_B="B8;30W">			<!--Added for PRTT-->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="2/KRC 118 023" Name="ARUS B2" RadioTestAllowed="YES" RF_A="B2;30W" RF_B="B2;30W"/>		<!--Added for PRTT-->
+		<Product Number="2/KRC 118 046" Name="AIR 21 B4A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;30W" RF_B="B4;30W"/> <!-- Added for PRTT -->
+		<Product Number="3/KRC 118 93" Name="ARUS B20" RadioTestAllowed="YES" RF_A="B20;30W" RF_B="B20;30W">		<!--Added for PRTT-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="ARUS" Value="Yes"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="BFD 101 131/2" Name="Router6672DC" ExemptionName="Router6672" ExemptionDate="20170428" ExemptionCode="53"/>
+		<Product Number="BFD 101 131/21" Name="Router6672DC" ExemptionName="Router6672" ExemptionDate="20170428" ExemptionCode="53"/>
+		<Product Number="BFD 101 118/2" Name="Router6675DC" ExemptionName="Router6675"/>
+		<Product Number="BFM 107 204" Name="Enclosure 6130"/>
+		<Product Number="BFM 107 205" Name="Enclosure 6140"/>
+		<Product Number="BFM 107 206" Name="Enclosure 6150"/>
+		<Product Number="BFM 107 207" Name="Enclosure 6340"/> <!-- Enclosure 6340 -->
+		<Product Number="BFM 107 211" Name="Enclosure 6330"/>
+		<Product Number="BFM 107 213" Name="Power 6210"/>
+		<Product Number="BGK 901 18/1" Name="SHU 01 01"/>
+		<Product Number="BGK 901 18/2" Name="SHU 02 01"/>
+		<Product Number="BGM 136 1006/1" Name="SCU 01 01" ExemptionName="SCU|SCU 0101" ExemptionDate="20130920" ExemptionCode="23">	
+			<Rev Revision="R3A" ExemptionName="SCU 01 01" NewDefault="YES"/>
+		</Product>
+		<Product Number="BGM 136 1006/2" Name="SCU 02 01" ExemptionName="SCU|SCU 0201" ExemptionDate="20130920" ExemptionCode="24"/>
+		<Product Number="BGM 136 1006/3" Name="SCU 03 01" ExemptionName="SCU|SCU 0301" ExemptionDate="20130920" ExemptionCode="34"/>
+		<Product Number="BGM 136 103/1" Name="PSC 01 01"/>  <!--Added according to rev M of 23/1056-->
+		<Product Number="BGM 136 106/1" Name="PDU 03 01"/>
+		<Product Number="BGM 136 106/2" Name="PDU 03 02"/>
+		<Product Number="BGM 1361006/3" Name="SCU 03 01" ExemptionName="SCU|SCU 0301" ExemptionDate="20130920" ExemptionCode="35"/>
+		<Product Number="BGM 1361006/4" Name="SCU 04 01"/>	<!--Added according to rev K of 23/1056-->
+		<Product Number="BGM 1361011/1" Name="SCU 05 01"/>  <!--Added according to rev M of 23/1056-->
+		<Product Number="BGM 1361011/2" Name="SXU 05 01"/>  <!--Added according to rev M of 23/1056-->
+		<Product Number="BKV 106 214/1" Name="Internal FAN 6130 HEX"/> <!-- Internal fan in Enclosure 6130 and 6140 -->
+		<Product Number="BKV 301 521/1" Name="E6130 Fan unit ext fans"/> <!-- External fan unit in Enclosure 6130 -->
+		<Product Number="BKV 301 521/2" Name="E6140 Fan unit ext fans"/> <!-- External fan unit in Enclosure 6140 -->
+		<Product Number="BKV 301 523/1" Name="Ventilation Fan"/> <!-- Ventilation/Evacuation Fan for 6140 -->
+		<Product Number="BKV 301 525/1" Name="Ventilation Fan"/> <!-- Ventilation Fan for 6150 -->
+		<Product Number="BMG 136 1006/4" Name="SCU 04 01"/>	<!--Added according to rev L of 23/1056-->
+		<Product Number="BMG 907 081/1" Name="PDU 03 01"/>  <!--Added according to rev M of 23/1056-->
+		<Product Number="BMG 980 333/1" Name="PCU"/>
+		<Product Number="BMG 980 333/2" Name="PCU AC 03"/>
+		<Product Number="BMG 980 334/1" Name="PCU"/>
+		<Product Number="BMG 980 334/2" Name="PCU DC 03"/>
+		<Product Number="BMG 980 334/3" Name="PCU DC 04"/>
+		<Product Number="BMG 980 336/2" Name="PDU 01 01" ExemptionName="PDU" ExemptionDate="20130920" ExemptionCode="7">
+			<Rev Revision="R5A" ExemptionName="BFU 01 01" NewDefault="YES" RadioTestAllowed="YES"/>
+		</Product>
+		<Product Number="BMG 980 336/4" Name="PDU 02 01" ExemptionName="PDU" ExemptionDate="20130920" ExemptionCode="8">
+			<Rev Revision="R2E" ExemptionName="PDU 02 01" NewDefault="YES" RadioTestAllowed="YES"/>
+		</Product>
+		<Product Number="BMG 980 336/5" Name="PDU 02 02"/>
+		<Product Number="BMG 980 336/6" Name="PDU 01 03"/>
+		<Product Number="BMG 980 336/7" Name="PDU 01 04"/>	<!--Added according to rev K of 23/1056-->
+		<Product Number="BMG 980 426/1" Name="PDU 01 06"/>	<!--23/1056 has not been updated as of yet, but this is a product from 2014 that will be added to node configurations now -->
+		<Product Number="BMG 980 337/1" Name="BFU 01 01" ExemptionName="BFU" ExemptionDate="20130920" ExemptionCode="1">
+			<Rev Revision="R4A" ExemptionName="BFU 01 01" NewDefault="YES" RadioTestAllowed="YES"/>
+		</Product>
+		<Product Number="BMG 980 340/1" Name="PCU AC 01"/>
+		<Product Number="BMG 980 342/1" Name="PCU DC 01"/>	<!--Added according to rev K of 23/1056-->
+		<Product Number="BMG 980 374/1" Name="PCU AC 04"/>
+		<Product Number="BMG 980 375/1" Name="PCU DC 06"/>
+		<Product Number="BMG 980 387/1" Name="BFU 01 02"/>	<!--Added according to rev K of 23/1056-->
+		<Product Number="BMG 980 388/1" Name="PCU AC 05"/>	<!--Added according to rev K of 23/1056-->
+		<Product Number="BMG 980 389/1" Name="PCU DC 07"/>	<!--Added according to rev K of 23/1056-->
+		<Product Number="BMG 980 390/1" Name="PCU AC 06"/>	<!--Added according to rev K of 23/1056-->
+		<Product Number="BMG 980 392/1" Name="PCU DC 08"/>	<!--Added according to rev K of 23/1056-->
+		<Product Number="BMG 980 409/1" Name="PDU 10 01"/>
+		<Product Number="BMG 980 410/1" Name="BFU 01 03"/>	<!--Added according to rev M of 23/1056-->
+		<Product Number="BMK 905 94" Name="TMR 6101"/>
+		<Product Number="BMK 905 95" Name="TMR 6102"/>
+		<Product Number="BMK 905 96" Name="TMR 6201"/>
+		<Product Number="BMK 905 023/1" Name="PEC 6130 AC"/>
+		<Product Number="BMK 905 024/1" Name="PEC 6130 DC"/>
+		<Product Number="BMK 905 026/1" Name="PEC 6150 20 kW ST"/>
+		<Product Number="BMK 905 025/1" Name="PEC 6150 8 kW"/>
+		<Product Number="BMK 905 028/1" Name="PEC 6140 AC"/>
+		<Product Number="BMK 905 030/1" Name="PEC 6340 DC"/>
+		<Product Number="BMK 905 029/1" Name="PEC 6140 DC"/>
+		<Product Number="BMK 905 031/1" Name="PEC 6345 DC"/>
+		<Product Number="BMK 905 032/1" Name="PEC 6330, DC/HEX"/>
+		<Product Number="BMK 905 032/3" Name="PEC 6330, DC/AirCon"/>
+		<Product Number="BMK 905 032/4" Name="PEC 6330, AC/HEX"/>
+		<Product Number="BMK 905 032/5" Name="PEC 6330, AC/AirCon"/>
+		<Product Number="BMK 905 036/1" Name="PEC 6130 AC AirC"/>
+		<Product Number="BMK 905 037/1" Name="PEC 6130 DC AirC"/>
+		<Product Number="BMK 905 038/1" Name="PEC 6140 AC AirC BC"/>
+		<Product Number="BMK 905 039/1" Name="PEC 6150 AirC 20kW ST"/>
+		<Product Number="BMK 905 040/1" Name="PEC 6150 19 20 kW ST"/>
+		<Product Number="BMK 905 041/1" Name="PEC 6150 AirC 20 kW ST 2 LVD 5U"/>
+		<Product Number="BMK 905 048/1" Name="PEC 6140 AC 19&quot;"/>
+		<Product Number="BMK 905 050/1" Name="PEC 6150 19&quot; DC"/>
+		<Product Number="BML 161 174/1" Name="PSU AC 01" ExemptionName="PSU" ExemptionDate="20130920" ExemptionCode="11">
+			<Rev Revision="R4A" ExemptionName="PSU AC 01" NewDefault="YES"/>
+		</Product>
+		<Product Number="BML 161 184/1" Name="PSU AC 03"/>	<!--Added according to rev K of 23/1056-->
+		<Product Number="BML 901 250/1" Name="PSU AC 02"/>
+		<Product Number="BML 901 292/1" Name="PSU AC 05"/>	<!--Added according to rev L of 23/1056-->
+		<Product Number="BML 901 293/1" Name="PSU AC 04"/>	<!--Added according to rev K of 23/1056-->
+		<Product Number="BML 901 324/1" Name="PSU AC 07"/>	<!--Added according to rev M of 23/1056-->
+		<Product Number="BML 901 344/1" Name="PSU AC 09" ExemptionName="PSUAC09" ExemptionDate="20160428" ExemptionCode="54"/>	<!--Added for PBC06-->
+		<Product Number="BML 901 398/1" Name="Rectifier 3.0 kW"/> <!-- Rectifier in Enclosure 6130 and 6140 -->
+		<Product Number="BML 901 399/1" Name="Rectifier 3.0 kW HE"/> <!-- Rectifier in Enclosure 6130 and 6140 -->
+		<Product Number="BML 901 406/1" Name="Rectifier 3.0 kW"/> <!-- Rectifier in Enclosure 6150 -->
+		<Product Number="BML 901 407/1" Name="Rectifier 3.0 kW HE"/> <!-- Rectifier in Enclosure 6150 -->
+		<Product Number="BML 901 426/1" Name="Rectifier 3,0 kW"/> <!-- Rectifier in Enclosure 6330 -->
+		<Product Number="BMP 905 45/1" Name="Power system controller 1800"/> <!-- Power controller in Enclosure 6130 and 6140 -->
+		<Product Number="BMP 905 48/1" Name="Controller M530B"/> <!-- Power controller in Enclosure 6150 -->
+		<Product Number="BMP 905 49/1" Name="PSC MC1800D-ES V2"/> <!-- Power controller in Enclosure 6130 and 6140, v2.0 -->
+		<Product Number="BMP 905 49/2" Name="PSC MC1800D-ES V2"/> <!-- Power controller in Enclosure 6130 and 6140, v2.0 -->
+		<Product Number="BMR 910 427/1" Name="PSU 24 01" ExemptionName="PSU" ExemptionDate="20130920" ExemptionCode="9">
+			<Rev Revision="R4A" ExemptionName="PSU 24 01" NewDefault="YES" RadioTestAllowed="YES"/>
+		</Product>
+		<Product Number="BMR 910 428/1" Name="PSU 60 01" ExemptionName="PSU" ExemptionDate="20130920" ExemptionCode="10"/>
+		<Product Number="BMR 910 430/1" Name="PSU 48 01"/>	<!--Added according to rev M of 23/1056-->
+		<Product Number="BMR 910 431/1" Name="PSU 48 02"/>	<!--Added according to rev M of 23/1056-->
+		<Product Number="BMR 910 76/1" Name="PSU 48 03"/>	<!--Added according to rev M of 23/1056-->
+		<Product Number="BPD 901 66/1" Name="Heater 500W DC"/> <!-- Heater for Enclosure 6140 -->
+		<Product Number="BPD 901 67/1" Name="Heater 1000W"/> <!-- Heater for Enclosure 6150 -->
+		<Product Number="BPD 901 69/1" Name="Heater, 250W DC"/> <!-- Heater for Enclosure 6340 -->
+		<Product Number="BPD 901 70/1" Name="Heater, 300W DC"/> <!-- Heater for Enclosure 6330 -->
+		<Product Number="BPD 901 72/1" Name="Heater Kit 120W"/> <!-- Heater for Enclosure 6140, battery compartment -->
+		<Product Number="BPD 901 73/1" Name="Heater 1000W (Batt Comp)"/> <!-- Heater for Enclosure 6150 -->	
+		<Product Number="BPD 901 75/1" Name="DC AirC 300W"/> <!-- AirCon for Enclosure 6140 -->
+		<Product Number="BPD 901 75/2" Name="DC AirC 1500W"/> <!-- AirCon for Enclosure 6140 -->
+		<Product Number="BPD 901 75/3" Name="DC AirCon 520W"/> <!-- AirCon for Enclosure 6150 -->
+		<Product Number="BPD 901 81/1" Name="DC AirCon 1000W incl Door"/> <!-- AirCon incl door for Enclosure 6330 -->
+		<Product Number="BPD 901 78/1" Name="Heater (2x)1000W"/> <!-- Heater for Enclosure 6150 19'' -->	
+		<Product Number="BPD 901 79/1" Name="Heater 1000W (Batt Comp)"/> <!-- Heater for Enclosure 6150 -->	
+		<Product Number="KDU 127 161/1" Name="DUW 10 01" ExemptionName="DUW1001|DUW" ExemptionDate="20141120" ExemptionCode="4">  <!-- Exemption only for DU, problem with older RBS SW -->
+			<Tags>
+				<Tag Name="lat-category" Value="duw_dul_dus"/> <!-- Valid for testplan 20/-->
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 127 161/2" Name="DUW 20 01" ExemptionName="DUW2001|DUW" ExemptionDate="20141120" ExemptionCode="5">  <!-- Exemption only for DU, problem with older RBS SW -->
+			<Tags>
+				<Tag Name="lat-category" Value="duw_dul_dus"/> <!-- Valid for testplan 20/-->
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 127 161/3" Name="DUW 30 01" ExemptionName="DUW3001|DUW" ExemptionDate="20141120" ExemptionCode="6">  <!-- Exemption only for DU, problem with older RBS SW -->
+			<Tags>
+				<Tag Name="lat-category" Value="duw_dul_dus"/> <!-- Valid for testplan 20/-->
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 127 170/1" Name="Ericsson Site Controller"/> <!-- ESC0101 for TMR -->
+		<Product Number="KDU 127 170/3" Name="SCU 09 01" ExemptionName="Ericsson Site Controller 03 01|Support Control Unit|ESC 03 01" ExemptionDate="20181231" ExemptionCode="57"/>	<!--ESC for Enclosures-->
+		<Product Number="KDU 127 174/1" Name="DUW 11 01">	<!--Added according to rev L of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="duw_dul_dus"/> <!-- Valid for testplan 20/-->
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 127 174/3" Name="DUW 31 01">
+			<Tags>
+				<Tag Name="lat-category" Value="duw_dul_dus"/> <!-- Valid for testplan 20/-->
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 127 174/4" Name="DUW 41 01">	<!--Added according to rev L of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="duw_dul_dus"/> <!-- Valid for testplan 20/-->
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 127 174/11" Name="DUW 11 02">
+			<Tags>
+				<Tag Name="lat-category" Value="duw_dul_dus"/> <!-- Valid for testplan 20/-->
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 127 174/41" Name="DUW 41 02">
+			<Tags>
+				<Tag Name="lat-category" Value="duw_dul_dus"/> <!-- Valid for testplan 20/-->
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 127 176/1" Name="ODW 30 01" ExemptionName="ODW3001" ExemptionDate="20141120" ExemptionCode="37">  <!-- Exemption only for DU, problem with older RBS SW -->
+			<Tags>
+				<Tag Name="lat-category" Value="duw_dul_dus"/> <!-- Valid for testplan 20/-->
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 127 178/1" Name="ODW 30 02"/>	<!--Added according to rev L of 23/1056-->
+		<Product Number="KDU 127 185/1" Name="TIU 01 V48"/>
+		<Product Number="KDU 127 189/2" Name="ODS 41 01" ExemptionName="ODS 410 1|ODS 41 01" ExemptionDate="20141120" ExemptionCode="49">  <!--According to new BP version R26BG-->
+			<Tags>
+				<Tag Name="lat-category" Value="duw_dul_dus"/> <!-- Valid for testplan 20/-->
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 127 190/1" Name="TIU 02 O24"/>  <!--Added according to CR13095-->
+		<Product Number="KDU 137 0053/31" Name="Baseband 6318">
+			<Tags>
+				<Tag Name="lat-category" Value="baseband"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="sw-Version" Value="Verification"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 533/1" Name="DUL">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 533/2" Name="DUL">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 533/3" Name="DUL 20 01" ExemptionName="DUL2001|DUL" ExemptionDate="20141120" ExemptionCode="2">  <!-- Exemption only for DU, problem with older RBS SW -->
+			<Tags>
+				<Tag Name="lat-category" Value="duw_dul_dus"/> <!-- Valid for testplan 20/-->
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 533/4" Name="DUL 20 01" ExemptionName="DUL2001" ExemptionDate="20141120" ExemptionCode="3">      <!-- Exemption only for DU, problem with older RBS SW -->
+			<Tags>
+				<Tag Name="lat-category" Value="duw_dul_dus"/> <!-- Valid for testplan 20/-->
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 569/1" Name="DUG 20 01">
+			<Tags>
+				<Tag Name="lat-category" Value="dug"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 581/1" Name="XCU"/>
+		<Product Number="KDU 137 596/1" Name="SIU02">
+			<Tags>
+				<Tag Name="lat-category" Value="tcu_siu"/>
+				<Tag Name="lat-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+			</Tags>
+		</Product>		
+		<Product Number="KDU 137 596/2" Name="SIU02">
+			<Tags>
+				<Tag Name="lat-category" Value="tcu_siu"/>
+				<Tag Name="lat-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 597/1" Name="DUG 10 01">
+			<Tags>
+				<Tag Name="lat-category" Value="dug"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 624/1" Name="DUS 41 01" ExemptionName="DUS4101" ExemptionDate="20141120" ExemptionCode="40">	<!-- Exemption only for DU, problem with older RBS SW -->
+			<Tags>
+				<Tag Name="lat-category" Value="duw_dul_dus"/> <!-- Valid for testplan 20/-->
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 624/11" Name="DUS 41 02" ExemptionName="DUS4102" ExemptionDate="20141120" ExemptionCode="46">  <!--Added according to CR13139-->
+			<Tags>
+				<Tag Name="lat-category" Value="duw_dul_dus"/> <!-- Valid for testplan 20/-->
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 624/3" Name="DUS 31 01" ExemptionName="DUS3101" ExemptionDate="20141120" ExemptionCode="41">	<!-- Exemption only for DU, problem with older RBS SW -->	
+			<Tags>
+				<Tag Name="lat-category" Value="duw_dul_dus"/> <!-- Valid for testplan 20/-->
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 624/31" Name="DUS 31 02" ExemptionName="DUS3102" ExemptionDate="20141120" ExemptionCode="47">  <!--Added according to CR13139-->
+			<Tags>
+				<Tag Name="lat-category" Value="duw_dul_dus"/> <!-- Valid for testplan 20/-->
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 739/1" Name="TCU 02 01" ExemptionName="TCU02" ExemptionDate="20140201" ExemptionCode="44">
+			<Tags>
+				<Tag Name="lat-category" Value="tcu_siu"/>
+				<Tag Name="lat-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 745/1" Name="XMU 02 01"/>	<!--Added according to rev K of 23/1056-->
+		<Product Number="KDU 137 747/1" Name="DUS 40 01"/>	<!--Added according to rev K of 23/1056-->
+		<Product Number="KDU 137 815/11" Name="Baseband T605" ExemptionName="TCU 04 01" ExemptionDate="20170428" ExemptionCode="53"/>   <!-- MarketName="Baseband T603"  exemption Only for internal use in Testprogram, need to have both "names" -->
+		<Product Number="KDU 137 834/1" Name="DUL 21 01"/>
+		<Product Number="KDU 137 847/11" Name="Baseband 6620" >
+			<Tags>
+				<Tag Name="lat-category" Value="baseband"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="checkFanAlarm" Value="Yes"/>
+				<Tag Name="sw-Version" Value="17Q2"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 848/11" Name="Baseband 6630" >
+			<Tags>
+				<Tag Name="lat-category" Value="baseband"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="checkFanAlarm" Value="Yes"/>
+				<Tag Name="sw-Version" Value="17Q2"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 862/1" Name="RUS 01 B8" >	
+			<Tags>
+				<Tag Name="lat-category" Value="duw_dul_dus"/>
+				<Tag Name="lat-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 862/11" Name="Baseband 6502" >	<!--Added according to rev L of 23/1056 ???-->
+			<Tags>
+				<Tag Name="lat-category" Value="baseband"/>
+				<Tag Name="prtt-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+				<Tag Name="lat-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+				<Tag Name="sw-Version" Value="17Q3"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 865/1" Name="IDU 5205"/>
+		<Product Number="KDU 137 865/11" Name="IDU 5205"/>
+		<Product Number="KDU 137 866/1" Name="IDU 5209"/>
+		<Product Number="KDU 137 866/11" Name="IDU 5209"/>
+		<!-- Products with Exemptions  ExemptionDate = latest product produced date-->
+		<Product Number="KDU 137 925/1" Name="DUS 52 01"/>  <!--Added according to CR12652-->
+		<Product Number="KDU 137 925/2" Name="DUS 32 01"/>  <!--Added according to CR12652-->
+		<Product Number="KDU 137 925/31" Name="Baseband 5216" ExemptionName="DUS 52 01|BASEBAND 5216" ExemptionDate="20170528" ExemptionCode="51">	<!--MarketName="Baseband 5216" --> <!--Added according to CR15554-->
+			<Tags>
+				<Tag Name="lat-category" Value="baseband"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="sw-Version" Value="16BIP8"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 925/3" Name="Baseband 5216">
+			<Tags>
+				<Tag Name="lat-category" Value="baseband"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 925/41" Name="Baseband 5212" ExemptionName="DUS 32 01|BASEBAND 5212" ExemptionDate="20170528" ExemptionCode="50">	<!--MarketName="Baseband 5212" --> <!--Added according to CR15554-->
+			<Tags>
+				<Tag Name="lat-category" Value="baseband"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="sw-Version" Value="16BIP8"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 925/4" Name="Baseband 5212">
+			<Tags>
+				<Tag Name="lat-category" Value="baseband"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 925/51" Name="Baseband 5216"/> <!--Added according to task 3888, Not included in latest 23/1056 Rev U...may need exemption as well-->
+		<Product Number="KDU 137 925/61" Name="Baseband 5212"/> <!--Added according to task 3888, Not included in latest 23/1056 Rev U...may need exemption as well-->
+		<Product Number="KDU 137 926/1" Name="Baseband T503" ExemptionName="TCU 03 01" ExemptionDate="20170428" ExemptionCode="57"/>	<!-- MarketName="Baseband T503"  exemption Only for internal use in Testprogram, need to have both "names" -->
+		<Product Number="KDU 137 926/11" Name="Baseband T503" ExemptionName="TCU 03 01" ExemptionDate="20170428" ExemptionCode="52"/>	<!-- MarketName="Baseband T503"  exemption Only for internal use in Testprogram, need to have both "names" -->
+		<Product Number="KDU 137 930/1" Name="ODS 11m 01" ExemptionName="ODS11M01" ExemptionDate="20141120" ExemptionCode="45"/>	<!--Added according to a CR 11981-->
+		<Product Number="KDU 137 944/1" Name="PMU 01 01"/> <!-- Fronthaul 6080 -->
+		<Product Number="KDU 137 945/1" Name="TPS 06 01"/> <!-- Fronthaul 6080 -->
+		<Product Number="KDU 137 949/1" Name="Baseband R503" ExemptionName="XMU 03 01" ExemptionDate="20170428" ExemptionCode="54"> <!--MarketName="Baseband R503" -->  <!--Added according to CR15626-->
+			<Tags>
+				<Tag Name="lat-category" Value="baseband"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 974/1" Name="Baseband 6303" >	<!--Added according to rev L of 23/1056 ???-->
+			<Tags>
+				<Tag Name="lat-category" Value="baseband"/>
+				<Tag Name="lat-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 974/11" Name="Baseband 6303" >	<!--Added according to rev L of 23/1056 ???-->
+			<Tags>
+				<Tag Name="lat-category" Value="baseband"/>
+				<Tag Name="prtt-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+				<Tag Name="lat-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+				<Tag Name="sw-Version" Value="17Q3"/>
+			</Tags>
+		</Product>
+		<Product Number="KDU 137 979/1" Name="Baseband P614" >
+			<Tags>
+				<Tag Name="lat-category" Value="baseband"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KDY 209 371/1" Name="SCU 06 01"/>	<!--Added according to rev K of 23/1056-->
+		<Product Number="KFE 101 1157/1" Name="PCF"/>
+		<Product Number="KFE 101 1157/2" Name="PCF 01 01"/>
+		<Product Number="KFE 101 1157/3" Name="PCF"/>
+		<Product Number="KFE 101 1157/4" Name="PCF 02 03"/>
+		<Product Number="KFE 101 1157/5" Name="PCF 02 04"/>
+		<Product Number="KFE 101 1157/6" Name="PCF 02 05"/>
+		<Product Number="KFE 101 1162/1" Name="PFU 01 01"/>
+		<Product Number="KFE 101 1162/2" Name="PFU 02 01"/>
+		<Product Number="KFE 101 1162/3" Name="PFU 02 02"/>
+		<Product Number="KFE 101 1163/1" Name="PCF 01 02"/>
+		<Product Number="KFE 101 1164/1" Name="PCF 02 06"/>	<!--Added according to rev K of 23/1056-->
+		<Product Number="KFE 101 1164/2" Name="PCF 02 07"/>	<!--Added according to rev K of 23/1056-->
+		<Product Number="KFE 101 1164/3" Name="PCF 02 08"/>	<!--Added according to rev K of 23/1056-->
+		<Product Number="KFE 101 1165/1" Name="PCF 01 03"/>	<!--Added according to rev K of 23/1056-->
+		<Product Number="KFE 101 1167/1" Name="PCF 01 04"/> <!--Added according to rev M of 23/1056-->
+		<Product Number="KRC 118 001/1" Name="RRUS 61 B40B" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40B;30W;5MHZ" RF_B="B40B;30W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 002/1" Name="RRUS 61 B40C" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40C;30W;5MHZ" RF_B="B40C;30W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 003/1" Name="RRUS 61 B40D" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40D;30W;5MHZ" RF_B="B40D;30W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 004/1" Name="RRUS 61 B40E" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40E;30W;5MHZ" RF_B="B40E;30W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 005/1" Name="RRUS 61 B40F" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40F;30W;5MHZ" RF_B="B40F;30W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 006/1" Name="RRUS 61 B40G" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40G;30W;5MHZ" RF_B="B40G;30W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 008/1" Name="RRUS 0Y B20" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B20;30W"/> <!--AIR-->
+		<Product Number="KRC 118 008/3" Name="RRUS 0Y B20" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B20;30W"/> <!--AIR-->
+		<Product Number="KRC 118 009/1" Name="RRUS 0Y B8" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8;30W"/>	<!--AIR, Added according to rev K of 23/1056-->
+		<Product Number="KRC 118 022/1" Name="AIR 11 B20A B8P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B20;30W" RF_B="B20;30W"/>	<!--AIR, Added according to rev M of 23/1056-->
+		<Product Number="KRC 118 023/1" Name="AIR 21 B2A B4P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;30W" RF_B="B2;30W"> <!-- AIR, Added according to rev K of 23/1056 -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="ARUS" Value="Yes"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 023/2" Name="AIR 21 B2A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;30W" RF_B="B2;30W"/> <!--	AIR, Added according to rev K of 23/1056  Not supported in PRTT yet -->
+		<Product Number="KRC 118 027/1" Name="ARUS B1" RadioTestAllowed="YES" RF_A="B1;30W" RF_B="B1;30W">		<!--Added for PRTT-->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 028/1" Name="RRUS 0Z B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;30W"/>	<!--Added according to rev K of 23/1056-->
+		<Product Number="KRC 118 030/1" Name="AIR 21 B1A B3P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;30W" RF_B="B1;30W">	<!-- AIR, Added according to rev L of 23/1056 Not supported in PRTT yet -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="ARUS" Value="Yes"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 031/1" Name="RRUS 0Z B2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;30W"/>	<!--AIR, Added according to rev K of 23/1056-->
+		<Product Number="KRC 118 034/1" Name="RRUS 0Z B4" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;30W"/>	<!--AIR, Added according to rev K of 23/1056-->
+		<Product Number="KRC 118 035/1" Name="RRUS 61 B40M" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40M;30W;5MHZ" RF_B="B40M;30W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 038/2" Name="mRRUS 61 B38" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B38;5W;5MHZ" RF_B="B38;5W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 039/1" Name="RRUS 61 B39" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B39;40W;5MHZ" RF_B="B39;40W;5MHZ">	<!--TDD, Added according to rev ? of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 040/1" Name="RRUS 61 B40Q" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40Q;40W;5MHZ" RF_B="B40Q;40W;5MHZ"/>
+		<Product Number="KRC 118 041/1" Name="RRUS 61 B41A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B41;40W;5MHZ" RF_B="B41;40W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 041/2" Name="RRUS 61 B41C" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B41C;40W;5MHZ" RF_B="B41C;40W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 045/1" Name="AIR 21 B3A B1P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;30W" RF_B="B3;30W">	<!-- AIR, Added according to rev M of 23/1056 Not supported in PRTT yet -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="ARUS" Value="Yes"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 046/1" Name="AIR 21 B4A B2P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;30W" RF_B="B4;30W"> <!-- Added for PRTT -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="ARUS" Value="Yes"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 046/2" Name="AIR 21 B4A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;30W" RF_B="B4;30W"/>	<!-- Added for PRTT -->
+		<Product Number="KRC 118 047/1" Name="RRUS 61 B38" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B38;40W;5MHZ" RF_B="B38;40W;5MHZ">	<!--TDD, Added according to rev K of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 048/1" Name="AIR 21 B4A B12P B5P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;30W" RF_B="B4;30W">	<!-- AIR, Added according to rev M of 23/1056 Not supported in PRTT yet -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="ARUS" Value="Yes"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 049/1" Name="AIR 11 B5A B1P B3P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;30W" RF_B="B5;30W"/>	<!--AIR, Added according to rev M of 23/1056-->
+		<Product Number="KRC 118 049/2" Name="AIR 11 B5A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;30W" RF_B="B5;30W"/>	<!--AIR, Added according to rev M of 23/1056-->
+		<Product Number="KRC 118 050/1" Name="RRUS 32A B4" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;30W" RF_B="B4;30W" RF_C="B4;30W" RF_D="B4;30W"> <!--Added according to CR13738 -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 051/1" Name="AIR 11 B8A B20P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8;30W" RF_B="B8;30W"/>	<!--AIR, Added according to rev M of 23/1056-->
+		<!--	<Product Number="KRC 118 052/1" Name="AIR 21 B7A B8P" RequiresRadioTest="YES"/>AIR, Added according to rev M of 23/1056 Not supported in PRTT yet -->
+		<!--	<Product Number="KRC 118 052/2" Name="AIR 21 B7A" RequiresRadioTest="YES"/>	AIR, Added according to rev M of 23/1056Not supported in PRTT yet -->
+		<!--	<Product Number="KRC 118 052/3" Name="AIR 21 B7A B1P" RequiresRadioTest="YES"/>	AIR, Added according to rev M of 23/1056 Not supported in PRTT yet -->
+		<!--	<Product Number="KRC 118 053/1" Name="AIR 21 B3A B12P B8P" RequiresRadioTest="YES"/> AIR, Added according to rev M of 23/1056 Not supported in PRTT yet -->
+		<!--	<Product Number="KRC 118 053/2" Name="AIR 21 B3A B12P B8P" RequiresRadioTest="YES"/> AIR, Added according to rev M of 23/1056 Not supported in PRTT yet -->
+		<Product Number="KRC 118 054/1" Name="AIR 21 B2A B12P B5P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;30W" RF_B="B2;30W"/>	<!-- AIR, Added according to rev M of 23/1056 Not supported in PRTT yet -->
+
+		<Product Number="KRC 118 055/1" Name="AIR 21 B2A B12P B8P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;30W" RF_B="B2;30W"/>	<!-- AIR, Added according to rev M of 23/1056 Not supported in PRTT yet -->
+		<Product Number="KRC 118 056/1" Name="AIR 21 B4A B12P B8P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;30W" RF_B="B4;30W">	<!-- AIR, Added according to rev M of 23/1056 -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="ARUS" Value="Yes"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<!--	<Product Number="KRC 118 057/1" Name="AIR 21 B4A B12P B8P" RequiresRadioTest="YES"/> AIR, Added according to rev M of 23/1056 Not supported in PRTT yet -->
+		<Product Number="KRC 118 058/1" Name="RRUS 0Z B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;30W"/>	<!--AIR, Added according to rev L of 23/1056-->
+		<!--	<Product Number="KRC 118 068/1" Name="AIR 21 B2A B12P B8P" RequiresRadioTest="YES"/> AIR, Added according to rev M of 23/1056 Not supported in PRTT yet -->
+		<Product Number="KRC 118 070/1" Name="AIR 21 B7A 2P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;30W" RF_B="B7;30W">	<!-- AIR, Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="ARUS" Value="Yes"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 072/1" Name="RRUS 0Z B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;30W"/>	<!--AIR, Added according to rev K of 23/1056-->
+		<Product Number="KRC 118 156/1" Name="AIR 21 B1A B12P B8P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;30W" RF_B="B1;30W"/> <!-- AIR, Added according to rev M of 23/1056 Not supported in PRTT yet -->
+		<!--	<Product Number="KRC 118 157/1" Name="AIR 21 B7A 3P" RequiresRadioTest="YES"/> AIR, Added according to rev M of 23/1056 Not supported in PRTT yet -->
+		<Product Number="KRC 118 159/1" Name="RRUS 31 B25" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B25;40W" RF_B="B25;40W" RF_C="B25;40W" RF_D="B25;40W">	<!--Added according to CR13239-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 163/1" Name="RRUS 0Z B2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;30W"/>	<!--AIR, Added according to rev K of 23/1056-->
+		<Product Number="KRC 118 165/1" Name="RR22F2B1828" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B18;20W;10MHZ" RF_B="B18;20W;10MHZ" RF_C="B28D;10W;5MHZ" RF_D="B28D;10W;5MHZ"> <!--Added according to CR14595-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 166/1" Name="RR22F3B11828" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B18;4W;10MHZ" RF_B="B18;4W;10MHZ" RF_C="B28D;4W;5MHZ" RF_D="B28D;4W;5MHZ" RF_E="B1A;6W;5MHZ" RF_F="B1A;6W;5MHZ" ACDCPower="AC100" ACFrequency="ACF60HZ"> <!--Added by Ekanjon,source?-->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 167/1" Name="RRU 22F1 B3D" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;10W;5MHZ" RF_B="B3;10W;5MHZ" ACDCPower="AC220" ACFrequency="ACF50HZ"> <!--Added by ECSFRIN,source?-->	
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 30/1" Name="RUS 01 B7" RadioTestAllowed="YES" ExemptionName="RUS" ExemptionDate="20141120" ExemptionCode="16" CrossConnectTest="RXSUPERVISION" RF_A="B7;40W" RF_B="B7;0W">   <!-- Exemption only for this RU, problem with older R-state -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<!-- <Product Number="KRC 118 30/2" Name="" ExemptionName="RUS" ExemptionDate="20130920" ExemptionCode="17" RequiresRadioTest="YES"/>                         PR1 FD, not used? -->
+		<Product Number="KRC 118 40/2" Name="RUW 01 B1" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" ExemptionName="RUW" ExemptionDate="20130920" ExemptionCode="30" RF_A="B1;60W" RF_B="B1;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 42/2" Name="RRUW 01 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" ExemptionName="RRUW" ExemptionDate="20130920" ExemptionCode="31" RF_A="B1;60W" RF_B="B1;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 42/3" Name="RRUW 01 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" ExemptionName="RRUW" ExemptionDate="20130920" ExemptionCode="32" RF_A="B1;60W" RF_B="B1;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 42/5" Name="RRUW 03 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;20W" RF_B="B1;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 46/2" Name="RRUW 02 B5" RadioTestAllowed="YES" RequiresRadioTest="YES" ExemptionName="RRUW" ExemptionDate="20130920" ExemptionCode="33" RF_A="B5;60W" RF_B="B5;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 47/2" Name="RRUW 02 B2" RadioTestAllowed="YES" RequiresRadioTest="YES" ExemptionName="RRUW" ExemptionDate="20130920" ExemptionCode="39" RF_A="B2;60W" RF_B="B2;0W">		
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 56/1" Name="RUL 01 B13" RadioTestAllowed="YES" ExemptionName="RUL" ExemptionDate="20130920" ExemptionCode="12" CrossConnectTest="RXSUPERVISION" RF_A="B13;60W" RF_B="B13;0W">   <!-- Only LTE without CC, to allow reduced test  --> 
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<!-- <Product Number="KRC 118 56/2" Name="" RequiresRadioTest="YES" ExemptionName="RUL" ExemptionDate="20130920" ExemptionCode="13"/>                       PR1 FD, not used? -->
+		<Product Number="KRC 118 58/1" Name="RRUL 01 B17" RadioTestAllowed="YES" RequiresRadioTest="YES" ExemptionName="RRUL" ExemptionDate="20130920" ExemptionCode="14" RF_A="B17;60W" RF_B="B17;0W"/>
+		<Product Number="KRC 118 59/1" Name="RUS 01 B4" RadioTestAllowed="YES" ExemptionName="RUS" ExemptionDate="20130920" ExemptionCode="15" CrossConnectTest="RXSUPERVISION" RF_A="B4;60W" RF_B="B4;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 59/2" Name="RUS 01 B4" RadioTestAllowed="YES" ExemptionName="RUS" ExemptionDate="20130920" ExemptionCode="25" CrossConnectTest="RXSUPERVISION" RF_A="B4;80W" RF_B="B4;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 60/1" Name="RRUS 01 B4" RadioTestAllowed="YES" RequiresRadioTest="YES" ExemptionName="RRUS" ExemptionDate="20130920" ExemptionCode="21" RF_A="B4;60W" RF_B="B4;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+				<Tag Name="lat-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 62/1" Name="RUS 01 B8" RadioTestAllowed="YES" CrossConnectTest="RXSUPERVISION" RF_A="B8;60W" RF_B="B8;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+			<Rev Revision="R2A" CrossConnectTest="TESTTONE" NewDefault="YES" RadioTestAllowed="YES"/>
+		</Product>
+		<Product Number="KRC 118 62/2" Name="RUS 01 B8" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" RF_A="B8;80W" RF_B="B8;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 63/1" Name="RUS 01 B0" RadioTestAllowed="YES" CrossConnectTest="RXSUPERVISION" RF_A="B0;60W" RF_B="B0;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+			<Rev Revision="R2A" CrossConnectTest="TESTTONE" NewDefault="YES" RadioTestAllowed="YES"/>
+		</Product>
+		<Product Number="KRC 118 64/1" Name="RUS 01 B5" RadioTestAllowed="YES" CrossConnectTest="RXSUPERVISION" RF_A="B5;60W" RF_B="B5;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+			<Rev Revision="R1B" CrossConnectTest="TESTTONE" NewDefault="YES" RadioTestAllowed="YES"/>
+		</Product>
+		<Product Number="KRC 118 64/2" Name="RUS 01 B5" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" RF_A="B5;60W" RF_B="B5;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 64/3" Name="RUS 01 B5" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" RF_A="B5;80W" RF_B="B5;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 65/1" Name="RUS 01 B3" RadioTestAllowed="YES" ExemptionName="RUS" ExemptionDate="20130920" ExemptionCode="18" CrossConnectTest="RXSUPERVISION" RF_A="B3;60W" RF_B="B3;0W"> 
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+			<Rev Revision="R2A" CrossConnectTest="TESTTONE" NewDefault="YES" RadioTestAllowed="YES"/>
+		</Product>
+		<Product Number="KRC 118 65/2" Name="RUS 01 B3" RadioTestAllowed="YES" ExemptionName="RUS" ExemptionDate="20130920" ExemptionCode="28" CrossConnectTest="TESTTONE" RF_A="B3;60W" RF_B="B3;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 66/1" Name="RUS 01 B2" RadioTestAllowed="YES" ExemptionName="RUS" ExemptionDate="20130920" ExemptionCode="19" CrossConnectTest="RXSUPERVISION" RF_A="B2;60W" RF_B="B2;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+			<Rev Revision="R2A" CrossConnectTest="TESTTONE" NewDefault="YES" RadioTestAllowed="YES"/>
+		</Product>
+		<Product Number="KRC 118 66/2" Name="RUS 01 B2" RadioTestAllowed="YES" ExemptionName="RUS" ExemptionDate="20130920" ExemptionCode="27" CrossConnectTest="TESTTONE" RF_A="B2;80W" RF_B="B2;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 67/1" Name="RUW 02 B11" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B11;60W" RF_B="B11;0W">                    <!-- Not supporting reduced radio -->    
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 68/1" Name="RRUW 02 B11" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B11;60W" RF_B="B11;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 70/1" Name="RRUS 01 B5" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;60W" RF_B="B5;0W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 70/2" Name="RRUS 01 B5" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;60W" RF_B="B5;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 70/3" Name="RRUS 01 B5" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;80W" RF_B="B5;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 71/1" Name="RRUS 01 B8" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8;60W" RF_B="B8;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 71/2" Name="RRUS 01 B8" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8;80W" RF_B="B8;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 72/1" Name="RRUS 01 B0" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B0;60W" RF_B="B0;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 73/1" Name="RRUS 01 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;60W" RF_B="B3;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 73/2" Name="RRUS 01 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;80W" RF_B="B3;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 74/1" Name="RRUS 01 B2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;60W" RF_B="B2;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 74/2" Name="RRUS 01 B2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;80W" RF_B="B2;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 75/1" Name="RUS 01 B1" RadioTestAllowed="YES" ExemptionName="RUS" ExemptionDate="20130920" ExemptionCode="20" CrossConnectTest="RXSUPERVISION" RF_A="B1;60W" RF_B="B1;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+			<Rev Revision="R2A" CrossConnectTest="TESTTONE" NewDefault="YES" RadioTestAllowed="YES"/>
+			<Rev Revision="R2C" CrossConnectTest="TESTTONE" NewDefault="YES" RF_A="B1;80W" RF_B="B1;0W" RadioTestAllowed="YES"/>
+		</Product>
+		<Product Number="KRC 118 76/1" Name="RRUS 01 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" ExemptionName="RUS" ExemptionDate="20130920" ExemptionCode="26" RF_A="B1;60W" RF_B="B1;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+			<Rev Revision="R2C" NewDefault="YES" RF_A="B1;80W" RF_B="B1;0W" RadioTestAllowed="YES"/>
+			<Rev Revision="R4A" NewDefault="YES" RF_A="B1;60W" RF_B="B1;0W" RadioTestAllowed="YES"/> <!--Issue to setup 80W for rev R4B, changed back to 60W from R4A-->
+		</Product>
+		<Product Number="KRC 118 77/1" Name="RRUS 01 B9" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B9;60W" RF_B="B9;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 90/1" Name="RUS 01 B20" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" RF_A="B20;60W" RF_B="B20;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 90/2" Name="RUS 01 B20" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" RF_A="B20;80W" RF_B="B20;0W"> <!--Added according to rev L of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 91/1" Name="RRUS 11 B20" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B20;30W" RF_B="B20;30W">	
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 91/2" Name="RRUS 11 B20" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B20;40W" RF_B="B20;40W">	<!--Added according to rev L of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 93/1" Name="AIR 11 B20A B8P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B20;30W" RF_B="B20;30W">	<!--AIR, Added according to rev K of 23/1056-->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 93/2" Name="AIR 11 B20A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B20;30W" RF_B="B20;30W"/>	<!--AIR, Added according to rev M of 23/1056-->
+		<Product Number="KRC 118 93/3" Name="AIR 11 B20A B8P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B20;30W" RF_B="B20;30W">	<!--AIR, Added according to rev L of 23/1056-->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 94/1" Name="RUS 01 B12" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" RF_A="B12;60W" RF_B="B12;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 95/1" Name="RUS 01 B14" CrossConnectTest="TESTTONE" RF_A="B14;60W" RF_B="B14;0W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 96/1" Name="AIR 11 B0" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B0;30W" RF_B="B0;30W"/>	<!--AIR, Added according to rev M of 23/1056-->
+		<Product Number="KRC 118 97/1" Name="AIR 11 B8A B20P" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8;30W" RF_B="B8;30W">	<!--AIR, Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 97/2" Name="AIR 11 B8A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8;30W" RF_B="B8;30W"/>	<!--AIR, Added according to rev M of 23/1056-->
+		<Product Number="KRC 118 98/1" Name="RRUS 61 B40" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40;40W;5MHZ" RF_B="B40;40W;5MHZ">	<!--TDD, Added according to rev K of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 99/1" Name="RRUS 61 B40A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40A;40W;5MHZ" RF_B="B40A;40W;5MHZ"/>	<!--TDD, Added according to rev M of 23/1056-->
+		<Product Number="KRC 131 142/1" Name="RRUL 11 B12" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B12;30W;10MHZ" RF_B="B12;30W;10MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 131 143/1" Name="RRUL 11 B4" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;30W;10MHZ" RF_B="B4;30W;10MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 131 144/1" Name="RRUL 11 B2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;30W;10MHZ" RF_B="B2;30W;10MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 131 145/1" Name="RRUL 11 B13" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B13;30W;10MHZ" RF_B="B13;30W;10MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 131 146/1" Name="RRUS 11 B25" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B25;30W" RF_B="B25;30W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+			<Rev Revision="R2C" NewDefault="YES" RF_A="B25;40W" RF_B="B25;40W" RadioTestAllowed="YES"/>
+		</Product>
+		<Product Number="KRC 161 194/1" Name="RUG 11 B5" RadioTestAllowed="YES" CrossConnectTest="RXSUPERVISION" RF_A="B5;60W" RF_B="B5;0W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 195/1" Name="RUG 11 B0" RadioTestAllowed="YES" CrossConnectTest="RXSUPERVISION" RF_A="B0;60W" RF_B="B0;0W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 196/1" Name="RUG 11 B8" RadioTestAllowed="YES" CrossConnectTest="RXSUPERVISION" RF_A="B8;60W" RF_B="B8;0W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 197/1" Name="RUG 11 B3" RadioTestAllowed="YES" CrossConnectTest="RXSUPERVISION" RF_A="B3;60W" RF_B="B3;0W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 198/1" Name="RUG 11 B2" RadioTestAllowed="YES" CrossConnectTest="RXSUPERVISION" RF_A="B2;60W" RF_B="B2;0W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 241/1" Name="RRUS 11 B12" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B12;30W" RF_B="B12;30W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+			<Rev Revision="R1H" RequiresRadioTest="YES" ExemptionName="RRUS11" ExemptionDate="20130920" ExemptionCode="40" RadioTestAllowed="YES"/>
+			<Rev Revision="R2G" RequiresRadioTest="YES" ExemptionName="RRUS11" ExemptionDate="20130920" ExemptionCode="38" RadioTestAllowed="YES"/>
+		</Product>
+		<Product Number="KRC 161 241/2" Name="RRUS 11 B12" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B12;40W" RF_B="B12;40W">	<!--Added according to ???-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 253/1" Name="RRUS 11 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;30W" RF_B="B7;30W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+			<Rev Revision="R1H" ExemptionName="RRUS11" RadioTestAllowed="YES" ExemptionDate="20130920" ExemptionCode="42"/>
+			<Rev Revision="R1J" ExemptionName="RRUS11" RadioTestAllowed="YES" ExemptionDate="20130920" ExemptionCode="43"/>
+		</Product>
+		<Product Number="KRC 161 254/1" Name="RRUS 11 B4" RadioTestAllowed="YES" RequiresRadioTest="YES" ExemptionName="RRUS11" ExemptionDate="20130920" ExemptionCode="29" RF_A="B4;30W" RF_B="B4;30W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 254/2" Name="RRUS 11 B4" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;30W" RF_B="B4;30W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 255/1" Name="RRUS 11 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;30W" RF_B="B1;30W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 255/2" Name="RRUS 11 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;30W" RF_B="B1;30W">	<!--Added according to rev K of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 260/1" Name="RUS 02 B8" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" RF_A="B8;100W" RF_B="B8;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<!--	<Product Number="KRC 161 261/1" Name="RRUS 02 B8" RequiresRadioTest="YES"/>	Added according to rev K of 23/1056 Only P1A-->
+		<Product Number="KRC 161 262/1" Name="RRUS 12 B8" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8;60W" RF_B="B8;60W">	<!--Added according to rev K of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 262/2" Name="RRUS 12 B8" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8;60W" RF_B="B8;60W">	<!--Added according to rev K of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 262/3" Name="RRUS 12 B8" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8;60W" RF_B="B8;60W">	<!--Added according to rev K of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 262/4" Name="RRUS 12 B8A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8A;60W" RF_B="B8A;60W">	<!--Added according to rev Z of 23/1056-->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 263/1" Name="RUS 02 B0" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" RF_A="B0;100W" RF_B="B0;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 264/1" Name="RRUS 02 B0" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B0;60W" RF_B="B0;60W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 264/3" Name="RRUS 02 B0A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B0A;100W" RF_B="B0A;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 276/1" Name="RRUS 11 B2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;30W" RF_B="B2;30W">  <!-- DUAL-TX -->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 276/2" Name="RRUS 11 B2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;40W" RF_B="B2;40W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 280/1" Name="RUS 02 B3" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" RF_A="B3;80W" RF_B="B3;0W">	<!--Added according to rev K of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<!--	<Product Number="KRC 161 281/1" Name="RRUS 02 B3" RequiresRadioTest="YES"/> Added according to rev K of 23/1056 Only P1A-->
+		<Product Number="KRC 161 282/1" Name="RRUS 12 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;60W" RF_B="B3;60W">	<!--Added according to ?-->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 282/2" Name="RRUS 12 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;60W" RF_B="B3;60W">	<!--Added according to ?-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 282/3" Name="RRUS 12 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;60W" RF_B="B3;60W">	<!--Added according to ?-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 283/1" Name="RIR 12 B5" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;10W" RF_B="B5;10W"/>	<!--RIR, Added according to rev K of 23/1056-->
+		<Product Number="KRC 161 284/1" Name="RIR 11 B5" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;10W" RF_B="B5;10W"/>	<!--RIR, Added according to rev K of 23/1056-->
+		<Product Number="KRC 161 285/1" Name="RRUS 11 B5" RadioTestAllowed="YES" RequiresRadioTest="YES" ExemptionName="RRUS11" ExemptionDate="20130920" ExemptionCode="36" RF_A="B5;30W" RF_B="B5;30W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 285/2" Name="RRUS 11 B5" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;40W" RF_B="B5;40W">	<!--Added according to rev K of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 286/1" Name="RRUS A2 B25" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B25;0W" RF_B="B25;0W">	<!--Added according to rev K of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 287/1" Name="RRUS 11 B26A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B26A;30W" RF_B="B26A;30W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 287/2" Name="RRUS 11 B26A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B26A;30W" RF_B="B26A;30W">	<!--Added according to rev K of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 290/1" Name="RRUS A2 B4" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;0W" RF_B="B4;0W">	<!--Added according to rev K of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 291/1" Name="RRUS A2 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;0W" RF_B="B7;0W">	<!--Added according to rev K of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 292/1" Name="RRUS A2 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;0W" RF_B="B1;0W">	<!--Added according to rev K of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 293/1" Name="RRUS A2 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;0W" RF_B="B3;0W">	<!--Added according to rev K of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 294/1" Name="RRUS A2 B20" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B20;0W" RF_B="B20;0W"/>	<!--Added according to rev K of 23/1056-->
+		<!--	<Product Number="KRC 161 295/1" Name="RRUS D1 B1" RequiresRadioTest="YES"/>	DOCOMO Added according to rev L of 23/1056 Not supported in PRTT -->
+		<!--	<Product Number="KRC 161 295/2" Name="RRUS D1 B1" RequiresRadioTest="YES"/>	DOCOMO Added according to rev L of 23/1056 Not supported in PRTT -->
+		<!--	<Product Number="KRC 161 295/3" Name="RRUS D1 B1" RequiresRadioTest="YES"/>	DOCOMO Added according to rev L of 23/1056 Not supported in PRTT -->
+		<!--	<Product Number="KRC 161 295/4" Name="RRUS D1 B1" RequiresRadioTest="YES"/>	DOCOMO Added according to rev L of 23/1056 Not supported in PRTT -->
+		<Product Number="KRC 161 296/1" Name="RUS 02 B1" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" RF_A="B1;100W" RF_B="B1;0W">	<!--Added according to rev L of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 297/1" Name="RRUS 12 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;60W" RF_B="B1;60W">	<!--Added according to rev L of 23/1056-->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 297/2" Name="RRUS 12 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;60W" RF_B="B1;60W">	<!--Added according to rev ? of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 298/1" Name="RUS 02 B2" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" RF_A="B2;80W" RF_B="B2;0W">	<!--Added according to rev L of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 299/2" Name="RRUS 12 B2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;60W" RF_B="B2;60W">	<!--Added according to rev L of 23/1056 ???-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<!--	<Product Number="KRC 161 300/1" Name="RRUS 12 B24" RequiresRadioTest="YES" RF_A="B4;5W" RF_B="B4;5W"/> Added according to rev L of 23/1056 Only P1A-->
+		<Product Number="KRC 161 306/1" Name="RRUL 81 B38" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B38;10W;5MHZ" RF_B="B38;10W;5MHZ" RF_C="B38;10W;5MHZ" RF_D="B38;10W;5MHZ" RF_E="B38;10W;5MHZ" RF_F="B38;10W;5MHZ" RF_G="B38;10W;5MHZ" RF_H="B38;10W;5MHZ">  <!--Added according to rev L of 23/1056, -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 308/1" Name="RRUL 62 B38" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B38;40W;5MHZ" RF_B="B38;40W;5MHZ">  <!--Added according to rev L of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 309/1" Name="RRUL 62 B40A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40A;20W;5MHZ" RF_B="B40A;20W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 320/1" Name="RUS 02 B5" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" RF_A="B5;100W" RF_B="B5;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 321/1" Name="RRUS 12 B5" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;60W" RF_B="B5;60W">  <!--Added according to rev L of 23/1056, Updated powerlevels to 2x60W (2x20, 2x40)according to 1/1524-KRC 161 321/1-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 321/2" Name="RRUS 12 B5" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;60W" RF_B="B5;60W">  <!--Added according to rev M of 23/1056, Updated powerlevels to 2x60W (2x20, 2x40)according to 1/1524-KRC 161 321/1-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 324/1" Name="RUS 02 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;60W" RF_B="B7;0W"/>  <!--Added according to rev L of 23/1056-->
+		<Product Number="KRC 161 325/1" Name="RRUS 12 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;30W" RF_B="B7;30W"/>  <!--Added according to rev L of 23/1056-->
+		<Product Number="KRC 161 325/2" Name="RRUS 12 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;30W" RF_B="B7;30W">  <!--Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 326/1" Name="RRUS 12mB4" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;5W" RF_B="B4;5W" ACDCPower="AC100" ACFrequency="ACF60HZ">	<!--Added according to rev L of 23/1056 ???-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 326/2" Name="RRUS 12mB4" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;5W" RF_B="B4;5W" ACDCPower="DCN48">	<!--Added according to rev L of 23/1056 ???-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 326/3" Name="RRUS 12mB4" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;5W" RF_B="B4;5W" ACDCPower="AC100" ACFrequency="ACF60HZ">	<!--Added according to rev L of 23/1056 ???-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 326/4" Name="RRUS 12mB4" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;5W" RF_B="B4;5W" ACDCPower="DCN48">	<!--Added according to rev L of 23/1056 ???-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 327/1" Name="RRUS 12mB1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;5W" RF_B="B1;5W" ACDCPower="AC100" ACFrequency="ACF60HZ">	<!--Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 327/2" Name="RRUS 12mB1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;5W" RF_B="B1;5W" ACDCPower="DCN48">	<!--Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 327/3" Name="RRUS 12mB1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;5W" RF_B="B1;5W" ACDCPower="AC100" ACFrequency="ACF60HZ">	<!--Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 327/4" Name="RRUS 12mB1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;5W" RF_B="B1;5W" ACDCPower="DCN48">	<!--Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 328/1" Name="RRUS 12mB2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;5W" RF_B="B2;5W" ACDCPower="AC100" ACFrequency="ACF60HZ">	<!--Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 328/2" Name="RRUS 12mB2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;5W" RF_B="B2;5W" ACDCPower="DCN48">	<!--Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 328/3" Name="RRUS 12mB2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;5W" RF_B="B2;5W" ACDCPower="AC100" ACFrequency="ACF60HZ">	<!--Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 328/4" Name="RRUS 12mB2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;5W" RF_B="B2;5W" ACDCPower="DCN48">	<!--Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 329/1" Name="RRUS 12mB3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;5W" RF_B="B3;5W" ACDCPower="AC100" ACFrequency="ACF60HZ">	<!--Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 329/2" Name="RRUS 12mB3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;5W" RF_B="B3;5W" ACDCPower="DCN48">	<!--Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 329/3" Name="RRUS 12mB3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;5W" RF_B="B3;5W" ACDCPower="AC100" ACFrequency="ACF60HZ">	<!--Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 329/4" Name="RRUS 12mB3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;5W" RF_B="B3;5W" ACDCPower="DCN48">	<!--Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 330/1" Name="RRUS 12mB7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;5W" RF_B="B7;5W" ACDCPower="AC100" ACFrequency="ACF60HZ">	<!--Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 330/1" Name="RRUS 12mB7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;5W" RF_B="B7;5W" ACDCPower="AC100" ACFrequency="ACF60HZ">	<!--Added according to rev L of 23/1056 ???-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 330/2" Name="RRUS 12mB7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;5W" RF_B="B7;5W" ACDCPower="DCN48">	<!--Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 330/2" Name="RRUS 12mB7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;5W" RF_B="B7;5W" ACDCPower="DCN48">	<!--Added according to rev L of 23/1056 ???-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 330/3" Name="RRUS 12mB7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;5W" RF_B="B7;5W" ACDCPower="AC100" ACFrequency="ACF60HZ">	<!--Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 330/3" Name="RRUS 12mB7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;5W" RF_B="B7;5W" ACDCPower="AC100" ACFrequency="ACF60HZ">	<!--Added according to rev L of 23/1056 ???-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 330/4" Name="RRUS 12mB7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;5W" RF_B="B7;5W" ACDCPower="DCN48">	<!--Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 330/4" Name="RRUS 12mB7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;5W" RF_B="B7;5W" ACDCPower="DCN48">	<!--Added according to rev L of 23/1056 ???-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 331/1" Name="RRUS 12mB12A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B12;5W" RF_B="B12;5W" ACDCPower="AC100" ACFrequency="ACF60HZ">	<!--Added according to rev M of 23/1056 + CR12888-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 331/2" Name="RRUS 12mB12A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B12;5W" RF_B="B12;5W" ACDCPower="DCN48">	<!--Added according to rev M of 23/1056 + CR12888-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 331/3" Name="RRUS 12mB12A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B12;5W" RF_B="B12;5W" ACDCPower="AC100" ACFrequency="ACF60HZ">	<!--Added according to rev M of 23/1056 + CR12888-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 331/4" Name="RRUS 12mB12A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B12;5W" RF_B="B12;5W" ACDCPower="DCN48">	<!--Added according to rev M of 23/1056 + CR12888-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 332/1" Name="RRUS 12mB13" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B13;5W" RF_B="B13;5W" ACDCPower="AC100" ACFrequency="ACF60HZ">	<!--Added according to rev L of 23/1056 ???-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 332/2" Name="RRUS 12mB13" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B13;5W" RF_B="B13;5W" ACDCPower="DCN48">	<!--Added according to rev L of 23/1056 ???-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 332/3" Name="RRUS 12mB13" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B13;5W" RF_B="B13;5W" ACDCPower="AC100" ACFrequency="ACF60HZ">	<!--Added according to rev L of 23/1056 ???-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 332/4" Name="RRUS 12mB13" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B13;5W" RF_B="B13;5W" ACDCPower="DCN48">	<!--Added according to rev L of 23/1056 ???-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 334/1" Name="RRUL 81 B39" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B39;10W;5MHZ" RF_B="B39;10W;5MHZ" RF_C="B39;10W;5MHZ" RF_D="B39;10W;5MHZ" RF_E="B39;10W;5MHZ" RF_F="B39;10W;5MHZ" RF_G="B39;10W;5MHZ" RF_H="B39;10W;5MHZ">  <!--Added according to rev L of 23/1056, -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 348/1" Name="RUS 02 B4" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;60W" RF_B="B4;0W"/>  <!--Added according to rev L of 23/1056-->
+		<Product Number="KRC 161 349/2" Name="RRUS 12 B4" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;60W" RF_B="B4;60W">  <!--Added according to rev L of 23/1056 ???-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<!--	<Product Number="KRC 161 364/1" Name="RRUS 62 B41" RequiresRadioTest="YES"/> Added according to rev M of 23/1056 Only P1A-->
+		<Product Number="KRC 161 377/1" Name="RUS 12m B4" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;5W" RF_B="B4;5W"/>	<!--Added according to a CR 11981-->
+		<Product Number="KRC 161 380/1" Name="RUS 02 B28A" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" RF_A="B28A;60W" RF_B="B28A;0W">  <!--Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 381/1" Name="RRUS 12 B28A" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" RF_A="B28A;40W" RF_B="B28A;40W">  <!--Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 382/1" Name="RUS 02 B28B" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" RF_A="B28B;100W" RF_B="B28B;0W">  <!--Added according to rev M of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 383/1" Name="RRUS 12 B28B" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" RF_A="B28B;60W" RF_B="B28B;60W"/>  <!--Added according to rev M of 23/1056-->
+		<Product Number="KRC 161 383/2" Name="RRUS 12 B28B" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" RF_A="B28B;60W" RF_B="B28B;60W"> 
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 402/1" Name="RRUS 62 B40A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40A;50W;5MHZ" RF_B="B40A;50W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<!--	<Product Number="KRC 161 403/1" Name="RRUS 52 B40A" RequiresRadioTest="YES"/> Added according to rev M of 23/1056 Only P1A-->
+		<Product Number="KRC 161 408/1" Name="RRUS E2 B29" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B29;40W" RF_B="B29;40W"> <!--Added according to CR13219--> <!-- Only TX -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 410/1" Name="RRUS 72 B41" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B41;40W;5MHZ" RF_B="B41;40W;5MHZ" RF_C="B41;40W;5MHZ" RF_D="B41;40W;5MHZ"> <!--Added according to CR13487 -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 411/1" Name="RRUS 72 B40T" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40T;40W;5MHZ" RF_B="B40T;40W;5MHZ" RF_C="B40T;40W;5MHZ" RF_D="B40T;40W;5MHZ"> 
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 412/1" Name="RRUS 32 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;40W;5MHZ" RF_B="B7;40W;5MHZ" RF_C="B7;40W;5MHZ" RF_D="B7;40W;5MHZ"> <!--Added according to CR15896 in Rev PU10-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 413/1" Name="RRUS 32 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;40W;5MHZ" RF_B="B3;40W;5MHZ" RF_C="B3;40W;5MHZ" RF_D="B3;40W;5MHZ"> <!--Added according to CR15537 in Rev PU10-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 414/1" Name="RRUS 32 B2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;40W;5MHZ" RF_B="B2;40W;5MHZ" RF_C="B2;40W;5MHZ" RF_D="B2;40W;5MHZ"> <!--Added according to CR15538 in rev PU10-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 416/1" Name="RRUS 32 B4" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;40W;5MHZ" RF_B="B4;40W;5MHZ" RF_C="B4;40W;5MHZ" RF_D="B4;40W;5MHZ"> <!--Added according to CR15167 in Rev PU10-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 418/1" Name="RRUS 32A B2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;30W" RF_B="B2;30W" RF_C="B2;30W" RF_D="B2;30W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 419/1" Name="RRUS 72 B41b" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B41B;25W;5MHZ" RF_B="B41B;25W;5MHZ" RF_C="B41B;25W;5MHZ" RF_D="B41B;25W;5MHZ"> <!--Added according to CR13487 -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 423/1" Name="RRUS 32 B30" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B30;25W" RF_B="B30;25W" RF_C="B30;25W" RF_D="B30;25W"> 
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 424/1" Name="RRUS 72 B38A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B38A;40W;5MHZ" RF_B="B38A;40W;5MHZ" RF_C="B38A;40W;5MHZ" RF_D="B38A;40W;5MHZ"> <!--Added according to CR13487 -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 427/1" Name="RRUS2217B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;40W" RF_B="B3;40W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 427/2" Name="RRUS2217B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;40W" RF_B="B3;40W"/> 
+		<Product Number="KRC 161 428/1" Name="RRUS2217B7" MarketName="Radio 2217 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;40W" RF_B="B7;40W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 428/2" Name="RRUS2217B7" MarketName="Radio 2217 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;40W" RF_B="B7;40W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 434/1" Name="RRUL 63 B41E" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B41E;60W;5MHZ" RF_B="B41E;60W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 436/1" Name="RRUS 82 B41" RadioTestAllowed="YES" RequiresRadioTest="YES" PowerMeasDelay="20" RF_A="B41;20W;5MHZ" RF_B="B41;20W;5MHZ" RF_C="B41;20W;5MHZ" RF_D="B41;20W;5MHZ" RF_E="B41;20W;5MHZ" RF_F="B41;20W;5MHZ" RF_G="B41;20W;5MHZ" RF_H="B41;20W;5MHZ"> <!--Added according to CR13738 -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 444/1" Name="IRU 2242" RadioTestAllowed="YES" >																<!-- IRU CR?? -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				
+				<Tag Name="lat-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 444/2" Name="IRU 2242" RadioTestAllowed="Yes"/>
+		<Product Number="KRC 161 444/3" Name="IRU 2242" RadioTestAllowed="Yes"/>
+		<Product Number="KRC 161 451/2" Name="RRUS 12 B3A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3A;60W" RF_B="B3A;60W">	<!--Added according to rev ? of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 452/1" Name="RRUS 62 B41G" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B41G;40W;5MHZ" RF_B="B41G;40W;5MHZ"/> <!--Added according to CR13649 -->
+		<Product Number="KRC 161 453/1" Name="RRUL 81 B41D" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B41D;10W;5MHZ" RF_B="B41D;10W;5MHZ" RF_C="B41D;10W;5MHZ" RF_D="B41D;10W;5MHZ" RF_E="B41D;10W;5MHZ" RF_F="B41D;10W;5MHZ" RF_G="B41D;10W;5MHZ" RF_H="B41D;10W;5MHZ"> <!--Added according to CR13738 -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 454/1" Name="RRUL 81 B41E" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B41E;10W;5MHZ" RF_B="B41E;10W;5MHZ" RF_C="B41E;10W;5MHZ" RF_D="B41E;10W;5MHZ" RF_E="B41E;10W;5MHZ" RF_F="B41E;10W;5MHZ" RF_G="B41E;10W;5MHZ" RF_H="B41E;10W;5MHZ"/> <!--Added according to CR13738 -->
+		<Product Number="KRC 161 455/1" Name="RRUL 81 B41F" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B41F;10W;5MHZ" RF_B="B41F;10W;5MHZ" RF_C="B41F;10W;5MHZ" RF_D="B41F;10W;5MHZ" RF_E="B41F;10W;5MHZ" RF_F="B41F;10W;5MHZ" RF_G="B41F;10W;5MHZ" RF_H="B41F;10W;5MHZ"> <!--Added according to CR13738 -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 456/1" Name="RRUS 11 B13" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B13;40W" RF_B="B13;40W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 457/1" Name="RRUS 11 B26B" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B26A;40W" RF_B="B26A;40W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 460/1" Name="RRUS A3 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;0W" RF_B="B7;0W">	<!--Added according to rev K of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 461/1" Name="RRUS 12 B28C" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B28C;40W" RF_B="B28C;40W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 462/1" Name="RRUS A3 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;0W" RF_B="B1;0W">	<!--Added according to rev K of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 462/3" Name="RRUS A3 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;0W" RF_B="B1;0W">	<!--Added according to rev K of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="lat-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 463/1" Name="RRUS A3 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;0W" RF_B="B3;0W">	<!--Added according to rev K of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 464/1" Name="RRUS A2 B13" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B13;0W" RF_B="B13;0W">	<!--Added according to rev K of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 466/1" Name="RRUS 13 B1" >	
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 466/2" Name="RRUS 13 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;60W" RF_B="B1;60W">	<!--Added according to rev ? of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 466/3" Name="RRUS 13 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;60W" RF_B="B1;60W">	<!--Added according to rev ? of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 469/2" Name="RRUS 13 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;60W" RF_B="B3;60W">	<!--Added according to rev ? of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 469/4" Name="RRUS 13 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;60W" RF_B="B3;60W">	<!--Added according to rev ? of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 470/1" Name="RRUL 81 B39A" RadioTestAllowed="YES" RequiresRadioTest="YES" OutputPowerException="E1" RF_A="B39A;5W;5MHZ" RF_B="B39A;5W;5MHZ" RF_C="B39A;5W;5MHZ" RF_D="B39A;5W;5MHZ" RF_E="B39A;5W;5MHZ" RF_F="B39A;5W;5MHZ" RF_G="B39A;5W;5MHZ" RF_H="B39A;5W;5MHZ">  <!--Added according to rev L of 23/1056, -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 472/3" Name="RRU4426B66" MarketName="Radio 4426 B66" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B66;60W;5MHZ" RF_B="B66;60W;5MHZ" RF_C="B66;60W;5MHZ" RF_D="B66;60W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 473/2" Name="RRUS 13 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;40W" RF_B="B7;40W">	<!--Added according to rev ? of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 473/3" Name="RRUS 13 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;40W" RF_B="B7;40W">	<!--Added according to rev ? of 23/1056-->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 477/1" Name="RUS 03 B3" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" RF_A="B3;80W" RF_B="B3;0W">	<!--Added according to rev K of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 479/2" Name="RRUS 13 B3A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3A;60W" RF_B="B3A;60W">	<!--Added according to rev ? of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 481/1" Name="RRUL 82 B41E" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B41E;15W;5MHZ" RF_B="B41E;15W;5MHZ" RF_C="B41E;15W;5MHZ" RF_D="B41E;15W;5MHZ" RF_E="B41E;15W;5MHZ" RF_F="B41E;15W;5MHZ" RF_G="B41E;15W;5MHZ" RF_H="B41E;15W;5MHZ"> <!--Added according to CR13738 -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 484/1" Name="RRUS 62 B41D" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B41D;40W;5MHZ" RF_B="B41D;40W;5MHZ"> <!--Added 2014-07-23 -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 485/1" Name="RRUS 62 B41F" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B41F;40W;5MHZ" RF_B="B41F;40W;5MHZ"> <!--Added 2014-07-23 -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 487/1" Name="RRUS2203B1" MarketName="Radio 2203 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;5W" RF_B="B1;5W"> 
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 488/1" Name="RRUS2203B3" MarketName="Radio 2203 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;5W" RF_B="B3;5W" >
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 489/1" Name="RRUS2203B25" MarketName="Radio 2203 B2 B25" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;5W" RF_B="B2;5W"> 
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 490/1" Name="RRUS2217B1" RadioTestAllowed="YES" ExemptionName="RRU2217B1" ExemptionDate="20160729" ExemptionCode="56" RequiresRadioTest="YES" RF_A="B1;40W" RF_B="B1;40W"> 
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 490/2" Name="RRUS2217B1" RadioTestAllowed="YES" ExemptionName="RRU2217B1" ExemptionDate="20160729" ExemptionCode="55" RequiresRadioTest="YES" RF_A="B1;40W" RF_B="B1;40W"> 
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 495/1" Name="RRU4415B7" MarketName="Radio 4415 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;40W" RF_B="B7;40W" RF_C="B7;40W" RF_D="B7;40W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 495/2" Name="RRU4415B7" MarketName="Radio 4415 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;40W" RF_B="B7;40W" RF_C="B7;40W" RF_D="B7;40W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 496/1" Name="RRU2212B3" MarketName="Radio 2212 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;80W;5MHZ" RF_B="B3;80W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 496/2" Name="RRU2212B3" MarketName="Radio 2212 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;80W;5MHZ" RF_B="B3;80W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 498/1" Name="RRUS2217B3A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3A;40W" RF_B="B3A;40W"> 
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 499/1" Name="RRUS2217B28B" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B28B;40W" RF_B="B28B;40W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 500/1" Name="RRUS2217B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;40W" RF_B="B1;40W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 501/1" Name="RUS 12m B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;5W" RF_B="B1;5W"/>	<!--Added according to mRBS new product-->
+		<Product Number="KRC 161 502/1" Name="RUS 12m B2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;5W" RF_B="B2;5W"/>	<!--Added according to mRBS new product-->
+		<Product Number="KRC 161 503/1" Name="RUS 12m B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;5W" RF_B="B3;5W"/>	<!--Added according to mRBS new product-->
+		<Product Number="KRC 161 506/1" Name="RRUS2203B7" MarketName="Radio 2203 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;5W" RF_B="B7;5W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 507/1" Name="RUS 12m B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;5W" RF_B="B7;5W"/>	<!--Added according to mRBS new product-->
+		<Product Number="KRC 161 508/1" Name="RRUS2203B5" MarketName="Radio 2203 B5" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;5W" RF_B="B5;5W"> 
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 509/1" Name="RRUS2203B8" MarketName="Radio 2203 B8" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8;5W" RF_B="B8;5W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 512/1" Name="RUS 12m B12" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B12;5W" RF_B="B12;5W"/>	<!--Added according to mRBS new product-->
+		<Product Number="KRC 161 513/1" Name="RUS 12m B13" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B13;5W" RF_B="B13;5W"/>	<!--Added according to mRBS new product-->
+		<Product Number="KRC 161 520/1" Name="RRUS 62 B40S" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40S;50W;5MHZ" RF_B="B40S;50W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<!--	<Product Number="KRC 161 522/1" Name="RUS 12m B22" RequiresRadioTest="YES" Power="10" RF_A="B4;5W" RF_B="B4;5W"/> Added according to mRBS new product Only P1A-->
+		<Product Number="KRC 161 525/1" Name="RUS 12m B25" RequiresRadioTest="YES" RF_A="B25;5W" RF_B="B25;5W"/>	<!--Added according to mRBS new product-->
+		<Product Number="KRC 161 545/1" Name="RRUS2203B3C" MarketName="Radio 2203 B3C" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3C;5W" RF_B="B3C;5W"> 
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 548/1" Name="RRUS2217B8" MarketName="Radio 2217 B8" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8;40W" RF_B="B8;40W"> 
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 548/2" Name="RRUS2217B8" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8;40W" RF_B="B8;40W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 549/1" Name="RRUS2217B20" MarketName="Radio 2217 B20" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B20;40W" RF_B="B20;40W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 550/1" Name="RRUS2217B28A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B28A;40W" RF_B="B28A;40W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 550/2" Name="RRUS2217B28A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B28A;40W" RF_B="B28A;40W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 553/1" Name="RRUS2203B66A" MarketName="Radio 2203 B66A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B66A;5W" RF_B="B66A;5W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 554/1" Name="RRUS0208B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;0W;5MHZ" RF_B="B1;0W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 555/1" Name="RUS 01 B8A" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" RF_A="B8A;80W" RF_B="B8A;0W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 557/2" Name="RRUS 13 B3B" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3B;60W" RF_B="B3B;60W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 558/1" Name="RRU2216B40A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40A;50W;5MHZ" RF_B="B40A;50W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 559/1" Name="RRU2208B41E" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B41E;10W;5MHZ" RF_B="B41E;10W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 560/2" Name="RRUS 13 B8A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8A;60W" RF_B="B8A;60W">	<!--Added according to rev ? of 23/1056-->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 561/1" Name="RUS 03 B3B" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" RF_A="B3B;100W" RF_B="B3B;0W"/>	<!--Added according to rev ? of 23/1056-->
+		<Product Number="KRC 161 562/1" Name="RUS 02 B8A" RadioTestAllowed="YES" CrossConnectTest="TESTTONE" RF_A="B8A;100W" RF_B="B8A;0W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 563/1" Name="RRUS2217B2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;40W" RF_B="B2;40W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 566/1" Name="RRUS2217B5" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;40W" RF_B="B5;40W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/> 
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 566/2" Name="RRUS2217B5" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;40W" RF_B="B5;40W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 567/1" Name="RRUS2217B8A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8A;40W" RF_B="B8A;40W"/>
+		<Product Number="KRC 161 568/2" Name="RRUS2217B11" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B11;40W" RF_B="B11;40W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 572/1" Name="RRUS0208B26D" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B26D;0W;5MHZ" RF_B="B26D;0W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 578/1" Name="RRU2218B39A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B39A;40W;5MHZ" RF_B="B39A;40W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 583/1" Name="RRUS 32 B66A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B66A;40W" RF_B="B66A;40W" RF_C="B66A;40W" RF_D="B66A;40W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 584/1" Name="RRUS0208B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;0W;5MHZ" RF_B="B3;0W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 585/1" Name="RRUS0208B66" MarketName="Radio 0208 B66" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B66;0W;5MHZ" RF_B="B66;0W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 586/1" Name="RRUS0208B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;0W;5MHZ" RF_B="B7;0W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 587/1" Name="RRUS0208B13" MarketName="Radio 0208 B13" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B13;0W;5MHZ" RF_B="B13;0W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 588/1" Name="RRUS0208B5" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;0W;5MHZ" RF_B="B5;0W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 589/1" Name="RRUS0208B2" MarketName="Radio 0208 B2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;0W;5MHZ" RF_B="B2;0W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 590/1" Name="RRUS 11 B26C" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B26C;40W" RF_B="B26C;40W"/>	
+		<Product Number="KRC 161 592/1" Name="RRUS2217B26D" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B26D;40W" RF_B="B26D;40W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>		
+		<Product Number="KRC 161 592/2" Name="RRUS2217B26D" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B26D;40W" RF_B="B26D;40W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 593/2" Name="RRUS 14 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;80W" RF_B="B3;80W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 594/1" Name="RRUS 13 B7A">	
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 594/2" Name="RRUS 13 B7A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7A;40W" RF_B="B7A;40W">	<!--Added according to rev ? of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 599/2" Name="RRUS 14 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;80W" RF_B="B3;80W" RF_C="B3;80W" RF_D="B3;80W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 601/1" Name="RRUS32AB66A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B66A;30W" RF_B="B66A;30W" RF_C="B66A;30W" RF_D="B66A;30W">  <!--PID departs from 23/1056.. due to 1/170 05-KRC 161 601/1 -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 602/1" Name="RRUS 32 B7A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7A;40W;10MHZ" RF_B="B7A;40W;10MHZ" RF_C="B7A;40W;10MHZ" RF_D="B7A;40W;10MHZ"> <!--Added according to task ID 3452  -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 603/1" Name="RRU8808B41E" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B41E;20W;20MHZ" RF_B="B41E;20W;20MHZ" RF_C="B41E;20W;20MHZ" RF_D="B41E;20W;20MHZ" RF_E="B41E;20W;20MHZ" RF_F="B41E;20W;20MHZ" RF_G="B41E;20W;20MHZ" RF_H="B41E;20W;20MHZ"> 
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 603/2" Name="RRU8808B39A" RadioTestAllowed="YES" RequiresRadioTest="YES" PowerMeasDelay="20" RF_A="B39A;10W;20MHZ" RF_B="B39A;10W;20MHZ" RF_C="B39A;10W;20MHZ" RF_D="B39A;10W;20MHZ" RF_E="B39A;10W;20MHZ" RF_F="B39A;10W;20MHZ" RF_G="B39A;10W;20MHZ" RF_H="B39A;10W;20MHZ"> 
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 604/1" Name="RRU2012B32A" MarketName="Radio 2012 B32A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B32A;80W;5MHz" RF_B="B32A;80W;5MHz">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+				<Tag Name="lat-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 605/1" Name="RRUS 13 B31" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B31;40W" RF_B="B31;40W">	<!--Added according to rev ? of 23/1056-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 606/1" Name="RRU2218B42" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B42;40W;5MHZ" RF_B="B42;40W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 609/1" Name="RRU2205B46" MarketName="Radio 2205 B46" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B46;0.316W;20MHZ" RF_B="B46;0.316W;20MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 609/2" Name="RRU2205B46" MarketName="Radio 2205 B46" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B46;0.316W;20MHZ" RF_B="B46;0.316W;20MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 613/2" Name="RRUS 14 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;60W" RF_B="B3;60W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 614/2" Name="RRUS 14 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;60W" RF_B="B3;0W" RF_C="B3;0W" RF_D="B3;60W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 616/1" Name="RRU2218B42B" RadioTestAllowed="YES" RequiresRadioTest="YES" PowerMeasDelay="50" RF_A="B42B_DCM;38W;20MHZ" RF_B="B42B_DCM;38W;20MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+				<Tag Name="lat-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 618/1" Name="RRU2219B8A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8A;80W" RF_B="B8A;80W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 619/1" Name="RRU2219B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;80W" RF_B="B3;80W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 620/1" Name="RRU2219B3A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3A;80W" RF_B="B3A;80W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 621/1" Name="RRU2219B3B" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3B;80W" RF_B="B3B;80W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 622/1" Name="RRU2219B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;60W;5MHz" RF_B="B1;60W;5MHz">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 623/1" Name="RRU2219B1" RequiresRadioTest="YES" RF_A="B1;60W;5MHz" RF_B="B1;60W;5MHz">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 624/1" Name="RRU2212B1" MarketName="Radio 2212 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;80W;5MHZ" RF_B="B1;80W;5MHZ"> 
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 624/1R5" Name="RRU2212B1" MarketName="Radio 2212 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;80W;5MHZ" RF_B="B1;80W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 624/2" Name="RRU2212B1" MarketName="Radio 2212 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;80W;5MHZ" RF_B="B1;80W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 625/1" Name="RRU2219B0A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B0A;60W" RF_B="B0A;60W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 627/1" Name="RRU2219B2" MarketName="Radio 2219 B2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;80W;5MHZ" RF_B="B2;80W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 628/1" Name="RRU2212B7" MarketName="Radio 2212 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;80W" RF_B="B7;80W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 628/2" Name="RRU2212B7" MarketName="Radio 2212 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;80W" RF_B="B7;80W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 630/1" Name="RRU2212B66A" MarketName="Radio 2212 B66A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B66A;80W;5MHZ" RF_B="B66A;80W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 630/3" Name="RRU2212B66A" MarketName="Radio 2212 B66A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B66A;80W;5MHZ" RF_B="B66A;80W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 631/1" Name="RRU2212B13" MarketName="Radio 2212 B13" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B13;60W;5MHZ" RF_B="B13;60W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 631/3" Name="RRU2212B13" MarketName="Radio 2212 B13" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B13;60W;5MHz" RF_B="B13;60W;5MHz">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 635/1" Name="RRU4415B1" MarketName="Radio 4415 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;40W;5MHZ" RF_B="B1;40W;5MHZ" RF_C="B1;40W;5MHZ" RF_D="B1;40W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 635/2" Name="RRU4415B1" MarketName="Radio 4415 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;40W;5MHZ" RF_B="B1;40W;5MHZ" RF_C="B1;40W;5MHZ" RF_D="B1;40W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 636/1" Name="RRU4415B2B25" MarketName="Radio 4415 B2 B25" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;40W;5MHZ" RF_B="B2;40W;5MHZ" RF_C="B2;40W;5MHZ" RF_D="B2;40W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 636/3" Name="RRU4415B2B25" MarketName="Radio 4415 B2 B25" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;40W;5MHZ" RF_B="B2;40W;5MHZ" RF_C="B2;40W;5MHZ" RF_D="B2;40W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 637/1" Name="RRU4415B3" MarketName="Radio 4415 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;40W;5MHZ" RF_B="B3;40W;5MHZ" RF_C="B3;40W;5MHZ" RF_D="B3;40W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 637/2" Name="RRU4415B3" MarketName="Radio 4415 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;40W;5MHZ" RF_B="B3;40W;5MHZ" RF_C="B3;40W;5MHZ" RF_D="B3;40W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 644/1" Name="RRU4415B66A" MarketName="Radio 4415 B66A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B66A;40W;5MHZ" RF_B="B66A;40W;5MHZ" RF_C="B66A;40W;5MHZ" RF_D="B66A;40W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 644/3" Name="RRU4415B66A" MarketName="Radio 4415 B66A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B66A;40W;5MHZ" RF_B="B66A;40W;5MHZ" RF_C="B66A;40W;5MHZ" RF_D="B66A;40W;5MHZ" >
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 647/1" Name="RRU2218B42B" MarketName="Radio 2218 B42B KDDI" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B42B_KDDI;30W;5MHZ" RF_B="B42B_KDDI;30W;5MHZ"> <!--B42B KDDI-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+				<Tag Name="lat-supported" Value="Yes"/><!--Not supported in 1551!!!/-->
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 648/1" Name="RRU2218B40U" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40U;50W;5MHZ" RF_B="B40U;50W;5MHZ">   
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 650/1" Name="RRU2212B8" MarketName="Radio 2212 B8" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8;80W;5MHz" RF_B="B8;80W;5MHz">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 650/2" Name="RRU2212B8" MarketName="Radio 2212 B8" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8;80W;5MHz" RF_B="B8;80W;5MHz">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 650/4" Name="RRU2212B8" MarketName="Radio 2212 B8" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8;80W;5MHZ" RF_B="B8;80W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 650/5" Name="RRU2212B8" MarketName="Radio 2212 B8" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8;80W;5MHZ" RF_B="B8;80W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 652/1" Name="RRU2212B5" MarketName="Radio 2212 B5" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;80W;5MHz" RF_B="B5;80W;5MHz">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 652/2" Name="RRU2212B5" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;80W;10MHz" RF_B="B5;80W;10MHz"/>
+		<Product Number="KRC 161 652/3" Name="RRU2212B5" MarketName="Radio 2212 B5" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;80W;5MHz" RF_B="B5;80W;5MHz">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 660/1" Name="RRU4407B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;20W" RF_B="B3;20W" RF_C="B3;20W" RF_D="B3;20W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 661/1" Name="RRU4412B40" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40;20W" RF_B="B40;20W" RF_C="B40;20W" RF_D="B40;20W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 662/1" Name="RRU4412B40T" MarketName="Radio 4412 B40T" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40T;20W;5MHZ" RF_B="B40T;20W;5MHZ" RF_C="B40T;20W;5MHZ" RF_D="B40T;20W;5MHZ">
+			<Tags>
+			
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 666/1" Name="RRU8823B42" MarketName="Radio 8823 B42" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B42;20W;10MHZ" RF_B="B42;20W;10MHZ" RF_C="B42;20W;10MHZ" RF_D="B42;20W;10MHZ" RF_E="B42;20W;10MHZ" RF_F="B42;20W;10MHZ" RF_G="B42;20W;10MHZ" RF_H="B42;20W;10MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 668/1" Name="RRU2488B3" MarketName="Radio 2488 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;60W;5MHZ" RF_B="B3;60W;5MHZ" RF_C="B3;0W" RF_D="B3;0W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 669/3" Name="RRU4478B14" MarketName="Radio 4478 B14" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B14;40W;5MHZ" RF_B="B14;40W;5MHZ" RF_C="B14;40W;5MHZ" RF_D="B14;40W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 670/1" Name="RRU2219B8" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8;60W" RF_B="B8;60W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 671/1" Name="RRU2219B28" MarketName="Radio 2219 B28" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B28;80W;5MHZ" RF_B="B28;80W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 672/1" Name="RRU2488B1" MarketName="Radio 2488 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;60W;5MHZ" RF_B="B1;60W;5MHZ" RF_C="B1;0W" RF_D="B1;0W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 676/1" Name="RRU4415B7A" MarketName="Radio 4415 B7A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7A;40W;5MHZ" RF_B="B7A;40W;5MHZ" RF_C="B7A;40W;5MHZ" RF_D="B7A;40W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 677/1" Name="RRU8808B38A" MarketName="Radio 8808 B38A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B38A;15W;20MHZ" RF_B="B38A;15W;20MHZ" RF_C="B38A;15W;20MHZ" RF_D="B38A;15W;20MHZ" RF_E="B38A;15W;20MHZ" RF_F="B38A;15W;20MHZ" RF_G="B38A;15W;20MHZ" RF_H="B38A;15W;20MHZ"> 
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 678/1" Name="RRU2219B5" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;80W" RF_B="B5;80W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 679/1" Name="RRU2219B5B" RadioTestAllowed="YES" RequiresRadioTest="YES" OutputPowerException="E2" RF_A="B5B;60W" RF_B="B5B;60W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 680/11" Name="AAS 64 TR B41E" RadioTestAllowed="YES" RequiredRadioTest="No" RF_A="B41E;0W" RF_B="B41E;0W"/>
+		<Product Number="KRC 161 684/1" Name="RRU8818B41E" MarketName="Radio 8818 B41E" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B41E;30W;20MHZ" RF_B="B41E;30W;20MHZ" RF_C="B41E;30W;20MHZ" RF_D="B41E;30W;20MHZ" RF_E="B41E;30W;20MHZ" RF_F="B41E;30W;20MHZ" RF_G="B41E;30W;20MHZ" RF_H="B41E;30W;20MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 685/1" Name="RRUS2217B7A" MarketName="Radio 2217 B7A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;40W;5MHZ" RF_B="B2;40W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>			
+		<Product Number="KRC 161 688/1" Name="RRU2212B2B25" MarketName="Radio 2212 B2 B25" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;80W;5MHZ" RF_B="B2;80W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 688/3" Name="RRU2212B2B25" MarketName="Radio 2212 B2 B25" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;80W;5MHZ" RF_B="B2;80W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 689/1" Name="RRU4478B5" MarketName="Radio 4478 B5" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;40W;5MHZ" RF_B="B5;40W;5MHZ" RF_C="B5;40W;5MHZ" RF_D="B5;40W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 689/3" Name="RRU4478B5" MarketName="Radio 4478 B5" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;40W;5MHZ" RF_B="B5;40W;5MHZ" RF_C="B5;40W;5MHZ" RF_D="B5;40W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 697/1" Name="RRU4412B41" MarketName="Radio 4412 B41" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B41;20W;20MHZ" RF_B="B41;20W;20MHZ" RF_C="B41;20W;20MHZ" RF_D="B41;20W;20MHZ"><!--10,15,20MHz TDD-->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 699/1" Name="RRU4478B71" MarketName="Radio 4478 B71" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B71;40W;5MHZ" RF_B="B71;40W;5MHZ" RF_C="B71;40W;5MHZ" RF_D="B71;40W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 699/3" Name="RRU4478B71" MarketName="Radio 4478 B71" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B71;40W;5MHZ" RF_B="B71;40W;5MHZ" RF_C="B71;40W;5MHZ" RF_D="B71;40W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 702/1" Name="RRU2468B8A" MarketName="Radio 2468 B8A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8A;80W" RF_B="B8A;80W" RF_C="B8A;0W" RF_D="B8A;0W">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="baseband"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="sw-Version" Value="17Q2"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 703/1" Name="RRUS2217B66A" MarketName="Radio 2217 B66A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B66A;40W;5MHZ" RF_B="B66A;40W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 704/1" Name="RRU22421B3A" MarketName="Radio 2242 B1B B3A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1B;80W;5MHZ" RF_B="B1B;80W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 705/1" Name="RRU4418B38A" MarketName="Radio 4418 B38A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B38A;40W;5MHZ" RF_B="B38A;40W;5MHZ" RF_C="B38A;40W;5MHZ" RF_D="B38A;40W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 706/1" Name="RRU4418B40T" MarketName="Radio 4418 B40T" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40T;40W;5MHZ" RF_B="B40T;40W;5MHZ" RF_C="B40T;40W;5MHZ" RF_D="B40T;40W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 707/2" Name="RRU88430266A" MarketName="Radio 8843 B2 B66A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;40W;5MHZ" RF_B="B2;40W;5MHZ" RF_C="B2;40W;5MHZ" RF_D="B2;40W;5MHZ" RF_E="B66A;40W;5MHZ" RF_F="B66A;40W;5MHZ" RF_G="B66A;40W;5MHZ" RF_H="B66A;40W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 708/1" Name="RRU44420103" MarketName="Radio 4442 B1 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;20W;5MHZ" RF_B="B1;20W;5MHZ" RF_C="B1;20W;5MHZ" RF_D="B1;20W;5MHZ" RF_E="B3;20W;5MHZ" RF_F="B3;20W;5MHZ" RF_G="B3;20W;5MHZ" RF_H="B3;20W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 711/1" Name="RRU2208B48" MarketName="Radio 2208 B48" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B48;10W;5MHZ" RF_B="B48;10W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 713/1" Name="RRU4428B3" MarketName="Radio 4428 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;40W;5MHZ" RF_B="B3;40W;5MHZ" RF_C="B3;40W;5MHZ" RF_D="B3;40W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 718/1" Name="RRU2468B5B" MarketName="Radio 2468 B5B" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5B;80W;5MHZ" RF_B="B5B;80W;5MHZ" RF_C="B5B;0W" RF_D="B5B;0W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 721/1" Name="RRU4428B3B" MarketName="Radio 4428 B3B" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3B;40W;5MHZ" RF_B="B3B;40W;5MHZ" RF_C="B3B;40W;5MHZ" RF_D="B3B;40W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 724/1" Name="RRU8808B40Y" MarketName="Radio 8808 B40Y" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40Y;20W;20MHZ" RF_B="B40Y;20W;20MHZ" RF_C="B40Y;20W;20MHZ" RF_D="B40Y;20W;20MHZ" RF_E="B40Y;20W;20MHZ" RF_F="B40Y;20W;20MHZ" RF_G="B40Y;20W;20MHZ" RF_H="B40Y;20W;20MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 725/1" Name="RRUS2217B28E" MarketName="Radio 2217 B28E" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B28E;40W;5MHZ" RF_B="B28E;40W;5MHZ" >
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 726/1" Name="RRU22420103" MarketName="Radio 2242 B1 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;80W;5MHZ,B3;80W;5MHZ" RF_B="B1;80W;5MHZ,B3;80W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 728/1" Name="RRU2468B8" MarketName="Radio 2468 B8" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B8;80W;5MHZ" RF_B="B8;80W;5MHZ" RF_C="B8;0W" RF_D="B8;0W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="baseband"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 735/1" Name="RRU4428B1" MarketName="Radio 4428 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;40W;5MHZ" RF_B="B1;40W;5MHZ" RF_C="B1;40W;5MHZ" RF_D="B1;40W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 749/1" Name="RRU44490513" MarketName="Radio 4449 B5 B13" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;40W;5MHZ" RF_B="B5;40W;5MHZ" RF_C="B5;40W;5MHZ" RF_D="B5;40W;5MHZ" RF_E="B13;40W;5MHZ" RF_F="B13;40W;5MHZ" RF_G="B13;40W;5MHZ" RF_H="B13;40W;5MHZ">
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="prtt-supported" Value="No" /> <!--Under progress-->
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 758/1" Name="RRU4418B40" MarketName="Radio 4418 B40" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40;40W;5MHZ" RF_B="B40;40W;5MHZ" RF_C="B40;40W;5MHZ" RF_D="B40;40W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 760/3" Name="RRU4415B70" MarketName="Radio 4415 B70" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B70;40W;5MHZ" RF_B="B70;40W;5MHZ" RF_C="B70;40W;5MHZ" RF_D="B70;40W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 761/1" Name="RRU2212B20" MarketName="Radio 2212 B20" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B20;60W;5MHZ" RF_B="B20;60W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 766/1" Name="RRU22421B3A" MarketName="Radio 2242 B1B B3A" ExemptionName="Radio 2242 B1BB3A" ExemptionDate="20180930" ExemptionCode="74" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1B;80W;5MHZ,B3A;80W;5MHZ" RF_B="B1B;80W;5MHZ,B3A;80W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 769/3" Name="RRU4415B30" MarketName="Radio 4415 B30" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B30;25W;5MHZ" RF_B="B30;25W;5MHZ" RF_C="B30;25W;5MHZ" RF_D="B30;25W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 771/2" Name="RRU4415B3B" MarketName="Radio 4415 B3B" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3B;80W;5MHZ" RF_B="B3B;80W;5MHZ" RF_C="B3B;80W;5MHZ" RF_D="B3B;80W;5MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 772/1" Name="RRU2468B0A" MarketName="Radio 2468 B0A" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B0A;80W" RF_B="B0A;80W" RF_C="B0A;0W" RF_D="B0A;0W">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 788/1" Name="RRU8823B43" MarketName="Radio 8823 B43" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B43;20W;20MHZ" RF_B="B43;20W;20MHZ" RF_C="B43;20W;20MHZ" RF_D="B43;20W;20MHZ" RF_E="B43;20W;20MHZ" RF_F="B43;20W;20MHZ" RF_G="B43;20W;20MHZ" RF_H="B43;20W;20MHZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="lat-category" Value="radio"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 044/1" Name="AIR 32A B4" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;30W" RF_B="B4;30W" RF_C="B4;30W" RF_D="B4;30W"> <!--Added according to CR13738 -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-refunit" Value="dus"/>
+				<Tag Name="ARUS" Value="Yes"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 071/11" Name="AIR 6468 B41H" RadioTestAllowed="NO" RequiresRadioTest="No" RF_A="B41H;0W" RF_B="B41H;0W"><!-- AIR, Added according to CR403 -->
+			<Tags>
+				<Tag Name="lat-category" Value="radio"/>
+				<Tag Name="lat-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 118 71/3" Name="RRUS 01 B8" >
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 871/11" Name="AIR 6468 B41H" RadioTestAllowed="NO" RequiredRadioTest="No" RF_A="B41E;0W" RF_B="B41E;0W"/><!-- AAS 64TR B41H, Transciever included in AIR6448 B41H -->
+		<Product Number="KRD 901 072/11" Name="AIR 6468 B38A" RadioTestAllowed="NO" RequiresRadioTest="No" RF_A="B38A;0W" RF_B="B38A;0W"><!-- AIR, Added according to CR404 -->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 872/11" Name="AIR 6468 B38A" RadioTestAllowed="NO" RequiredRadioTest="No" RF_A="B41E;0W" RF_B="B41E;0W"/><!-- AAS 64TR B38A, Transciever included in AIR6448 B38A -->
+		<Product Number="KRD 901 059/1" Name="AIR 5121 B257A" RadioTestAllowed="NO" RequiresRadioTest="No" ACDCPower="AC100" ACFrequency="ACF60HZ"><!-- AIR 5121 28GHz -->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 055/11" Name="AIR 6468 B41E" RadioTestAllowed="NO" RequiresRadioTest="No" RF_A="B41E;0W" RF_B="B41E;0W"><!-- AIR, Added according to CR408 -->
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRC 161 680/11" Name="AIR 6468 B41E" RadioTestAllowed="NO" RequiredRadioTest="No" RF_A="B41E;0W" RF_B="B41E;0W"/><!-- AAS 64TR B41E, Transciever included in AIR6448 B41E -->
+
+
+		<Product Number="KRY 901 309/1" Name="RD 2242 B4" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;0.05W" RF_B="B4;0.05W"/>    <!--DOT  CR 14580-->
+		<Product Number="KRY 901 326/1" Name="RD 2242 B17" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B17;0.05W" RF_B="B17;0.05W"/> <!--DOT  CR 14580-->
+		<Product Number="KRY 901 327/1" Name="RD 2242 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;0.05W" RF_B="B1;0.05W"/>    <!--DOT  CR 14580-->
+		<Product Number="KRY 901 328/1" Name="RD 2242 B2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;0.05W" RF_B="B2;0.05W"/>    <!--DOT  CR 14580-->
+		<Product Number="KRY 901 330/1" Name="RD 2242 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;0.05W" RF_B="B7;0.05W"/>    <!--DOT  CR 14580-->
+		<Product Number="KRY 901 330/2" Name="RD 2242 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;0.05W" RF_B="B7;0.05W"/>
+		<Product Number="KRY 901 331/1" Name="RD 2242 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;0.05W" RF_B="B3;0.05W"/>    <!--DOT  CR 14580-->
+		<Product Number="KRY 901 332/1" Name="RD 2242 B5" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B5;0.05W" RF_B="B5;0.05W"/>    <!--DOT  CR 14580-->
+		<Product Number="KRY 901 334/1" Name="RD 2242 B13" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B13;0.05W" RF_B="B13;0.05W"/> <!--DOT  CR 14580-->
+		<Product Number="KRY 901 348/1" Name="RD 2242 B40T" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B40T;0.05W" RF_B="B40T;0.05W"/> <!--DOT  CR 15869-->
+		<Product Number="NFS 899 73/1" Name="ECM 03 01"/>
+		<Product Number="NFS 899 73/2" Name="ECM 03 02"/>
+		<Product Number="NFS 899 73/3" Name="ECM 03 03"/>
+		<Product Number="NFS 899 73/4" Name="ECM 03 04"/>
+		<Product Number="NFS 899 73/5" Name="ECM 03 05"/>
+		<Product Number="NFS 899 73/6" Name="ECM 03 06"/>
+		<Product Number="NTB 101 0117/1" Name="Int fan"/> <!-- Fan kit in Enclosure 6340 -->
+		<Product Number="NTB 101 0118/1" Name="Ext fan"/> <!-- Fan kit in Enclosure 6340 -->
+		<Product Number="NTB 101 0125/1" Name="Internal FAN box 6150"/> <!-- Fan box in Enclosure 6150 -->
+		<Product Number="NTB 101 0125/2" Name="Internal FAN box 6150"/> <!-- Fan box in Enclosure 6150 19"-->
+		<Product Number="NTB 101 0126/1" Name="External FAN kit 6150"/> <!-- Fan kit in Enclosure 6150 -->
+		<Product Number="NTB 101 0126/2" Name="External FAN kit 6150"/> <!-- Fan kit in Enclosure 6150 19"-->
+		<Product Number="NTB 101 0133" Name="INTERNAL FAN"/> <!-- Fan kit in Enclosure 6330 -->
+		<Product Number="NTB 101 0133/1" Name="INTERNAL FAN"/> <!-- Fan kit in Enclosure 6330 -->
+		<Product Number="NTB 101 0134" Name="EXTERNAL FAN"/> <!-- Fan kit in Enclosure 6330 -->
+		<Product Number="NTB 101 0134/1" Name="EXTERNAL FAN"/> <!-- Fan kit in Enclosure 6330 -->
+		<Product Number="NTB 101 0379/1" Name="Smoke Detector"/> 
+	    <Product Number="NTB 101 0468/1" Name="Smoke Detector"/> 
+		<Product Number="ROA 128 4926/1" Name="SCU 06 01"/>
+		<Product Number="ROA 128 4926/1" Name="SCU 06 01"/>  <!--Added according to rev M of 23/1056-->
+		<Product Number="ROA 128 5668/1" Name="SCU 08 01" ExemptionName="SCU|SCU 0801" ExemptionDate="20141120" ExemptionCode="48"/>  <!--According to new BP version R26BG-->
+		<Product Number="ROA 128 6247/1" Name="RJ45 contact board 1"/>
+		<Product Number="ROA 128 6347/1" Name="Climate control board HEX"/> <!-- Climate control in Enclosure 6130 and 6140 -->
+		<Product Number="ROA 128 6494/1" Name="Climate control board HEX"/> <!-- Climate control in Enclosure 6150 -->
+		<Product Number="ROA 128 6513/1" Name="Climate control board"/> <!-- Climate control in Enclosure 6330 and 6340 -->
+		<Product Number="ROA 128 6584/1" Name="Climate control board"/> <!-- Climate control in Enclosure 6330 and 6340 -->
+		<Product Number="ROZ 104 0342/1" Name="SCU 07 01"/>	<!--Added according to a CR 11981-->
+		<Product Number="ZHY 601 19/1" Name="SAU 02 01"/>  <!--Added according to rev M of 23/1056-->
+		<Product Number="ZHY 60117/1" Name="SAU 01 01" ExemptionName="SAU" ExemptionDate="20130920" ExemptionCode="22"/>  <!-- SAU test updated -->
+		<!--                 Cabinet products                 -->
+		<!-- RBS 6501 variants are not included as these uses information from test case and defaultList(same as FPP) and not bartrack-->
+		<Product Number="BFM901298" Name="RBS 6301"/> <!-- Prefix removed as it may not be part of the Product Number -->
+		<Product Number="BFM901290" Name="RBS 6201"/> <!-- Prefix removed as it may not be part of the Product Number -->
+		<Product Number="BFM901292" Name="RBS 6102"/> <!-- Prefix removed as it may not be part of the Product Number -->
+		<Product Number="BFM901302" Name="RBS 6101"/> <!-- Prefix removed as it may not be part of the Product Number -->
+		<Product Number="BFM901542" Name="RBS 6121"/> <!-- FPP2 Basic cabinet. Not used by NodeTest...just added for clarity -->
+		<Product Number="BFL901009" Name="RBS 6601"/> <!-- Prefix removed as it may not be part of the Product Number -->
+		<Product Number="BFM901351" Name="RBS 6202"/> <!-- Prefix removed as it may not be part of the Product Number -->
+		<Product Number="BFF 901 16" Name="RBS 6302"/> <!-- Prefix removed as it may not be part of the Product Number -->
+		<Product Number="BFM901507" Name="RBS 6131"/> <!-- Rebuilt 3106 cabinet. Not used by NodeTest...just added for clarity -->
+		<Product Number="BFM 901 576" Name="RBS 6120"/> <!-- Suffix removed as it may not be part of the Product Number -->
+		<Product Number="BFM 901 574" Name="RBS 6110"/> <!-- Suffix removed as it may not be part of the Product Number -->
+		<Product Number="BFM 901 591" Name="RBS 6320"/> <!-- Does not exist in Rev U. Currently adapted to 6120 due to no support in SW -->
+		<Product Number="BFM 901 581" Name="Power 6306"/> <!-- This is the AGO level that probably will be used later for this product -->
+		<Product Number="BMK 901 1009" Name="Power 6610"/> <!-- Prefix removed as it may not be part of the Product Number -->
+		<Product Number="BFM 901 581" Name="Enclosure 6307"/> <!-- Currently not used by NodeTest...just added for clarity -->
+		<Product Number="BFM 901 581" Name="Enclosure 6306"/> <!-- Currently not used by NodeTest...just added for clarity -->
+		<Product Number="FAP 130 1580/EIL" Name="RBS 6601"/> <!-- FAP EIL added use in India -->
+		<Product Number="FAP 130 1579/EIL" Name="RBS 6101"/> <!-- FAP EIL added use in India -->
+		<Product Number="FAP 130 1602/EIL" Name="RBS 6202"/> <!-- FAP EIL added use in India -->
+		<Product Number="FAP 130 1498/EIL" Name="RBS 6201"/> <!-- FAP EIL added use in India -->
+		<Product Number="FAP 130 3760/EIL" Name="RBS 6120"/> <!-- FAP EIL added use in India -->
+		<!--                 RBS3000 products                 -->
+		<Product Number="KRC 118 16/1" Name="RU21" RF_A="B1;20W" RF_B="B1;0W"/>
+		<!-- RBS 6501 variants added for PRTT test-->
+		<Product Number="KRD 901 050/1" Name="RBS 6501 B4" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;5W" RF_B="B4;5W" ACDCPower="AC230" ACFrequency="ACF50HZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 050/2" Name="RBS 6501 B4" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;5W" RF_B="B4;5W" ACDCPower="DCN48">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 050/3" Name="RBS 6501 B4" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;5W" RF_B="B4;5W" ACDCPower="AC230" ACFrequency="ACF50HZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 050/4" Name="RBS 6501 B4" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B4;5W" RF_B="B4;5W" ACDCPower="DCN48">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 101/1" Name="RBS 6501 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;5W" RF_B="B1;5W" ACDCPower="AC230" ACFrequency="ACF50HZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 101/2" Name="RBS 6501 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;5W" RF_B="B1;5W" ACDCPower="DCN48">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 101/3" Name="RBS 6501 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;5W" RF_B="B1;5W" ACDCPower="AC230" ACFrequency="ACF50HZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 101/4" Name="RBS 6501 B1" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B1;5W" RF_B="B1;5W" ACDCPower="DCN48">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 102/1" Name="RBS 6501 B2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;5W" RF_B="B2;5W" ACDCPower="AC230" ACFrequency="ACF50HZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 102/2" Name="RBS 6501 B2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;5W" RF_B="B2;5W" ACDCPower="DCN48">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 102/3" Name="RBS 6501 B2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;5W" RF_B="B2;5W" ACDCPower="AC230" ACFrequency="ACF50HZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 102/4" Name="RBS 6501 B2" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B2;5W" RF_B="B2;5W" ACDCPower="DCN48">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 103/1" Name="RBS 6501 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;5W" RF_B="B3;5W" ACDCPower="AC230" ACFrequency="ACF50HZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 103/2" Name="RBS 6501 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;5W" RF_B="B3;5W" ACDCPower="DCN48">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 103/3" Name="RBS 6501 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;5W" RF_B="B3;5W" ACDCPower="AC230" ACFrequency="ACF50HZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 103/4" Name="RBS 6501 B3" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B3;5W" RF_B="B3;5W" ACDCPower="DCN48">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 107/1" Name="RBS 6501 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;5W" RF_B="B7;5W" ACDCPower="AC230" ACFrequency="ACF50HZ"> 
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 107/2" Name="RBS 6501 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;5W" RF_B="B7;5W" ACDCPower="DCN48">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 107/3" Name="RBS 6501 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;5W" RF_B="B7;5W" ACDCPower="AC230" ACFrequency="ACF50HZ"> 
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 107/4" Name="RBS 6501 B7" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B7;5W" RF_B="B7;5W" ACDCPower="DCN48">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 112/1" Name="RBS 6501 B12" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B12;5W" RF_B="B12;5W" ACDCPower="AC230" ACFrequency="ACF50HZ"> 
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 112/2" Name="RBS 6501 B12" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B12;5W" RF_B="B12;5W" ACDCPower="DCN48">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 112/3" Name="RBS 6501 B12" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B12;5W" RF_B="B12;5W" ACDCPower="AC230" ACFrequency="ACF50HZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 112/4" Name="RBS 6501 B12" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B12;5W" RF_B="B12;5W" ACDCPower="DCN48">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 113/1" Name="RBS 6501 B13" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B13;5W" RF_B="B13;5W" ACDCPower="AC230" ACFrequency="ACF50HZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 113/2" Name="RBS 6501 B13" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B13;5W" RF_B="B13;5W" ACDCPower="DCN48">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 113/3" Name="RBS 6501 B13" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B13;5W" RF_B="B13;5W" ACDCPower="AC230" ACFrequency="ACF50HZ">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<Product Number="KRD 901 113/4" Name="RBS 6501 B13" RadioTestAllowed="YES" RequiresRadioTest="YES" RF_A="B13;5W" RF_B="B13;5W" ACDCPower="DCN48">
+			<Tags>
+				<Tag Name="prtt-supported" Value="Yes"/>
+			</Tags>
+		</Product>
+		<!-- MiniLink products-->
+		<Product Number="ROJR 219 014/1" Name="PFU3 B"/>
+		<Product Number="ROJ 211 04/1" Name="NPU3 D"/>
+		<Product Number="ROJ 208 1311/1" Name="MMU3 A"/>
+		<Product Number="ROJR 219 011/1" Name="FAU2"/>
+		<Product Number="BFD 101 078/1" Name="CN 510 R2"/>
+		<Product Number="BFL 510 110/1" Name="Enclosure 1101"/><!-- ML 6691 Enclosure -->
+		<Product Number="BFL 510 113/1" Name="Enclosure 1301"/><!-- ML 6693 Enclosure -->
+		<Product Number="BFZ 601 36/1" Name="ML 6651_1"/><!-- ML 6651 -->
+		<Product Number="ROJ 119 2505/1" Name="MMU 1002"/>
+		<Product Number="ROJ 208 1322/1" Name="NPU 1001"/>
+		<Product Number="ROJ 208 1323/1" Name="NPU 1002"/>
+		<Product Number="ROJ 119 2508/1" Name="PFU 1101"/>
+		<Product Number="ROJ 119 2519/1" Name="PFU 1301"/>
+		<Product Number="BFB 109 043/1" Name="FAU 1101"/>
+		<Product Number="BFB 109 046/1" Name="FAU 1301"/>
+	</HWPidList>
+</Document>
