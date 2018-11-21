@@ -1,0 +1,479 @@
+﻿<Window x:Class="EditHWPidListGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EditHWPidListGUI.ViewModel"
+        xmlns:converter="clr-namespace:EditHWPidListGUI.Converter"
+        mc:Ignorable="d"
+        xmlns:m="clr-namespace:EditHWPidListGUI.Models"
+        KeyDown="Window_KeyDown_KodeBehind"
+        Title="AddNewProduct"
+        MinWidth="1000"
+        MinHeight="800"
+        
+        SizeToContent="Height" 
+        >
+
+    <Window.Resources>
+        <converter:InvertBoolConverter x:Key="InvertBoolConverter"/>
+    </Window.Resources>
+    <StackPanel Margin="10,40">
+        <StackPanel Orientation="Horizontal">
+            <!--<Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>-->
+
+            <StackPanel >
+                <!--Grid.Column="0">-->
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label 
+                        Grid.Column="0"
+                        HorizontalAlignment="Right">
+                        Product:
+                    </Label>
+
+                    <ComboBox 
+                        Grid.Column="1"
+                        HorizontalAlignment="Left"
+                        MinWidth="150"
+                        Margin="10,0"
+                        ItemsSource="{Binding RadioList}"
+                        DisplayMemberPath="Value"
+                        SelectedIndex="{Binding SelectedRadioIndex}"
+                        TabIndex="2"/>
+                </Grid>
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label 
+                        Grid.Column="0"
+                        HorizontalAlignment="Right">
+                        Product nr:
+                    </Label>
+
+                    <ComboBox 
+                        Grid.Column="1"
+                        HorizontalAlignment="Left"
+                        MinWidth="150"
+                        Margin="10,0"
+                        ItemsSource="{Binding KRCList}"
+                        DisplayMemberPath="Value"
+                        SelectedIndex="{Binding SelectedRadioIndex}"
+                        TabIndex="3"/>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button HorizontalAlignment="Left" 
+                            Grid.Column="1"
+                            
+                            Margin="10 10 0 0"
+                            Command="{Binding btAddProduct}" >
+                        Add new Product
+                    </Button>
+                </Grid>
+            </StackPanel>
+            <StackPanel>
+                <!--Grid.Column="1">-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="85"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label 
+                        Grid.Column="0"
+                        HorizontalAlignment="Right">
+                        ProductName:
+                    </Label>
+
+                    <TextBox 
+                        FontSize="14"
+                        Grid.Column="1"
+                        Width="120"
+                        HorizontalAlignment="Left"
+                        Text="{Binding ProdName}"
+                        Background="{Binding ProdNameColor}">
+                    </TextBox>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="85"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label 
+                        Grid.Column="0"
+                        HorizontalAlignment="Right">
+                        MarketName:
+                    </Label>
+
+                    <TextBox 
+                        FontSize="14"
+                        Grid.Column="1"
+                        Width="120"
+                        HorizontalAlignment="Left"
+                        Text="{Binding MarkName}"
+                        Background="{Binding MarkNameColor}">
+                    </TextBox>
+                </Grid>
+            </StackPanel>
+            <StackPanel>
+                <!--Grid.Column="2">-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label 
+                        Grid.Column="0"
+                        HorizontalAlignment="Right">
+                        Power output:
+                    </Label>
+
+                    <TextBox 
+                        FontSize="14"
+                        Grid.Column="1"
+                        Width="80"
+                        HorizontalAlignment="Left"
+                        Text="{Binding TestPower}"
+                        Background="{Binding PowerColor}">
+                    </TextBox>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label 
+                        Grid.Column="0"
+                        HorizontalAlignment="Right">
+                        Frequency
+                    </Label>
+
+                    <TextBox 
+                        FontSize="14"
+                        Grid.Column="1"
+                        Width="80"
+                        HorizontalAlignment="Left"
+                        Text="{Binding Freq}"
+                        Background="{Binding FreqColor}">
+                    </TextBox>
+                </Grid>
+            </StackPanel>
+            <StackPanel>
+                <!--Grid.Column="3">-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label 
+                        Grid.Column="0"
+                        HorizontalAlignment="Right">
+                        Band:
+                    </Label>
+
+                    <TextBox 
+                        FontSize="14"
+                        Grid.Column="1"
+                        Width="80"
+                        HorizontalAlignment="Left"
+                        Text="{Binding Band}"
+                        Background="{Binding BandColor}">
+                    </TextBox>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label 
+                        Grid.Column="0"
+                        HorizontalAlignment="Right">
+                        RadioTest:
+                    </Label>
+                    <CheckBox
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        IsChecked="{Binding RadioTestAllowed}">
+
+                    </CheckBox>
+                </Grid>
+
+            </StackPanel>
+            <StackPanel >
+                <!--Grid.Column="4">-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label 
+                        Grid.Column="0"
+                        HorizontalAlignment="Right">
+                        Software:
+                    </Label>
+
+                    <TextBox 
+                        FontSize="14"
+                        Grid.Column="1"
+                        Width="80"
+                        HorizontalAlignment="Left"
+                        Text="{Binding Software}"
+                        Background="{Binding SoftwareColor}">
+                    </TextBox>
+
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label 
+                        Grid.Column="0"
+                        HorizontalAlignment="Right">
+                        RBB:
+                    </Label>
+
+                    <TextBox 
+                        FontSize="14"
+                        Grid.Column="1"
+                        Width="80"
+                        HorizontalAlignment="Left"
+                        Text="{Binding RBB}"
+                        Background="{Binding RBBColor}">
+                    </TextBox>
+                </Grid>
+            </StackPanel>
+            <StackPanel >
+                <!--Grid.Column="4">-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label 
+                        Grid.Column="0"
+                        HorizontalAlignment="Right">
+                        PRTT:
+                    </Label>
+
+                    <CheckBox
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        IsChecked="{Binding PrttTag}">
+                    </CheckBox>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label 
+                        Grid.Column="0"
+                        HorizontalAlignment="Right">
+                        LAT:
+                    </Label>
+
+                    <CheckBox
+                        Grid.Column="1"
+                        VerticalAlignment="Bottom"
+                        IsChecked="{Binding LatTag}" Margin="0,0,0,6">
+                    </CheckBox>
+
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label 
+                        Grid.Column="0"
+                        HorizontalAlignment="Right">
+                        LAT type:
+                    </Label>
+                    <ComboBox 
+                        Grid.Column="1"
+                        HorizontalAlignment="Left"
+                        MinWidth="100"
+                        Margin="0,0"
+                        ItemsSource="{Binding TpList}"
+                        DisplayMemberPath="Value"
+                        SelectedIndex="{Binding SelectedTPIndex}"
+                        IsEnabled="{Binding LatTag}"
+                        />
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+            <Button HorizontalAlignment="Center" 
+                    Margin="0 0 0 0"
+                    Command="{Binding btnRegenString}" >
+                Regenerate string &#9660;
+            </Button>
+        </StackPanel>
+
+        <Label FontWeight="Bold" FontSize="17"  Margin="0 0 0 0" Padding="0">Generated string</Label>
+        <Label Padding="0">you can edit the text manually before replace/insert! (multiline supported!)</Label>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MaxHeight="150">
+            <TextBox FontSize="14" 
+                     Padding="3" 
+                     
+                     AcceptsReturn="True"
+                     AcceptsTab="True"
+                     MinLines="1"
+                     Text="{Binding GeneratedString, Mode=TwoWay}" 
+                     Background="Yellow"></TextBox>
+        </ScrollViewer>
+        <StackPanel Orientation="Horizontal" Margin="0 20">
+            <Button Command="{Binding btnUseGenerated}" 
+                    IsEnabled="{Binding RowExist, Converter={StaticResource InvertBoolConverter}}"
+                    HorizontalAlignment="Left" 
+                    Margin="10 0 0 0"
+                    TabIndex="0">
+                Replace with generated string &#9660;
+            </Button>
+            <Button Command="{Binding btnInsertGenerated}" 
+                    IsEnabled="{Binding RowExist}"
+                    HorizontalAlignment="Left" 
+                    Margin="10 0 0 0"
+                    TabIndex="1">
+                Insert generated string &#9660;
+            </Button>
+            <Button HorizontalAlignment="Left" 
+                    Margin="10 0 0 0"
+                    Command="{Binding btnFetchOriginal}" >
+                Fetch from Result &#x25B2;
+            </Button>
+
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Margin="0 10 0 0" Orientation="Horizontal">
+            <RadioButton 
+                Margin="0 0 10 0"
+                IsChecked="True"
+                Content="HWPidList" 
+                Command="{Binding Path=rbtnCurrXML}" 
+                Name="cbHWPidList" 
+                CommandParameter="{Binding ElementName=cbHWPidList, Path=Content}"/>
+            <RadioButton 
+                Content="ConfigKeyDocumentDefinitions" 
+                Command="{Binding Path=rbtnCurrXML}" 
+                Name="cbConfigKeyDocumentDefinitions" 
+                CommandParameter="{Binding ElementName=cbConfigKeyDocumentDefinitions, Path=Content}"/>
+        </StackPanel>
+        <Label  Margin="0 5 0 0">Result:</Label>
+        <ListView ItemsSource="{Binding RowsToDisp}" MinHeight="200" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock
+                            Text="{Binding PreviewText[0]}" 
+                            FontWeight="{Binding FontWeight}"
+                            Background="{Binding BGcolor[0]}"
+                            /><TextBlock 
+                            Text="{Binding PreviewText[1]}" 
+                            FontWeight="{Binding FontWeight}"
+                            Background="{Binding BGcolor[1]}"
+                            /><TextBlock 
+                            Text="{Binding PreviewText[2]}" 
+                            FontWeight="{Binding FontWeight}"
+                            Background="{Binding BGcolor[2]}"
+                            /><TextBlock 
+                            Text="{Binding PreviewText[3]}" 
+                            FontWeight="{Binding FontWeight}"
+                            Background="{Binding BGcolor[3]}"
+                            /><TextBlock 
+                            Text="{Binding PreviewText[4]}" 
+                            FontWeight="{Binding FontWeight}"
+                            Background="{Binding BGcolor[4]}"
+                            /><TextBlock 
+                            Text="{Binding PreviewText[5]}" 
+                            FontWeight="{Binding FontWeight}"
+                            Background="{Binding BGcolor[5]}"
+                            /><TextBlock 
+                            Text="{Binding PreviewText[6]}" 
+                            FontWeight="{Binding FontWeight}"
+                            Background="{Binding BGcolor[6]}"
+                            /><TextBlock 
+                            Text="{Binding PreviewText[7]}" 
+                            FontWeight="{Binding FontWeight}"
+                            Background="{Binding BGcolor[7]}"
+                            /><TextBlock 
+                            Text="{Binding PreviewText[8]}" 
+                            FontWeight="{Binding FontWeight}"
+                            Background="{Binding BGcolor[8]}"
+                            /><TextBlock 
+                            Text="{Binding PreviewText[9]}" 
+                            FontWeight="{Binding FontWeight}"
+                            Background="{Binding BGcolor[9]}"
+                            /><TextBlock 
+                            Text="{Binding PreviewText[10]}" 
+                            FontWeight="{Binding FontWeight}"
+                            Background="{Binding BGcolor[10]}"
+                            /><TextBlock 
+                            Text="{Binding PreviewText[11]}" 
+                            FontWeight="{Binding FontWeight}"
+                            Background="{Binding BGcolor[11]}"
+                            /><TextBlock 
+                            Text="{Binding PreviewText[12]}" 
+                            FontWeight="{Binding FontWeight}"
+                            Background="{Binding BGcolor[12]}"
+                            /><TextBlock 
+                            Text="{Binding PreviewText[13]}" 
+                            FontWeight="{Binding FontWeight}"
+                            Background="{Binding BGcolor[13]}"
+                            /><TextBlock 
+                            Text="{Binding PreviewText[14]}" 
+                            FontWeight="{Binding FontWeight}"
+                            Background="{Binding BGcolor[14]}"
+                            /><TextBlock 
+                            Text="{Binding PreviewText[15]}" 
+                            FontWeight="{Binding FontWeight}"
+                            Background="{Binding BGcolor[15]}"
+                            /><TextBlock 
+                            Text="{Binding PreviewText[16]}" 
+                            FontWeight="{Binding FontWeight}"
+                            Background="{Binding BGcolor[16]}"
+                            />
+
+                    </TextBlock>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+
+        <Button Command="{Binding btnSaveFile}" 
+            HorizontalAlignment="Center" 
+            Margin="0 10 0 0" FontWeight="Bold" FontSize="15">
+            Save ALL changes!
+        </Button>
+    </StackPanel>
+</Window>
