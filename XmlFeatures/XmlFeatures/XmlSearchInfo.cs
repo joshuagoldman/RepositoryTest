@@ -21,7 +21,11 @@ namespace Main.XmlDoc
 
         private ReplicateOrNewTree WriteTreeChoice;
 
+<<<<<<< HEAD
         private string ParentAboveChildnoAttr { get; set; }
+=======
+        private string NodeNoValue { get; set; }
+>>>>>>> da3b8cb895f91fe487d926b137c07b20137dbe46
 
         public List<string> FromRoot { get; set; }
 
@@ -31,7 +35,11 @@ namespace Main.XmlDoc
                                   string node = null,
                                   ReplicateOrNewTree replicatechoice = ReplicateOrNewTree.DontRepl,
                                   ReplicateOrNewTree writetreechoice = ReplicateOrNewTree.DontRepl,
+<<<<<<< HEAD
                                   string parent_above_child_no_attr = null,
+=======
+                                  string nodenovalue = null,
+>>>>>>> da3b8cb895f91fe487d926b137c07b20137dbe46
                                   string fromroot = null,
                                   string infotofind = null)        
         {
@@ -40,8 +48,14 @@ namespace Main.XmlDoc
             InfoToFind = infotofind?.Split(',').Select(x => x.Trim().Replace(' ', '_')).ToList();
             ReplicateChoice = replicatechoice;
             WriteTreeChoice = writetreechoice;
+<<<<<<< HEAD
             ParentAboveChildnoAttr = parent_above_child_no_attr;
             FromRoot = fromroot?.Split(',').Select(x => x.Trim().Replace(' ', '_')).ToList();
+=======
+            NodeNoValue = nodenovalue;
+            var FromRootTemp = fromroot?.Trim() + ",All";
+            FromRoot = FromRootTemp?.Split(',').Select(x => x.Trim().Replace(' ', '_')).ToList();
+>>>>>>> da3b8cb895f91fe487d926b137c07b20137dbe46
             EnumConditions();
         }        
     }

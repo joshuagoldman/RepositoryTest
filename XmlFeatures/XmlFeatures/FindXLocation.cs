@@ -18,8 +18,6 @@ namespace Main.XmlDoc
 
         List<string> RootSearchKeyList;
 
-        public string ParentAboveChildnoAttr { get; set; }
-
         public FindXLocation()
         {
 
@@ -29,18 +27,14 @@ namespace Main.XmlDoc
         {
             List<XmlNode> TempList = new List<XmlNode>
             {
-                ParentAboveChildnoAttr != null ?
-                Doc.SelectSingleNode($"*//{Child[0]}[@{Child[1]} = '{Child[2]}']/..") :
-                Doc.SelectSingleNode($"*//{Child[0]}[@{Child[1]} = '{Child[2]}']/..").
-                    SelectSingleNode($"//{ParentAboveChildnoAttr}")
+                Doc.SelectSingleNode($"*//{Child[0]}[@Value = '{Child[1]}']/..")
             };
             RootSearchKeyList = new List<string>
             {
                 TempList[0].Name
             };
             int i = 0;
-            int tol = 100;
-            while (i < tol)
+            while (i < 10)
             {
                 TempList.Add(TempList[i]?.ParentNode);
                 if (TempList[i +1].Name == "#document")

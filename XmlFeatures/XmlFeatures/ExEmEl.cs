@@ -33,7 +33,7 @@ namespace Main.XmlDoc
 
             if (Result == DocumentChoice.ThrowException)
             {
-                throw new NewDocumentCreationException("File does not exist. Allow new document to be created and retry.");
+                throw new Exception("File does not exist. Allow overwriting and retry.");
             }
 
             else if (Result == DocumentChoice.NewDoc)
@@ -51,14 +51,6 @@ namespace Main.XmlDoc
                     doc.Load(FilePath);
                 }
             }
-        }
-    }
-
-    public class NewDocumentCreationException : Exception
-    {
-        public NewDocumentCreationException(string message)
-            : base(message)
-        {
         }
     }
 }

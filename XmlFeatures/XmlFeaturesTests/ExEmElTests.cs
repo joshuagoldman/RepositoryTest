@@ -13,8 +13,8 @@ namespace Main.XmlDoc.Tests
     {
         static private object[] _sourceLists =
         {
-                new object[] {"Country, Country, Sweden",
-                              "Language,  Swedish",
+                new object[] {"Fruit, Avocado",
+                              "Lacks,  Carbs",
                                ExEmEl.ReplicateOrNewTree.DontRepl}
         };
 
@@ -24,10 +24,9 @@ namespace Main.XmlDoc.Tests
                                        ExEmEl.ReplicateOrNewTree replicatechoice)
         {
             ExEmEl xml = new ExEmEl(
-            @"C:\Users\jogo\Documents\git_Test\Data.xml",
+            @"C:\Users\DELL\Documents\GitRepoJosh\Data.xml",
             ExEmEl.NewDocument.No);
-            xml.XmlSearchInfo(fromroot: "Countries,Value,All",
-                              parent_above_child_no_attr: "Extra",
+            xml.XmlSearchInfo(
                               child: child,
                               node: node,
                               replicatechoice: replicatechoice,

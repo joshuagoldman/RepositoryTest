@@ -42,14 +42,27 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+<<<<<<< HEAD
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EditHWPidListGUI.exe" size="1320960">
+=======
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Costura" version="1.6.2.0" publicKeyToken="9919EF960D84173D" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EditHWPidListGUI.exe" size="507904">
+>>>>>>> da3b8cb895f91fe487d926b137c07b20137dbe46
       <assemblyIdentity name="EditHWPidListGUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+<<<<<<< HEAD
         <dsig:DigestValue>hEsEN3DBMUqc1H0DOA5reKuyafnSNk7Bxc1cwrlCUVY=</dsig:DigestValue>
+=======
+        <dsig:DigestValue>4B90Lz7wZfkj9j5oBShN+MRlx+79gF1LKS98BZlNQbA=</dsig:DigestValue>
+>>>>>>> da3b8cb895f91fe487d926b137c07b20137dbe46
       </hash>
     </dependentAssembly>
   </dependency>

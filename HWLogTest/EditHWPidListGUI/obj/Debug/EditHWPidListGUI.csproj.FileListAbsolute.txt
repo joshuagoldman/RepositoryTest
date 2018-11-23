@@ -121,5 +121,29 @@ C:\Users\jogo\Documents\git_Test\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidL
 C:\Users\jogo\Documents\git_Test\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI.application
 C:\Users\jogo\Documents\git_Test\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI.exe
 C:\Users\jogo\Documents\git_Test\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI.pdb
+<<<<<<< HEAD
 C:\Users\jogo\Documents\git_Test\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI.SearchGroupBox.resources
 C:\Users\jogo\Documents\git_Test\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI.csprojAssemblyReference.cache
+=======
+C:\Users\DELL\Documents\GitRepoJosh\HWLogTest\EditHWPidListGUI\bin\Debug\EditHWPidListGUI.exe.config
+C:\Users\DELL\Documents\GitRepoJosh\HWLogTest\EditHWPidListGUI\bin\Debug\EditHWPidListGUI.exe.manifest
+C:\Users\DELL\Documents\GitRepoJosh\HWLogTest\EditHWPidListGUI\bin\Debug\EditHWPidListGUI.application
+C:\Users\DELL\Documents\GitRepoJosh\HWLogTest\EditHWPidListGUI\bin\Debug\EditHWPidListGUI.exe
+C:\Users\DELL\Documents\GitRepoJosh\HWLogTest\EditHWPidListGUI\bin\Debug\EditHWPidListGUI.pdb
+C:\Users\DELL\Documents\GitRepoJosh\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI.csprojAssemblyReference.cache
+C:\Users\DELL\Documents\GitRepoJosh\HWLogTest\EditHWPidListGUI\obj\Debug\MainWindow.g.cs
+C:\Users\DELL\Documents\GitRepoJosh\HWLogTest\EditHWPidListGUI\obj\Debug\App.g.cs
+C:\Users\DELL\Documents\GitRepoJosh\HWLogTest\EditHWPidListGUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\DELL\Documents\GitRepoJosh\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI_MarkupCompile.cache
+C:\Users\DELL\Documents\GitRepoJosh\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI_MarkupCompile.lref
+C:\Users\DELL\Documents\GitRepoJosh\HWLogTest\EditHWPidListGUI\obj\Debug\App.baml
+C:\Users\DELL\Documents\GitRepoJosh\HWLogTest\EditHWPidListGUI\obj\Debug\MainWindow.baml
+C:\Users\DELL\Documents\GitRepoJosh\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI.g.resources
+C:\Users\DELL\Documents\GitRepoJosh\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI.Properties.Resources.resources
+C:\Users\DELL\Documents\GitRepoJosh\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI.csproj.GenerateResource.cache
+C:\Users\DELL\Documents\GitRepoJosh\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Documents\GitRepoJosh\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI.exe.manifest
+C:\Users\DELL\Documents\GitRepoJosh\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI.application
+C:\Users\DELL\Documents\GitRepoJosh\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI.exe
+C:\Users\DELL\Documents\GitRepoJosh\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI.pdb
+>>>>>>> da3b8cb895f91fe487d926b137c07b20137dbe46

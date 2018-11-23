@@ -21,6 +21,7 @@ C:\Users\DELL\Documents\GitRepoJosh\XmlFeatures\XmlFeaturesTests\obj\Debug\XmlFe
 C:\Users\DELL\Documents\GitRepoJosh\XmlFeatures\XmlFeaturesTests\obj\Debug\XmlFeaturesTests.csproj.CopyComplete
 C:\Users\DELL\Documents\GitRepoJosh\XmlFeatures\XmlFeaturesTests\obj\Debug\XmlFeaturesTests.dll
 C:\Users\DELL\Documents\GitRepoJosh\XmlFeatures\XmlFeaturesTests\obj\Debug\XmlFeaturesTests.pdb
+<<<<<<< HEAD
 C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeaturesTests\bin\Debug\NUnit3.TestAdapter.dll
 C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeaturesTests\bin\Debug\NUnit3.TestAdapter.pdb
 C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeaturesTests\bin\Debug\nunit.engine.dll
@@ -44,3 +45,5 @@ C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeaturesTests\obj\Debug\XmlFeatu
 C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeaturesTests\obj\Debug\XmlFeaturesTests.csproj.CopyComplete
 C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeaturesTests\obj\Debug\XmlFeaturesTests.dll
 C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeaturesTests\obj\Debug\XmlFeaturesTests.pdb
+=======
+>>>>>>> da3b8cb895f91fe487d926b137c07b20137dbe46

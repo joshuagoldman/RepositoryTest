@@ -14,16 +14,23 @@ namespace Main.XmlDoc
 
         FindXLocation fxl;
 
+<<<<<<< HEAD
         XElement newEl { get; set; }
 
+=======
+>>>>>>> da3b8cb895f91fe487d926b137c07b20137dbe46
         public void WriteNodeToXml()
         {
             Xdoc = XDocument.Load(FilePath);
             fxl = new FindXLocation
             {
                 Doc = doc,
+<<<<<<< HEAD
                 XDoc = Xdoc,
                 ParentAboveChildnoAttr = ParentAboveChildnoAttr ?? null
+=======
+                XDoc = Xdoc
+>>>>>>> da3b8cb895f91fe487d926b137c07b20137dbe46
             };
             var Result = ExistanceCheck();
             if (NeitherExist(Result))
@@ -32,9 +39,15 @@ namespace Main.XmlDoc
                     WriteTree(WriteTreeChoice))
                 {
                     var newEl = new XElement(FromRoot[0],
+<<<<<<< HEAD
                                     new XAttribute(FromRoot[1], FromRoot[2]),
                                         new XElement(Child[0],
                                             new XAttribute(Child[1], Child[2]),
+=======
+                                    new XAttribute("Value", "All"),
+                                        new XElement(Child[0],
+                                            new XAttribute("Value", Child[1]),
+>>>>>>> da3b8cb895f91fe487d926b137c07b20137dbe46
                                                 new XElement(Node[0], Node[1])));
 
                     fxl.XDoc.Root.Add(newEl);
@@ -44,7 +57,11 @@ namespace Main.XmlDoc
             else if (RootExists(Result))
             {
                 var newEl = new XElement(Child[0],
+<<<<<<< HEAD
                                 new XAttribute(Child[1], Child[2]),
+=======
+                                new XAttribute("Value", Child[1]),
+>>>>>>> da3b8cb895f91fe487d926b137c07b20137dbe46
                                     new XElement(Node[0], Node[1]));
 
                 fxl.FindByElement(FromRoot);
@@ -62,11 +79,16 @@ namespace Main.XmlDoc
             }
             else
             {
+<<<<<<< HEAD
                 throw new NodeWithParentException("Node with provided parent already exists. Allow replication and retry.");
+=======
+                throw new Exception("Node with provided parent already exists. Allow Overwriting and retry.");
+>>>>>>> da3b8cb895f91fe487d926b137c07b20137dbe46
             }
         }
         ~ExEmEl() => Console.WriteLine("Finalizer Executing");
     }
+<<<<<<< HEAD
 
     public class NodeWithParentException : Exception
     {
@@ -75,4 +97,6 @@ namespace Main.XmlDoc
         {
         }
     }
+=======
+>>>>>>> da3b8cb895f91fe487d926b137c07b20137dbe46
 }
