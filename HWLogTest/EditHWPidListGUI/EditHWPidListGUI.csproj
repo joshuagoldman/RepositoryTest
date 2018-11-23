@@ -75,8 +75,16 @@
       <HintPath>..\packages\OpenDialog.1.1.1\lib\net45\Gat.Controls.OpenDialog.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\XmlFeatures\XmlFeatures\bin\Debug\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="NUnit3.TestAdapter">
+      <HintPath>..\..\XmlFeatures\XmlFeatures\bin\Debug\NUnit3.TestAdapter.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -89,6 +97,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="XmlFeatures">
+      <HintPath>..\..\XmlFeatures\XmlFeatures\bin\Debug\XmlFeatures.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -97,6 +108,12 @@
     </ApplicationDefinition>
     <Compile Include="Converter\InvertBoolConverter.cs" />
     <Compile Include="Extensions\RelayCommand.cs" />
+    <Compile Include="SearchGroupBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchGroupBox.Designer.cs">
+      <DependentUpon>SearchGroupBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\WindowBehaviours.cs" />
     <Compile Include="Models\XlsmImport.cs" />
     <Compile Include="Models\XmlFile.cs" />
@@ -129,6 +146,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="SearchGroupBox.resx">
+      <DependentUpon>SearchGroupBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

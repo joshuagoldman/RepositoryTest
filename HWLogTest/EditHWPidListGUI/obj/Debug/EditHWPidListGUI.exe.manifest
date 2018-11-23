@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EditHWPidListGUI.exe" size="507904">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EditHWPidListGUI.exe" size="1320960">
       <assemblyIdentity name="EditHWPidListGUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>nwSfwq5XovdqMAwKA0eQTXaaJ9ms9EN1vmWIS197Bb0=</dsig:DigestValue>
+        <dsig:DigestValue>hEsEN3DBMUqc1H0DOA5reKuyafnSNk7Bxc1cwrlCUVY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -74,6 +74,66 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
         <dsig:DigestValue>ZacR95Tal9jTTc+scvsVPAGRSZp1bjxMIozo6DE3F1Q=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="nunit.engine.dll" size="116224">
+      <assemblyIdentity name="nunit.engine" version="3.7.0.0" publicKeyToken="2638CD05610744EB" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>nnD4+KFS+V7xR1zrqsYi72by3+emEnkSaBeOuJrFaow=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="nunit.engine.api.dll" size="18944">
+      <assemblyIdentity name="nunit.engine.api" version="3.0.0.0" publicKeyToken="2638CD05610744EB" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>Ho1ZRsgM7P38ZEhx7RYPGcjDjjiQzUWlu0yq8vOdWgM=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="nunit.framework.dll" size="387072">
+      <assemblyIdentity name="nunit.framework" version="3.11.0.0" publicKeyToken="2638CD05610744EB" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>+TDqRS4LyYAwuves9RubjBAm+4DvBcOFnZ8uCcTGWJk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NUnit3.TestAdapter.dll" size="351744">
+      <assemblyIdentity name="NUnit3.TestAdapter" version="3.11.0.0" publicKeyToken="4CB40D35494691AC" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>nzwzoUijDbGqrYS6FfvMnVuJV9MhpQar/B9DWQmdrto=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="XmlFeatures.dll" size="13312">
+      <assemblyIdentity name="XmlFeatures" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>hB26/ZKJD6LFQFFAcvgkJF/aN+hgxH39tObj9N008j8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

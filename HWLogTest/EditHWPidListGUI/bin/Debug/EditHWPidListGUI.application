@@ -7,14 +7,14 @@
     <framework targetVersion="4.6.1" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="EditHWPidListGUI.exe.manifest" size="4837">
+    <dependentAssembly dependencyType="install" codebase="EditHWPidListGUI.exe.manifest" size="8213">
       <assemblyIdentity name="EditHWPidListGUI.exe" version="1.0.0.3" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>N6VA7rb27pMtThOX9GpRW4o6EGsLBDdBWp6aIebMWwI=</dsig:DigestValue>
+        <dsig:DigestValue>BTN5qWIEp+U2tXqOyRu70i9tAJyweS0RpSww+Q3dDDs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

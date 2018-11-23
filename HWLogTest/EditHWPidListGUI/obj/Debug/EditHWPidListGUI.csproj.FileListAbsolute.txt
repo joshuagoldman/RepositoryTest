@@ -106,7 +106,6 @@ C:\Users\jogo\Documents\git_Test\HWLogTest\EditHWPidListGUI\bin\Debug\EditHWPidL
 C:\Users\jogo\Documents\git_Test\HWLogTest\EditHWPidListGUI\bin\Debug\EditHWPidListGUI.application
 C:\Users\jogo\Documents\git_Test\HWLogTest\EditHWPidListGUI\bin\Debug\EditHWPidListGUI.exe
 C:\Users\jogo\Documents\git_Test\HWLogTest\EditHWPidListGUI\bin\Debug\EditHWPidListGUI.pdb
-C:\Users\jogo\Documents\git_Test\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI.csprojAssemblyReference.cache
 C:\Users\jogo\Documents\git_Test\HWLogTest\EditHWPidListGUI\obj\Debug\MainWindow.g.cs
 C:\Users\jogo\Documents\git_Test\HWLogTest\EditHWPidListGUI\obj\Debug\App.g.cs
 C:\Users\jogo\Documents\git_Test\HWLogTest\EditHWPidListGUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
@@ -122,3 +121,5 @@ C:\Users\jogo\Documents\git_Test\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidL
 C:\Users\jogo\Documents\git_Test\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI.application
 C:\Users\jogo\Documents\git_Test\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI.exe
 C:\Users\jogo\Documents\git_Test\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI.pdb
+C:\Users\jogo\Documents\git_Test\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI.SearchGroupBox.resources
+C:\Users\jogo\Documents\git_Test\HWLogTest\EditHWPidListGUI\obj\Debug\EditHWPidListGUI.csprojAssemblyReference.cache

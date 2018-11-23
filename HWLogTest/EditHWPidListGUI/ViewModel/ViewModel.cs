@@ -13,6 +13,11 @@ using System.Windows.Media;
 using System.Windows.Input;
 using EditHWPidListGUI.Extensions;
 using Microsoft.VisualBasic;
+using System.Windows.Forms;
+using MessageBox = System.Windows.MessageBox;
+using KeyEventArgs = System.Windows.Input.KeyEventArgs;
+using Point = System.Drawing.Point;
+using Main.XmlDoc;
 
 
 namespace EditHWPidListGUI.ViewModel
@@ -72,12 +77,12 @@ namespace EditHWPidListGUI.ViewModel
 
     public class ViewModel : INotifyPropertyChanged
     {
-        XmlFile CurrXml;
-        private XmlFile HwPidList;
+        ExEmEl CurrXml;
+        private ExEmEl HwLogCrit;
         private XmlFile ConfigKeyDocumentDefinitions;
         string CurrDoc;
+        string CurrEl;
         string CurrNode;
-        string CurrAttr;
 
         private List<Dictionary<string, string>> RadioTableFromExcel;
 
@@ -562,54 +567,16 @@ namespace EditHWPidListGUI.ViewModel
         }
         private void executemethod(object parameter)
         {
-            ////Start by saving changes to last file..
-            //switch (CurrDoc)
-            //{
-            //    case "HWPidList":
-            //        HwPidList = CurrXml;
-            //        break;
-            //    case "ConfigKeyDocumentDefinitions":
-            //        ConfigKeyDocumentDefinitions = CurrXml;
-            //        break;
-
-            //}
-
-            //Now change curr file
-            switch (parameter)
+            if (HwLogCrit == null)
             {
-                case "HWPidList":
-                    if (HwPidList == null)
-                    {
-                        HwPidList = new XmlFile(PathToHWPidList);
-                        HwPidList.ReadXmlToRawStringList();
-                        HwPidList.startRow = 40;
-                    }
-
-                    CurrXml = HwPidList;
-                    CurrDoc = "HWPidList";
-                    CurrNode = "Product";
-                    CurrAttr = "Number"; //Where krc is found
-                    break;
-                case "ConfigKeyDocumentDefinitions":
-                    if (ConfigKeyDocumentDefinitions == null)
-                    {
-                        ConfigKeyDocumentDefinitions = new XmlFile(PathToConfigKeyDocumentDefinitions);
-                        ConfigKeyDocumentDefinitions.ReadXmlToRawStringList();
-                        //Only search document in RadioUnitsRemote-section:
-                        ConfigKeyDocumentDefinitions.startRow = ConfigKeyDocumentDefinitions.FindCurrentNodeLineIndex("Definition", "Name", "RadioUnitsRemote") + 3;
-                        ConfigKeyDocumentDefinitions.endRow = ConfigKeyDocumentDefinitions.FindCurrentNodeLineIndex("Definition", "Name", "AntennaUnits") - 2;
-                    }
-
-                    CurrXml = ConfigKeyDocumentDefinitions;
-                    CurrDoc = "ConfigKeyDocumentDefinitions";
-                    CurrNode = "ConfigKeyDocumentEntry";
-                    CurrAttr = "Data"; //Where krc is found
-
-                    break;
+                HwLogCrit = new ExEmEl(PathToHWPidList, ExEmEl.NewDocument.No);
             }
 
+            CurrXml = HwLogCrit;
+            CurrDoc = "HWLogCriteria";
+            CurrEl = "SearchGroup";
+            CurrNode = "SearchKey"; //Where krc is found
             PreviewCurrXml();
-
         }
 
 
@@ -626,7 +593,7 @@ namespace EditHWPidListGUI.ViewModel
             //Remove line under node
             CurrXml.DocAsListOfStrings.RemoveAt(CurrLineIndex + countLines);
             //remove lines in node
-            while (!CurrXml.DocAsListOfStrings[CurrLineIndex + countLines].Contains("<" + CurrNode) && CurrLineIndex + countLines <= CurrXml.endRow)
+            while (!CurrXml.DocAsListOfStrings[CurrLineIndex + countLines].Contains("<" + CurrEl) && CurrLineIndex + countLines <= CurrXml.endRow)
             {
                 CurrXml.DocAsListOfStrings.RemoveAt(CurrLineIndex + countLines);
             }
@@ -679,7 +646,7 @@ namespace EditHWPidListGUI.ViewModel
             GeneratedString = CurrXml.DocAsListOfStrings[i];
             i++;
 
-            while (!CurrXml.DocAsListOfStrings[i].Contains("<" + CurrNode))
+            while (!CurrXml.DocAsListOfStrings[i].Contains("<" + CurrEl))
             {
                 GeneratedString += "\r\n" + CurrXml.DocAsListOfStrings[i];
                 i++;
@@ -721,25 +688,30 @@ namespace EditHWPidListGUI.ViewModel
 
         private void SaveFiles()
         {
-            if (HwPidList != null)
-                HwPidList.SaveFile();
+            if (HwLogCrit != null)
+                HwLogCrit.SaveFile();
 
             if (ConfigKeyDocumentDefinitions != null)
                 ConfigKeyDocumentDefinitions.SaveFile();
         }
         private void AddProduct()
         {
-            var s = Interaction.InputBox("Product number:", "New product", "KRC 161 652/7");
+            var s = Interaction.InputBox("Enter SearchKey:", "hjkh", "K12345");
             if (s.Length == 0)
                 return;
+            var sgb = new SearchGroupBox
+            {
+                Location = new Point(200, 200),                
+            };
 
-            var n = Interaction.InputBox("Product Name:", "New product", "Radio 2212 B4");
-            if (n.Length == 0)
+            CurrNode = 
+            
+            if (sgb.Text.Length == 0)
                 return;
-            CurrLineIndex = CurrXml.FindCurrentNodeLineIndex(CurrNode, CurrAttr, s.Replace(" ", ""));
+            CurrLineIndex = CurrXml.FindCurrentNodeLineIndex(CurrEl, CurrNode, s.Replace(" ", ""));
             KRCList.Add(new KeyValuePair<int, string>(KRCDict.Count, s));
 
-            RadioList.Add(new KeyValuePair<int, string>(KRCDict.Count, n));
+            RadioList.Add(new KeyValuePair<int, string>(KRCDict.Count, sgb.Text));
 
             KRCDict = KRCList.ToDictionary(x => x.Key, x => x.Value);
             RUDict = RadioList.ToDictionary(x => x.Key, x => x.Value);
@@ -747,7 +719,7 @@ namespace EditHWPidListGUI.ViewModel
             int i = 0;
             foreach (var r in RUDict)
             {
-                if (r.Value == n)
+                if (r.Value == sgb.Text)
                 {
                     SelectedRadioIndex = i;// r.Key;
                     break;
@@ -769,10 +741,10 @@ namespace EditHWPidListGUI.ViewModel
             PathToFile = vm.SelectedFilePath?.ToString();
 
             ReposFolderPath = Properties.Settings.Default.ReposPath;
-            HwPidList = new XmlFile(PathToHWPidList);
-            HwPidList.ReadXmlToRawStringList();
+            HwLogCrit = new XmlFile(PathToHWPidList);
+            HwLogCrit.ReadXmlToRawStringList();
             //HwPidList.InsertTagsInHWPidlist(PathToFile);
-            HwPidList.InsertTestplanTagsInHWPidlist(PathToFile);
+            HwLogCrit.InsertTestplanTagsInHWPidlist(PathToFile);
 
             Environment.Exit(0);
         }
@@ -831,7 +803,7 @@ namespace EditHWPidListGUI.ViewModel
                 }
                 else
                 {
-                    if (MessageBox.Show("Open Repos root path: " + Properties.Settings.Default.ReposPath, "", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    if (System.Windows.MessageBox.Show("Open Repos root path: " + Properties.Settings.Default.ReposPath, "", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
 
                         ReposFolderPath = Properties.Settings.Default.ReposPath;
@@ -874,8 +846,8 @@ namespace EditHWPidListGUI.ViewModel
             
             CurrXml = HwPidList; //Set this 
             CurrDoc = "HWPidList";
-            CurrNode = "Product";
-            CurrAttr = "Number";
+            CurrEl = "Product";
+            CurrNode = "Number";
 
             //initiate checkbox to true
             RadioTestAllowed = true;
@@ -892,7 +864,7 @@ namespace EditHWPidListGUI.ViewModel
 
         private string SelectRepFolder()
         {
-            MessageBox.Show("Select root Repos-folder in the tree-view window on next prompt", "", MessageBoxButton.OK, MessageBoxImage.Question);
+            System.Windows.MessageBox.Show("Select root Repos-folder in the tree-view window on next prompt", "", MessageBoxButton.OK, MessageBoxImage.Question);
             OpenDialogView openDialog = new OpenDialogView();
             OpenDialogViewModel vm = (OpenDialogViewModel)openDialog.DataContext;
             vm.Caption = "Select root Repos-folder in the tree-view window";
@@ -1028,7 +1000,7 @@ namespace EditHWPidListGUI.ViewModel
 
             if (CurrentKRC.Count() > 0)
             {
-                CurrLineIndex = CurrXml.FindCurrentNodeLineIndex(CurrNode, CurrAttr, CurrentKRC.Replace(" ", ""));
+                CurrLineIndex = CurrXml.
             }
             else
             {
@@ -1042,7 +1014,7 @@ namespace EditHWPidListGUI.ViewModel
                 var n = Interaction.InputBox("Product Name:", "New product", "Radio 2212 B4");
                 if (n.Length == 0)
                     return;
-                CurrLineIndex = CurrXml.FindCurrentNodeLineIndex(CurrNode, CurrAttr, s.Replace(" ", ""));
+                CurrLineIndex = CurrXml.FindCurrentNodeLineIndex(CurrEl, CurrNode, s.Replace(" ", ""));
                 KRCList.Add(new KeyValuePair<int, string>(0, s));
                 RadioList.Add(new KeyValuePair<int, string>(0, n));
                 KRCDict = KRCList.ToDictionary(x => x.Key, x => x.Value);
@@ -1064,7 +1036,7 @@ namespace EditHWPidListGUI.ViewModel
                 string krc = CurrentKRC.Replace(" ", "");
                 string CurrKrC = krc.Substring(0, 3) + " " + krc.Substring(3, 3) + " " + krc.Substring(6);
 
-                CurrLineIndex = CurrXml.FindCurrentNodeLineInsertionPoint(CurrNode, CurrAttr, CurrKrC);
+                CurrLineIndex = CurrXml.FindCurrentNodeLineInsertionPoint(CurrEl, CurrNode, CurrKrC);
                 if (CurrDoc == "HWPidList")
                 {
                     if (ProdName != null)
