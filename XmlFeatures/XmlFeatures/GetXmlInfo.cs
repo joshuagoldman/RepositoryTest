@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Main.XmlDoc;
 using System.Linq;
 using System.Xml.Linq;
 using System.Xml;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Main.XmlDoc
+namespace XmlFeatures.XmlDoc
 {
     public partial class ExEmEl
     {

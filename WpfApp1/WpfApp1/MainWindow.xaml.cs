@@ -10,12 +10,13 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Interop;
+using System.Windows.Forms;
+using WpfApp1.Models;
+
 
 namespace WpfApp1
 {
@@ -24,28 +25,29 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
-            InitializeComponent();            
-        }
-        [DllImport("user32.dll")]
-        static extern IntPtr SetParent(IntPtr hwc, IntPtr hwp);
-        private void RichTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Process p = Process.Start("notepad++.exe", @"C:\Users\jogo\Documents\git_Test\HWLogCriteria.xml");
+            InitializeComponent();
+            var info = new Information(InputDateWithIndexValue.Name,
+                                       CriteriaReferenceWithRevisionValue.Name,
+                                       ResponsibleValue.Name,
+                                       ReasonValue.Name);
+            var host = new HostWindow();
+            host.Show();
+            Process p = Process.Start("notepad++.exe", @"C:\Users\DELL\Documents\GitRepoJosh\HWLogCriteria.xml");
             Thread.Sleep(500);
             p.WaitForInputIdle();
-            SetParent(p.MainWindowHandle, );
+            var helper = new WindowInteropHelper(GetWindow(host.HostForm));
+            SetParent(p.MainWindowHandle, helper.Handle);
         }
+
+        [DllImport("user32.dll")]
+        static extern IntPtr SetParent(IntPtr hwc, IntPtr hwp);
+        [DllImport("user32.dll")]
+        internal static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
+        [DllImport("user32.dll")]
+        internal static extern long SetWindowLongA(IntPtr hWnd, int nIndex, long dwNewLong);
+
     }
 }

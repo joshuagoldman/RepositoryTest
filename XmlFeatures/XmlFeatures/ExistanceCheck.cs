@@ -6,7 +6,7 @@ using System.Xml.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Main.XmlDoc
+namespace XmlFeatures.XmlDoc
 {
     public partial class ExEmEl
     {
@@ -17,8 +17,8 @@ namespace Main.XmlDoc
             List<string> SearchKeys = new List<string>
             {
                 string.IsNullOrEmpty(FromRoot[0]) ?
-                null : String.Format("*//{0}[@Value = '{1}']", FromRoot[0], FromRoot[1]), 
-                String.Format("*//{0}[@Value = '{1}']", Child[0], Child[1]),
+                null : String.Format("*//{0}[@{1} = '{2}']", FromRoot[0], FromRoot[1], FromRoot[2]), 
+                String.Format("*//{0}[@{1} = '{2}']", Child[0], Child[1], Child[2]),
                 String.Format("//{0}", Node[0]) 
             };
             var xmlFromRoot = string.IsNullOrEmpty(FromRoot[0]) ? null : doc.SelectSingleNode(SearchKeys[0]);

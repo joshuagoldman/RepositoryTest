@@ -7,7 +7,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.IO;
 
-namespace Main.XmlDoc
+namespace XmlFeatures.XmlDoc
 {
     public partial class ExEmEl
     {

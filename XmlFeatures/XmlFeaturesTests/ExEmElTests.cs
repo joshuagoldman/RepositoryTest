@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Main.XmlDoc.Tests
+namespace XmlFeatures.XmlDoc.Tests
 {
     [TestFixture]
     public class ExEmElTests

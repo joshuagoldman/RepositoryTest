@@ -56,15 +56,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FindXLocation.cs" />
+    <Compile Include="WriteNodeToXml.cs" />
+    <Compile Include="XmlBranchInfo.cs" />
     <Compile Include="EnumConditions.cs" />
     <Compile Include="ExEmEl.cs" />
     <Compile Include="ExistanceCheck.cs" />
-    <Compile Include="FindXLocation.cs" />
+    <Compile Include="XmlSearchInfo.cs" />
+    <Compile Include="XmlTree.cs" />
     <Compile Include="GetXmlInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WriteNodeToXml.cs" />
-    <Compile Include="XmlSearchInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

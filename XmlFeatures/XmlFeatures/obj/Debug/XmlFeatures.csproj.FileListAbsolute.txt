@@ -28,3 +28,4 @@ C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeatures\obj\Debug\XmlFeatures.d
 C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeatures\obj\Debug\XmlFeatures.pdb
 =======
 >>>>>>> da3b8cb895f91fe487d926b137c07b20137dbe46
+C:\Users\DELL\Documents\GitRepoJosh\XmlFeatures\XmlFeatures\obj\Debug\XmlFeatures.csprojAssemblyReference.cache

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Main.XmlDoc
+namespace XmlFeatures.XmlDoc
 {
     public class FindXLocation
     {
@@ -16,7 +16,7 @@ namespace Main.XmlDoc
 
         public XmlDocument Doc;
 
-        List<string> RootSearchKeyList;
+        public string ParentAboveChildNoAttr { get; set; }
 
         public FindXLocation()
         {
@@ -27,9 +27,11 @@ namespace Main.XmlDoc
         {
             List<XmlNode> TempList = new List<XmlNode>
             {
-                Doc.SelectSingleNode($"*//{Child[0]}[@Value = '{Child[1]}']/..")
+                Child.Count == 3 ?
+                Doc.SelectSingleNode($"*//{Child[0]}[@{Child[1]} = '{Child[2]}']/..") :
+                Doc.SelectSingleNode($"//{Child}")
             };
-            RootSearchKeyList = new List<string>
+            var RootSearchKeyList = new List<string>
             {
                 TempList[0].Name
             };
