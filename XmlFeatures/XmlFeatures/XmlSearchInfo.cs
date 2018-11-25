@@ -9,6 +9,14 @@ namespace XmlFeatures.XmlDoc
 {
     public partial class ExEmEl
     {
+        public enum InstantiateXDocument { Yes, No }
+
+        public FindXLocation Find { get; set; }
+
+        public enum Instantiate { XDoc, FindXElement, None, Both }
+
+        public XDocument XDoc { get; set; }
+
         public enum ReplicateOrNewTree { Repl, DontRepl, NewTree }
 
         private enum SearchFor { Element, Attribute }
@@ -25,7 +33,11 @@ namespace XmlFeatures.XmlDoc
 
         public List<string> FromRoot { get; set; }
 
+        public List<string> TreeRoot { get; set; }
+
         public List<string> InfoToFind { get; set; }
+
+        public Dictionary<string[], XmlBranchInfo> TreeDict { get; set; }
 
         public void XmlSearchInfo(string child = null,
                                   string node = null,
@@ -34,7 +46,10 @@ namespace XmlFeatures.XmlDoc
                                   string parent_above_child_no_attr = null,
                                   string nodenovalue = null,
                                   string fromroot = null,
-                                  string infotofind = null)        
+                                  string infotofind = null,
+                                  string tree_root = null,
+                                  Dictionary<string[],XmlBranchInfo> tree_dict = null,
+                                  Instantiate instantiate_choice = Instantiate.None)        
         {
             Child= child?.Split(',').Select(x => x.Trim().Replace(' ', '_')).ToList();
             Node =  node?.Split(',').Select(x => x.Trim().Replace(' ', '_')).ToList();
@@ -43,9 +58,20 @@ namespace XmlFeatures.XmlDoc
             WriteTreeChoice = writetreechoice;
             ParentAboveChildnoAttr = parent_above_child_no_attr;
             FromRoot = fromroot?.Split(',').Select(x => x.Trim().Replace(' ', '_')).ToList();
-            var FromRootTemp = fromroot?.Trim() + ",All";
-            FromRoot = FromRootTemp?.Split(',').Select(x => x.Trim().Replace(' ', '_')).ToList();
-            EnumConditions();
+            FromRoot = fromroot?.Split(',').Select(x => x.Trim().Replace(' ', '_')).ToList();
+            TreeRoot = tree_root?.Split(',').Select(x => x.Trim().Replace(' ', '_')).ToList();
+            TreeDict = tree_dict;
+            XDoc = instantiate_choice == Instantiate.XDoc ||
+                   instantiate_choice == Instantiate.Both ? XDocument.Load(FilePath) : null;
+            Find = instantiate_choice == Instantiate.FindXElement ||
+                   instantiate_choice == Instantiate.Both ?
+                   new FindXLocation()
+                   {
+                       XDoc = XDoc,
+                       ParentAboveChildNoAttr = parent_above_child_no_attr ?? null
+                   } : null;
+            if (Node != null) { EnumConditions(); }
+
         }        
     }
 }

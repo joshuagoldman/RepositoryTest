@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Document Value="Document">
-<<<<<<< HEAD
   <Countries Value="All">
+    <SearchKeys></SearchKeys>
     <Extra>
       <Country Country="Sweden">
         <Population>1.3e+06</Population>
@@ -9,7 +9,6 @@
       </Country>
     </Extra>
   </Countries>
-=======
   <Countries Countries="All">
     <Country Value="Sweden">
       <Population>1.3e+06</Population>
@@ -59,5 +58,4 @@
       <Lacks>Carbs</Lacks>
     </Fruit>
   </Fruits>
->>>>>>> da3b8cb895f91fe487d926b137c07b20137dbe46
 </Document>

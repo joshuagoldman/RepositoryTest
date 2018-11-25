@@ -10,16 +10,12 @@ namespace XmlFeatures
     {
         public string Generation { get; set; }
 
-        public string[] Name { get; set; }
-
         public string[] ParentName { get; set; }
 
         public XmlBranchInfo(string generation,
-                        string[] name,
-                        string[] parentname)
+                             string[] parentname = null)
         {
             Generation = generation;
-            Name = name;
             ParentName = parentname;
         }
     }

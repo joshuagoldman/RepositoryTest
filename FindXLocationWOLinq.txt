@@ -1,0 +1,25 @@
+            /*var RootSearchKeyList = new List<string>
+            {
+                TempList[0].Name
+            };
+            int i = 0;
+            while (i < 10)
+            {
+                TempList.Add(TempList[i]?.ParentNode);
+                if (TempList[i +1].Name == "#document")
+                {
+                    break;
+                }
+                RootSearchKeyList.Add(TempList[i + 1].Name);
+                i++;
+            }
+            ChildParentElement = XDoc.Root;
+            int Len = RootSearchKeyList.Count() - 1;
+            for (int j = 0; j < Len; j++)
+            {
+                ChildParentElement = ChildParentElement.Element(RootSearchKeyList[Len - (j+1)]);
+            }
+            ChildParentElement = ChildParentElement.Elements(Child[0]).
+                Where(x => x.Attributes() != null ? x.Attributes().First().ToString().Contains(Child[1]) :
+                                                    x.Elements().First().ToString().Contains(Child[1])).
+                                                    First();*/

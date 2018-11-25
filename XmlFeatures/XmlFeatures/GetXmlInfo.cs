@@ -13,7 +13,7 @@ namespace XmlFeatures.XmlDoc
 
         public string GetXmlInfo()
         {
-            string Value = doc.SelectSingleNode($"*//{InfoToFind[0]}[@Value = '{InfoToFind[1]}']")?.
+            string Value = Doc.SelectSingleNode($"*//{InfoToFind[0]}[@Value = '{InfoToFind[1]}']")?.
                                SelectSingleNode(InfoToFind[2])?.
                                InnerText;
             if (Value != null)

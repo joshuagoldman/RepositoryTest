@@ -5,53 +5,54 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.XPath;
 
 namespace XmlFeatures.XmlDoc
 {
 
     public class XmlTree
     {
-        public XDocument XDoc;
+        public XDocument TreeXDoc;
 
-        public XmlDocument Doc;
-
-        public FindXLocation find;
+        public FindXLocation TreeFind;
 
         public string FilePath { get; set; }
+
+        public List<string> TreeRoot { get; set; }
+
+        public Dictionary<string[],XmlBranchInfo> TreeDict { get; set; }
 
         public XmlTree()
         {
         }
 
-        public void GetTree(Dictionary<string,XmlBranchInfo> TreeDict,
-                            List<string> TreeRoot)
+        public void GetTree()
         {
-            var NumOfGens = TreeDict.Values.ToList().
-                            Select(branch => Int32.Parse(branch.Generation)).Max();
+            var NumOfGens = TreeDict.Keys.ToList().
+                Select(key => int.Parse(TreeDict[key].Generation)).Max();
             var NewTree = new XElement("Initial");
-            NewTree.Add(TreeDict.Values.
-                   Where(branch => Int32.Parse(branch.Generation) == 1).
-                   Where(branch => branch.Name[2] != "NotIncluded").
-                   Select(branch =>branch.Name.ToList().Count == 3 ?
-                   new XElement(branch.Name[0],new XAttribute(branch.Name[1], branch.Name[2])) :
-                   new XElement(branch.Name[0])));
+                NewTree.Add(TreeDict.Keys.
+                            Where(key => int.Parse(TreeDict[key].Generation) == 1 &&
+                                  key[2] != "NotIncluded").
+                Select(key =>key.ToList().Count == 3 ?
+                       new XElement(key[0],new XAttribute(key[1], key[2])) :
+                       new XElement(key[0])));
             for (int i = 2; i <= NumOfGens; i++)
             {
-                NewTree.Elements().ToList().
-                Where(element => element.Name == TreeDict.Values.ToList().
-                                                 Where(branch => Int32.Parse(branch.Generation) == i-1).
-                                                 First().Name.ToString()).ToList().
-                ForEach(element => element.Add(TreeDict.Values.
-                                               Where(branch => Int32.Parse(branch.Generation) == i).
-                                               Where(branch => branch.Name[2] != "NotIncluded").
-                                               Where(branch => element.Name == branch.ParentName.ToString()).
-                Select(branch => branch.Name.ToList().Count == 3 ?
-                new XElement(branch.Name[0], new XAttribute(branch.Name[1], branch.Name[2])) :
-                new XElement(branch.Name[0]))));
+                var AllTempNodeElements = TreeDict.Keys.ToList().
+                                 Where(key => int.Parse(TreeDict[key].Generation) == i - 1).
+                                 Select(key => NewTree.XPathSelectElement($"//{key[0]}") ?? null).ToList();
+                AllTempNodeElements.ForEach(element => element.Add(TreeDict.Keys.
+                Where(key => int.Parse(TreeDict[key].Generation) == i &&
+                             key[2] != "NotIncluded" &&
+                             element.Name == TreeDict[key]?.ParentName[0]).
+                Select(key => key.ToList().Count == 3 ?
+                              new XElement(key[0], new XAttribute(key[1], key[2])) :
+                              new XElement(key[0]))));
             }
-            find.FindByElement(TreeRoot);
-            XDoc.Element(find.ChildParentElement.Name).Add(NewTree);
-            XDoc.Save(FilePath);
+            TreeFind.FindByElement(TreeRoot);
+            TreeFind.ChildParentElement.Add(NewTree.Nodes());
+            TreeXDoc.Save(FilePath);
         }
     }
 }

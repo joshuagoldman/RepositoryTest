@@ -11,7 +11,7 @@ namespace XmlFeatures.XmlDoc
 {
     public partial class ExEmEl
     {
-        public XmlDocument doc;
+        public XmlDocument Doc;
 
         public enum NewDocument { Yes, No }
 
@@ -38,17 +38,17 @@ namespace XmlFeatures.XmlDoc
 
             else if (Result == DocumentChoice.NewDoc)
             {
-                doc = doc ?? new XmlDocument();
-                doc.CreateXmlDeclaration("1.0", "UTF-8", null);
-                doc.Save(FilePath);
+                Doc = Doc ?? new XmlDocument();
+                Doc.CreateXmlDeclaration("1.0", "UTF-8", null);
+                Doc.Save(FilePath);
             }
 
             else if (Result == DocumentChoice.CurrentDoc)
             {
-                if (doc == null)
+                if (Doc == null)
                 {
-                    doc = doc ?? new XmlDocument();
-                    doc.Load(FilePath);
+                    Doc = Doc ?? new XmlDocument();
+                    Doc.Load(FilePath);
                 }
             }
         }

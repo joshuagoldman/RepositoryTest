@@ -10,22 +10,11 @@ namespace XmlFeatures.XmlDoc
 {
     public partial class ExEmEl
     {        
-        XDocument Xdoc;
-
-        FindXLocation fxl;
 
         public string ParentAboveChildnoAtt { get; set; }
 
         public void WriteNodeToXml()
         {
-            Xdoc = XDocument.Load(FilePath);
-            fxl = new FindXLocation
-            {
-                Doc = doc,
-                XDoc = Xdoc,
-                ParentAboveChildNoAttr = ParentAboveChildnoAtt ?? null
-
-            };
             var Result = ExistanceCheck();
             if (NeitherExist(Result))
             {
@@ -38,8 +27,8 @@ namespace XmlFeatures.XmlDoc
                                             new XAttribute(Child[1], Child[2]),
                                                 new XElement(Node[0], Node[1])));
 
-                    fxl.XDoc.Root.Add(newEl);
-                    fxl.XDoc.Save(FilePath);
+                    Find.XDoc.Root.Add(newEl);
+                    Find.XDoc.Save(FilePath);
                 }
             }
             else if (RootExists(Result))
@@ -48,18 +37,18 @@ namespace XmlFeatures.XmlDoc
                                 new XAttribute(Child[1], Child[2]),
                                     new XElement(Node[0], Node[1]));
 
-                fxl.FindByElement(FromRoot);
-                fxl.ChildParentElement.Add(newEl);
-                fxl.XDoc.Save(FilePath);
+                Find.FindByElement(FromRoot);
+                Find.ChildParentElement.Add(newEl);
+                Find.XDoc.Save(FilePath);
             }
             else if (ChildDoesExist(Result) ||
                      NodeDoesExist(Result) && DoReplicate(ReplicateChoice))
             {
                 var newEl = new XElement(Node[0], Node[1]);
 
-                fxl.FindByElement(Child);
-                fxl.ChildParentElement.Add(newEl);
-                fxl.XDoc.Save(FilePath);
+                Find.FindByElement(Child);
+                Find.ChildParentElement.Add(newEl);
+                Find.XDoc.Save(FilePath);
             }
             else
             {
