@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WpfApp1;
+using System.ComponentModel;
 
 namespace WpfApp1.Models
 {    
-    class Information
+    class Information 
     {
         public string InputDateWithIndexValue { get; set; }
 

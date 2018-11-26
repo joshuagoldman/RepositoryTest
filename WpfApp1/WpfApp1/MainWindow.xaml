@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="1000" >
+        Title="MainWindow" Height="700" Width="1000" >
     <Grid Name="Grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
@@ -15,6 +15,11 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
+			<RowDefinition Height="40"/>
+			<RowDefinition Height="60"/>
+			<RowDefinition Height="100"/>
+			<RowDefinition Height="40"/>
+			<RowDefinition Height="120"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="80" />
             <RowDefinition Height="40"/>
@@ -23,80 +28,113 @@
             <RowDefinition Height="80"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Label Grid.Column="1" Grid.Row="1" Content="Information" Background="Aqua" FontSize="25" HorizontalContentAlignment="Center"/>
-        <ScrollViewer Grid.Column="1" Grid.Row="2" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
-            <StackPanel Orientation="Horizontal">
-                <Grid Name="InputDateWithIndexGrid" Grid.Row="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="40"/>
-                    </Grid.RowDefinitions>
-                    <Label x:Name="InputDateWithIndexLabel" Grid.Row="0" Content="Input Date with Index" Background="Blue"/>
-                    <TextBox x:Name="InputDateWithIndexValue" Grid.Row="1" Width="130"></TextBox>
-                </Grid>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="40"/>
-                    </Grid.RowDefinitions>
-                    <Label x:Name="CriteriaReferenceWithRevisionLabel" Grid.Row="0" Background="Blue" Content="Criteria Reference with Revision" />
-                    <TextBox x:Name="CriteriaReferenceWithRevisionValue" Grid.Row="1"></TextBox>
-                </Grid>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="40"/>
-                    </Grid.RowDefinitions>
-                    <Label x:Name="ResponsibleLabel" Grid.Row="0" Background="Blue" Content="Responsible"/>
-                    <TextBox x:Name="ResponsibleValue" Grid.Row="1"></TextBox>
-                </Grid>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="40"/>
-                    </Grid.RowDefinitions>
-                    <Label x:Name="ReasonLabel" Grid.Row="0" Background="Blue" Content="Reason"/>
-                    <TextBox x:Name="ReasonValue" Grid.Row="1"></TextBox>
-                </Grid>
-            </StackPanel>
-        </ScrollViewer>
-        <Label Grid.Column="1" Grid.Row="3" Content="Searchsettings" Background= "Red" FontSize="25" HorizontalContentAlignment="Center"/>
-        <ScrollViewer Grid.Column="1" Grid.Row="4" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
-            <StackPanel Orientation="Horizontal">
-                <ComboBox x:Name="kk" Width="100">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding SearchKeyOptions}"/>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-                <ComboBox x:Name="jk" Width="100">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding SearchKeyOptions}"/>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-            </StackPanel>
-        </ScrollViewer>
-        <Label Grid.Column="1" Grid.Row="5" Content="Report" Background= "Chocolate" FontSize="25" HorizontalContentAlignment="Center"/>
-        <ScrollViewer Grid.Column="1" Grid.Row="6" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
-            <StackPanel Orientation="Horizontal">
-                <ComboBox x:Name="ooo" Width="100">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding SearchKeyOptions}"/>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-                <ComboBox x:Name="lll" Width="100">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding SearchKeyOptions}"/>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-            </StackPanel>
-        </ScrollViewer>
-    </Grid>
+		<TextBlock Name="Doc" Grid.Column="2" Grid.RowSpan="10" Margin="20,0,0,0" Text=""></TextBlock>
+		<Button Name="Generate" Grid.Column="1" Grid.Row="1" Margin="1,1" BorderThickness="3" BorderBrush="Black" Content="Generate" Click="Generate_Click"/>
+		<Button Name="Delete" Grid.Column="1" Margin="1,10" BorderThickness="3" BorderBrush="black" Grid.Row="2" Content="Delete" Click="Delete_Click"/>
+		<Border BorderBrush="Black" BorderThickness="3,3,3,3" Grid.Row="3" Grid.Column="1" Margin="1,10">
+			<StackPanel Orientation="Vertical" >
+				<Grid >
+					<Grid.RowDefinitions>
+						<RowDefinition Height="40"/>
+						<RowDefinition Height="40"/>
+					</Grid.RowDefinitions>
+					<TextBlock Background="Yellow" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" Text="Search Key"  Grid.Row="0"></TextBlock>
+					<TextBox Name="SearchKey"  Grid.Row="1"></TextBox>
+				</Grid>
+			</StackPanel>
+		</Border>
+		<Label Grid.Column="1" Grid.Row="4" BorderBrush="Black" BorderThickness="3,3,3,0" Content="Information" Background="Aqua" FontSize="25" HorizontalContentAlignment="Center"/>
+        <ScrollViewer Grid.Column="1" Margin="0,0,0,10" Grid.Row="5" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+			<Border BorderBrush="Black" BorderThickness="3,0,3,3">
+				<StackPanel Orientation="Horizontal">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="150"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="60"/>
+							<RowDefinition Height="30"/>
+						</Grid.RowDefinitions>
+						<TextBlock Name="nputDateWithIndexLabel" Grid.Row="0" Text="Input Date With Index Value" TextWrapping="{Binding Path= TextWrapping, Mode=TwoWay}" Background="{Binding Path= Background, Mode=TwoWay}" TextAlignment="{Binding Path= TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= FontSize, Mode=TwoWay}"></TextBlock>
+						<TextBox Name="InputDateWithIndexValue" Grid.Row="1"></TextBox>
+					</Grid>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="170"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="60"/>
+							<RowDefinition Height="30"/>
+						</Grid.RowDefinitions>
+						<TextBlock Name="CriteriaReferenceWithRevisionLabel" Grid.Row="0" Text="Criteria Reference with Revision Value" TextWrapping="{Binding Path= TextWrapping, Mode=TwoWay}" Background="{Binding Path= Background, Mode=TwoWay}" TextAlignment="{Binding Path= TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= FontSize, Mode=TwoWay}"></TextBlock>
+						<TextBox Name="CriteriaReferenceWithRevisionValue" Grid.Row="1"></TextBox>
+					</Grid>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="110"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="60"/>
+							<RowDefinition Height="30"/>
+						</Grid.RowDefinitions>
+						<TextBlock Name="ResponsibleLabel" Grid.Row="0" Text="Responsible" TextWrapping="{Binding Path= TextWrapping, Mode=TwoWay}" Background="{Binding Path= Background, Mode=TwoWay}" TextAlignment="{Binding Path= TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= FontSize, Mode=TwoWay}"  ></TextBlock>
+						<TextBox Name="ResponsibleValue" Grid.Row="1"></TextBox>
+					</Grid>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="100"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="60"/>
+							<RowDefinition Height="30"/>
+						</Grid.RowDefinitions>
+						<TextBlock Name="ReasonLabel" Grid.Row="0" Text="Reason" TextWrapping="{Binding Path= TextWrapping, Mode=TwoWay}" Background="{Binding Path= Background, Mode=TwoWay}" TextAlignment="{Binding Path= TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= FontSize, Mode=TwoWay}"></TextBlock>
+						<TextBox Name="ReasonValue" Grid.Row="1"></TextBox>
+					</Grid>
+				</StackPanel>
+			</Border>
+		</ScrollViewer>
+		<Label Grid.Column="1" Grid.Row="6" Content="Searchsettings" BorderBrush="Black" BorderThickness="3,3,3,0" Background= "Red" FontSize="25" HorizontalContentAlignment="Center"/>
+		<ScrollViewer Grid.Column="1" Grid.Row="7" Margin="0,0,0,10" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+			<Border BorderBrush="Black" BorderThickness="3,0,3,3">
+			<StackPanel Orientation="Horizontal">
+				<ComboBox x:Name="kk" Width="100">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding SearchKeyOptions}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+				<ComboBox x:Name="jk" Width="100">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding SearchKeyOptions}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+			</StackPanel>
+			</Border>
+		</ScrollViewer>
+		<Label Grid.Column="1" Grid.Row="8" BorderBrush="Black" BorderThickness="3,3,3,0" Content="Report" Background= "Chocolate" FontSize="25" HorizontalContentAlignment="Center"/>
+		<ScrollViewer Grid.Column="1" Grid.Row="9" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+			<Border BorderBrush="Black" BorderThickness="3,0,3,3">
+				<StackPanel Orientation="Horizontal">
+					<ComboBox x:Name="ooo" Width="100">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding SearchKeyOptions}"/>
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+					<ComboBox x:Name="lll" Width="100">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding SearchKeyOptions}"/>
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+				</StackPanel>
+			</Border>
+		</ScrollViewer>
+	</Grid>
 </Window>

@@ -12,10 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Runtime.CompilerServices;
+using System.ComponentModel;
 using System.Threading;
 using System.Windows.Interop;
 using System.Windows.Forms;
 using WpfApp1.Models;
+using XmlFeatures.XmlDoc;
+using WpfApp1.HostWindowUtilities;
+
 
 
 namespace WpfApp1
@@ -25,6 +30,8 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ViewSettings TextBlockSettings { get; set; }
+        public string FilePath { get; set; }
 
         public MainWindow()
         {
@@ -33,21 +40,23 @@ namespace WpfApp1
                                        CriteriaReferenceWithRevisionValue.Name,
                                        ResponsibleValue.Name,
                                        ReasonValue.Name);
-            var host = new HostWindow();
-            host.Show();
-            Process p = Process.Start("notepad++.exe", @"C:\Users\DELL\Documents\GitRepoJosh\HWLogCriteria.xml");
-            Thread.Sleep(500);
-            p.WaitForInputIdle();
-            var helper = new WindowInteropHelper(GetWindow(host.HostForm));
-            SetParent(p.MainWindowHandle, helper.Handle);
+
+            var xml = new ExEmEl(@"C:\Users\jogo\Documents\git_Test\HWLogCriteria.xml", ExEmEl.NewDocument.No);
+            TextBlockSettings = new ViewSettings();
+            this.DataContext = TextBlockSettings;
+            var ViewHost = new SetNewProcessWindow();
+            XmlDataProvider jj = new XmlDataProvider();
+            jj.Document = xml.Doc;
         }
 
-        [DllImport("user32.dll")]
-        static extern IntPtr SetParent(IntPtr hwc, IntPtr hwp);
-        [DllImport("user32.dll")]
-        internal static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
-        [DllImport("user32.dll")]
-        internal static extern long SetWindowLongA(IntPtr hWnd, int nIndex, long dwNewLong);
+        private void Generate_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
 
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
