@@ -16,10 +16,12 @@ using System.Runtime.CompilerServices;
 using System.ComponentModel;
 using System.Threading;
 using System.Windows.Interop;
-using System.Windows.Forms;
+using System.Web;
 using WpfApp1.Models;
 using XmlFeatures.XmlDoc;
+using Application = System.Windows.Application;
 using WpfApp1.HostWindowUtilities;
+using System.Reflection;
 
 
 
@@ -30,23 +32,28 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Finds a Child of a given item in the visual tree. 
+        /// </summary>
+        /// <param name="parent">A direct parent of the queried item.</param>
+        /// <typeparam name="T">The type of the queried item.</typeparam>
+        /// <param name="childName">x:Name or Name of child. </param>
+        /// <returns>The first parent item that matches the submitted type parameter. 
+        /// If not matching item can be found, 
+        /// a null parent is being returned.</returns>
+
+
         public ViewSettings TextBlockSettings { get; set; }
         public string FilePath { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
-            var info = new Information(InputDateWithIndexValue.Name,
-                                       CriteriaReferenceWithRevisionValue.Name,
-                                       ResponsibleValue.Name,
-                                       ReasonValue.Name);
 
-            var xml = new ExEmEl(@"C:\Users\jogo\Documents\git_Test\HWLogCriteria.xml", ExEmEl.NewDocument.No);
+            var xml = new ExEmEl(@"C:\Users\DELL\Documents\GitRepoJosh\HWLogCriteria.xml", ExEmEl.NewDocument.No);
             TextBlockSettings = new ViewSettings();
             this.DataContext = TextBlockSettings;
-            var ViewHost = new SetNewProcessWindow();
-            XmlDataProvider jj = new XmlDataProvider();
-            jj.Document = xml.Doc;
+            //var ViewHost = new SetNewProcessWindow();
         }
 
         private void Generate_Click(object sender, RoutedEventArgs e)
@@ -56,6 +63,22 @@ namespace WpfApp1
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void Loaded_Window(object sender, RoutedEventArgs e)
+        {
+            var CurrApp = Application.Current.MainWindow;
+
+            ReasonValue.Text = "howdy";
+            InputDateWithIndexValue.Text = "ehehe";
+
+            var info = new Information();
+            info.ReasonValue = "dlfkj";
+            var sally = info.GetType().GetProperties().
+                               Where(prop => prop.PropertyType.Name.Equals("String")).ToList();
+            sally.ForEach(prop => prop.SetValue(prop,LogicalTreeHelper.FindLogicalNode(CurrApp, prop.Name) != null ?
+                                                 TextSearch.GetText(LogicalTreeHelper.FindLogicalNode(CurrApp, prop.Name)): "NoneExistant"));
 
         }
     }
