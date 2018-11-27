@@ -21,12 +21,16 @@ namespace WpfApp1.Models
         TextWrapping textwrappping = System.Windows.TextWrapping.Wrap;
 
         Grid textblockgrid = new Grid();
-        
+
+        string text = "";
+
+        Brush foreground = Brushes.Black;
+
 
         public Brush Background
         {
             get => background;
-            set
+            set  
             {
                 background = value;
                 OnPropertyChanged("Background");
@@ -74,6 +78,26 @@ namespace WpfApp1.Models
             {
                 textblockgrid = value;
                 OnPropertyChanged("TextBlockGrid");
+            }
+        }
+
+        public string Text
+        {
+            get => text;
+            set
+            {
+                text = value;
+                OnPropertyChanged("Text");
+            }
+        }
+
+        public Brush Foreground
+        {
+            get => foreground;
+            set
+            {
+                foreground = value;
+                OnPropertyChanged("Foreground");
             }
         }
 

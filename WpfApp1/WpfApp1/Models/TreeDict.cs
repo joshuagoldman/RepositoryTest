@@ -10,8 +10,6 @@ namespace WpfApp1.Models
     {       
         public string Generation { get; set; }
 
-        public string Position { get; set; }
-
         public string[] ParentName { get; set; }        
     }
 }

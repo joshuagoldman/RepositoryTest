@@ -70,6 +70,7 @@ namespace XmlFeatures.XmlDoc
                        XDoc = XDoc,
                        ParentAboveChildNoAttr = parent_above_child_no_attr ?? null
                    } : null;
+
             if (Node != null) { EnumConditions(); }
 
         }        

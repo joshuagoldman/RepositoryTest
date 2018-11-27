@@ -86,7 +86,8 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WindowsFormsIntegration" />
-    <Reference Include="XmlFeatures">
+    <Reference Include="XmlFeatures, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\XmlFeatures\XmlFeatures\bin\Debug\XmlFeatures.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -117,9 +118,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Methods\CreateSearchKeyTreeDict.cs" />
-    <Compile Include="Models\GridSettings.cs" />
+    <Compile Include="Methods\ChoiceActions.cs" />
+    <Compile Include="Methods\GenerateActions.cs" />
     <Compile Include="Models\Information.cs" />
+    <Compile Include="Models\TextBoxAppearance.cs" />
     <Compile Include="Models\TreeDict.cs" />
     <Compile Include="Models\ViewSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

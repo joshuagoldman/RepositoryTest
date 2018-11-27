@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
 using System.Xml.Linq;
 using System.IO;
 
@@ -11,7 +10,7 @@ namespace XmlFeatures.XmlDoc
 {
     public partial class ExEmEl
     {
-        public XmlDocument Doc;
+        public XDocument Doc;
 
         public enum NewDocument { Yes, No }
 
@@ -38,8 +37,8 @@ namespace XmlFeatures.XmlDoc
 
             else if (Result == DocumentChoice.NewDoc)
             {
-                Doc = Doc ?? new XmlDocument();
-                Doc.CreateXmlDeclaration("1.0", "UTF-8", null);
+                Doc = Doc ?? new XDocument();
+                Doc.Declaration = new XDeclaration("1.0", "UTF-8", null);
                 Doc.Save(FilePath);
             }
 
@@ -47,8 +46,8 @@ namespace XmlFeatures.XmlDoc
             {
                 if (Doc == null)
                 {
-                    Doc = Doc ?? new XmlDocument();
-                    Doc.Load(FilePath);
+                    Doc = Doc ?? new XDocument();
+                    XDocument.Load(FilePath);                    
                 }
             }
         }
