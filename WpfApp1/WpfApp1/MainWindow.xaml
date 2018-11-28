@@ -58,8 +58,8 @@
                             <RowDefinition Height="60"/>
                             <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Name="nputDateWithIndexLabel" Grid.Row="0" Text="Input Date With Index Value" TextWrapping="{Binding Path= TextWrapping, Mode=TwoWay}" Background="{Binding Path= Background, Mode=TwoWay}" TextAlignment="{Binding Path= TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= FontSize, Mode=TwoWay}"></TextBlock>
-                        <TextBox Name="InputDateWithIndexValue" Grid.Row="1"></TextBox>
+                        <TextBlock Name="InputDateWithIndexLabel" Grid.Row="0" Text="Input Date With Index Value" TextWrapping="{Binding Path= InputDateWithIndexLabelObject.TextWrapping, Mode=TwoWay}" Background="{Binding Path= InputDateWithIndexLabelObject.Backgroud}" TextAlignment="{Binding Path= InputDateWithIndexLabelObject.TextAlignmen, Mode=TwoWay}" FontSize="{Binding Path= InputDateWithIndexLabelObject.FontSize, Mode=TwoWay}"></TextBlock>
+                        <TextBox Name="InputDateWithIndexValue" Background="{Binding Path= InputDateWithIndexTextBoxObject.Backgroud}" Grid.Row="1"></TextBox>
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>

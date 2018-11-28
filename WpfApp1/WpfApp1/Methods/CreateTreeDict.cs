@@ -19,16 +19,16 @@ namespace WpfApp1.Methods
         {
             return new Dictionary<string[], TreeDict>
             {
-                {new string[]{ Information.InputDateWithIndexObject.NameProp, "Value", Information.InputDateWithIndexObject.Text },
+                {new string[]{ Information.InputDateWithIndexTextBoxObject.NameProp, "Value", Information.InputDateWithIndexTextBoxObject.Text },
                    new TreeDict("2", new string[] {"SearchKey", "Value", Information.SearchKey.Text }) },
 
-                {new string[]{ Information.CriteriaReferenceWithRevisionViewsettingsObject.NameProp, "Value", Information.CriteriaReferenceWithRevisionViewsettingsObject.Text },
+                {new string[]{ Information.CriteriaReferenceWithRevisionTextBoxObject.NameProp, "Value", Information.CriteriaReferenceWithRevisionTextBoxObject.Text },
                    new TreeDict("2", new string[] {"SearchKey", "Value", Information.SearchKey.Text }) },
 
-                {new string[]{ Information.ResponsibleViewsettingsObject.NameProp, "Value", Information.ResponsibleViewsettingsObject.Text },
+                {new string[]{ Information.ResponsibleTextBoxsObject.NameProp, "Value", Information.ResponsibleTextBoxsObject.Text },
                    new TreeDict("2", new string[] {"SearchKey", "Value", Information.SearchKey.Text }) },
 
-                {new string[]{ Information.ReasonViewsettingsObject.NameProp, "Value", Information.ReasonViewsettingsObject.Text },
+                {new string[]{ Information.ReasonTextBoxObject.NameProp, "Value", Information.ReasonTextBoxObject.Text },
                    new TreeDict("2", new string[] {"SearchKey", "Value", Information.SearchKey.Text }) },
             };
         }

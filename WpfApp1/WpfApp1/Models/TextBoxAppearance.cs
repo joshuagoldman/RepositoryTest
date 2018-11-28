@@ -20,73 +20,131 @@ namespace WpfApp1.Models
 
         public ViewSettings Obj { get; set; }
 
-        ViewSettings search_key_viewsettings_object = new ViewSettings();
-        ViewSettings input_date_with_index_viewsettings_object = new ViewSettings(); 
-        ViewSettings criteria_reference_with_revision_viewsettings_object = new ViewSettings();
-        ViewSettings responsible_viewsettings_object = new ViewSettings();
-        ViewSettings reason_viewsettings_object = new ViewSettings();
+        ViewSettings search_key_textbox_object = new ViewSettings();
+        ViewSettings input_date_with_index_textbox_object = new ViewSettings(); 
+        ViewSettings criteria_reference_with_revision_textbox_object = new ViewSettings();
+        ViewSettings responsible_textbox_object = new ViewSettings();
+        ViewSettings reason_textbox_object = new ViewSettings();
+        ViewSettings input_date_with_index_Label_object = new ViewSettings();
+        ViewSettings criteria_reference_with_revision_Label_object = new ViewSettings();
+        ViewSettings responsible_Label_object = new ViewSettings();
+        ViewSettings reason_Label_object = new ViewSettings();
 
         public ViewSettings SearchKey
         {
-            get => search_key_viewsettings_object;
+            get => search_key_textbox_object;
             set
             {
-                SetAppearance(search_key_viewsettings_object);
-                search_key_viewsettings_object = value;
+                SetAppearance(search_key_textbox_object);
+                search_key_textbox_object = value;
                 OnPropertyChanged("SearchKey");
             }
         }
 
-        public ViewSettings InputDateWithIndexObject
+        public ViewSettings InputDateWithIndexTextBoxObject
         {
-            get => input_date_with_index_viewsettings_object;
+            get => input_date_with_index_textbox_object;
             set
             {
-                SetAppearance(input_date_with_index_viewsettings_object);
-                input_date_with_index_viewsettings_object = value;
-                OnPropertyChanged("InputDateWithIndex");
+                SetAppearance(input_date_with_index_textbox_object);
+                input_date_with_index_textbox_object = value;
+                OnPropertyChanged("InputDateWithIndexTextBoxObject");
             }
         }
 
-        public ViewSettings CriteriaReferenceWithRevisionViewsettingsObject
+        public ViewSettings CriteriaReferenceWithRevisionTextBoxObject
         {
-            get => criteria_reference_with_revision_viewsettings_object;
+            get => criteria_reference_with_revision_textbox_object;
             set
             {
-                SetAppearance(criteria_reference_with_revision_viewsettings_object);
-                input_date_with_index_viewsettings_object = value;
-                OnPropertyChanged("CriteriaReferenceWithRevisionViewsettingsObject");
+                SetAppearance(criteria_reference_with_revision_textbox_object);
+                input_date_with_index_textbox_object = value;
+                OnPropertyChanged("CriteriaReferenceWithRevisionTextBoxObject");
             }
         }
 
-        public ViewSettings ResponsibleViewsettingsObject
+        public ViewSettings ResponsibleTextBoxsObject
         {
-            get => responsible_viewsettings_object;
+            get => responsible_textbox_object;
             set
             {
-                SetAppearance(responsible_viewsettings_object);
-                responsible_viewsettings_object = value;
-                OnPropertyChanged("ResponsibleViewsettingsObject");
+                SetAppearance(responsible_textbox_object);
+                responsible_textbox_object = value;
+                OnPropertyChanged("ResponsibleTextBoxsObject");
             }
         }
 
-        public ViewSettings ReasonViewsettingsObject
+        public ViewSettings ReasonTextBoxObject
         {
-            get => reason_viewsettings_object;
+            get => reason_textbox_object;
             set
             {
-                SetAppearance(reason_viewsettings_object);
-                reason_viewsettings_object = value;
-                OnPropertyChanged("ReasonViewsettingsObject");
+                SetAppearance(reason_textbox_object);
+                reason_textbox_object = value;
+                OnPropertyChanged("ReasonTextBoxObject");
+            }
+        }
+
+
+        public ViewSettings InputDateWithIndexLabelObject
+        {
+            get => input_date_with_index_Label_object;
+            set
+            {
+                criteria_reference_with_revision_Label_object.Background = Brushes.Beige;
+                criteria_reference_with_revision_Label_object.FontSize = double.Parse("30");
+                input_date_with_index_Label_object = value;
+                OnPropertyChanged("InputDateWithIndexLabelObject");
+            }
+        }
+
+        public ViewSettings CriteriaReferenceWithRevisionLabelObject
+        {
+            get => criteria_reference_with_revision_Label_object;
+            set
+            {
+                criteria_reference_with_revision_Label_object.Background = Brushes.Blue;
+                criteria_reference_with_revision_Label_object = value;
+                OnPropertyChanged("CriteriaReferenceWithRevisionLabelObject");
+            }
+        }
+
+        public ViewSettings ResponsibleLabelObject
+        {
+            get => responsible_Label_object;
+            set
+            {
+                criteria_reference_with_revision_Label_object.Background = Brushes.BurlyWood;
+                search_key_textbox_object = value;
+                OnPropertyChanged("ResponsibleLabelObject");
+            }
+        }
+
+        public ViewSettings ReasonLabelObject
+        {
+            get => reason_Label_object;
+            set
+            {
+                criteria_reference_with_revision_Label_object.Background = Brushes.YellowGreen;
+                reason_Label_object = value;
+                OnPropertyChanged("ReasonLabelObject");
             }
         }
 
         public TextBoxAppearance()
         {
-            GetType().GetProperties().ToList().ForEach(prop => prop.GetType().GetProperties().
-            Select(subprop => subprop.Name.Equals("NameProp") ? 
-            (string)subprop.GetValue((ViewSettings)prop.GetValue(this)) : null)
-            .First().Equals(prop.Name));
+            GetType().GetProperties().ToList().Where(prop => (ViewSettings)prop.GetValue(this) != null).ToList().
+                ForEach(prop => prop.GetValue(this).GetType().GetProperties().
+                Where(subprop => subprop.GetValue(prop.GetValue(this)) != null).
+                Where(subprop => subprop.Name.Equals("NameProp")).ToList().
+                ForEach(subprop => subprop.SetValue(prop.GetValue(this), prop.Name)));
+
+
+           /* var slagerak = GetType().GetProperties().ToList().Where(prop => (ViewSettings)prop.GetValue(this) != null).ToList().
+                Select(prop => prop.GetValue(this).GetType().GetProperties().
+                Where(subprop => subprop.GetValue(prop.GetValue(this)) != null).
+                Where(subprop => subprop.Name.Equals("Background")).ToList().
+                Select(subprop => subprop.GetValue(prop.GetValue(this))));*/
         }
 
         private void SetAppearance(ViewSettings Obj)

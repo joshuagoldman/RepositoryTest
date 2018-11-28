@@ -21,10 +21,6 @@ using System.Xml.Linq;
 using WpfApp1.Models;
 using WpfApp1.Methods;
 using XmlFeatures.XmlDoc;
-using Application = System.Windows.Application;
-using WpfApp1.HostWindowUtilities;
-using System.Reflection;
-using PISetValue = System.Reflection.PropertyInfo;
 
 namespace WpfApp1.Methods
 {
@@ -44,7 +40,7 @@ namespace WpfApp1.Methods
 
         public InitializeClasses()
         {
-            Xml = new ExEmEl(@"C:\Users\jogo\Documents\git_Test\HWLogCriteria.xml", ExEmEl.NewDocument.No);
+            Xml = new ExEmEl(@"C:\Users\DELL\Documents\GitRepoJosh\HWLogCriteria.xml", ExEmEl.NewDocument.No);
             TextBoxAppearance TextBoxInfo = new TextBoxAppearance();
             CreateTreeDict NewDict = new CreateTreeDict()
             {
