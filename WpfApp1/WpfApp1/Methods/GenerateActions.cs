@@ -8,9 +8,19 @@ using System.Threading.Tasks;
 namespace WpfApp1.Methods
 {
     public class GenerateActions
-    {
-        public XDocument GenDoc { get; set; }
-
+    {    
         public ChoiceActions ChoicAct { get; set; }
+
+        public GenerateActions()
+        {
+
+        }
+
+        public void PerformActions()
+        {
+            ChoicAct.ChangeToRedNotification();
+            ChoicAct.RedNotificationPopUpMessage();
+
+        }
     }
 }

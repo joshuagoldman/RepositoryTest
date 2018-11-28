@@ -6,10 +6,17 @@ using System.Threading.Tasks;
 
 namespace WpfApp1.Models
 {
-    class TreeDict
-    {       
+    public class TreeDict
+    {        
         public string Generation { get; set; }
 
-        public string[] ParentName { get; set; }        
+        public string[] ParentName { get; set; }
+
+        public TreeDict(string generation, 
+                        string[] parentname)
+        {
+
+        }
+
     }
 }

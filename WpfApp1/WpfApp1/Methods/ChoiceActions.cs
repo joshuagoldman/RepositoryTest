@@ -29,6 +29,8 @@ namespace WpfApp1.Methods
     {
         public TextBoxAppearance TextBoxInfo { get; set; }
 
+        public CreateTreeDict Dict { get; set; }
+
         public ChoiceActions()
         {
         }
@@ -36,11 +38,16 @@ namespace WpfApp1.Methods
         {
             var CurrApp = Application.Current.MainWindow;
 
-            var Props = TextBoxInfo.GetType().GetProperties().
-                            Where(prop => prop.PropertyType.Name.Equals("String")).ToList();
-            Props.ForEach(prop => prop.SetValue(TextBoxInfo, LogicalTreeHelper.FindLogicalNode(CurrApp, prop.Name).Equals("ChangeToRed") ?
-                                                "ChangeToRed" : TextSearch.GetText(LogicalTreeHelper.FindLogicalNode(CurrApp, prop.Name))));
+            var V = TextBoxInfo.GetType().
+               GetProperties(BindingFlags.Public | BindingFlags.Instance).
+               Where(prop => prop.PropertyType == typeof(ViewSettings) && (ViewSettings)prop.GetValue(TextBoxInfo) != null);
 
+            var ViewSettingsInstances = TextBoxInfo.GetType().
+                GetProperties(BindingFlags.Public | BindingFlags.Instance).
+                Where(prop => prop.PropertyType == typeof(ViewSettings) && (ViewSettings)prop.GetValue(TextBoxInfo) != null).Select(prop => (ViewSettings)prop.GetValue(TextBoxInfo)).ToList();
+            
+            ViewSettingsInstances.ForEach(obj => obj.Text = string.IsNullOrEmpty(TextSearch.GetText(LogicalTreeHelper.FindLogicalNode(CurrApp, obj.GetType().Name))) ?
+                                                "ChangeToRed" : TextSearch.GetText(LogicalTreeHelper.FindLogicalNode(CurrApp, obj.GetType().Name)));
         }
 
         public void RedNotificationPopUpMessage()
@@ -57,8 +64,8 @@ namespace WpfApp1.Methods
                                           MessageBoxImage.Error);
             }
             else
-            {
-
+            {;
+                Dict.GetTreeDict();
             }
         }
 

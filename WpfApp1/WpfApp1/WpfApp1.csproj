@@ -119,8 +119,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Methods\ChoiceActions.cs" />
+    <Compile Include="Methods\CreateTreeDict.cs" />
     <Compile Include="Methods\GenerateActions.cs" />
-    <Compile Include="Models\Information.cs" />
+    <Compile Include="Methods\InitializeClasses.cs" />
     <Compile Include="Models\TextBoxAppearance.cs" />
     <Compile Include="Models\TreeDict.cs" />
     <Compile Include="Models\ViewSettings.cs" />

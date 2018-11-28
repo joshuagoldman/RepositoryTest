@@ -33,7 +33,6 @@ C:\Users\DELL\Documents\GitRepoJosh\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csprojAsse
 C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\bin\Debug\WpfApp1.exe.config
 C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\bin\Debug\WpfApp1.exe
 C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\bin\Debug\WpfApp1.pdb
-C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csprojAssemblyReference.cache
 C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\obj\Debug\MainWindow.g.cs
 C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\obj\Debug\App.g.cs
 C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.cache

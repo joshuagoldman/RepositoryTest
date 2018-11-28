@@ -24,6 +24,8 @@ namespace WpfApp1.Models
 
         string text = "";
 
+        string name = "";
+
         Brush foreground = Brushes.Black;
 
 
@@ -98,6 +100,16 @@ namespace WpfApp1.Models
             {
                 foreground = value;
                 OnPropertyChanged("Foreground");
+            }
+        }
+
+       public string NameProp
+        {
+            get => name;
+            set
+            {
+                name = value;
+                OnPropertyChanged("NameProp");
             }
         }
 

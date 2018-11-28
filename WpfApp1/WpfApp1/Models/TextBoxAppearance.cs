@@ -15,12 +15,27 @@ namespace WpfApp1.Models
 
     public class TextBoxAppearance : INotifyPropertyChanged
     {
+
+        public Dictionary<string, ViewSettings> AppearanceDict { get; set; }
+
         public ViewSettings Obj { get; set; }
 
+        ViewSettings search_key_viewsettings_object = new ViewSettings();
         ViewSettings input_date_with_index_viewsettings_object = new ViewSettings(); 
         ViewSettings criteria_reference_with_revision_viewsettings_object = new ViewSettings();
         ViewSettings responsible_viewsettings_object = new ViewSettings();
         ViewSettings reason_viewsettings_object = new ViewSettings();
+
+        public ViewSettings SearchKey
+        {
+            get => search_key_viewsettings_object;
+            set
+            {
+                SetAppearance(search_key_viewsettings_object);
+                search_key_viewsettings_object = value;
+                OnPropertyChanged("SearchKey");
+            }
+        }
 
         public ViewSettings InputDateWithIndexObject
         {
@@ -68,13 +83,16 @@ namespace WpfApp1.Models
 
         public TextBoxAppearance()
         {
-
+            GetType().GetProperties().ToList().ForEach(prop => prop.GetType().GetProperties().
+            Select(subprop => subprop.Name.Equals("NameProp") ? 
+            (string)subprop.GetValue((ViewSettings)prop.GetValue(this)) : null)
+            .First().Equals(prop.Name));
         }
 
         private void SetAppearance(ViewSettings Obj)
         {
             var Props = Obj.GetType().GetProperties().ToList();
-            if (Props.Any(prop => prop.Name.Equals("Text") && !string.IsNullOrEmpty(prop.GetValue(Obj).ToString())))
+            if (Props.Any(prop => prop.Name.Equals("Text") && !string.IsNullOrEmpty((string)prop.GetValue(Obj))))
             {
                 Props.ForEach(prop =>
                 {
