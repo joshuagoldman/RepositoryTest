@@ -13,9 +13,9 @@ namespace XmlFeatures.XmlDoc
 
         public FindXLocation Find { get; set; }
 
-        public enum Instantiate { XDoc, FindXElement, None, Both }
+        public enum Instantiate { XmlTree, FindXElement, None, Both }
 
-        public XDocument XDoc { get; set; }
+        public XmlTree TreeCreation { get; set; }
 
         public enum ReplicateOrNewTree { Repl, DontRepl, NewTree }
 
@@ -61,12 +61,17 @@ namespace XmlFeatures.XmlDoc
             FromRoot = fromroot?.Split(',').Select(x => x.Trim().Replace(' ', '_')).ToList();
             TreeRoot = tree_root?.Split(',').Select(x => x.Trim().Replace(' ', '_')).ToList();
             TreeDict = tree_dict;
-            XDoc = instantiate_choice == Instantiate.XDoc ||
-                   instantiate_choice == Instantiate.Both ? XDocument.Load(FilePath) : null;
+            TreeCreation = instantiate_choice == Instantiate.XmlTree ||
+                   instantiate_choice == Instantiate.Both ?
+                   new XmlTree()
+                   {
+                       TreeDict = TreeDict,
+                       TreeRoot = TreeRoot
+                   } : null;
             Find = instantiate_choice == Instantiate.FindXElement ||
                    instantiate_choice == Instantiate.Both ?
                    new FindXLocation()
-                   {
+                   {                       
                        XDoc = XDoc,
                        ParentAboveChildNoAttr = parent_above_child_no_attr ?? null
                    } : null;

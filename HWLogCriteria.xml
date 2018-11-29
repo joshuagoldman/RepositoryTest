@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Document>
-	<Date>2018-11-20</Date>
+	<Date>2018-11-29</Date>
 	<DocumentNumber>19062-LPA 108 338</DocumentNumber>
-	<Revision>AX02</Revision>
+	<Revision>AY02</Revision>
 	<SearchGroups>
 		<SearchGroup Name="DUW_DUL_DUS">
 			<ReportFile File= "dumpelg.txt" ContentReading="Bottom" LineCount="30" />
@@ -2146,12 +2146,13 @@ Send the information to rrag.g1.rrp@ericsson.com
 				</SearchKey>
 				<SearchKey Name="Units in return flow DU. 1/-50,E">
 					<Information>
-						<InputDateWithIndex Value="2018-05-14" />
+						<InputDateWithIndex Value="2018-11-22;1(3)" />
 						<CriteriaReferenceWithRevision Value="1/15451-LPA108 338-50;E" />
 						<Responsible Value="Kjell Bergman ERAKJBE, Ulf Jansson G ETXUUJA" />
 						<Reason Value="" />
 					</Information>
 					<SearchSettings>
+						<ExcludeTestTypes Value="RcPrtt"/>
 						<SerialNumber FileFormat="text" Value="1_15451_LPA108338_50_DU.txt" />
 						<Products>																							
 							<Product ProductNumber="KDU 127 174/1" RState="*"/> 
@@ -2533,12 +2534,13 @@ Both of the component report as A105/59. Major fault." />
 			<SearchKeys>
 				<SearchKey Name="Units in return flow RU, 1/-50,E">
 					<Information>
-						<InputDateWithIndex Value="2018-02-18" />
+						<InputDateWithIndex Value="2018-11-22;2(3)" />
 						<CriteriaReferenceWithRevision Value="1/15451-LPA108 338-50;E" />
 						<Responsible Value="Kjell Bergman ERAKJBE, Ulf Jansson G ETXUUJA" />
 						<Reason Value="" />
 					</Information>
 					<SearchSettings>
+						<ExcludeTestTypes Value="RcPrtt"/>
 						<SerialNumber FileFormat="text" Value="1_15451_LPA108338_50_RU.txt" />
 						<Products>
 							<Product ProductNumber="KRC 161 282/2" RState="*"/> 
@@ -3596,10 +3598,10 @@ Report according to RCO" />
 						<Infotext Value="Scrap the unit with reference to RCO 156 25-KRC 161 241/1-7." />
 					</Report>
 				</SearchKey>							
-				<SearchKey Name="PA_problems">
+				<SearchKey Name="PA_problems, 2/6;B">
 					<Information>
-						<InputDateWithIndex Value="2016-04-29;1" />
-						<CriteriaReferenceWithRevision Value="2/154 51-LPA 108 338-6;A" />
+						<InputDateWithIndex Value="2019-11-29" />
+						<CriteriaReferenceWithRevision Value="2/154 51-LPA 108 338-6;B" />
 						<Responsible Value="ECSULKA Ulf Karlsson" />
 						<Reason Value="" />
 					</Information>
@@ -3625,9 +3627,9 @@ Report according to RCO" />
 					<Report>
 						<Reason Value="*PA_Problems*" />
 						<InfotextScreening Value="Send to Repair." />
-						<Infotext Value="Open the unit and measure gate to ground resistance on main- and peak RF transistors, components V1200AB, RYN1231776/1, V1300AB, RYN1231777/1, V1200AC, RYN1231776/1, V1300AC, RYN1231777/1. If the value is lower than 700kΩ: change the faulty component." />
+						<Infotext Value="Open the unit and measure gate to ground resistance on main- and peak RF transistors, components V1200AB, RYN1231776/1, V1300AB, RYN1231777/1, V1200AC, RYN1231776/1, V1300AC, RYN1231777/1. If the value is lower than 700kΩ: change the faulty component. Report as A105/59." />
 					</Report>
-				</SearchKey>								
+				</SearchKey>							
 				<SearchKey Name="Linearization_problems, 2/-7, Rev C">
 					<Information>
 						<InputDateWithIndex Value="2018-10-05" />
@@ -3755,10 +3757,10 @@ Report according to RCO" />
 						<Infotext Value="Perform RCO 156 25-KRC 161 558/1-1." />
 					</Report>
 				</SearchKey>				
-				<SearchKey Name="5X_gap_pad_Quality_Issue">
+				<SearchKey Name="5X_gap_pad_Quality_Issue, 2/10;D">
 					<Information>
-						<InputDateWithIndex Value="2016-10-17;2" />
-						<CriteriaReferenceWithRevision Value="2/154 51-LPA 108 338-10;B" />
+						<InputDateWithIndex Value="2018-11-29" />
+						<CriteriaReferenceWithRevision Value="2/154 51-LPA 108 338-10;D" />
 						<Responsible Value="Richard Franzén" />
 						<Reason Value="" />
 					</Information>
@@ -3766,20 +3768,20 @@ Report according to RCO" />
 						<SerialNumber FileFormat="text" Value="2_15451_LPA108338_10.txt" />
 						<Products>																							
 							<Product ProductNumber="KRC 161 414/1" RState="*"/> 
-							<Product ProductNumber="KRC 161 413/1" RState="*"/>
-							<Product ProductNumber="KRC 161 416/1" RState="*"/> 
-							<Product ProductNumber="KRC 161 412/1" RState="*"/>
+							<Product ProductNumber="KRC 161 418" RState="*"/>
+							<Product ProductNumber="KRC 161 413/1" RState="*"/> 
+							<Product ProductNumber="KRC 161 416/1" RState="*"/>
+							<Product ProductNumber="KRC 118 050/1" RState="*"/>
+							<Product ProductNumber="KRC 161 412/1" RState="*"/> 
 							<Product ProductNumber="KRC 161 602/1" RState="*"/>
 							<Product ProductNumber="KRC 161 423/1" RState="*"/> 
+							<Product ProductNumber="KRC 161 601/1" RState="*"/>
 							<Product ProductNumber="KRC 161 419/1" RState="*"/>
 							<Product ProductNumber="KRC 161 410/1" RState="*"/> 
 							<Product ProductNumber="KRC 161 411/1" RState="*"/>
-							<Product ProductNumber="KRC 161 424/1" RState="*"/>
-							<Product ProductNumber="KRD 901 044/1" RState="*"/> 
+							<Product ProductNumber="KRC 161 424/1" RState="*"/> 
+							<Product ProductNumber="KRD 901 044/1" RState="*"/>
 							<Product ProductNumber="KRD 901 146/1" RState="*"/>
-							<Product ProductNumber="KRC 118 050/1" RState="*"/> 
-							<Product ProductNumber="KRC 161 418/1" RState="*"/>
-							<Product ProductNumber="KRC 161 601/1" RState="*"/>
 						</Products>
 						<Expression Equation="(X1) >=1">
 							<Variable Name="X1" Value="temp. too high"/>
@@ -3794,7 +3796,7 @@ Report according to RCO" />
 					<Report>
 						<Reason Value="*5X_gap_pad_Quality_Issue*" />
 						<InfotextScreening Value="Send to Repair." />
-						<Infotext Value="Open unit and check thermal gap pads. If gap pad(s) is missing, install it." />
+						<Infotext Value="Open unit and check thermal gap pads. If gap pad(s) is missing, install it and report as A105/59 for each position." />
 					</Report>
 				</SearchKey>
 				<SearchKey Name="Calib_Data_Missing, Criteria_1, 2/-12, D">
@@ -4755,7 +4757,6 @@ Report according to RCO" />
 					</Report>			
 				</SearchKey>			
 				<SearchKey Name="Flux issue for Radio 4449, 2/-28, Rev A">
-				
 					<Information>
 						<InputDateWithIndex Value="2018-11-01" />
 						<CriteriaReferenceWithRevision Value="2/15451-LPA108 338-28;A" />
@@ -9692,12 +9693,13 @@ Replacement units can be ordered via RCO 156 25-KRC 161 749/1-1." />
 				</SearchKey>
 				<SearchKey Name="Units in return flow Baseband. 1/-50,E">
 					<Information>
-						<InputDateWithIndex Value="2018-02-18" />
+						<InputDateWithIndex Value="2018-11-22;3(3)" />
 						<CriteriaReferenceWithRevision Value="1/154 51-LPA 108 338-50;E" />
 						<Responsible Value="Kjell Bergman ERAKJBE, Ulf Jansson G ETXUUJA" />
 						<Reason Value="" />
 					</Information>
 					<SearchSettings>
+						<ExcludeTestTypes Value="RcPrtt"/>
 						<SerialNumber FileFormat="text" Value="1_15451_LPA108338_50_DU.txt" />
 						<Products>																							
 							<Product ProductNumber="KDU 137 925/31" RState="*"/> 

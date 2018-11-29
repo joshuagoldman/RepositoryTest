@@ -20,7 +20,9 @@ namespace WpfApp1.Models
 
         public ViewSettings Obj { get; set; }
 
+        ViewSettings textblock_object = new ViewSettings();
         ViewSettings search_key_textbox_object = new ViewSettings();
+        ViewSettings searchgroup_Label_object = new ViewSettings();
         ViewSettings input_date_with_index_textbox_object = new ViewSettings(); 
         ViewSettings criteria_reference_with_revision_textbox_object = new ViewSettings();
         ViewSettings responsible_textbox_object = new ViewSettings();
@@ -30,6 +32,17 @@ namespace WpfApp1.Models
         ViewSettings responsible_Label_object = new ViewSettings();
         ViewSettings reason_Label_object = new ViewSettings();
 
+        public ViewSettings TextBlockObject
+        {
+            get => textblock_object;
+            set
+            {
+                SetAppearance(textblock_object);
+                textblock_object = value;
+                OnPropertyChanged("TextBlockObject");
+            }
+        }
+
         public ViewSettings SearchKey
         {
             get => search_key_textbox_object;
@@ -38,6 +51,17 @@ namespace WpfApp1.Models
                 SetAppearance(search_key_textbox_object);
                 search_key_textbox_object = value;
                 OnPropertyChanged("SearchKey");
+            }
+        }
+        
+        public ViewSettings SearchGroup
+        {
+            get => searchgroup_Label_object;
+            set
+            {
+                SetAppearance(searchgroup_Label_object);
+                searchgroup_Label_object = value;
+                OnPropertyChanged("SearchGroup");
             }
         }
 

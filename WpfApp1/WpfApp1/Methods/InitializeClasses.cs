@@ -30,38 +30,40 @@ namespace WpfApp1.Methods
 
         public ExEmEl Xml { get; set; }
 
-        public ViewSettings TextBlockSettings { get; set; }
-
         public GenerateActions GenAct { get; set; }
 
-        public ChoiceActions ChoicActMain { get; set; }
+        public ChoiceActions ChoicAct { get; set; }
 
         public string FilePath { get; set; }
 
         public InitializeClasses()
         {
-            Xml = new ExEmEl(@"C:\Users\DELL\Documents\GitRepoJosh\HWLogCriteria.xml", ExEmEl.NewDocument.No);
+
+        }
+
+        public void PerformInitiliazation()
+        {
+            Xml = new ExEmEl(@"C:\Users\jogo\Documents\git_Test\HWLogCriteria.xml", ExEmEl.NewDocument.No);
             TextBoxAppearance TextBoxInfo = new TextBoxAppearance();
-            CreateTreeDict NewDict = new CreateTreeDict()
+            CreateTreeDict Dict = new CreateTreeDict()
             {
-                Information = TextBoxInfo
+                Information = TextBoxInfo               
             };
 
-            ChoicActMain = new ChoiceActions()
+            ChoicAct = new ChoiceActions()
             {
                 TextBoxInfo = TextBoxInfo,
-                Dict = NewDict
+                Dict = Dict,
+                Main = Main,
+                Xml = Xml
             };
-
-            TextBlockSettings = new ViewSettings();
 
             Main.DataContext = TextBoxInfo;
 
             GenAct = GenAct ?? new GenerateActions()
             {
-                ChoicAct = ChoicActMain
+                ChoicAct = ChoicAct
             };
-
         }
 
     }

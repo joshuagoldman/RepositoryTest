@@ -12,9 +12,11 @@ namespace XmlFeatures.XmlDoc
 
     public class XmlTree
     {
-        public XDocument TreeXDoc;
+        public XDocument TreeXDoc { get; set; }
 
         public FindXLocation TreeFind;
+
+        public XElement NewTree { get; set; }
 
         public string FilePath { get; set; }
 
@@ -30,13 +32,13 @@ namespace XmlFeatures.XmlDoc
         {
             var NumOfGens = TreeDict.Keys.ToList().
                 Select(key => int.Parse(TreeDict[key].Generation)).Max();
-            var NewTree = new XElement("Initial");
-                NewTree.Add(TreeDict.Keys.
-                            Where(key => int.Parse(TreeDict[key].Generation) == 1 &&
-                                  key[2] != "NotIncluded").
-                Select(key =>key.ToList().Count == 3 ?
-                       new XElement(key[0],new XAttribute(key[1], key[2])) :
-                       new XElement(key[0])));
+            NewTree = new XElement("Initial");
+            NewTree.Add(TreeDict.Keys.
+                        Where(key => int.Parse(TreeDict[key].Generation) == 1 &&
+                                key[2] != null).
+            Select(key =>key.ToList().Count == 3 ?
+                    new XElement(key[0],new XAttribute(key[1], key[2])) :
+                    new XElement(key[0])));
             for (int i = 2; i <= NumOfGens; i++)
             {
                 var AllTempNodeElements = TreeDict.Keys.ToList().
@@ -44,7 +46,7 @@ namespace XmlFeatures.XmlDoc
                                  Select(key => NewTree.XPathSelectElement($"//{key[0]}") ?? null).ToList();
                 AllTempNodeElements.ForEach(element => element.Add(TreeDict.Keys.
                 Where(key => int.Parse(TreeDict[key].Generation) == i &&
-                             key[2] != "NotIncluded" &&
+                             key[2] != null &&
                              element.Name == TreeDict[key]?.ParentName[0]).
                 Select(key => key.ToList().Count == 3 ?
                               new XElement(key[0], new XAttribute(key[1], key[2])) :
@@ -52,7 +54,6 @@ namespace XmlFeatures.XmlDoc
             }
             TreeFind.FindByElement(TreeRoot);
             TreeFind.ChildParentElement.Add(NewTree.Nodes());
-            TreeXDoc.Save(FilePath);
         }
     }
 }

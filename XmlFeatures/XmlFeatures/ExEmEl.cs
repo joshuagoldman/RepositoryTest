@@ -10,7 +10,7 @@ namespace XmlFeatures.XmlDoc
 {
     public partial class ExEmEl
     {
-        public XDocument Doc;
+        public XDocument XDoc;
 
         public enum NewDocument { Yes, No }
 
@@ -37,16 +37,16 @@ namespace XmlFeatures.XmlDoc
 
             else if (Result == DocumentChoice.NewDoc)
             {
-                Doc = Doc ?? new XDocument();
-                Doc.Declaration = new XDeclaration("1.0", "UTF-8", null);
-                Doc.Save(FilePath);
+                XDoc = XDoc ?? new XDocument();
+                XDoc.Declaration = new XDeclaration("1.0", "UTF-8", null);
+                XDoc.Save(FilePath);
             }
 
             else if (Result == DocumentChoice.CurrentDoc)
             {
-                if (Doc == null)
+                if (XDoc == null)
                 {
-                    Doc = Doc ?? new XDocument();
+                    XDoc = XDoc ?? new XDocument();
                     XDocument.Load(FilePath);                    
                 }
             }

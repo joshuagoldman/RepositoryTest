@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WpfApp1.Models;
+using XmlFeatures;
 
 namespace WpfApp1.Methods
 {
@@ -15,21 +16,24 @@ namespace WpfApp1.Methods
         {
 
         }
-        public Dictionary<String[], TreeDict> GetTreeDict()
+        public Dictionary<String[], XmlBranchInfo> GetTreeDict()
         {
-            return new Dictionary<string[], TreeDict>
+            return new Dictionary<string[], XmlBranchInfo>
             {
-                {new string[]{ Information.InputDateWithIndexTextBoxObject.NameProp, "Value", Information.InputDateWithIndexTextBoxObject.Text },
-                   new TreeDict("2", new string[] {"SearchKey", "Value", Information.SearchKey.Text }) },
+                {new string[] {"SearchKey", "Value", Information.SearchKey.Text },
+                   new XmlBranchInfo("1") },
 
-                {new string[]{ Information.CriteriaReferenceWithRevisionTextBoxObject.NameProp, "Value", Information.CriteriaReferenceWithRevisionTextBoxObject.Text },
-                   new TreeDict("2", new string[] {"SearchKey", "Value", Information.SearchKey.Text }) },
+                {new string[]{ Information.InputDateWithIndexTextBoxObject.NameProp.Replace("TextBoxObject","").Replace("TextBoxObject","") , "Value", Information.InputDateWithIndexTextBoxObject.Text },
+                   new XmlBranchInfo("2", new string[] {"SearchKey", "Value", Information.SearchKey.Text }) },
 
-                {new string[]{ Information.ResponsibleTextBoxsObject.NameProp, "Value", Information.ResponsibleTextBoxsObject.Text },
-                   new TreeDict("2", new string[] {"SearchKey", "Value", Information.SearchKey.Text }) },
+                {new string[]{ Information.CriteriaReferenceWithRevisionTextBoxObject.NameProp.Replace("TextBoxObject", "").Replace("TextBoxObject", ""), "Value", Information.CriteriaReferenceWithRevisionTextBoxObject.Text },
+                   new XmlBranchInfo("2", new string[] {"SearchKey", "Value", Information.SearchKey.Text }) },
 
-                {new string[]{ Information.ReasonTextBoxObject.NameProp, "Value", Information.ReasonTextBoxObject.Text },
-                   new TreeDict("2", new string[] {"SearchKey", "Value", Information.SearchKey.Text }) },
+                {new string[]{ Information.ResponsibleTextBoxsObject.NameProp.Replace("TextBoxObject", "").Replace("TextBoxObject", ""), "Value", Information.ResponsibleTextBoxsObject.Text },
+                   new XmlBranchInfo("2", new string[] {"SearchKey", "Value", Information.SearchKey.Text }) },
+
+                {new string[]{ Information.ReasonTextBoxObject.NameProp.Replace("TextBoxObject", "").Replace("TextBoxObject", ""), "Value", Information.ReasonTextBoxObject.Text },
+                   new XmlBranchInfo("2", new string[] {"SearchKey", "Value", Information.SearchKey.Text }) },
             };
         }
     }

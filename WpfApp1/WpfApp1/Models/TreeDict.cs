@@ -13,7 +13,7 @@ namespace WpfApp1.Models
         public string[] ParentName { get; set; }
 
         public TreeDict(string generation, 
-                        string[] parentname)
+                        string[] parentname = null)
         {
 
         }

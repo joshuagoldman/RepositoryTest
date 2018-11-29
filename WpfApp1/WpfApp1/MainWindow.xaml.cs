@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using WpfApp1.Methods;
+using System.ComponentModel;
 
 
 
@@ -16,6 +17,8 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
         public InitializeClasses ClassInit { get; set; }
+
+        public MainWindow Main { get; set; }
         /// <summary>
         /// Finds a Child of a given item in the visual tree. 
         /// </summary>
@@ -42,11 +45,13 @@ namespace WpfApp1
 
         public void Loaded_Window(object sender, RoutedEventArgs e)
         {
-            var main = new MainWindow();
+            Main = new MainWindow();
             ClassInit = new InitializeClasses()
             {
-                Main = main
+                Main = Main
             };
+
+            ClassInit.PerformInitiliazation();
         }
     }
 }
