@@ -47,7 +47,7 @@ namespace XmlFeatures.XmlDoc
                 if (XDoc == null)
                 {
                     XDoc = XDoc ?? new XDocument();
-                    XDocument.Load(FilePath);                    
+                    XDoc = XDocument.Load(FilePath);                    
                 }
             }
         }

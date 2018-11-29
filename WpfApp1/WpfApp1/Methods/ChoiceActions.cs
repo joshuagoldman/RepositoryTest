@@ -50,7 +50,9 @@ namespace WpfApp1.Methods
 
             var ViewSettingsInstances = TextBoxInfo.GetType().
                 GetProperties().Select(prop => (ViewSettings)prop.GetValue(TextBoxInfo)).
-                Where(prop => prop != null && !prop.NameProp.Contains("LabelObject")).ToList();
+                Where(prop => prop != null && 
+                              !new string[] {"LabelObject","TextBlockObject"}.
+                              Any(str => prop.NameProp.Contains(str))).ToList();
 
             ViewSettingsInstances.ForEach(obj => obj.Text = LogicalTreeHelper.FindLogicalNode(CurrApp, obj.NameProp) == null ? "ChangeToRed" :
                                                             string.IsNullOrEmpty(GetMainWindowText(obj)) ? 

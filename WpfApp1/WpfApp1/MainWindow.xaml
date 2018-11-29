@@ -142,6 +142,6 @@
                 </StackPanel>
             </Border>
         </ScrollViewer>
-		<TextBlock Grid.Column="2" Name="TextBlockObject" Text="{Binding Path= InputDateWithIndexTextBoxObject.Text}" Grid.Row="1" Grid.RowSpan="10" Margin="20,0,0,20" Background="Gray"></TextBlock>
+		<TextBlock Grid.Column="2" Name="TextBlockObject" Text="{Binding Path= TextBlockObject.Text}" Grid.Row="1" Grid.RowSpan="10" Margin="20,0,0,20" Background="Gray"></TextBlock>
     </Grid>
 </Window>

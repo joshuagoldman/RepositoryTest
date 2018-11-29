@@ -43,7 +43,7 @@ namespace WpfApp1.Methods
 
         public void PerformInitiliazation()
         {
-            Xml = new ExEmEl(@"C:\Users\jogo\Documents\git_Test\HWLogCriteria.xml", ExEmEl.NewDocument.No);
+            Xml = new ExEmEl(@"C:\Users\DELL\Documents\GitRepoJosh\HWLogCriteria.xml", ExEmEl.NewDocument.No);
             TextBoxAppearance TextBoxInfo = new TextBoxAppearance();
             CreateTreeDict Dict = new CreateTreeDict()
             {
@@ -59,12 +59,12 @@ namespace WpfApp1.Methods
             };
 
             Main.DataContext = TextBoxInfo;
+            
 
             GenAct = GenAct ?? new GenerateActions()
             {
                 ChoicAct = ChoicAct
             };
         }
-
     }
 }

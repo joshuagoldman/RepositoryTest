@@ -37,7 +37,7 @@ namespace WpfApp1.Models
             get => textblock_object;
             set
             {
-                SetAppearance(textblock_object);
+                criteria_reference_with_revision_Label_object.FontSize = double.Parse("30");
                 textblock_object = value;
                 OnPropertyChanged("TextBlockObject");
             }
@@ -174,11 +174,11 @@ namespace WpfApp1.Models
         private void SetAppearance(ViewSettings Obj)
         {
             var Props = Obj.GetType().GetProperties().ToList();
-            if (Props.Any(prop => prop.Name.Equals("Text") && !string.IsNullOrEmpty((string)prop.GetValue(Obj))))
+            if (Props.Any(prop => prop.Name.Equals("Text") && (string)prop.GetValue(Obj) != "ChangeToRed"))
             {
                 Props.ForEach(prop =>
                 {
-                    if (prop.Name.Equals("Background")) prop.SetValue(Obj, Brushes.White);
+                    if (prop.Name.Equals("Background")) prop.SetValue(Obj, Brushes.Black);
                     if (prop.Name.Equals("TextColor")) prop.SetValue(Obj, Brushes.Black);
                 });
             }

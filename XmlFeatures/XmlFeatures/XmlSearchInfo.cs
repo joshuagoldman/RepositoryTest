@@ -61,20 +61,22 @@ namespace XmlFeatures.XmlDoc
             FromRoot = fromroot?.Split(',').Select(x => x.Trim().Replace(' ', '_')).ToList();
             TreeRoot = tree_root?.Split(',').Select(x => x.Trim().Replace(' ', '_')).ToList();
             TreeDict = tree_dict;
+            Find = instantiate_choice == Instantiate.FindXElement ||
+                   instantiate_choice == Instantiate.Both ?
+                   new FindXLocation()
+                   {
+                       XDoc = XDoc,
+                       ParentAboveChildNoAttr = parent_above_child_no_attr ?? null
+                   } : null;
             TreeCreation = instantiate_choice == Instantiate.XmlTree ||
                    instantiate_choice == Instantiate.Both ?
                    new XmlTree()
                    {
                        TreeDict = TreeDict,
-                       TreeRoot = TreeRoot
+                       TreeRoot = TreeRoot,
+                       TreeFind = Find
                    } : null;
-            Find = instantiate_choice == Instantiate.FindXElement ||
-                   instantiate_choice == Instantiate.Both ?
-                   new FindXLocation()
-                   {                       
-                       XDoc = XDoc,
-                       ParentAboveChildNoAttr = parent_above_child_no_attr ?? null
-                   } : null;
+
 
             if (Node != null) { EnumConditions(); }
 
