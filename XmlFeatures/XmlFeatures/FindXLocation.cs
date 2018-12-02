@@ -27,12 +27,11 @@ namespace XmlFeatures.XmlDoc
             ChildParentElement =
                 ParentAboveChildNoAttr == null ?
                 Child.Count == 3 ?
-                XDoc.XPathSelectElement($"*//{Child[0]}[@{Child[1]} = '{Child[2]}']/..") :
+                XDoc.XPathSelectElement($"*//{Child[0]}[@{Child[1]} = '{Child[2]}']") :
                 XDoc.XPathSelectElement($"//{Child[0]}") :
                 Child.Count == 3 ?
-                XDoc.XPathSelectElement($"*//{Child[0]}[@{Child[1]} = '{Child[2]}']/..").
-                XPathSelectElement($"//{ParentAboveChildNoAttr}") :
-                XDoc.XPathSelectElement($"//{Child[0]}").XPathSelectElement($"//{ParentAboveChildNoAttr}");
+                XDoc.XPathSelectElement($"*//{Child[0]}[@{Child[1]} = '{Child[2]}']/{ParentAboveChildNoAttr}") :
+                XDoc.XPathSelectElement($"//{Child[0]}/{ParentAboveChildNoAttr}");
         }
     }
 }

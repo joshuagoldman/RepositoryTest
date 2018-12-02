@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
+using System.Linq.Expressions;
 
 namespace XmlFeatures.XmlDoc
 {
@@ -16,6 +17,8 @@ namespace XmlFeatures.XmlDoc
         public XElement NewTree { get; set; }
 
         public Dictionary<string[],XmlBranchInfo> TreeDict { get; set; }
+
+        private XAttribute[] Attr { get; set; }
 
         public XmlTree()
         {
@@ -53,15 +56,14 @@ namespace XmlFeatures.XmlDoc
         private XElement SeveralAttr(string[] Element)
         {
             var count = (Element.Count() - 1) / 2;
-            var xxx = new XElement(Element[0], );
-            var Attr = new XAttribute[count];
+            Attr = new XAttribute[count];
             int i = 0;
-            while (i < Element.Count() - 4)
+            while (i < count)
             {
-                Attr[i] = new XAttribute(Element[i+3], Element[i + 4]);
+                Attr[i] = new XAttribute(Element[i*2 + 1], Element[2*i + 2]);
                 i++;
             }
-            return 
+            return new XElement(Element[0], Attr);
         }
     }
 }

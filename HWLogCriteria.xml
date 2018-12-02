@@ -2412,48 +2412,6 @@
             <Infotext Value="Apply RIR document 156 24-KDU 127 161/3-7 Uen" />
           </Report>
         </SearchKey>
-        <SearchKey Value="Problems">
-          <InputDateWithIndex Value="Date" />
-          <CriteriaReferenceWithRevision Value="Criteria" />
-          <ResponsibleTextBoxsObject Value="Josh" />
-          <Reason Value="No reason" />
-        </SearchKey>
-        <SearchKey Value="Problems">
-          <InputDateWithIndex Value="Date" />
-          <CriteriaReferenceWithRevision Value="Criteria" />
-          <ResponsibleTextBoxsObject Value="Josh" />
-          <Reason Value="No reason" />
-        </SearchKey>
-        <SearchKey Value="Problems">
-          <InputDateWithIndex Value="20140303" />
-          <CriteriaReferenceWithRevision Value="Yo" />
-          <ResponsibleTextBoxsObject Value="Josh" />
-          <Reason Value="No reason" />
-        </SearchKey>
-        <SearchKey Value="Problems">
-          <InputDateWithIndex Value="20140303" />
-          <CriteriaReferenceWithRevision Value="Yo" />
-          <ResponsibleTextBoxsObject Value="Josh" />
-          <Reason Value="No reason" />
-        </SearchKey>
-        <SearchKey Value="Problems">
-          <InputDateWithIndex Value="uuuu" />
-          <CriteriaReferenceWithRevision Value="Yo" />
-          <ResponsibleTextBoxsObject Value="Josh" />
-          <Reason Value="No reason" />
-        </SearchKey>
-        <SearchKey Value="Problems">
-          <InputDateWithIndex Value="uuuu" />
-          <CriteriaReferenceWithRevision Value="hejsan" />
-          <ResponsibleTextBoxsObject Value="Josh" />
-          <Reason Value="No reason" />
-        </SearchKey>
-        <SearchKey Value="Problems">
-          <InputDateWithIndex Value="uuuu" />
-          <CriteriaReferenceWithRevision Value="ddd" />
-          <ResponsibleTextBoxsObject Value="Josh" />
-          <Reason Value="No reason" />
-        </SearchKey>
       </SearchKeys>
     </SearchGroup>
     <SearchGroup Name="Radio">
@@ -5067,6 +5025,12 @@
             <InfotextScreening Value="Send to Repair" />
             <Infotext Value="Fault Inds 317 and 837 present in HW Log. Replace components at positions N5400 and N5100. Report both as A105/59" />
           </Report>
+        </SearchKey>
+        <SearchKey Value="KeyJoshua">
+          <InputDateWithIndex Value="Date" />
+          <CriteriaReferenceWithRevision Value="Criteria" />
+          <Responsible Value="Responsible" />
+          <Reason Value="Reason" />
         </SearchKey>
       </SearchKeys>
     </SearchGroup>

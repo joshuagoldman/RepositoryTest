@@ -90,13 +90,13 @@ namespace XmlFeatures.XmlDoc.Tests
 
             var Dict = new Dictionary<string[], XmlBranchInfo>();
             {
-                Dict.Add("a11,a11,a11,a11,a11,a11,a11".Split(',').ToArray(), new XmlBranchInfo("1"));
+                Dict.Add("a11,a111,a112,a113,a114,a115,a116".Split(',').ToArray(), new XmlBranchInfo("1"));
                 Dict.Add("a12,a12,a12".Split(',').ToArray(), new XmlBranchInfo("1"));
                 Dict.Add("a21,a21,a21".Split(',').ToArray(), new XmlBranchInfo("2",
                     "a11,a11,a11".Split(',').ToArray()));
                 Dict.Add("a22,a22,a22".Split(',').ToArray(), new XmlBranchInfo("2",
                     "a12,a12,a12".Split(',').ToArray()));
-                Dict.Add("a31,a31,a31,a31,a31,a31,a31".Split(',').ToArray(), new XmlBranchInfo("3",
+                Dict.Add("a31,a311,a312,a313,a314,a315,a316".Split(',').ToArray(), new XmlBranchInfo("3",
                     "a21,a21,a21".Split(',').ToArray()));
             }
 

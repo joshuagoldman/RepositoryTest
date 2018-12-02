@@ -43,7 +43,7 @@
 						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
                     <TextBlock  Background="{Binding Path= SearchKey.Background, Mode=TwoWay}" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" Text="Search Key"  Grid.Column="0" Grid.Row="0"></TextBlock>
-                    <TextBox Name="SearchKey" FontSize="15" Grid.Column="0"  Grid.Row="1" Background="{Binding Path= SearchKey.Background, Mode=TwoWay}" Foreground="{Binding Path= SearchKey.Foreground, Mode=TwoWay}" ></TextBox>
+                    <TextBox Name="SearchKey" FontSize="15" Grid.Column="0"  Grid.Row="1" Foreground="{Binding Path= SearchKey.Foreground, Mode=TwoWay}" ></TextBox>
 					<TextBlock Background="Green" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" Text="SearchGroup" Grid.Column="1"  Grid.Row="0" ></TextBlock>
                     <TextBox Name="SearchGroup" FontSize="15" Grid.Column="1"  Grid.Row="1" Background="{Binding Path= SearchGroup.Background, Mode=TwoWay}" Foreground="{Binding Path= SearchGroup.Foreground, Mode=TwoWay}"></TextBox>
 				</Grid>
@@ -142,6 +142,6 @@
                 </StackPanel>
             </Border>
         </ScrollViewer>
-		<TextBlock Grid.Column="2" Name="TextBlockObject" Text="{Binding Path= TextBlockObject.Text}" Grid.Row="1" Grid.RowSpan="10" Margin="20,0,0,20" Background="Gray"></TextBlock>
+        <TextBlock Grid.Column="2" Name="TextBlockObject" Text="{Binding Path= TextBlockObject.Text}" Background="{Binding Path= TextBlockObject.Background}" FontSize="{Binding Path= TextBlockObject.FontSize}" Foreground="{Binding Path= TextBlockObject.Foreground}" Grid.Row="1" Grid.RowSpan="10" Margin="20,0,0,20"></TextBlock>
     </Grid>
 </Window>

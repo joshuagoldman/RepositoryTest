@@ -99,7 +99,9 @@ namespace WpfApp1.Methods
         public void SaveFileOrNot()
         {
             var SaveThisFile = SaveXmlFile.Yes;
-            if (Xml.XDoc.XPathSelectElement($"//{TextBoxInfo.SearchGroup.Text}") == null)
+            var SearchGroupElement =
+                Xml.XDoc.XPathSelectElement($"*//SearchGroup[@Name = '{TextBoxInfo.SearchGroup.Text}']") ?? null;
+            if (SearchGroupElement == null)
             {
                 MessageBoxResult result = MessageBox.Show("Invalid search group!",
                       "Error",
@@ -108,7 +110,9 @@ namespace WpfApp1.Methods
             }
             else
             {
-                if (Xml.XDoc.XPathSelectElement($"//{TextBoxInfo.SearchKey.Text}") != null)
+                var SearchKeyElement =
+    Xml.XDoc.XPathSelectElement($"*//SearchKey[@Name = '{TextBoxInfo.SearchKey.Text}']") ?? null;
+                if (SearchKeyElement != null)
                 {
                     MessageBoxResult QuestionResult = MessageBox.Show("The search key already exists. Are you sure you want to continue and save?",
                       "Warning",
@@ -119,10 +123,10 @@ namespace WpfApp1.Methods
                                                      SaveXmlFile.No;
                 }
                 if (SaveThisFile == SaveXmlFile.Yes)
-                    Xml.Find.FindByElement(new List<string> { $"SearchGroup,Name,{TextBoxInfo.SearchGroup.Text}" });
-                Xml.Find.ChildParentElement.Add(Xml.TreeCreation.NewTree);
+                    Xml.Find.FindByElement(new List<string> { "SearchGroup","Name",TextBoxInfo.SearchGroup.Text });
+                Xml.Find.ChildParentElement.Add(Xml.TreeCreation.NewTree.Nodes());
                 Xml.XDoc.Save(Xml.FilePath);
-                MessageBoxResult result = MessageBox.Show($"The generated string was saved in: \r\n\r\n {Xml.FilePath}",
+                MessageBoxResult result = MessageBox.Show($"The generated searchkey was saved in: \r\n\r\n {Xml.FilePath}",
                   "Information",
                   MessageBoxButton.OK,
                   MessageBoxImage.Information);
