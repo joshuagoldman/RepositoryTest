@@ -14,7 +14,7 @@ namespace WpfApp1
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
         public InitializeClasses ClassInit { get; set; }
 
@@ -31,37 +31,25 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
+
+ 
+            ClassInit = new InitializeClasses()
+            {
+                Main = this
+            };
+
+            ClassInit.PerformInitiliazation();
         }
 
         public void Generate_Click(object sender, RoutedEventArgs e)
         {
-            ClassInit.GenAct.PerformActions();
-            OnPropertyChanged("Main");
+            ClassInit.ChoicAct.ChangeToRedNotification();
+            ClassInit.ChoicAct.RedNotificationPopUpMessage();
         }
 
-        private void Delete_Click(object sender, RoutedEventArgs e)
+        public void Save_Clicked(object sender, RoutedEventArgs e)
         {
-
+            ClassInit.ChoicAct.SaveFileOrNot();
         }
-
-        public void Loaded_Window(object sender, RoutedEventArgs e)
-        {
-            Main = new MainWindow();
-            ClassInit = new InitializeClasses()
-            {
-                Main = Main
-            };
-
-            ClassInit.PerformInitiliazation();
-
-            OnPropertyChanged("Main");
-        }
-
-        private void OnPropertyChanged(string property)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

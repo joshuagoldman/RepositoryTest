@@ -12,15 +12,8 @@ namespace XmlFeatures.XmlDoc
 
     public class XmlTree
     {
-        public XDocument TreeXDoc { get; set; }
-
-        public FindXLocation TreeFind;
 
         public XElement NewTree { get; set; }
-
-        public string FilePath { get; set; }
-
-        public List<string> TreeRoot { get; set; }
 
         public Dictionary<string[],XmlBranchInfo> TreeDict { get; set; }
 
@@ -36,9 +29,11 @@ namespace XmlFeatures.XmlDoc
             NewTree.Add(TreeDict.Keys.
                         Where(key => int.Parse(TreeDict[key].Generation) == 1 &&
                                 key[2] != null).
-            Select(key =>key.ToList().Count == 3 ?
-                    new XElement(key[0],new XAttribute(key[1], key[2])) :
-                    new XElement(key[0])));
+            Select(key =>key.ToList().Count > 3 ?
+                   SeveralAttr(key) :
+                   key.ToList().Count == 3 ?
+                   new XElement(key[0],new XAttribute(key[1], key[2])) :
+                   new XElement(key[0])));
             for (int i = 2; i <= NumOfGens; i++)
             {
                 var AllTempNodeElements = TreeDict.Keys.ToList().
@@ -48,12 +43,25 @@ namespace XmlFeatures.XmlDoc
                 Where(key => int.Parse(TreeDict[key].Generation) == i &&
                              key[2] != null &&
                              element.Name == TreeDict[key]?.ParentName[0]).
-                Select(key => key.ToList().Count == 3 ?
-                              new XElement(key[0], new XAttribute(key[1], key[2])) :
-                              new XElement(key[0]))));
+                Select(key => key.ToList().Count > 3 ?
+                       SeveralAttr(key) :
+                       key.ToList().Count == 3 ?
+                       new XElement(key[0], new XAttribute(key[1], key[2])) :
+                       new XElement(key[0]))));
+            }            
+        }
+        private XElement SeveralAttr(string[] Element)
+        {
+            var count = (Element.Count() - 1) / 2;
+            var xxx = new XElement(Element[0], );
+            var Attr = new XAttribute[count];
+            int i = 0;
+            while (i < Element.Count() - 4)
+            {
+                Attr[i] = new XAttribute(Element[i+3], Element[i + 4]);
+                i++;
             }
-            TreeFind.FindByElement(TreeRoot);
-            TreeFind.ChildParentElement.Add(NewTree.Nodes());
+            return 
         }
     }
 }

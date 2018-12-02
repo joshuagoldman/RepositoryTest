@@ -2424,6 +2424,36 @@
           <ResponsibleTextBoxsObject Value="Josh" />
           <Reason Value="No reason" />
         </SearchKey>
+        <SearchKey Value="Problems">
+          <InputDateWithIndex Value="20140303" />
+          <CriteriaReferenceWithRevision Value="Yo" />
+          <ResponsibleTextBoxsObject Value="Josh" />
+          <Reason Value="No reason" />
+        </SearchKey>
+        <SearchKey Value="Problems">
+          <InputDateWithIndex Value="20140303" />
+          <CriteriaReferenceWithRevision Value="Yo" />
+          <ResponsibleTextBoxsObject Value="Josh" />
+          <Reason Value="No reason" />
+        </SearchKey>
+        <SearchKey Value="Problems">
+          <InputDateWithIndex Value="uuuu" />
+          <CriteriaReferenceWithRevision Value="Yo" />
+          <ResponsibleTextBoxsObject Value="Josh" />
+          <Reason Value="No reason" />
+        </SearchKey>
+        <SearchKey Value="Problems">
+          <InputDateWithIndex Value="uuuu" />
+          <CriteriaReferenceWithRevision Value="hejsan" />
+          <ResponsibleTextBoxsObject Value="Josh" />
+          <Reason Value="No reason" />
+        </SearchKey>
+        <SearchKey Value="Problems">
+          <InputDateWithIndex Value="uuuu" />
+          <CriteriaReferenceWithRevision Value="ddd" />
+          <ResponsibleTextBoxsObject Value="Josh" />
+          <Reason Value="No reason" />
+        </SearchKey>
       </SearchKeys>
     </SearchGroup>
     <SearchGroup Name="Radio">

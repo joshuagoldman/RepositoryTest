@@ -27,8 +27,6 @@ C:\Users\DELL\Documents\GitRepoJosh\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csproj.Gen
 C:\Users\DELL\Documents\GitRepoJosh\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csproj.CoreCompileInputs.cache
 C:\Users\DELL\Documents\GitRepoJosh\WpfApp1\WpfApp1\obj\Debug\WpfApp1.exe
 C:\Users\DELL\Documents\GitRepoJosh\WpfApp1\WpfApp1\obj\Debug\WpfApp1.pdb
-C:\Users\DELL\Documents\GitRepoJosh\WpfApp1\WpfApp1\obj\Debug\HostWindow.g.cs
-C:\Users\DELL\Documents\GitRepoJosh\WpfApp1\WpfApp1\obj\Debug\HostWindow.baml
 C:\Users\DELL\Documents\GitRepoJosh\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csprojAssemblyReference.cache
 C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\bin\Debug\WpfApp1.exe.config
 C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\bin\Debug\WpfApp1.exe

@@ -29,7 +29,7 @@ namespace WpfApp1.Methods
                 {new string[]{ Information.CriteriaReferenceWithRevisionTextBoxObject.NameProp.Replace("TextBoxObject", "").Replace("TextBoxObject", ""), "Value", Information.CriteriaReferenceWithRevisionTextBoxObject.Text },
                    new XmlBranchInfo("2", new string[] {"SearchKey", "Value", Information.SearchKey.Text }) },
 
-                {new string[]{ Information.ResponsibleTextBoxsObject.NameProp.Replace("TextBoxObject", "").Replace("TextBoxObject", ""), "Value", Information.ResponsibleTextBoxsObject.Text },
+                {new string[]{ Information.ResponsibleTextBoxObject.NameProp.Replace("TextBoxObject", "").Replace("TextBoxObject", ""), "Value", Information.ResponsibleTextBoxObject.Text },
                    new XmlBranchInfo("2", new string[] {"SearchKey", "Value", Information.SearchKey.Text }) },
 
                 {new string[]{ Information.ReasonTextBoxObject.NameProp.Replace("TextBoxObject", "").Replace("TextBoxObject", ""), "Value", Information.ReasonTextBoxObject.Text },

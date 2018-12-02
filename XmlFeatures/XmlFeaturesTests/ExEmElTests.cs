@@ -90,30 +90,28 @@ namespace XmlFeatures.XmlDoc.Tests
 
             var Dict = new Dictionary<string[], XmlBranchInfo>();
             {
-                Dict.Add("a11,a11,a11".Split(',').ToArray(), new XmlBranchInfo("1"));
+                Dict.Add("a11,a11,a11,a11,a11,a11,a11".Split(',').ToArray(), new XmlBranchInfo("1"));
                 Dict.Add("a12,a12,a12".Split(',').ToArray(), new XmlBranchInfo("1"));
-                Dict.Add("a21,a21,a21".Split(',').ToArray(), new XmlBranchInfo("2", 
-                    "a11,a11,a11".Split(',').ToArray() ));
-                Dict.Add("a22,a22,a22".Split(',').ToArray(), new XmlBranchInfo("2", 
+                Dict.Add("a21,a21,a21".Split(',').ToArray(), new XmlBranchInfo("2",
+                    "a11,a11,a11".Split(',').ToArray()));
+                Dict.Add("a22,a22,a22".Split(',').ToArray(), new XmlBranchInfo("2",
                     "a12,a12,a12".Split(',').ToArray()));
-                Dict.Add("a31,a31,a31".Split(',').ToArray(), new XmlBranchInfo("3",
+                Dict.Add("a31,a31,a31,a31,a31,a31,a31".Split(',').ToArray(), new XmlBranchInfo("3",
                     "a21,a21,a21".Split(',').ToArray()));
             }
 
             xml.XmlSearchInfo(tree_dict: Dict,
-                              tree_root: "Document",
                               parent_above_child_no_attr: "SearchKeys",
                               instantiate_choice: ExEmEl.Instantiate.Both);
             var tree = new XmlTree()
             {
-                TreeXDoc = xml.XDoc,
-                TreeFind = xml.Find,
                 TreeDict = xml.TreeDict,
-                TreeRoot = xml.TreeRoot,
-                FilePath = xml.FilePath
             };
 
+            xml.Find.FindByElement(new List<string> { "Document"});
             tree.GetTree();
+            xml.Find.ChildParentElement.Add(tree.NewTree.Nodes());
+            xml.XDoc.Save(xml.FilePath);
         }
 
         public void Testcases()

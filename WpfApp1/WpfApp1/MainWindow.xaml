@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1000" Loaded="Loaded_Window" >
+        Title="MainWindow" Height="700" Width="1000" >
     <Grid Name="Grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
@@ -30,7 +30,7 @@
         </Grid.RowDefinitions>
         <TextBlock Name="Doc" Grid.Column="1" Grid.RowSpan="10" Margin="20,0,0,0" Text="" Grid.ColumnSpan="2"></TextBlock>
         <Button Name="Generate" Grid.Column="1" Grid.Row="1" Margin="1,1" BorderThickness="3" BorderBrush="Black" Content="Generate" Click="Generate_Click" />
-        <Button Name="Delete" Grid.Column="1" Margin="1,10" BorderThickness="3" BorderBrush="black" Grid.Row="2" Content="Delete" Click="Delete_Click" />
+        <Button Name="Save" Grid.Column="1" Margin="1,10" BorderThickness="3" BorderBrush="black" Grid.Row="2" Content="Save" Click="Save_Clicked"/>
         <Border BorderBrush="Black" BorderThickness="3,3,3,3" Grid.Row="3" Grid.Column="1" Margin="1,10" >
             <StackPanel Orientation="Vertical" >
                 <Grid >
@@ -42,10 +42,10 @@
 						<ColumnDefinition Width="*" />
 						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
-					<TextBlock Background="Yellow" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" Text="Search Key"  Grid.Column="0" Grid.Row="0"></TextBlock>
-					<TextBox Name="SearchKey" FontSize="15" Grid.Column="0"  Grid.Row="1"></TextBox>
-					<TextBlock Background="Green" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" Text="SearchGroup" Grid.Column="1"  Grid.Row="0"></TextBlock>
-					<TextBox Name="SearchGroup" FontSize="15" Grid.Column="1"  Grid.Row="1"></TextBox>
+                    <TextBlock  Background="{Binding Path= SearchKey.Background, Mode=TwoWay}" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" Text="Search Key"  Grid.Column="0" Grid.Row="0"></TextBlock>
+                    <TextBox Name="SearchKey" FontSize="15" Grid.Column="0"  Grid.Row="1" Background="{Binding Path= SearchKey.Background, Mode=TwoWay}" Foreground="{Binding Path= SearchKey.Foreground, Mode=TwoWay}" ></TextBox>
+					<TextBlock Background="Green" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" Text="SearchGroup" Grid.Column="1"  Grid.Row="0" ></TextBlock>
+                    <TextBox Name="SearchGroup" FontSize="15" Grid.Column="1"  Grid.Row="1" Background="{Binding Path= SearchGroup.Background, Mode=TwoWay}" Foreground="{Binding Path= SearchGroup.Foreground, Mode=TwoWay}"></TextBox>
 				</Grid>
             </StackPanel>
         </Border>
@@ -61,8 +61,8 @@
                             <RowDefinition Height="60"/>
                             <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
-						<TextBlock Name="InputDateWithIndexLabelObject" Grid.Row="0" Text="Input Date With Index Value" TextWrapping="{Binding Path= InputDateWithIndexLabelObject.TextWrapping, Mode=TwoWay}" Background="{Binding Path= InputDateWithIndexLabelObject.Backgroud}" TextAlignment="{Binding Path= InputDateWithIndexLabelObject.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= InputDateWithIndexLabelObject.FontSize, Mode=TwoWay}"></TextBlock>
-						<TextBox Name="InputDateWithIndexTextBoxObject" Background="{Binding Path= InputDateWithIndexTextBoxObject.Backgroud}" Grid.Row="1"></TextBox>
+                        <TextBlock Name="InputDateWithIndexLabelObject" Grid.Row="0" Text="Input Date With Index Value" TextWrapping="{Binding Path= InputDateWithIndexLabelObject.TextWrapping, Mode=TwoWay}" Background="{Binding Path= InputDateWithIndexLabelObject.Background, Mode=TwoWay}" TextAlignment="{Binding Path= InputDateWithIndexLabelObject.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= InputDateWithIndexLabelObject.FontSize, Mode=TwoWay}"></TextBlock>
+                        <TextBox Name="InputDateWithIndexTextBoxObject" Background="{Binding Path= InputDateWithIndexTextBoxObject.Background, Mode=TwoWay}" Foreground="{Binding Path= InputDateWithIndexTextBoxObject.Foreground, Mode=TwoWay}"  Grid.Row="1"></TextBox>
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -72,8 +72,8 @@
                             <RowDefinition Height="60"/>
                             <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
-						<TextBlock Name="CriteriaReferenceWithRevisionLabelObject" Grid.Row="0" Text="Criteria Reference with Revision Value" TextWrapping="{Binding Path= CriteriaReferenceWithRevisionLabelObject.TextWrapping, Mode=TwoWay}" Background="{Binding Path= CriteriaReferenceWithRevisionLabelObject.Backgroud}" TextAlignment="{Binding Path= CriteriaReferenceWithRevisionLabelObject.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= CriteriaReferenceWithRevisionLabelObject.FontSize, Mode=TwoWay}"></TextBlock>
-						<TextBox Name="CriteriaReferenceWithRevisionTextBoxObject" Grid.Row="1"></TextBox>
+                        <TextBlock Name="CriteriaReferenceWithRevisionLabelObject" Grid.Row="0" Text="Criteria Reference with Revision Value" TextWrapping="{Binding Path= CriteriaReferenceWithRevisionLabelObject.TextWrapping, Mode=TwoWay}" Background="{Binding Path= CriteriaReferenceWithRevisionLabelObject.Background, Mode=TwoWay}" TextAlignment="{Binding Path= CriteriaReferenceWithRevisionLabelObject.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= CriteriaReferenceWithRevisionLabelObject.FontSize, Mode=TwoWay}"></TextBlock>
+                        <TextBox Name="CriteriaReferenceWithRevisionTextBoxObject" Background="{Binding Path= CriteriaReferenceWithRevisionTextBoxObject.Background, Mode=TwoWay}" Foreground="{Binding Path= CriteriaReferenceWithRevisionTextBoxObject.Foreground, Mode=TwoWay}" Grid.Row="1"></TextBox>
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -83,8 +83,8 @@
                             <RowDefinition Height="60"/>
                             <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
-						<TextBlock Name="ResponsibleLabelObject" Grid.Row="0" Text="Responsible" TextWrapping="{Binding Path= ResponsibleLabelObject.TextWrapping, Mode=TwoWay}" Background="{Binding Path= ResponsibleLabelObject.Backgroud}" TextAlignment="{Binding Path= ResponsibleLabelObject.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= ResponsibleLabelObject.FontSize, Mode=TwoWay}"  ></TextBlock>
-						<TextBox Name="ResponsibleTextBoxsObject" Grid.Row="1"></TextBox>
+						<TextBlock Name="ResponsibleLabelObject" Grid.Row="0" Text="Responsible" TextWrapping="{Binding Path= ResponsibleLabelObject.TextWrapping, Mode=TwoWay}" Background="{Binding Path= ResponsibleLabelObject.Background}" TextAlignment="{Binding Path= ResponsibleLabelObject.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= ResponsibleLabelObject.FontSize, Mode=TwoWay}"  ></TextBlock>
+                        <TextBox Name="ResponsibleTextBoxObject" Background="{Binding Path= ResponsibleTextBoxObject.Background, Mode=TwoWay}" Foreground="{Binding Path= ResponsibleTextBoxObject.Foreground, Mode=TwoWay}" Grid.Row="1"></TextBox>
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -94,8 +94,8 @@
                             <RowDefinition Height="60"/>
                             <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
-						<TextBlock Name="ReasonLabelObject" Grid.Row="0" Text="Reason" TextWrapping="{Binding Path= ReasonLabelObject.TextWrapping, Mode=TwoWay}" Background="{Binding Path= ReasonLabelObject.Backgroud}" TextAlignment="{Binding Path= ReasonLabelObject.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= ReasonLabelObject.FontSize, Mode=TwoWay}"></TextBlock>
-						<TextBox Name="ReasonTextBoxObject" Grid.Row="1"></TextBox>
+						<TextBlock Name="ReasonLabelObject" Grid.Row="0" Text="Reason" TextWrapping="{Binding Path= ReasonLabelObject.TextWrapping, Mode=TwoWay}" Background="{Binding Path= ReasonLabelObject.Background}" TextAlignment="{Binding Path= ReasonLabelObject.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= ReasonLabelObject.FontSize, Mode=TwoWay}"></TextBlock>
+                        <TextBox Name="ReasonTextBoxObject" Background="{Binding Path= ReasonTextBoxObject.Background, Mode=TwoWay}" Foreground="{Binding Path= ReasonTextBoxObject.Foreground, Mode=TwoWay}" Grid.Row="1"></TextBox>
                     </Grid>
                 </StackPanel>
             </Border>

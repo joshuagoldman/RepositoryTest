@@ -47,7 +47,6 @@ namespace XmlFeatures.XmlDoc
                                   string nodenovalue = null,
                                   string fromroot = null,
                                   string infotofind = null,
-                                  string tree_root = null,
                                   Dictionary<string[],XmlBranchInfo> tree_dict = null,
                                   Instantiate instantiate_choice = Instantiate.None)        
         {
@@ -59,7 +58,6 @@ namespace XmlFeatures.XmlDoc
             ParentAboveChildnoAttr = parent_above_child_no_attr;
             FromRoot = fromroot?.Split(',').Select(x => x.Trim().Replace(' ', '_')).ToList();
             FromRoot = fromroot?.Split(',').Select(x => x.Trim().Replace(' ', '_')).ToList();
-            TreeRoot = tree_root?.Split(',').Select(x => x.Trim().Replace(' ', '_')).ToList();
             TreeDict = tree_dict;
             Find = instantiate_choice == Instantiate.FindXElement ||
                    instantiate_choice == Instantiate.Both ?
@@ -72,9 +70,7 @@ namespace XmlFeatures.XmlDoc
                    instantiate_choice == Instantiate.Both ?
                    new XmlTree()
                    {
-                       TreeDict = TreeDict,
-                       TreeRoot = TreeRoot,
-                       TreeFind = Find
+                       TreeDict = TreeDict
                    } : null;
 
 

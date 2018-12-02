@@ -12,21 +12,19 @@ namespace WpfApp1.Models
 {
     public class ViewSettings : INotifyPropertyChanged
     {
-        Brush background = Brushes.Blue;
+        Brush background = Brushes.White;
 
         TextAlignment textalignment = System.Windows.TextAlignment.Center;
 
-        double fontsize = double.Parse("20");
+        double fontsize = double.Parse("15");
 
         TextWrapping textwrappping = System.Windows.TextWrapping.Wrap;
-
-        Grid textblockgrid = new Grid();
 
         string text = "";
 
         string name = "";
 
-        Brush foreground = Brushes.Black;
+        Brush foreground = Brushes.Blue;
 
 
         public Brush Background
@@ -35,7 +33,7 @@ namespace WpfApp1.Models
             set  
             {
                 background = value;
-                OnPropertyChanged("Background");
+                OnPropertyChanged("Background");                
             }
         }
 
@@ -45,7 +43,7 @@ namespace WpfApp1.Models
             set
             {
                 textalignment = value;
-                OnPropertyChanged("TextAlignment");
+                OnPropertyChanged("TextAlignment");                
             }
         }
 
@@ -66,20 +64,6 @@ namespace WpfApp1.Models
             {
                 textwrappping = value;
                 OnPropertyChanged("TextWrapping");
-            }
-        }
-
-        public ViewSettings()
-        {
-        }
-
-        public Grid TextBlockGrid
-        {
-            get => textblockgrid;
-            set
-            {
-                textblockgrid = value;
-                OnPropertyChanged("TextBlockGrid");
             }
         }
 
@@ -113,12 +97,13 @@ namespace WpfApp1.Models
             }
         }
 
+        public ViewSettings()
+        {
+        }
+
         private void OnPropertyChanged(string property)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(property));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

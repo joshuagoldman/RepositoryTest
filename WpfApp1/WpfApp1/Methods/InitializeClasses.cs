@@ -30,8 +30,6 @@ namespace WpfApp1.Methods
 
         public ExEmEl Xml { get; set; }
 
-        public GenerateActions GenAct { get; set; }
-
         public ChoiceActions ChoicAct { get; set; }
 
         public string FilePath { get; set; }
@@ -58,13 +56,7 @@ namespace WpfApp1.Methods
                 Xml = Xml
             };
 
-            Main.DataContext = TextBoxInfo;
-            
-
-            GenAct = GenAct ?? new GenerateActions()
-            {
-                ChoicAct = ChoicAct
-            };
+            Main.DataContext = TextBoxInfo;            
         }
     }
 }

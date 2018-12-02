@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Document Value="Document">
+  <SearchKeys>
+  </SearchKeys>
   <Countries Value="All">
-    <SearchKeys></SearchKeys>
     <Extra>
       <Country Country="Sweden">
         <Population>1.3e+06</Population>
