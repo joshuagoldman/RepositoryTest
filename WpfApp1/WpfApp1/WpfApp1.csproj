@@ -105,9 +105,12 @@
     <Compile Include="Methods\ChoiceActions.cs" />
     <Compile Include="Methods\CreateTreeDict.cs" />
     <Compile Include="Methods\InitializeClasses.cs" />
-    <Compile Include="Models\TextBoxAppearance.cs" />
+    <Compile Include="Models\ControlsMain.cs" />
+    <Compile Include="Models\ControlsSearchSettings.cs" />
+    <Compile Include="Models\ControlsReport.cs" />
+    <Compile Include="Models\ControlsInformation.cs" />
     <Compile Include="Models\TreeDict.cs" />
-    <Compile Include="Models\ViewSettings.cs" />
+    <Compile Include="Models\AppearanceSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

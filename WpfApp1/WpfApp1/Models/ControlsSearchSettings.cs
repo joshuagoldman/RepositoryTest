@@ -16,30 +16,27 @@ namespace WpfApp1.Models
     public partial class Controls
     {
 
-        AppearanceSettings ExcludeTestTypes = new AppearanceSettings();
-        AppearanceSettings SerialNumber = new AppearanceSettings();
-        AppearanceSettings Product = new AppearanceSettings();
-        AppearanceSettings input_date_with_index_textbox_object = new AppearanceSettings(); 
-        AppearanceSettings criteria_reference_with_revision_textbox_object = new AppearanceSettings();
-        AppearanceSettings responsible_textbox_object = new AppearanceSettings();
-        AppearanceSettings reason_textbox_object = new AppearanceSettings();
-        AppearanceSettings input_date_with_index_Label_object = new AppearanceSettings();
-        AppearanceSettings criteria_reference_with_revision_Label_object = new AppearanceSettings();
-        AppearanceSettings responsible_Label_object = new AppearanceSettings();
-        AppearanceSettings reason_Label_object = new AppearanceSettings();
+        AppearanceSettings exclude_test_types = new AppearanceSettings();
+        AppearanceSettings serial_number = new AppearanceSettings();
+        AppearanceSettings product = new AppearanceSettings();
+        AppearanceSettings expression = new AppearanceSettings(); 
+        AppearanceSettings search_path_option = new AppearanceSettings();
+        AppearanceSettings regex_options = new AppearanceSettings();
+        AppearanceSettings include_files = new AppearanceSettings();
+        AppearanceSettings exclude_files = new AppearanceSettings();
+        AppearanceSettings screening_allowed = new AppearanceSettings();
+        AppearanceSettings included_in_test = new AppearanceSettings();
 
         public AppearanceSettings ExcludeTestTypes
         {
             get
             {
-                textblock_object.FontSize = double.Parse("25");
-                textblock_object.Background = Brushes.LightPink;
-                textblock_object.Foreground = Brushes.Black;
-                return textblock_object;
+                SetStandardComboBoxBoxAppearance1(exclude_test_types);
+                return exclude_test_types;
             } 
             set
             {
-                textblock_object = value;
+                exclude_test_types = value;
             }
         }
 
@@ -47,14 +44,12 @@ namespace WpfApp1.Models
         {
             get
             {
-                SetAppearance(search_key_textbox_object);
-                search_key_textbox_object.FontSize = double.Parse("15");
-                search_key_textbox_object.Background = Brushes.Yellow;
-                return search_key_textbox_object;
+                SetStandardTextBoxAppearance1(serial_number);
+                return serial_number;
             }
             set
             {
-                search_key_textbox_object = value;
+                serial_number = value;
             }
         }
         
@@ -62,12 +57,13 @@ namespace WpfApp1.Models
         {
             get
             {
-                SetAppearance(searchgroup_Label_object);
-                return searchgroup_Label_object;
+                SetStandardTextBoxAppearance1(Product);
+                EmptyFieldToRed(product);
+                return Product;
             }
             set
             {
-                searchgroup_Label_object = value;
+                product = value;
             }
         }
 
@@ -75,12 +71,13 @@ namespace WpfApp1.Models
         {
             get
             {
-                SetAppearance(input_date_with_index_textbox_object);
-                return input_date_with_index_textbox_object;
+                SetStandardTextBoxAppearance1(expression);
+                EmptyFieldToRed(expression);
+                return expression;
             } 
             set
             {
-                input_date_with_index_textbox_object = value;
+                expression = value;
             }
         }
 
@@ -88,12 +85,12 @@ namespace WpfApp1.Models
         {
             get
             {
-                SetAppearance(criteria_reference_with_revision_textbox_object);
-                return criteria_reference_with_revision_textbox_object;
+                SetStandardComboBoxBoxAppearance1(search_path_option);
+                return search_path_option;
             } 
             set
             {
-                criteria_reference_with_revision_textbox_object = value;
+                search_path_option = value;
             }
         }
 
@@ -101,12 +98,13 @@ namespace WpfApp1.Models
         {
             get
             {
-                SetAppearance(responsible_textbox_object);
-                return responsible_textbox_object;
+                SetStandardComboBoxBoxAppearance1(regex_options);
+                EmptyFieldToRed(regex_options);
+                return regex_options;
             }
             set
             {
-                responsible_textbox_object = value;
+                regex_options = value;
             }
         }
 
@@ -114,12 +112,13 @@ namespace WpfApp1.Models
         {
             get
             {
-                SetAppearance(reason_textbox_object);
-                return reason_textbox_object;
+                SetStandardComboBoxBoxAppearance1(include_files);
+                EmptyFieldToRed(include_files);
+                return include_files;
             } 
             set
             {
-                reason_textbox_object = value;
+                include_files = value;
             }
         }
 
@@ -128,12 +127,13 @@ namespace WpfApp1.Models
         {
             get
             {
-                SetLabelAppearance(input_date_with_index_Label_object);                
-                return input_date_with_index_Label_object;
+                SetStandardComboBoxBoxAppearance1(exclude_files);
+                EmptyFieldToRed(exclude_files);                
+                return exclude_files;
             } 
             set
             {
-                input_date_with_index_Label_object = value;
+                exclude_files = value;
             }
         }
 
@@ -141,12 +141,13 @@ namespace WpfApp1.Models
         {
             get
             {
-                SetLabelAppearance(criteria_reference_with_revision_Label_object);
-                return criteria_reference_with_revision_Label_object;
+                SetStandardComboBoxBoxAppearance1(screening_allowed);
+                EmptyFieldToRed(screening_allowed);
+                return screening_allowed;
             } 
             set
             {
-                criteria_reference_with_revision_Label_object = value;
+                screening_allowed = value;
             }
         }
 
@@ -154,25 +155,12 @@ namespace WpfApp1.Models
         {
             get
             {
-                SetLabelAppearance(responsible_Label_object);
-                return responsible_Label_object;
+                SetStandardComboBoxBoxAppearance1(included_in_test);
+                return included_in_test;
             }
             set
             {
-                responsible_Label_object = value;
-            }
-        }
-
-        public AppearanceSettings ReasonLabelObject
-        {
-            get
-            {
-                SetLabelAppearance(reason_Label_object);
-                return reason_Label_object;
-            }
-            set
-            {
-                reason_Label_object = value;
+                included_in_test = value;
             }
         }
     }

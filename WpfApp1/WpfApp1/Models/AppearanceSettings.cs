@@ -10,8 +10,10 @@ using System.Windows.Controls;
 
 namespace WpfApp1.Models
 {
-    public class ViewSettings : INotifyPropertyChanged
+    public class AppearanceSettings : INotifyPropertyChanged
     {
+        public enum RequiredField { Yes, No }
+
         Brush background = Brushes.White;
 
         TextAlignment textalignment = System.Windows.TextAlignment.Center;
@@ -25,6 +27,9 @@ namespace WpfApp1.Models
         string name = "";
 
         Brush foreground = Brushes.Blue;
+
+        RequiredField req_field = RequiredField.No;
+
 
 
         public Brush Background
@@ -97,8 +102,19 @@ namespace WpfApp1.Models
             }
         }
 
-        public ViewSettings()
+        public RequiredField ReqField
         {
+            get => req_field;
+            set
+            {
+                req_field = value;
+                OnPropertyChanged("ReqField");
+            }
+        }
+
+        public AppearanceSettings()
+        {
+
         }
 
         private void OnPropertyChanged(string property)

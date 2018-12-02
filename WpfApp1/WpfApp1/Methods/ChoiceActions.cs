@@ -27,7 +27,7 @@ namespace WpfApp1.Methods
 {
     public class ChoiceActions
     {
-        public TextBoxAppearance TextBoxInfo { get; set; }
+        public Controls ControlInfo { get; set; }
 
         public Window CurrApp { get; set; }
 
@@ -46,22 +46,17 @@ namespace WpfApp1.Methods
         {
             CurrApp = Application.Current.MainWindow;
 
-            var V = TextBoxInfo.GetType().
-               GetProperties(BindingFlags.Public | BindingFlags.Instance).
-               Where(prop => prop.PropertyType == typeof(ViewSettings) && (ViewSettings)prop.GetValue(TextBoxInfo) != null);
-
-            var ViewSettingsInstances = TextBoxInfo.GetType().
-                GetProperties().Select(prop => (ViewSettings)prop.GetValue(TextBoxInfo)).
+            var AppearanceSettingsInstances = ControlInfo.GetType().
+                GetProperties().Select(prop => (AppearanceSettings)prop.GetValue(ControlInfo)).
                 Where(prop => prop != null && 
-                              !new string[] {"LabelObject","TextBlockObject"}.
-                              Any(str => prop.NameProp.Contains(str))).ToList();
+                              prop.ReqField == AppearanceSettings.RequiredField.Yes).ToList();
 
-            ViewSettingsInstances.ForEach(obj => obj.Text = LogicalTreeHelper.FindLogicalNode(CurrApp, obj.NameProp) == null ? "ChangeToRed" :
+            AppearanceSettingsInstances.ForEach(obj => obj.Text = LogicalTreeHelper.FindLogicalNode(CurrApp, obj.NameProp) == null ? "ChangeToRed" :
                                                             string.IsNullOrEmpty(GetMainWindowText(obj)) ? 
                                                             "ChangeToRed" : GetMainWindowText(obj));
         }
 
-        public string GetMainWindowText(ViewSettings obj)
+        public string GetMainWindowText(AppearanceSettings obj)
         {
             return Main.FindName(obj.NameProp).GetType().GetProperties().
             Where(prop => prop.Name.Equals("Text")).FirstOrDefault().
@@ -70,12 +65,12 @@ namespace WpfApp1.Methods
 
         public void RedNotificationPopUpMessage()
         {
-            var PopupWindowTest = TextBoxInfo.GetType().GetProperties().ToList().Where(prop => prop.GetValue(TextBoxInfo) != null).
-                Any(prop => prop.GetValue(TextBoxInfo).GetType().GetProperties().ToList().Any(subprop => subprop.GetValue(prop.GetValue(TextBoxInfo)).Equals("ChangeToRed")));
+            var PopupWindowTest = ControlInfo.GetType().GetProperties().ToList().Where(prop => prop.GetValue(ControlInfo) != null).
+                Any(prop => prop.GetValue(ControlInfo).GetType().GetProperties().ToList().Any(subprop => subprop.GetValue(prop.GetValue(ControlInfo)).Equals("ChangeToRed")));
 
 
-            var RedFields = TextBoxInfo.GetType().GetProperties().ToList().Where(prop => (ViewSettings)prop.GetValue(TextBoxInfo) != null).
-                Select(prop => (ViewSettings)prop.GetValue(TextBoxInfo)).Where(prop => prop.Text.Equals("ChangeToRed")).
+            var RedFields = ControlInfo.GetType().GetProperties().ToList().Where(prop => (AppearanceSettings)prop.GetValue(ControlInfo) != null).
+                Select(prop => (AppearanceSettings)prop.GetValue(ControlInfo)).Where(prop => prop.Text.Equals("ChangeToRed")).
                 Select(prop => prop.NameProp).ToList();
 
             if (PopupWindowTest)
@@ -92,7 +87,7 @@ namespace WpfApp1.Methods
                                   parent_above_child_no_attr: "SearchKeys",
                                   instantiate_choice: ExEmEl.Instantiate.Both);
                 Xml.TreeCreation.GetTree();
-                TextBoxInfo.TextBlockObject.Text = Xml.TreeCreation.NewTree.ToString();
+                ControlInfo.TextBlockObject.Text = Xml.TreeCreation.NewTree.ToString();
             }
         }
 
@@ -100,7 +95,7 @@ namespace WpfApp1.Methods
         {
             var SaveThisFile = SaveXmlFile.Yes;
             var SearchGroupElement =
-                Xml.XDoc.XPathSelectElement($"*//SearchGroup[@Name = '{TextBoxInfo.SearchGroup.Text}']") ?? null;
+                Xml.XDoc.XPathSelectElement($"*//SearchGroup[@Name = '{ControlInfo.SearchGroup.Text}']") ?? null;
             if (SearchGroupElement == null)
             {
                 MessageBoxResult result = MessageBox.Show("Invalid search group!",
@@ -111,7 +106,7 @@ namespace WpfApp1.Methods
             else
             {
                 var SearchKeyElement =
-    Xml.XDoc.XPathSelectElement($"*//SearchKey[@Name = '{TextBoxInfo.SearchKey.Text}']") ?? null;
+    Xml.XDoc.XPathSelectElement($"*//SearchKey[@Name = '{ControlInfo.SearchKey.Text}']") ?? null;
                 if (SearchKeyElement != null)
                 {
                     MessageBoxResult QuestionResult = MessageBox.Show("The search key already exists. Are you sure you want to continue and save?",
@@ -123,7 +118,7 @@ namespace WpfApp1.Methods
                                                      SaveXmlFile.No;
                 }
                 if (SaveThisFile == SaveXmlFile.Yes)
-                    Xml.Find.FindByElement(new List<string> { "SearchGroup","Name",TextBoxInfo.SearchGroup.Text });
+                    Xml.Find.FindByElement(new List<string> { "SearchGroup","Name",ControlInfo.SearchGroup.Text });
                 Xml.Find.ChildParentElement.Add(Xml.TreeCreation.NewTree.Nodes());
                 Xml.XDoc.Save(Xml.FilePath);
                 MessageBoxResult result = MessageBox.Show($"The generated searchkey was saved in: \r\n\r\n {Xml.FilePath}",

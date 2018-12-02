@@ -20,163 +20,64 @@ namespace WpfApp1.Models
 
         public AppearanceSettings Obj { get; set; }
 
-        AppearanceSettings textblock_object = new AppearanceSettings();
-        AppearanceSettings search_key_textbox_object = new AppearanceSettings();
-        AppearanceSettings searchgroup_Label_object = new AppearanceSettings();
-        AppearanceSettings input_date_with_index_textbox_object = new AppearanceSettings(); 
-        AppearanceSettings criteria_reference_with_revision_textbox_object = new AppearanceSettings();
-        AppearanceSettings responsible_textbox_object = new AppearanceSettings();
-        AppearanceSettings reason_textbox_object = new AppearanceSettings();
+        AppearanceSettings input_date_with_index = new AppearanceSettings(); 
+        AppearanceSettings criteria_reference_with_revision = new AppearanceSettings();
+        AppearanceSettings responsible = new AppearanceSettings();
+        AppearanceSettings reason = new AppearanceSettings();
         AppearanceSettings input_date_with_index_Label_object = new AppearanceSettings();
         AppearanceSettings criteria_reference_with_revision_Label_object = new AppearanceSettings();
         AppearanceSettings responsible_Label_object = new AppearanceSettings();
         AppearanceSettings reason_Label_object = new AppearanceSettings();
 
-        public AppearanceSettings TextBlockObject
+        public AppearanceSettings InputDateWithIndex
         {
             get
             {
-                textblock_object.FontSize = double.Parse("25");
-                textblock_object.Background = Brushes.LightPink;
-                textblock_object.Foreground = Brushes.Black;
-                return textblock_object;
+                EmptyFieldToRed(input_date_with_index);                
+                return input_date_with_index;
             } 
             set
             {
-                textblock_object = value;
+                input_date_with_index = value;
             }
         }
 
-        public AppearanceSettings SearchKey
+        public AppearanceSettings CriteriaReferenceWithRevision
         {
             get
             {
-                SetAppearance(search_key_textbox_object);
-                search_key_textbox_object.FontSize = double.Parse("15");
-                search_key_textbox_object.Background = Brushes.Yellow;
-                return search_key_textbox_object;
-            }
-            set
-            {
-                search_key_textbox_object = value;
-            }
-        }
-        
-        public AppearanceSettings SearchGroup
-        {
-            get
-            {
-                SetAppearance(searchgroup_Label_object);
-                return searchgroup_Label_object;
-            }
-            set
-            {
-                searchgroup_Label_object = value;
-            }
-        }
-
-        public AppearanceSettings InputDateWithIndexTextBoxObject
-        {
-            get
-            {
-                SetAppearance(input_date_with_index_textbox_object);
-                return input_date_with_index_textbox_object;
+                EmptyFieldToRed(criteria_reference_with_revision);
+                return criteria_reference_with_revision;
             } 
             set
             {
-                input_date_with_index_textbox_object = value;
+                criteria_reference_with_revision = value;
             }
         }
 
-        public AppearanceSettings CriteriaReferenceWithRevisionTextBoxObject
+        public AppearanceSettings Responsible
         {
             get
             {
-                SetAppearance(criteria_reference_with_revision_textbox_object);
-                return criteria_reference_with_revision_textbox_object;
+                EmptyFieldToRed(responsible);
+                return responsible;
+            }
+            set
+            {
+                responsible = value;
+            }
+        }
+
+        public AppearanceSettings Reason
+        {
+            get
+            {
+                EmptyFieldToRed(reason);
+                return reason;
             } 
             set
             {
-                criteria_reference_with_revision_textbox_object = value;
-            }
-        }
-
-        public AppearanceSettings ResponsibleTextBoxObject
-        {
-            get
-            {
-                SetAppearance(responsible_textbox_object);
-                return responsible_textbox_object;
-            }
-            set
-            {
-                responsible_textbox_object = value;
-            }
-        }
-
-        public AppearanceSettings ReasonTextBoxObject
-        {
-            get
-            {
-                SetAppearance(reason_textbox_object);
-                return reason_textbox_object;
-            } 
-            set
-            {
-                reason_textbox_object = value;
-            }
-        }
-
-
-        public AppearanceSettings InputDateWithIndexLabelObject
-        {
-            get
-            {
-                SetLabelAppearance(input_date_with_index_Label_object);                
-                return input_date_with_index_Label_object;
-            } 
-            set
-            {
-                input_date_with_index_Label_object = value;
-            }
-        }
-
-        public AppearanceSettings CriteriaReferenceWithRevisionLabelObject
-        {
-            get
-            {
-                SetLabelAppearance(criteria_reference_with_revision_Label_object);
-                return criteria_reference_with_revision_Label_object;
-            } 
-            set
-            {
-                criteria_reference_with_revision_Label_object = value;
-            }
-        }
-
-        public AppearanceSettings ResponsibleLabelObject
-        {
-            get
-            {
-                SetLabelAppearance(responsible_Label_object);
-                return responsible_Label_object;
-            }
-            set
-            {
-                responsible_Label_object = value;
-            }
-        }
-
-        public AppearanceSettings ReasonLabelObject
-        {
-            get
-            {
-                SetLabelAppearance(reason_Label_object);
-                return reason_Label_object;
-            }
-            set
-            {
-                reason_Label_object = value;
+                reason = value;
             }
         }
     }
