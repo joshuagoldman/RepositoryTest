@@ -30,6 +30,8 @@ namespace WpfApp1.Models
 
         RequiredField req_field = RequiredField.No;
 
+        string[] items = {"", "", ""};
+
 
 
         public Brush Background
@@ -109,6 +111,16 @@ namespace WpfApp1.Models
             {
                 req_field = value;
                 OnPropertyChanged("ReqField");
+            }
+        }
+
+        public string[] Items
+        {
+            get => items;
+            set
+            {
+                items = value;
+                OnPropertyChanged("Items");
             }
         }
 

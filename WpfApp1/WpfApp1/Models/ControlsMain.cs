@@ -21,6 +21,7 @@ namespace WpfApp1.Models
         AppearanceSettings searchgroup_Label_object = new AppearanceSettings();
         AppearanceSettings standard_label_appearance_1 = new AppearanceSettings();
         AppearanceSettings standard_textbox_appearance_1 = new AppearanceSettings();
+        AppearanceSettings standard_combobox_appearance_1 = new AppearanceSettings();
 
         public AppearanceSettings TextBlockObject
         {
@@ -42,8 +43,6 @@ namespace WpfApp1.Models
             get
             {
                 EmptyFieldToRed(search_key_textbox_object);
-                search_key_textbox_object.FontSize = double.Parse("15");
-                search_key_textbox_object.Background = Brushes.Yellow;
                 return search_key_textbox_object;
             }
             set
@@ -91,6 +90,32 @@ namespace WpfApp1.Models
             }
         }
 
+        public AppearanceSettings StandardTextBoxAppearanceWRedReq1
+        {
+            get
+            {
+                EmptyFieldToRed(standard_textbox_appearance_1);
+                return standard_textbox_appearance_1;
+            }
+            set
+            {
+                standard_textbox_appearance_1 = value;
+            }
+        }
+
+        public AppearanceSettings StandardComboBoxBoxAppearance1
+        {
+            get
+            {
+                SetStandardLabelAppearance1(standard_combobox_appearance_1);
+                return standard_combobox_appearance_1;
+            }
+            set
+            {
+                standard_combobox_appearance_1 = value;
+            }
+        }
+
         public Controls()
         {
             GetType().GetProperties().ToList().Where(prop => (AppearanceSettings)prop.GetValue(this) != null).ToList().
@@ -117,19 +142,11 @@ namespace WpfApp1.Models
             return Obj;
         }
 
-        private AppearanceSettings SetLabelAppearance(AppearanceSettings Obj)
-        {
-            Obj.Background = Brushes.YellowGreen;
-            Obj.FontSize = double.Parse("15");
-            return Obj;
-        }
-
         private AppearanceSettings SetStandardLabelAppearance1(AppearanceSettings Obj)
         {
             Obj.TextWrapping = TextWrapping.Wrap;
             Obj.Background = Brushes.Aqua;
             Obj.FontSize = double.Parse("15");
-
             return Obj;
         }
 
@@ -146,6 +163,7 @@ namespace WpfApp1.Models
             Obj.FontSize = double.Parse("10");
             return Obj;
         }
+
     }
 }
 

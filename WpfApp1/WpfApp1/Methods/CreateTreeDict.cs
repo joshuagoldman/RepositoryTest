@@ -10,7 +10,7 @@ namespace WpfApp1.Methods
 {
     public class CreateTreeDict
     {
-        public TextBoxAppearance Information { get; set; }
+        public Controls Information { get; set; }
 
         public CreateTreeDict()
         {
@@ -20,20 +20,59 @@ namespace WpfApp1.Methods
         {
             return new Dictionary<string[], XmlBranchInfo>
             {
-                {new string[] {"SearchKey", "Value", Information.SearchKey.Text },
+                {new string[] {"SearchKey" },
                    new XmlBranchInfo("1") },
 
-                {new string[]{ Information.InputDateWithIndexTextBoxObject.NameProp.Replace("TextBoxObject","").Replace("TextBoxObject","") , "Value", Information.InputDateWithIndexTextBoxObject.Text },
-                   new XmlBranchInfo("2", new string[] {"SearchKey", "Value", Information.SearchKey.Text }) },
+                {new string[] {"Information" },
+                   new XmlBranchInfo("2", new string[] {"Information" }) },
 
-                {new string[]{ Information.CriteriaReferenceWithRevisionTextBoxObject.NameProp.Replace("TextBoxObject", "").Replace("TextBoxObject", ""), "Value", Information.CriteriaReferenceWithRevisionTextBoxObject.Text },
-                   new XmlBranchInfo("2", new string[] {"SearchKey", "Value", Information.SearchKey.Text }) },
+                {new string[]{ Information.InputDateWithIndex.NameProp , "Value", Information.InputDateWithIndex.Text },
+                   new XmlBranchInfo("3", new string[] {"Information" }) },
 
-                {new string[]{ Information.ResponsibleTextBoxObject.NameProp.Replace("TextBoxObject", "").Replace("TextBoxObject", ""), "Value", Information.ResponsibleTextBoxObject.Text },
-                   new XmlBranchInfo("2", new string[] {"SearchKey", "Value", Information.SearchKey.Text }) },
+                {new string[]{ Information.CriteriaReferenceWithRevision.NameProp, "Value", Information.CriteriaReferenceWithRevision.Text },
+                   new XmlBranchInfo("3", new string[] {"Information" }) },
 
-                {new string[]{ Information.ReasonTextBoxObject.NameProp.Replace("TextBoxObject", "").Replace("TextBoxObject", ""), "Value", Information.ReasonTextBoxObject.Text },
-                   new XmlBranchInfo("2", new string[] {"SearchKey", "Value", Information.SearchKey.Text }) },
+                {new string[]{ Information.Responsible.NameProp, "Value", Information.Responsible.Text },
+                   new XmlBranchInfo("3", new string[] {"Information" }) },
+
+                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                   new XmlBranchInfo("3", new string[] {"Information" }) },
+
+                {new string[] {"SearchSettings" },
+                   new XmlBranchInfo("2") },
+
+                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                   new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
+
+                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                   new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
+
+                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                   new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
+
+                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                   new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
+
+                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                   new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
+
+                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                   new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
+
+                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                   new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
+
+                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                   new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
+
+                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                   new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
+
+                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                   new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
+
+                {new string[] {"Report" },
+                   new XmlBranchInfo("1") },
             };
         }
     }

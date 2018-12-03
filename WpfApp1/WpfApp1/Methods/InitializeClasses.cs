@@ -41,22 +41,22 @@ namespace WpfApp1.Methods
 
         public void PerformInitiliazation()
         {
-            Xml = new ExEmEl(@"C:\Users\DELL\Documents\GitRepoJosh\HWLogCriteria.xml", ExEmEl.NewDocument.No);
-            TextBoxAppearance TextBoxInfo = new TextBoxAppearance();
+            Xml = new ExEmEl(@"C:\Users\jogo\Documents\git_Test\HWLogCriteria.xml", ExEmEl.NewDocument.No);
+            Controls ControlInfo = new Controls();
             CreateTreeDict Dict = new CreateTreeDict()
             {
-                Information = TextBoxInfo               
+                Information = ControlInfo
             };
 
             ChoicAct = new ChoiceActions()
             {
-                TextBoxInfo = TextBoxInfo,
+                ControlInfo = ControlInfo,
                 Dict = Dict,
                 Main = Main,
                 Xml = Xml
             };
 
-            Main.DataContext = TextBoxInfo;            
+            Main.DataContext = ControlInfo;            
         }
     }
 }

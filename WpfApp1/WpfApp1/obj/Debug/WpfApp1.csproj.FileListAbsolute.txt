@@ -45,8 +45,6 @@ C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\obj\Debug\WpfApp1.pdb
 C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\bin\Debug\XmlFeatures.dll
 C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\bin\Debug\XmlFeatures.pdb
 C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csproj.CopyComplete
-C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\obj\Debug\HostWindow.g.cs
-C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\obj\Debug\HostWindow.baml
 C:\Users\DELL\Documents\GitRepoJosh\WpfApp1\WpfApp1\bin\Debug\XmlFeatures.dll
 C:\Users\DELL\Documents\GitRepoJosh\WpfApp1\WpfApp1\bin\Debug\XmlFeatures.pdb
 C:\Users\DELL\Documents\GitRepoJosh\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csproj.CopyComplete

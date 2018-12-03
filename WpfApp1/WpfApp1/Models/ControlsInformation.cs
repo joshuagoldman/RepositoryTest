@@ -24,10 +24,6 @@ namespace WpfApp1.Models
         AppearanceSettings criteria_reference_with_revision = new AppearanceSettings();
         AppearanceSettings responsible = new AppearanceSettings();
         AppearanceSettings reason = new AppearanceSettings();
-        AppearanceSettings input_date_with_index_Label_object = new AppearanceSettings();
-        AppearanceSettings criteria_reference_with_revision_Label_object = new AppearanceSettings();
-        AppearanceSettings responsible_Label_object = new AppearanceSettings();
-        AppearanceSettings reason_Label_object = new AppearanceSettings();
 
         public AppearanceSettings InputDateWithIndex
         {

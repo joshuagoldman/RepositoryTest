@@ -19,7 +19,8 @@ namespace WpfApp1.Models
         AppearanceSettings exclude_test_types = new AppearanceSettings();
         AppearanceSettings serial_number = new AppearanceSettings();
         AppearanceSettings product = new AppearanceSettings();
-        AppearanceSettings expression = new AppearanceSettings(); 
+        AppearanceSettings expression = new AppearanceSettings();
+        AppearanceSettings variable = new AppearanceSettings();
         AppearanceSettings search_path_option = new AppearanceSettings();
         AppearanceSettings regex_options = new AppearanceSettings();
         AppearanceSettings include_files = new AppearanceSettings();
@@ -31,7 +32,6 @@ namespace WpfApp1.Models
         {
             get
             {
-                SetStandardComboBoxBoxAppearance1(exclude_test_types);
                 return exclude_test_types;
             } 
             set
@@ -44,7 +44,6 @@ namespace WpfApp1.Models
         {
             get
             {
-                SetStandardTextBoxAppearance1(serial_number);
                 return serial_number;
             }
             set
@@ -57,9 +56,8 @@ namespace WpfApp1.Models
         {
             get
             {
-                SetStandardTextBoxAppearance1(Product);
                 EmptyFieldToRed(product);
-                return Product;
+                return product;
             }
             set
             {
@@ -71,7 +69,6 @@ namespace WpfApp1.Models
         {
             get
             {
-                SetStandardTextBoxAppearance1(expression);
                 EmptyFieldToRed(expression);
                 return expression;
             } 
@@ -81,11 +78,23 @@ namespace WpfApp1.Models
             }
         }
 
+        public AppearanceSettings Variable
+        {
+            get
+            {
+                EmptyFieldToRed(variable);
+                return variable;
+            }
+            set
+            {
+                variable = value;
+            }
+        }
+
         public AppearanceSettings SearchPathOption
         {
             get
             {
-                SetStandardComboBoxBoxAppearance1(search_path_option);
                 return search_path_option;
             } 
             set
@@ -98,7 +107,6 @@ namespace WpfApp1.Models
         {
             get
             {
-                SetStandardComboBoxBoxAppearance1(regex_options);
                 EmptyFieldToRed(regex_options);
                 return regex_options;
             }
@@ -112,7 +120,6 @@ namespace WpfApp1.Models
         {
             get
             {
-                SetStandardComboBoxBoxAppearance1(include_files);
                 EmptyFieldToRed(include_files);
                 return include_files;
             } 
@@ -127,7 +134,6 @@ namespace WpfApp1.Models
         {
             get
             {
-                SetStandardComboBoxBoxAppearance1(exclude_files);
                 EmptyFieldToRed(exclude_files);                
                 return exclude_files;
             } 
@@ -141,7 +147,6 @@ namespace WpfApp1.Models
         {
             get
             {
-                SetStandardComboBoxBoxAppearance1(screening_allowed);
                 EmptyFieldToRed(screening_allowed);
                 return screening_allowed;
             } 
@@ -155,7 +160,6 @@ namespace WpfApp1.Models
         {
             get
             {
-                SetStandardComboBoxBoxAppearance1(included_in_test);
                 return included_in_test;
             }
             set
