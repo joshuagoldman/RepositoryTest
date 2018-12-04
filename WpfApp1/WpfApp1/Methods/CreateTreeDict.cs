@@ -16,64 +16,89 @@ namespace WpfApp1.Methods
         {
 
         }
-        public Dictionary<String[], XmlBranchInfo> GetTreeDict()
+        public Dictionary<XmlBranchName, XmlBranchInfo> GetTreeDict()
         {
-            return new Dictionary<string[], XmlBranchInfo>
+
+            return new Dictionary<XmlBranchName, XmlBranchInfo>
             {
-                {new string[] {"SearchKey" },
+                {new XmlBranchName(new string[] {"SearchKey" }),
                    new XmlBranchInfo("1") },
 
-                {new string[] {"Information" },
+                {new XmlBranchName(new string[] {"Information" }),
                    new XmlBranchInfo("2", new string[] {"Information" }) },
 
-                {new string[]{ Information.InputDateWithIndex.NameProp , "Value", Information.InputDateWithIndex.Text },
+                {new XmlBranchName(new string[]{ Information.InputDateWithIndex.NameProp , "Value", Information.InputDateWithIndex.Text }),
                    new XmlBranchInfo("3", new string[] {"Information" }) },
 
-                {new string[]{ Information.CriteriaReferenceWithRevision.NameProp, "Value", Information.CriteriaReferenceWithRevision.Text },
+                {new XmlBranchName(new string[]{ Information.CriteriaReferenceWithRevision.NameProp, "Value", Information.CriteriaReferenceWithRevision.Text }),
                    new XmlBranchInfo("3", new string[] {"Information" }) },
 
-                {new string[]{ Information.Responsible.NameProp, "Value", Information.Responsible.Text },
+                {new XmlBranchName(new string[]{ Information.Responsible.NameProp, "Value", Information.Responsible.Text }),
                    new XmlBranchInfo("3", new string[] {"Information" }) },
 
-                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                {new XmlBranchName(new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text }),
                    new XmlBranchInfo("3", new string[] {"Information" }) },
 
-                {new string[] {"SearchSettings" },
+                {new XmlBranchName(new string[] {"SearchSettings" }),
                    new XmlBranchInfo("2") },
 
-                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                {new XmlBranchName(new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text }),
                    new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
 
-                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                {new XmlBranchName(new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text }),
                    new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
 
-                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                {new XmlBranchName(new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text }),
                    new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
 
-                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                {new XmlBranchName(new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text }),
                    new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
 
-                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                {new XmlBranchName(sev_tags: MakeReapeatedTagDictionary(Information.Variables.NameProp,
+                                                        Information.Variables.Text)),
                    new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
 
-                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                {new XmlBranchName(new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text }),
                    new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
 
-                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                {new XmlBranchName(new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text }),
                    new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
 
-                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                {new XmlBranchName(new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text }),
                    new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
 
-                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                {new XmlBranchName(new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text }),
                    new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
 
-                {new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text },
+                {new XmlBranchName(new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text }),
                    new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
 
-                {new string[] {"Report" },
+                {new XmlBranchName(new string[] {"Report" }),
                    new XmlBranchInfo("1") },
+
+                {new XmlBranchName(new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text }),
+                   new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
+
+                {new XmlBranchName(new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text }),
+                   new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
+
+                {new XmlBranchName(new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text }),
+                   new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
+
+                {new XmlBranchName(new string[]{ Information.Reason.NameProp, "Value", Information.Reason.Text }),
+                   new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
             };
+        }
+
+        private string[][] MakeReapeatedTagDictionary(string TagName, string TextInfo)
+        {
+
+            var variableRows = TextInfo.Split('\n', '\t').ToArray();
+
+            var AllVars = variableRows.ToList().Select(row => row.Trim().Split(' ')).ToArray();
+
+            return AllVars;
+
         }
     }
 }

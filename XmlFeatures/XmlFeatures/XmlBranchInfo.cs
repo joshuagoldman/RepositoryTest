@@ -13,10 +13,25 @@ namespace XmlFeatures
         public string[] ParentName { get; set; }
 
         public XmlBranchInfo(string generation,
-                             string[] parentname = null)
+                            string[] parentname = null)              
         {
             Generation = generation;
             ParentName = parentname;
         }
     }
+
+    public class XmlBranchName
+    {
+        public string[] Elements { get; set; }
+
+        public string[][] SevTags { get; set; }
+
+        public XmlBranchName(string[] elements = null,
+                        string[][] sev_tags = null)
+        {
+            Elements = elements;
+            SevTags = sev_tags;
+        }
+    }
 }
+

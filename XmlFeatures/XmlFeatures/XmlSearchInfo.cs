@@ -37,7 +37,7 @@ namespace XmlFeatures.XmlDoc
 
         public List<string> InfoToFind { get; set; }
 
-        public Dictionary<string[], XmlBranchInfo> TreeDict { get; set; }
+        public Dictionary<XmlBranchName, XmlBranchInfo> TreeDict { get; set; }
 
         public void XmlSearchInfo(string child = null,
                                   string node = null,
@@ -47,7 +47,7 @@ namespace XmlFeatures.XmlDoc
                                   string nodenovalue = null,
                                   string fromroot = null,
                                   string infotofind = null,
-                                  Dictionary<string[],XmlBranchInfo> tree_dict = null,
+                                  Dictionary<XmlBranchName,XmlBranchInfo> tree_dict = null,
                                   Instantiate instantiate_choice = Instantiate.None)        
         {
             Child= child?.Split(',').Select(x => x.Trim().Replace(' ', '_')).ToList();

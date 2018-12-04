@@ -7,16 +7,19 @@ using System.Threading.Tasks;
 namespace WpfApp1.Models
 {
     public class TreeDict
-    {        
+    {
         public string Generation { get; set; }
 
         public string[] ParentName { get; set; }
 
-        public TreeDict(string generation, 
-                        string[] parentname = null)
+        public Dictionary<string[], string[]> SevTags { get; set; }
+
+        public TreeDict(string generation,
+                        string[] parentname = null,
+                        Dictionary<string[], string[]> sev_tags = null)
         {
 
         }
-
     }
+
 }

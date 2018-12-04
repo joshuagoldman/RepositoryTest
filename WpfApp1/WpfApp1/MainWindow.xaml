@@ -113,7 +113,7 @@
 							<RowDefinition Height="30"/>
 						</Grid.RowDefinitions>
 						<TextBlock Name="ExcludeTestTypesLabel" Grid.Row="0" Text="Exclude Test Types" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-						<ComboBox Name="ExcludeTestTypes" Grid.Row="1" Background="{Binding Path= StandardComboBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardComboBoxAppearance1.Foreground, Mode=TwoWay}"></ComboBox>
+						<ComboBox Name="ExcludeTestTypes" Grid.Row="1" ItemsSource="{Binding Path= ExcludeTestTypes.ItemsSource, Mode=TwoWay}"  Background="{Binding Path= StandardComboBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardComboBoxAppearance1.Foreground, Mode=TwoWay}"></ComboBox>
 					</Grid>
 					<Grid>
 						<Grid.ColumnDefinitions>
