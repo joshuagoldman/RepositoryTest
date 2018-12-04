@@ -12,7 +12,6 @@ namespace WpfApp1.Models
 {
     public class AppearanceSettings : INotifyPropertyChanged
     {
-        public enum IsVariable { Yes, No }
 
         public enum RequiredField { Yes, No }
 
@@ -31,8 +30,6 @@ namespace WpfApp1.Models
         Brush foreground = Brushes.Blue;
 
         RequiredField req_field = RequiredField.No;
-
-        IsVariable is_var = IsVariable.No;
 
         string[] items = {"", "", ""};
 
@@ -105,16 +102,6 @@ namespace WpfApp1.Models
             {
                 name = value;
                 OnPropertyChanged("NameProp");
-            }
-        }
-
-        public IsVariable IsVar
-        {
-            get => is_var;
-            set
-            {
-                is_var = value;
-                OnPropertyChanged("IsVar");
             }
         }
 

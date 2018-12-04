@@ -29,13 +29,11 @@ namespace WpfApp1.Methods
     {
         public Controls ControlInfo { get; set; }
 
-        public Window CurrApp { get; set; }
-
         public CreateTreeDict Dict { get; set; }
 
-        public MainWindow Main { get; set; }
-
         public ExEmEl Xml { get; set; }
+
+        public AllWindows AllWind { get; set; }
 
         private enum SaveXmlFile { Yes, No }
 
@@ -44,24 +42,28 @@ namespace WpfApp1.Methods
         }
         public void ChangeToRedNotification()
         {
-            CurrApp = Application.Current.MainWindow;
+            var CurrWindows = AllWind.GetType().GetProperties().
+                Where(prop => prop.PropertyType == typeof(MainWindow) ||
+                      prop.PropertyType == typeof(ExpressionWindow)).
+                Select(window => window.GetValue(AllWind));
 
             var AppearanceSettingsInstances = ControlInfo.GetType().
                 GetProperties().Select(prop => (AppearanceSettings)prop.GetValue(ControlInfo)).
                 Where(prop => prop != null && 
                               prop.ReqField == AppearanceSettings.RequiredField.Yes).ToList();
 
-            AppearanceSettingsInstances.ForEach(obj => obj.Text = LogicalTreeHelper.FindLogicalNode(CurrApp, obj.NameProp) == null ? "ChangeToRed" :
-                                                            string.IsNullOrEmpty(GetMainWindowText(obj)) ? 
-                                                            "ChangeToRed" : GetMainWindowText(obj));
+            AppearanceSettingsInstances.ForEach(obj => obj.Text = CurrWindows.ToList().Any(window => !string.IsNullOrEmpty(GetWindowText(obj, (Window)window))) ?
+                                                                  CurrWindows.ToList().Select(window => GetWindowText(obj, (Window)window)).
+                                                                  Where(str => !string.IsNullOrEmpty(str)).FirstOrDefault() : "ChangeToRed");
 
         }
 
-        public string GetMainWindowText(AppearanceSettings obj)
+        public string GetWindowText(AppearanceSettings obj, Window Win)
         {
-            return Main.FindName(obj.NameProp).GetType().GetProperties().
-            Where(prop => prop.Name.Equals("Text")).FirstOrDefault().
-            GetValue(LogicalTreeHelper.FindLogicalNode(CurrApp, obj.NameProp)).ToString();
+            var Results = Win.FindName(obj.NameProp)?.GetType().GetProperties().
+            Where(prop => prop.Name.Equals("Text"));
+            return Results == null || Results.Count() == 0 ? "" : Results.FirstOrDefault().
+            GetValue(Win.FindName(obj.NameProp)).ToString();
         }
 
         public void RedNotificationPopUpMessage()

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Expression" Height="300" Width="500">
+        Title="Expression" Height="300" Width="500" Closed="Window_Closed">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -16,6 +16,7 @@
 			<RowDefinition Height="20"/>
 			<RowDefinition Height="100"/>
 			<RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
 			<RowDefinition Height="20"/>
 		</Grid.RowDefinitions>
 		<StackPanel Grid.Column="1" Grid.Row="1">
@@ -25,7 +26,7 @@
 					<RowDefinition Height="60"/>
 				</Grid.RowDefinitions>
 				<TextBlock Name="ExpressionLabel" Grid.Row="0" Grid.Column="0" Text="Expression" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-				<TextBox Name="Expression" Grid.Row="1" Grid.Column="0" Background="{Binding Path= StandardTextBoxAppearanceWRedReq1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}"></TextBox>
+				<TextBox Name="Expression" Grid.Row="1" Grid.Column="0" Background="{Binding Path= Expression.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}"></TextBox>
 			</Grid>
 		</StackPanel>
 		<StackPanel Grid.Row="2" Grid.Column="1" Grid.RowSpan="1">
@@ -35,8 +36,19 @@
 					<RowDefinition Height="100"/>
 				</Grid.RowDefinitions>
 				<TextBlock Name="VariablesLabel" Grid.Row="0" Text="{Binding Path= Variable.Text, Mode=TwoWay}" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}" HorizontalAlignment="Right" Width="452"></TextBlock>
-				<TextBox Name="Variables" Grid.Row="1" Background="{Binding Path= Variable.Background, Mode=TwoWay}" Foreground="{Binding Path= Variable.ExpressionModel.VariableOne.Foreground, Mode=TwoWay}"></TextBox>
+				<TextBox Name="Variables" Grid.Row="1" Background="{Binding Path= Variables.Background, Mode=TwoWay}" Foreground="{Binding Path= Variable.ExpressionModel.VariableOne.Foreground, Mode=TwoWay}"></TextBox>
 			</Grid>
 		</StackPanel>
-	</Grid>
+        <StackPanel Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <Button FontSize="15" Content="Ok" Click="Button_Click"></Button>
+            </Grid>
+        </StackPanel>
+    </Grid>
 </Window>

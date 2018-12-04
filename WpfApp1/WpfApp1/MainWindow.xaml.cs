@@ -19,6 +19,9 @@ namespace WpfApp1
         public InitializeClasses ClassInit { get; set; }
 
         public MainWindow Main { get; set; }
+
+        public ExpressionWindow ExWindow { get; set; }
+
         /// <summary>
         /// Finds a Child of a given item in the visual tree. 
         /// </summary>
@@ -32,10 +35,12 @@ namespace WpfApp1
         {
             InitializeComponent();
 
- 
-            ClassInit = new InitializeClasses()
+            ExWindow = new ExpressionWindow();
+
+            ClassInit = new InitializeClasses
             {
-                Main = this
+                Main = this,
+                ExWindow = ExWindow
             };
 
             ClassInit.PerformInitiliazation();
@@ -54,12 +59,8 @@ namespace WpfApp1
 
         private void Expression_Clicked(object sender, RoutedEventArgs e)
         {
-            ExpressionWindow ExWindows = new ExpressionWindow()
-            {
-                ControlInfo = ClassInit.ChoicAct.ControlInfo
-            };
-            ExWindows.Show();
-            ExWindows.AddDataContext();
+            ExWindow.Show();
+            ExWindow.DataContext = ClassInit.ChoicAct.ControlInfo;
         }
     }
 }

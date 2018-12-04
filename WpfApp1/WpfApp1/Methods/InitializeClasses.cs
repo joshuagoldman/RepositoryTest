@@ -32,27 +32,33 @@ namespace WpfApp1.Methods
 
         public ChoiceActions ChoicAct { get; set; }
 
+        public AllWindows AllWind { get; set; }
+
+        public ExpressionWindow ExWindow { get; set; }
+
         public string FilePath { get; set; }
-
-        public InitializeClasses()
-        {
-
-        }
 
         public void PerformInitiliazation()
         {
-            Xml = new ExEmEl(@"C:\Users\jogo\Documents\git_Test\HWLogCriteria.xml", ExEmEl.NewDocument.No);
+            Xml = new ExEmEl(@"C:\Users\DELL\Documents\GitRepoJosh\HWLogCriteria.xml", ExEmEl.NewDocument.No);
             Controls ControlInfo = new Controls();
             CreateTreeDict Dict = new CreateTreeDict()
             {
                 Information = ControlInfo
             };
 
+            AllWind = new AllWindows
+            {
+                ExWindow = ExWindow,
+                Main = Main
+            };
+
+
             ChoicAct = new ChoiceActions()
             {
                 ControlInfo = ControlInfo,
                 Dict = Dict,
-                Main = Main,
+                AllWind = AllWind,
                 Xml = Xml
             };
 

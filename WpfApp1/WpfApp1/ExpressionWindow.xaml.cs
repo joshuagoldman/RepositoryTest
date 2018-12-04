@@ -27,9 +27,14 @@ namespace WpfApp1
             InitializeComponent();
         }
 
-        public void AddDataContext()
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.DataContext = ControlInfo;
+            this.Hide();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }
