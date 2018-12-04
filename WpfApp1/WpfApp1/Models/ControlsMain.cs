@@ -17,8 +17,8 @@ namespace WpfApp1.Models
     {
 
         AppearanceSettings textblock_object = new AppearanceSettings();
-        AppearanceSettings search_key_textbox_object = new AppearanceSettings();
-        AppearanceSettings searchgroup_Label_object = new AppearanceSettings();
+        AppearanceSettings search_key = new AppearanceSettings();
+        AppearanceSettings search_group = new AppearanceSettings();
         AppearanceSettings standard_label_appearance_1 = new AppearanceSettings();
         AppearanceSettings standard_textbox_appearance_1 = new AppearanceSettings();
         AppearanceSettings standard_combobox_appearance_1 = new AppearanceSettings();
@@ -42,12 +42,12 @@ namespace WpfApp1.Models
         {
             get
             {
-                EmptyFieldToRed(search_key_textbox_object);
-                return search_key_textbox_object;
+                EmptyFieldToRed(search_key);
+                return search_key;
             }
             set
             {
-                search_key_textbox_object = value;
+                search_key = value;
             }
         }
         
@@ -55,12 +55,12 @@ namespace WpfApp1.Models
         {
             get
             {
-                EmptyFieldToRed(searchgroup_Label_object);
-                return searchgroup_Label_object;
+                EmptyFieldToRed(search_group);
+                return search_group;
             }
             set
             {
-                searchgroup_Label_object = value;
+                search_group = value;
             }
         }
 
@@ -82,19 +82,6 @@ namespace WpfApp1.Models
             get
             {
                 SetStandardTextBoxAppearance1(standard_textbox_appearance_1);
-                return standard_textbox_appearance_1;
-            }
-            set
-            {
-                standard_textbox_appearance_1 = value;
-            }
-        }
-
-        public AppearanceSettings StandardTextBoxAppearanceWRedReq1
-        {
-            get
-            {
-                EmptyFieldToRed(standard_textbox_appearance_1);
                 return standard_textbox_appearance_1;
             }
             set

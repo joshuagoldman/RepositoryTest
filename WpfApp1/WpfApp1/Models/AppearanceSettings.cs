@@ -12,6 +12,8 @@ namespace WpfApp1.Models
 {
     public class AppearanceSettings : INotifyPropertyChanged
     {
+        public enum IsVariable { Yes, No }
+
         public enum RequiredField { Yes, No }
 
         Brush background = Brushes.White;
@@ -30,9 +32,11 @@ namespace WpfApp1.Models
 
         RequiredField req_field = RequiredField.No;
 
+        IsVariable is_var = IsVariable.No;
+
         string[] items = {"", "", ""};
 
-
+        Visibility visibility = Visibility.Visible;
 
         public Brush Background
         {
@@ -104,6 +108,16 @@ namespace WpfApp1.Models
             }
         }
 
+        public IsVariable IsVar
+        {
+            get => is_var;
+            set
+            {
+                is_var = value;
+                OnPropertyChanged("IsVar");
+            }
+        }
+
         public RequiredField ReqField
         {
             get => req_field;
@@ -114,7 +128,7 @@ namespace WpfApp1.Models
             }
         }
 
-        public string[] Items
+        public string[] ItemsSource
         {
             get => items;
             set
@@ -124,9 +138,18 @@ namespace WpfApp1.Models
             }
         }
 
+        public Visibility Visibility
+        {
+            get => visibility;
+            set
+            {
+                visibility = value;
+                OnPropertyChanged("Visibility");
+            }
+        }
+
         public AppearanceSettings()
         {
-
         }
 
         private void OnPropertyChanged(string property)

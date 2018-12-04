@@ -51,5 +51,15 @@ namespace WpfApp1
         {
             ClassInit.ChoicAct.SaveFileOrNot();
         }
+
+        private void Expression_Clicked(object sender, RoutedEventArgs e)
+        {
+            ExpressionWindow ExWindows = new ExpressionWindow()
+            {
+                ControlInfo = ClassInit.ChoicAct.ControlInfo
+            };
+            ExWindows.Show();
+            ExWindows.AddDataContext();
+        }
     }
 }

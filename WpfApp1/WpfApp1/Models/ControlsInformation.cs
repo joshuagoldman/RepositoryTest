@@ -16,10 +16,6 @@ namespace WpfApp1.Models
     public partial class Controls
     {
 
-        public Dictionary<string, AppearanceSettings> AppearanceDict { get; set; }
-
-        public AppearanceSettings Obj { get; set; }
-
         AppearanceSettings input_date_with_index = new AppearanceSettings(); 
         AppearanceSettings criteria_reference_with_revision = new AppearanceSettings();
         AppearanceSettings responsible = new AppearanceSettings();

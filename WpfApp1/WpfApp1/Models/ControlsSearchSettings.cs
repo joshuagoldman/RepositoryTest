@@ -15,18 +15,16 @@ namespace WpfApp1.Models
 
     public partial class Controls
     {
-
         AppearanceSettings exclude_test_types = new AppearanceSettings();
         AppearanceSettings serial_number = new AppearanceSettings();
         AppearanceSettings product = new AppearanceSettings();
         AppearanceSettings expression = new AppearanceSettings();
-        AppearanceSettings variable = new AppearanceSettings();
         AppearanceSettings search_path_option = new AppearanceSettings();
         AppearanceSettings regex_options = new AppearanceSettings();
         AppearanceSettings include_files = new AppearanceSettings();
         AppearanceSettings exclude_files = new AppearanceSettings();
         AppearanceSettings screening_allowed = new AppearanceSettings();
-        AppearanceSettings included_in_test = new AppearanceSettings();
+        AppearanceSettings inclded_in_test = new AppearanceSettings();
 
         public AppearanceSettings ExcludeTestTypes
         {
@@ -71,23 +69,10 @@ namespace WpfApp1.Models
             {
                 EmptyFieldToRed(expression);
                 return expression;
-            } 
+            }
             set
             {
                 expression = value;
-            }
-        }
-
-        public AppearanceSettings Variable
-        {
-            get
-            {
-                EmptyFieldToRed(variable);
-                return variable;
-            }
-            set
-            {
-                variable = value;
             }
         }
 
@@ -160,11 +145,11 @@ namespace WpfApp1.Models
         {
             get
             {
-                return included_in_test;
+                return inclded_in_test;
             }
             set
             {
-                included_in_test = value;
+                inclded_in_test = value;
             }
         }
     }

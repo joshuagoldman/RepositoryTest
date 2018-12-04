@@ -15,11 +15,10 @@ namespace WpfApp1.Models
 
     public partial class Controls
     {
-
         AppearanceSettings reason_report = new AppearanceSettings();
         AppearanceSettings info_text_screening = new AppearanceSettings();
-        AppearanceSettings info_text = new AppearanceSettings();
-        AppearanceSettings info_text_extended = new AppearanceSettings(); 
+        AppearanceSettings intfo_text = new AppearanceSettings();
+        AppearanceSettings intfo_text_extended = new AppearanceSettings();
 
         public AppearanceSettings ReasonReport
         {
@@ -50,12 +49,12 @@ namespace WpfApp1.Models
         {
             get
             {
-                EmptyFieldToRed(info_text);
-                return info_text;
+                EmptyFieldToRed(intfo_text);
+                return intfo_text;
             }
             set
             {
-                info_text = value;
+                intfo_text = value;
             }
         }
 
@@ -63,12 +62,12 @@ namespace WpfApp1.Models
         {
             get
             {
-                EmptyFieldToRed(info_text_extended);
-                return info_text_extended;
+                EmptyFieldToRed(intfo_text_extended);
+                return intfo_text_extended;
             } 
             set
             {
-                info_text_extended = value;
+                intfo_text_extended = value;
             }
         }
     }

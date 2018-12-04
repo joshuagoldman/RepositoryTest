@@ -54,6 +54,22 @@ namespace WpfApp1.Methods
             AppearanceSettingsInstances.ForEach(obj => obj.Text = LogicalTreeHelper.FindLogicalNode(CurrApp, obj.NameProp) == null ? "ChangeToRed" :
                                                             string.IsNullOrEmpty(GetMainWindowText(obj)) ? 
                                                             "ChangeToRed" : GetMainWindowText(obj));
+
+            var ExpressionVars = ControlInfo.GetType().GetProperties().
+                Select(prop => (AppearanceSettings)prop.GetValue(ControlInfo)).
+                Where(prop => prop.IsVar == AppearanceSettings.IsVariable.Yes);
+
+            var VarListNum = int.Parse(GetMainWindowText(ControlInfo.GetType().GetProperties().
+                Where(prop => prop.Name.Equals("VariableList")).
+                Select(prop => (AppearanceSettings)prop.GetValue(ControlInfo)).
+                FirstOrDefault()));
+
+            ExpressionVars.Skip(VarListNum).ToList().
+            ForEach(prop => prop.Visibility = Visibility.Collapsed);
+
+            ExpressionVars.Take(VarListNum).ToList().
+            ForEach(prop => prop.Visibility = Visibility.Visible);
+
         }
 
         public string GetMainWindowText(AppearanceSettings obj)
