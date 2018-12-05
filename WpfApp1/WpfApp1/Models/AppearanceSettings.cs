@@ -121,7 +121,7 @@ namespace WpfApp1.Models
             set
             {
                 items = value;
-                OnPropertyChanged("Items");
+                OnPropertyChanged("ItemsSource");
             }
         }
 

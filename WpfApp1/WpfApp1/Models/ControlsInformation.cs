@@ -19,7 +19,7 @@ namespace WpfApp1.Models
         AppearanceSettings input_date_with_index = new AppearanceSettings(); 
         AppearanceSettings criteria_reference_with_revision = new AppearanceSettings();
         AppearanceSettings responsible = new AppearanceSettings();
-        AppearanceSettings reason = new AppearanceSettings();
+        AppearanceSettings reason = new AppearanceSettings();        
 
         public AppearanceSettings InputDateWithIndex
         {

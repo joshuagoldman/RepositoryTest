@@ -22,6 +22,10 @@ namespace WpfApp1
 
         public ExpressionWindow ExWindow { get; set; }
 
+        public ProductsWindow ProdWindow { get; set; }
+
+        public InfoTextWindow InfoTextWin { get; set; }
+
         /// <summary>
         /// Finds a Child of a given item in the visual tree. 
         /// </summary>
@@ -37,10 +41,16 @@ namespace WpfApp1
 
             ExWindow = new ExpressionWindow();
 
+            ProdWindow = new ProductsWindow();
+
+            InfoTextWin = new InfoTextWindow();
+
             ClassInit = new InitializeClasses
             {
                 Main = this,
-                ExWindow = ExWindow
+                ExWindow = ExWindow,
+                ProdWindow = ProdWindow,
+                InfoTextWin= InfoTextWin
             };
 
             ClassInit.PerformInitiliazation();
@@ -61,6 +71,18 @@ namespace WpfApp1
         {
             ExWindow.Show();
             ExWindow.DataContext = ClassInit.ChoicAct.ControlInfo;
+        }
+
+        private void Products_Clicked(object sender, RoutedEventArgs e)
+        {
+            ProdWindow.Show();
+            ProdWindow.DataContext = ClassInit.ChoicAct.ControlInfo;
+        }
+
+        private void InfoText_Clicked(object sender, RoutedEventArgs e)
+        {
+            InfoTextWin.Show();
+            InfoTextWin.DataContext = ClassInit.ChoicAct.ControlInfo;
         }
     }
 }

@@ -69,7 +69,9 @@ C:\Users\DELL\Documents\GitRepoJosh\WpfApp1\WpfApp1\obj\Debug\ProductWindow.g.cs
 C:\Users\DELL\Documents\GitRepoJosh\WpfApp1\WpfApp1\obj\Debug\ExpressionWindow.g.cs
 C:\Users\DELL\Documents\GitRepoJosh\WpfApp1\WpfApp1\obj\Debug\ProductWindow.baml
 C:\Users\DELL\Documents\GitRepoJosh\WpfApp1\WpfApp1\obj\Debug\ExpressionWindow.baml
-C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\obj\Debug\ProductWindow.g.cs
 C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\obj\Debug\ExpressionWindow.g.cs
-C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\obj\Debug\ProductWindow.baml
 C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\obj\Debug\ExpressionWindow.baml
+C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\obj\Debug\ProductsWindow.g.cs
+C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\obj\Debug\ProductsWindow.baml
+C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\obj\Debug\InfoTextWindow.g.cs
+C:\Users\jogo\Documents\git_Test\WpfApp1\WpfApp1\obj\Debug\InfoTextWindow.baml

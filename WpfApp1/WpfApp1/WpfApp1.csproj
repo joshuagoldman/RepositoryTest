@@ -87,15 +87,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Methods\AllWindows.cs" />
-    <Compile Include="Models\ProductModel.cs" />
-    <Compile Include="ProductWindow.xaml.cs">
-      <DependentUpon>ProductWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ExpressionWindow.xaml.cs">
       <DependentUpon>ExpressionWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="ProductWindow.xaml">
+    <Compile Include="Methods\AllWindows.cs" />
+    <Compile Include="Models\ProductModel.cs" />
+    <Compile Include="InfoTextWindow.xaml.cs">
+      <DependentUpon>InfoTextWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductsWindow.xaml.cs">
+      <DependentUpon>ProductsWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ExpressionWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -112,7 +115,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ExpressionWindow.xaml">
+    <Page Include="InfoTextWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProductsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

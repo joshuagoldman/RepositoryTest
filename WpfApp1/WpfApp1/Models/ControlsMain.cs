@@ -22,12 +22,13 @@ namespace WpfApp1.Models
         AppearanceSettings standard_label_appearance_1 = new AppearanceSettings();
         AppearanceSettings standard_textbox_appearance_1 = new AppearanceSettings();
         AppearanceSettings standard_combobox_appearance_1 = new AppearanceSettings();
+        AppearanceSettings longer_text_inputtemplate = new AppearanceSettings();        
 
         public AppearanceSettings TextBlockObject
         {
             get
             {
-                textblock_object.FontSize = double.Parse("25");
+                textblock_object.FontSize = double.Parse("10");
                 textblock_object.Background = Brushes.LightPink;
                 textblock_object.Foreground = Brushes.Black;
                 return textblock_object;
@@ -100,6 +101,19 @@ namespace WpfApp1.Models
             set
             {
                 standard_combobox_appearance_1 = value;
+            }
+        }
+
+        public AppearanceSettings LongerTextInputTemplate
+        {
+            get
+            {
+                longer_text_inputtemplate.Text = "input format : ElementName Attribute Attribute ... NewLine  ElementName Attribute Attribute";
+                return longer_text_inputtemplate;
+            }
+            set
+            {
+                reason = value;
             }
         }
 

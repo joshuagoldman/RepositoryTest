@@ -62,7 +62,7 @@
                             <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
 						<TextBlock Name="InputDateWithIndexLabel" Grid.Row="0" Text="Input Date With Index Value" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-                        <TextBox Name="InputDateWithIndex" Background="{Binding Path= InputDateWithIndex.Background, Mode=TwoWay}" Foreground="{Binding Path= InputDateWithIndex.Foreground, Mode=TwoWay}"  Grid.Row="1"></TextBox>
+                        <TextBox Name="InputDateWithIndex" AcceptsReturn="True" Background="{Binding Path= InputDateWithIndex.Background, Mode=TwoWay}" Foreground="{Binding Path= InputDateWithIndex.Foreground, Mode=TwoWay}"  Grid.Row="1"></TextBox>
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -73,7 +73,7 @@
                             <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
 						<TextBlock Name="CriteriaReferenceWithRevisionLabel" Grid.Row="0" Text="Criteria Reference with Revision Value" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-                        <TextBox Name="CriteriaReferenceWithRevision" Background="{Binding Path= CriteriaReferenceWithRevision.Background, Mode=TwoWay}" Foreground="{Binding Path= CriteriaReferenceWithRevision.Foreground, Mode=TwoWay}" Grid.Row="1"></TextBox>
+                        <TextBox Name="CriteriaReferenceWithRevision" AcceptsReturn="True" Background="{Binding Path= CriteriaReferenceWithRevision.Background, Mode=TwoWay}" Foreground="{Binding Path= CriteriaReferenceWithRevision.Foreground, Mode=TwoWay}" Grid.Row="1"></TextBox>
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -84,7 +84,7 @@
                             <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
 						<TextBlock Name="ResponsibleLabel" Grid.Row="0" Text="Responsible" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-                        <TextBox Name="Responsible" Background="{Binding Path= Responsible.Background, Mode=TwoWay}" Foreground="{Binding Path= Responsible.Foreground, Mode=TwoWay}" Grid.Row="1"></TextBox>
+						<TextBox Name="Responsible" AcceptsReturn="True" Background="{Binding Path= Responsible.Background, Mode=TwoWay}" Foreground="{Binding Path= Responsible.Foreground, Mode=TwoWay}" Grid.Row="1"></TextBox>
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -95,7 +95,7 @@
                             <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
 						<TextBlock Name="ReasonLabel" Grid.Row="0" Text="Reason" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-                        <TextBox Name="Reason" Background="{Binding Path= Reason.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}" Grid.Row="1"></TextBox>
+						<TextBox Name="Reason" AcceptsReturn="True" Background="{Binding Path= Reason.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}" Grid.Row="1"></TextBox>
                     </Grid>
                 </StackPanel>
             </Border>
@@ -113,7 +113,7 @@
 							<RowDefinition Height="30"/>
 						</Grid.RowDefinitions>
 						<TextBlock Name="ExcludeTestTypesLabel" Grid.Row="0" Text="Exclude Test Types" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-						<ComboBox Name="ExcludeTestTypes" Grid.Row="1" ItemsSource="{Binding Path= ExcludeTestTypes.ItemsSource, Mode=TwoWay}"  Background="{Binding Path= StandardComboBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardComboBoxAppearance1.Foreground, Mode=TwoWay}"></ComboBox>
+						<ComboBox Name="ExcludeTestTypes" Grid.Row="1" SelectedIndex="0" ItemsSource="{Binding Path= ExcludeTestTypes.ItemsSource, Mode=TwoWay}"  Background="{Binding Path= StandardComboBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardComboBoxAppearance1.Foreground, Mode=TwoWay}"></ComboBox>
 					</Grid>
 					<Grid>
 						<Grid.ColumnDefinitions>
@@ -124,7 +124,7 @@
 							<RowDefinition Height="30"/>
 						</Grid.RowDefinitions>
 						<TextBlock Name="SerialNumberLabel" Grid.Row="0" Text="Serial Number" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-                        <TextBox Name="SerialNumber" Background="{Binding Path= SerialNumber.Background, Mode=TwoWay}" Foreground="{Binding Path= SerialNumber.Foreground, Mode=TwoWay}" Grid.Row="1"></TextBox>
+						<TextBox Name="SerialNumber" AcceptsReturn="True" Background="{Binding Path= SerialNumber.Background, Mode=TwoWay}" Foreground="{Binding Path= SerialNumber.Foreground, Mode=TwoWay}" Grid.Row="1"></TextBox>
 					</Grid>
 					<Grid>
 						<Grid.ColumnDefinitions>
@@ -134,8 +134,8 @@
 							<RowDefinition Height="60"/>
 							<RowDefinition Height="30"/>
 						</Grid.RowDefinitions>
-                        <TextBlock Name="ProductLabel" Grid.Row="0" Text="Product" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-                        <ComboBox  IsEditable="True" Name="Product" ItemsSource="{Binding Path= Product.Items, Mode=TwoWay}"  Background="{Binding Path= StandardTextBoxAppearanceWRedReq1.Background, Mode=TwoWay}" Foreground="{Binding Path= ResponsibleTextBoxObject.Foreground, Mode=TwoWay}" Grid.Row="1"></ComboBox>
+                        <TextBlock Name="ProductsLabel" Grid.Row="0" Text="Product" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+						<Button Name="Products" Content="Edit" Click="Products_Clicked" Background="{Binding Path= Products.Background}" Grid.Row="1"></Button>
                     </Grid>
 					<Grid>
 						<Grid.ColumnDefinitions>
@@ -146,18 +146,7 @@
 							<RowDefinition Height="30"/>
 						</Grid.RowDefinitions>
 						<TextBlock Name="ExpressionLabel" Grid.Row="0" Text="Expression" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-                        <Button Name="Expression" Content="Edit" Click="Expression_Clicked" Background="{Binding Path= Expression.Background}" Grid.Row="1"></Button>
-					</Grid>
-					<Grid>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="100"/>
-						</Grid.ColumnDefinitions>
-						<Grid.RowDefinitions>
-							<RowDefinition Height="60"/>
-							<RowDefinition Height="30"/>
-						</Grid.RowDefinitions>
-						<TextBlock Name="VariableLabel" Grid.Row="0" Text="Variable" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-						<ComboBox Name="Variable" Background="{Binding Path= StandardComboBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardComboBoxAppearance1.Foreground, Mode=TwoWay}" Grid.Row="1"></ComboBox>
+						<Button Name="Expression" Content="Edit" Click="Expression_Clicked" Background="{Binding Path= Expression.Background}" Grid.Row="1"></Button>
 					</Grid>
 					<Grid>
 						<Grid.ColumnDefinitions>
@@ -190,7 +179,7 @@
 							<RowDefinition Height="30"/>
 						</Grid.RowDefinitions>
 						<TextBlock Name="IncludeFilesLabel" Grid.Row="0" Text="Include Files" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-                        <TextBox Name="IncludeFiles" Background="{Binding Path= IncludeFiles.Background, Mode=TwoWay}" Foreground="{Binding Path= IncludeFiles.Foreground, Mode=TwoWay}" Grid.Row="1"></TextBox>
+						<TextBox Name="IncludeFiles" AcceptsReturn="True" Background="{Binding Path= IncludeFiles.Background, Mode=TwoWay}" Foreground="{Binding Path= IncludeFiles.Foreground, Mode=TwoWay}" Grid.Row="1"></TextBox>
 					</Grid>
 					<Grid>
 						<Grid.ColumnDefinitions>
@@ -201,7 +190,7 @@
 							<RowDefinition Height="30"/>
 						</Grid.RowDefinitions>
 						<TextBlock Name="ExcludeFilesLabel" Grid.Row="0" Text="Exclude Files" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-						<TextBox Name="ExcludeFiles" Background="{Binding Path= StandardTextBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}" Grid.Row="1"></TextBox>
+						<TextBox Name="ExcludeFiles" AcceptsReturn="True" Background="{Binding Path= ExcludeFiles.Background, Mode=TwoWay}" Foreground="{Binding Path= ExcludeFiles.Foreground, Mode=TwoWay}" Grid.Row="1"></TextBox>
 					</Grid>
 					<Grid>
 						<Grid.ColumnDefinitions>
@@ -212,7 +201,7 @@
 							<RowDefinition Height="30"/>
 						</Grid.RowDefinitions>
 						<TextBlock Name="ScreeningAllowedLabel" Grid.Row="0" Text="Screening Allowed" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-						<ComboBox Name="ScreeningAllowed" ItemsSource="{Binding Path= IncludedInTest.Items, Mode=TwoWay}"  Background="{Binding Path= StandardComboBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}" Grid.Row="1"></ComboBox>
+						<ComboBox Name="ScreeningAllowed" SelectedIndex="0" ItemsSource="{Binding Path= ScreeningAllowed.ItemsSource, Mode=TwoWay}"  Background="{Binding Path= StandardComboBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}" Grid.Row="1"></ComboBox>
 					</Grid>
 					<Grid>
 						<Grid.ColumnDefinitions>
@@ -223,7 +212,7 @@
 							<RowDefinition Height="30"/>
 						</Grid.RowDefinitions>
 						<TextBlock Name="IncludedInTestLabel" Grid.Row="0" Text="Included In Test" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-						<TextBox Name="IncludedInTest" Background="{Binding Path= StandardTextBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}" Grid.Row="1"></TextBox>
+						<ComboBox Name="IncludedInTest" SelectedIndex="0" ItemsSource="{Binding Path= IncludedInTest.ItemsSource, Mode=TwoWay}" Background="{Binding Path= StandardComboBoxBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardComboBoxBoxAppearance1.Foreground, Mode=TwoWay}" Grid.Row="1"></ComboBox>
 					</Grid>
 				</StackPanel>
             </Border>
@@ -241,7 +230,7 @@
 							<RowDefinition Height="30"/>
 						</Grid.RowDefinitions>
 						<TextBlock Name="ReasonReportLabel" Grid.Row="0" Text="Reason" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-						<TextBox Name="ReasonReport" Background="{Binding Path= StandardTextBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}"  Grid.Row="1"></TextBox>
+						<TextBox Name="ReasonReport" AcceptsReturn="True" Background="{Binding Path= StandardTextBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}"  Grid.Row="1"></TextBox>
 					</Grid>
 					<Grid>
 						<Grid.ColumnDefinitions>
@@ -252,7 +241,7 @@
 							<RowDefinition Height="30"/>
 						</Grid.RowDefinitions>
 						<TextBlock Name="InfotextScreeningLabel" Grid.Row="0" Text="Infotext Screening" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-                        <TextBox Name="InfotextScreening" Background="{Binding Path= InfotextScreening.Background, Mode=TwoWay}" Foreground="{Binding Path= InfotextScreening.Foreground, Mode=TwoWay}" Grid.Row="1"></TextBox>
+						<TextBox Name="InfoTextScreening" Background="{Binding Path= StandardTextBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}" Grid.Row="1"></TextBox>
 					</Grid>
 					<Grid>
 						<Grid.ColumnDefinitions>
@@ -262,8 +251,8 @@
 							<RowDefinition Height="60"/>
 							<RowDefinition Height="30"/>
 						</Grid.RowDefinitions>
-						<TextBlock Name="InfotextLabel" Grid.Row="0" Text="Infotext" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-                        <TextBox Name="Infotext" Background="{Binding Path= Infotext.Background, Mode=TwoWay}" Foreground="{Binding Path= Infotext.Foreground, Mode=TwoWay}" Grid.Row="1"></TextBox>
+						<TextBlock Name="InfoTextLabel" Grid.Row="0" Text="Infotext" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+						<Button Name="InfoText" Content="Edit" Click="InfoText_Clicked" Background="{Binding Path= InfoText.Background}" Grid.Row="1"></Button>
 					</Grid>
 					<Grid>
 						<Grid.ColumnDefinitions>
@@ -274,7 +263,7 @@
 							<RowDefinition Height="30"/>
 						</Grid.RowDefinitions>
 						<TextBlock Name="InfoTextExtendedLabel" Grid.Row="0" Text="InfoText Extended" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-						<ComboBox Name="InfoTextExtended" Background="{Binding Path= StandardTextBoxAppearance.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}" Grid.Row="1"></ComboBox>
+						<TextBox Name="InfoTextExtended" Background="{Binding Path= StandardTextBoxAppearance.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}" Grid.Row="1"></TextBox>
 					</Grid>
 				</StackPanel>
 			</Border>

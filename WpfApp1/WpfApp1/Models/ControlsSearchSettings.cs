@@ -96,6 +96,7 @@ namespace WpfApp1.Models
         {
             get
             {
+                exclude_test_types.ItemsSource = new string[] { "AllDirectories", "LAT", "Prtt" };
                 return search_path_option;
             } 
             set
@@ -149,7 +150,7 @@ namespace WpfApp1.Models
         {
             get
             {
-                EmptyFieldToRed(screening_allowed);
+                screening_allowed.ItemsSource = new string[] { "YES", "NO" };
                 return screening_allowed;
             } 
             set
@@ -162,6 +163,7 @@ namespace WpfApp1.Models
         {
             get
             {
+                inclded_in_test.ItemsSource = new string[] { "YES", "NO" };
                 return inclded_in_test;
             }
             set

@@ -36,11 +36,15 @@ namespace WpfApp1.Methods
 
         public ExpressionWindow ExWindow { get; set; }
 
+        public ProductsWindow ProdWindow { get; set; }
+
+        public InfoTextWindow InfoTextWin { get; set; }
+
         public string FilePath { get; set; }
 
         public void PerformInitiliazation()
         {
-            Xml = new ExEmEl(@"C:\Users\DELL\Documents\GitRepoJosh\HWLogCriteria.xml", ExEmEl.NewDocument.No);
+            Xml = new ExEmEl(@"C:\Users\jogo\Documents\git_Test\HWLogCriteria.xml", ExEmEl.NewDocument.No);
             Controls ControlInfo = new Controls();
             CreateTreeDict Dict = new CreateTreeDict()
             {
@@ -50,6 +54,8 @@ namespace WpfApp1.Methods
             AllWind = new AllWindows
             {
                 ExWindow = ExWindow,
+                ProdWindow = ProdWindow,
+                InfoTextWin = InfoTextWin,
                 Main = Main
             };
 

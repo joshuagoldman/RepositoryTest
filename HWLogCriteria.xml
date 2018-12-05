@@ -5026,12 +5026,6 @@
             <Infotext Value="Fault Inds 317 and 837 present in HW Log. Replace components at positions N5400 and N5100. Report both as A105/59" />
           </Report>
         </SearchKey>
-        <SearchKey Value="KeyJoshua">
-          <InputDateWithIndex Value="Date" />
-          <CriteriaReferenceWithRevision Value="Criteria" />
-          <Responsible Value="Responsible" />
-          <Reason Value="Reason" />
-        </SearchKey>
       </SearchKeys>
     </SearchGroup>
     <SearchGroup Name="DUG">

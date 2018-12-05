@@ -11,5 +11,9 @@ namespace WpfApp1.Methods
         public MainWindow Main { get; set; }
 
         public ExpressionWindow ExWindow { get; set; }
+
+        public ProductsWindow ProdWindow { get; set; }
+
+        public InfoTextWindow InfoTextWin { get; set; }
     }
 }

@@ -31,7 +31,7 @@ namespace XmlFeatures.XmlDoc
             NewTree = new XElement("Initial");
             NewTree.Add(TreeDict.Keys.
                         Where(key => int.Parse(TreeDict[key].Generation) == 1 &&
-                                (!string.IsNullOrEmpty(key?.Elements?[2]) || key?.SevTags != null)).
+                                     ExistInTreeCond(key)).
             Select(key => key?.SevTags != null ?
                    SeveralTags(key.SevTags) :
                    key?.Elements.ToList().Count > 3 ?
@@ -42,16 +42,18 @@ namespace XmlFeatures.XmlDoc
             for (int i = 2; i <= NumOfGens; i++)
             {
                 var AllTempNodeElements = TreeDict.Keys.ToList().
-                                 Where(key => int.Parse(TreeDict[key].Generation) == i - 1).
+                                 Where(key => int.Parse(TreeDict[key].Generation) == i - 1 &&
+                                                        ExistInTreeCond(key)).
                                  Select(key => AllStringArraySelect(key)).
                                  Select(array_of_array => array_of_array.
                                  Select(array => FindElement(array)).ToList()).
                                  ToList();
 
-                AllTempNodeElements.ForEach(elementlist => elementlist.
+                AllTempNodeElements.Where(elementlist => elementlist != null).ToList().
+                    ForEach(elementlist => elementlist.
                 ForEach(element => element.Add(TreeDict.Keys.
                 Where(key => int.Parse(TreeDict[key].Generation) == i &&
-                             (!string.IsNullOrEmpty(key?.Elements?[2]) || key?.SevTags != null ) &&
+                             ExistInTreeCond(key) &&
                              element.Name == TreeDict[key]?.ParentName[0]).
                 Select(key =>key?.SevTags != null ?
                        SeveralTags(key.SevTags) :
@@ -61,6 +63,13 @@ namespace XmlFeatures.XmlDoc
                        new XElement(key.Elements[0], new XAttribute(key.Elements[1], key.Elements[2])) :
                        new XElement(key.Elements[0])))));
             }            
+        }
+
+        private bool ExistInTreeCond(XmlBranchName Key)
+        {
+            return Key?.SevTags != null ? true : 
+                   Key?.Elements?.Count() == 1 ? true :
+                   !string.IsNullOrEmpty(Key.Elements?[2]);
         }
         private XElement SeveralAttr(string[] Element)
         {
@@ -94,7 +103,9 @@ namespace XmlFeatures.XmlDoc
 
         private XElement FindElement(string[] Info)
         {
-            return NewTree.XPathSelectElement($"//{Info[0]}[@{Info[1]} = '{Info[2]}']");
+            return Info.Count() == 1 ?
+                   NewTree.XPathSelectElement($"//{Info[0]}") :
+                   NewTree.XPathSelectElement($"//{Info[0]}[@{Info[1]} = '{Info[2]}']");
         }
 
     }

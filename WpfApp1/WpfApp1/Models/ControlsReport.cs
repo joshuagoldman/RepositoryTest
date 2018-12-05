@@ -17,8 +17,9 @@ namespace WpfApp1.Models
     {
         AppearanceSettings reason_report = new AppearanceSettings();
         AppearanceSettings info_text_screening = new AppearanceSettings();
-        AppearanceSettings intfo_text = new AppearanceSettings();
+        AppearanceSettings info_text = new AppearanceSettings();
         AppearanceSettings intfo_text_extended = new AppearanceSettings();
+        AppearanceSettings info_text_label = new AppearanceSettings();
 
         public AppearanceSettings ReasonReport
         {
@@ -32,11 +33,10 @@ namespace WpfApp1.Models
             }
         }
 
-        public AppearanceSettings InfotextScreening
+        public AppearanceSettings InfoTextScreening
         {
             get
             {
-                EmptyFieldToRed(info_text_screening);
                 return info_text_screening;
             }
             set
@@ -45,16 +45,16 @@ namespace WpfApp1.Models
             }
         }
         
-        public AppearanceSettings Infotext
+        public AppearanceSettings InfoText
         {
             get
             {
-                EmptyFieldToRed(intfo_text);
-                return intfo_text;
+                EmptyFieldToRed(info_text);
+                return info_text;
             }
             set
             {
-                intfo_text = value;
+                info_text = value;
             }
         }
 
@@ -62,14 +62,13 @@ namespace WpfApp1.Models
         {
             get
             {
-                EmptyFieldToRed(intfo_text_extended);
                 return intfo_text_extended;
             } 
             set
             {
                 intfo_text_extended = value;
             }
-        }
+        }                
     }
 }
 

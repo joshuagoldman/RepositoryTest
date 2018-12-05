@@ -43,8 +43,6 @@ namespace WpfApp1.Methods
         public void ChangeToRedNotification()
         {
             var CurrWindows = AllWind.GetType().GetProperties().
-                Where(prop => prop.PropertyType == typeof(MainWindow) ||
-                      prop.PropertyType == typeof(ExpressionWindow)).
                 Select(window => window.GetValue(AllWind));
 
             var AppearanceSettingsInstances = ControlInfo.GetType().
