@@ -31,7 +31,7 @@ namespace XmlFeatures.XmlDoc
             NewTree = new XElement("Initial");
             NewTree.Add(TreeDict.Keys.
                         Where(key => int.Parse(TreeDict[key].Generation) == 1 &&
-                                (key?.Elements[2] != null || key?.SevTags != null)).
+                                (!string.IsNullOrEmpty(key?.Elements?[2]) || key?.SevTags != null)).
             Select(key => key?.SevTags != null ?
                    SeveralTags(key.SevTags) :
                    key?.Elements.ToList().Count > 3 ?
@@ -43,18 +43,23 @@ namespace XmlFeatures.XmlDoc
             {
                 var AllTempNodeElements = TreeDict.Keys.ToList().
                                  Where(key => int.Parse(TreeDict[key].Generation) == i - 1).
-                                 Select(key => NewTree.XPathSelectElement($"//{key?.Elements[0]}") ?? null).ToList();
-                AllTempNodeElements.ForEach(element => element.Add(TreeDict.Keys.
+                                 Select(key => AllStringArraySelect(key)).
+                                 Select(array_of_array => array_of_array.
+                                 Select(array => FindElement(array)).ToList()).
+                                 ToList();
+
+                AllTempNodeElements.ForEach(elementlist => elementlist.
+                ForEach(element => element.Add(TreeDict.Keys.
                 Where(key => int.Parse(TreeDict[key].Generation) == i &&
-                             (key?.Elements[2] != null || key?.SevTags != null ) &&
+                             (!string.IsNullOrEmpty(key?.Elements?[2]) || key?.SevTags != null ) &&
                              element.Name == TreeDict[key]?.ParentName[0]).
                 Select(key =>key?.SevTags != null ?
-                       SeveralAttr(key.Elements) :
+                       SeveralTags(key.SevTags) :
                        key?.Elements.ToList().Count > 3 ?
                        SeveralAttr(key.Elements) :
                        key.Elements.ToList().Count == 3 ?
                        new XElement(key.Elements[0], new XAttribute(key.Elements[1], key.Elements[2])) :
-                       new XElement(key.Elements[0]))));
+                       new XElement(key.Elements[0])))));
             }            
         }
         private XElement SeveralAttr(string[] Element)
@@ -77,7 +82,19 @@ namespace XmlFeatures.XmlDoc
                                                    sevtag.Count() == 3 ?
                                                    new XElement(sevtag[0], new XAttribute(sevtag[1], sevtag[2])) :
                                                    new XElement(sevtag[0])));
-            return (XElement)Tags.Nodes();
+            return Tags;
+        }
+
+        private string[][] AllStringArraySelect(XmlBranchName Key)
+        {
+            return Key.Elements != null ?
+                new string[][] { Key.Elements } :
+                Key.SevTags;
+        }
+
+        private XElement FindElement(string[] Info)
+        {
+            return NewTree.XPathSelectElement($"//{Info[0]}[@{Info[1]} = '{Info[2]}']");
         }
 
     }

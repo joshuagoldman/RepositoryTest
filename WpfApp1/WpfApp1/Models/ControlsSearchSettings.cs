@@ -108,6 +108,7 @@ namespace WpfApp1.Models
         {
             get
             {
+                regex_options.ItemsSource = new string[] { "YES","NO" };
                 EmptyFieldToRed(regex_options);
                 return regex_options;
             }

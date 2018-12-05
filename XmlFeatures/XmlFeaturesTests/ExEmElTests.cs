@@ -88,18 +88,21 @@ namespace XmlFeatures.XmlDoc.Tests
             @"C:\Users\DELL\Documents\GitRepoJosh\Data.xml",
             ExEmEl.NewDocument.No);
 
-            var ArrayInArray = new string[][] { "a11,a111,a112,a113,a114,a115,a116".Split(',').ToArray(),
+            var ArrayInArray = new string[][] { "a11,a111,aspecial,a113,a114,a115,a116".Split(',').ToArray(),
                                                 "a11,a111,a112,a113,a114,a115,a116".Split(',').ToArray() };
+
+            var ArrayInArray3 = new string[][] { "a31,a311,a312,a313,a314,a315,a316".Split(',').ToArray(),
+                                                "a31,a311,a312,a313,a314,a315,a316".Split(',').ToArray() };
 
             var Dict = new Dictionary<XmlBranchName, XmlBranchInfo>();
             {
                 Dict.Add(new XmlBranchName(sev_tags:ArrayInArray), new XmlBranchInfo("1"));
                 Dict.Add(new XmlBranchName( "a12,a12,a12".Split(',').ToArray()), new XmlBranchInfo("1"));
                 Dict.Add(new XmlBranchName( "a21,a21,a21".Split(',').ToArray()), new XmlBranchInfo("2",
-                    "a11,a11,a11".Split(',').ToArray()));
+                    "a11,a11,aspecial".Split(',').ToArray()));
                 Dict.Add(new XmlBranchName( "a22,a22,a22".Split(',').ToArray()), new XmlBranchInfo("2",
                     "a12,a12,a12".Split(',').ToArray()));
-                Dict.Add(new XmlBranchName( "a31,a311,a312,a313,a314,a315,a316".Split(',').ToArray()), new XmlBranchInfo("3",
+                Dict.Add(new XmlBranchName(sev_tags: ArrayInArray3), new XmlBranchInfo("3",
                     "a21,a21,a21".Split(',').ToArray()));
             }
 

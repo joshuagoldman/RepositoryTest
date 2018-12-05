@@ -179,7 +179,7 @@
 							<RowDefinition Height="30"/>
 						</Grid.RowDefinitions>
 						<TextBlock Name="RegexOptionsLabel" Grid.Row="0" Text="Regex Options" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-						<ComboBox Name="RegexOptions" Background="{Binding Path= StandardComboBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardComboBoxAppearance1.Foreground, Mode=TwoWay}" Grid.Row="1"></ComboBox>
+                        <ComboBox Name="RegexOptions" SelectedIndex="0" ItemsSource="{Binding Path= RegexOptions.ItemsSource, Mode=TwoWay}" Background="{Binding Path= StandardComboBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardComboBoxAppearance1.Foreground, Mode=TwoWay}" Grid.Row="1"></ComboBox>
 					</Grid>
 					<Grid>
 						<Grid.ColumnDefinitions>
