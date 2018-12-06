@@ -58,8 +58,8 @@ namespace WpfApp1.Methods
                 {new XmlBranchName(new string[]{ Information.Expression.NameProp, "Value", Information.Expression.Text }),
                    new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
 
-                {new XmlBranchName(sev_tags: MakeReapeatedTagDictionary(Information.Variables.NameProp,
-                                                        Information.Variables.Text)),
+                {new XmlBranchName(sev_tags: MakeReapeatedTagDictionary(Information.Variable.NameProp,
+                                                        Information.Variable.Text)),
                    new XmlBranchInfo("4", new string[]{ Information.Expression.NameProp, "Value", Information.Expression.Text }) },
 
                 {new XmlBranchName(new string[]{ Information.SearchPathOption.NameProp, "Value", Information.SearchPathOption.Text }),
@@ -86,7 +86,7 @@ namespace WpfApp1.Methods
                 {new XmlBranchName(new string[]{ Information.InfoTextScreening.NameProp, "Value", Information.InfoTextScreening.Text }),
                    new XmlBranchInfo("3", new string[] {"Report" }) },
 
-                {new XmlBranchName(new string[]{ Information.InfoText.NameProp, "Value", Information.Reason.Text }),
+                {new XmlBranchName(new string[]{ Information.InfoText.NameProp, "Value", Information.InfoText.Text }),
                    new XmlBranchInfo("3", new string[] {"Report" }) },
 
                 {new XmlBranchName(new string[]{ Information.InfoTextExtended.NameProp, "Value", Information.Reason.Text }),
@@ -97,9 +97,15 @@ namespace WpfApp1.Methods
         private string[][] MakeReapeatedTagDictionary(string TagName, string TextInfo)
         {
 
-            var variableRows = TextInfo.Split(new string[] { "\r\n" }, StringSplitOptions.None).ToArray();
+            var variableRows = TextInfo.Split(new string[] { "\n" }, StringSplitOptions.None).ToArray();
 
-            var AllVars = variableRows.ToList().Select(row => row.Trim().Split(' ')).ToArray();
+            var AllVarsExcessString = variableRows.ToList().
+                Select(row => row.Split(new string[] { "\"" }, StringSplitOptions.None).
+                Select(attr_part => attr_part.Trim().Replace("=", "")));
+
+            var AllVars = AllVarsExcessString.
+                Select(row => new LinkedList<string>(row.ToArray()).AddFirst(TagName).List).
+                Select(row => row.Take(row.Count - 1).ToArray()).ToArray();
 
             return AllVars;
 

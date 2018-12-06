@@ -33,12 +33,12 @@ namespace XmlFeatures.XmlDoc
                         Where(key => int.Parse(TreeDict[key].Generation) == 1 &&
                                      ExistInTreeCond(key)).
             Select(key => key?.SevTags != null ?
-                   SeveralTags(key.SevTags) :
-                   key?.Elements.ToList().Count > 3 ?
-                   SeveralAttr(key.Elements) :
-                   key.Elements.ToList().Count == 3 ?
-                   new XElement(key.Elements[0],new XAttribute(key.Elements[1], key.Elements[2])) :
-                   new XElement(key.Elements[0])));
+                       SeveralTags(key.SevTags) :
+                       key?.Elements.ToList().Count > 3 ?
+                       SeveralAttr(key.Elements) :
+                       key.Elements.ToList().Count == 3 ?
+                       new XElement(key.Elements[0], new XAttribute(key.Elements[1], key.Elements[2])).XPathSelectElements("//.").ToArray() :
+                       new XElement(key.Elements[0]).XPathSelectElements("//.").ToArray()));
             for (int i = 2; i <= NumOfGens; i++)
             {
                 var AllTempNodeElements = TreeDict.Keys.ToList().
@@ -60,9 +60,10 @@ namespace XmlFeatures.XmlDoc
                        key?.Elements.ToList().Count > 3 ?
                        SeveralAttr(key.Elements) :
                        key.Elements.ToList().Count == 3 ?
-                       new XElement(key.Elements[0], new XAttribute(key.Elements[1], key.Elements[2])) :
-                       new XElement(key.Elements[0])))));
-            }            
+                       new XElement(key.Elements[0], new XAttribute(key.Elements[1], key.Elements[2])).XPathSelectElements("//.").ToArray() :
+                       new XElement(key.Elements[0]).XPathSelectElements("//.").ToArray()
+                       ))));
+            }
         }
 
         private bool ExistInTreeCond(XmlBranchName Key)
@@ -71,7 +72,7 @@ namespace XmlFeatures.XmlDoc
                    Key?.Elements?.Count() == 1 ? true :
                    !string.IsNullOrEmpty(Key.Elements?[2]);
         }
-        private XElement SeveralAttr(string[] Element)
+        private XElement[] SeveralAttr(string[] Element)
         {
             var count = (Element.Count() - 1) / 2;
             Attr = new XAttribute[count];
@@ -81,17 +82,17 @@ namespace XmlFeatures.XmlDoc
                 Attr[i] = new XAttribute(Element[i*2 + 1], Element[2*i + 2]);
                 i++;
             }
-            return new XElement(Element[0], Attr);
+            return new XElement(Element[0], Attr).XPathSelectElements("//.").ToArray();
         }
-        private XElement SeveralTags(string[][] SevTags)
+        private XElement[] SeveralTags(string[][] SevTags)
         {
-            var Tags = new XElement("intitial");
+            var Tags = new XElement("Initial");
             Tags.Add(SevTags.Select(sevtag => sevtag.Count() > 3  ?
                                                    SeveralAttr(sevtag) :
                                                    sevtag.Count() == 3 ?
-                                                   new XElement(sevtag[0], new XAttribute(sevtag[1], sevtag[2])) :
-                                                   new XElement(sevtag[0])));
-            return Tags;
+                                                   new XElement(sevtag[0], new XAttribute(sevtag[1], sevtag[2])).XPathSelectElements("//.").ToArray() :
+                                                   new XElement(sevtag[0]).XPathSelectElements("//.").ToArray()));
+            return Tags.XPathSelectElements("child::*").ToArray();
         }
 
         private string[][] AllStringArraySelect(XmlBranchName Key)

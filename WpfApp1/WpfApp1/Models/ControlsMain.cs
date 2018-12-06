@@ -28,8 +28,8 @@ namespace WpfApp1.Models
         {
             get
             {
-                textblock_object.FontSize = double.Parse("10");
-                textblock_object.Background = Brushes.LightPink;
+                textblock_object.FontSize = double.Parse("14");
+                textblock_object.Background = Brushes.White;
                 textblock_object.Foreground = Brushes.Black;
                 return textblock_object;
             } 

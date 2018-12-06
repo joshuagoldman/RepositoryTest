@@ -36,7 +36,7 @@
 					<RowDefinition Height="150"/>
 				</Grid.RowDefinitions>
 				<TextBlock Name="VariablesLabel" Grid.Row="0" Text="{Binding Path= LongerTextInputTemplate.Text, Mode=TwoWay}" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}" HorizontalAlignment="Right" Width="452"></TextBlock>
-				<TextBox Name="Variables" AcceptsReturn="True" TextAlignment="Center" Grid.Row="1" Background="{Binding Path= Variables.Background, Mode=TwoWay}" Foreground="{Binding Path= Variable.ExpressionModel.VariableOne.Foreground, Mode=TwoWay}"></TextBox>
+				<TextBox Name="Variable" AcceptsReturn="True" TextAlignment="Center" Grid.Row="1" Background="{Binding Path= Variable.Background, Mode=TwoWay}" Foreground="{Binding Path= Variable.Foreground, Mode=TwoWay}"></TextBox>
 			</Grid>
 		</StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center">

@@ -88,7 +88,7 @@ namespace WpfApp1.Methods
                                   parent_above_child_no_attr: "SearchKeys",
                                   instantiate_choice: ExEmEl.Instantiate.Both);
                 Xml.TreeCreation.GetTree();
-                ControlInfo.TextBlockObject.Text = Xml.TreeCreation.NewTree.ToString();
+                ControlInfo.TextBlockObject.Text = Xml.TreeCreation.NewTree.XPathSelectElements("child::*").FirstOrDefault().ToString();
             }
         }
 

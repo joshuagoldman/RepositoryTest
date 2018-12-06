@@ -33,7 +33,7 @@
         <Button Name="Save" Grid.Column="1" Margin="1,10" BorderThickness="3" BorderBrush="black" Grid.Row="2" Content="Save" Click="Save_Clicked"/>
         <Border BorderBrush="Black" BorderThickness="3,3,3,3" Grid.Row="3" Grid.Column="1" Margin="1,10" >
             <StackPanel Orientation="Vertical" >
-                <Grid >
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="40"/>
@@ -42,10 +42,10 @@
 						<ColumnDefinition Width="*" />
 						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
-                    <TextBlock  Background="Yellow" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" Text="Search Key"  Grid.Column="0" Grid.Row="0"></TextBlock>
+					<TextBlock  Background="Yellow" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" Text="Search Key"  Grid.Column="0" Grid.Row="0"></TextBlock>
 					<TextBox Name="SearchKey" FontSize="15" Grid.Column="0"  Grid.Row="1" Background="{Binding Path= SearchKey.Background, Mode=TwoWay}" Foreground="{Binding Path= SearchKey.Foreground, Mode=TwoWay}" ></TextBox>
 					<TextBlock Background="Green" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" Text="SearchGroup" Grid.Column="1"  Grid.Row="0" ></TextBlock>
-                    <TextBox Name="SearchGroup" FontSize="15" Grid.Column="1"  Grid.Row="1" Background="{Binding Path= SearchGroup.Background, Mode=TwoWay}" Foreground="{Binding Path= SearchGroup.Foreground, Mode=TwoWay}"></TextBox>
+					<TextBox Name="SearchGroup" FontSize="15" Grid.Column="1"  Grid.Row="1" Background="{Binding Path= SearchGroup.Background, Mode=TwoWay}" Foreground="{Binding Path= SearchGroup.Foreground, Mode=TwoWay}"></TextBox>
 				</Grid>
             </StackPanel>
         </Border>
@@ -157,7 +157,7 @@
 							<RowDefinition Height="30"/>
 						</Grid.RowDefinitions>
 						<TextBlock Name="SearchPathOptionLabel" Grid.Row="0" Text="Search Path Option" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-						<ComboBox Name="SearchPathOption" Background="{Binding Path= StandardComboBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardComboBoxAppearance1.Foreground, Mode=TwoWay}" Grid.Row="1"></ComboBox>
+						<ComboBox Name="SearchPathOption" SelectedIndex="0" ItemsSource="{Binding Path= SearchPathOption.ItemsSource, Mode=TwoWay}" Background="{Binding Path= StandardComboBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardComboBoxAppearance1.Foreground, Mode=TwoWay}" Grid.Row="1"></ComboBox>
 					</Grid>
 					<Grid>
 						<Grid.ColumnDefinitions>

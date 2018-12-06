@@ -19,7 +19,7 @@ namespace WpfApp1.Models
         AppearanceSettings serial_number = new AppearanceSettings();
         AppearanceSettings product = new AppearanceSettings();
         AppearanceSettings expression = new AppearanceSettings();
-        AppearanceSettings variables = new AppearanceSettings();
+        AppearanceSettings variable = new AppearanceSettings();
         AppearanceSettings search_path_option = new AppearanceSettings();
         AppearanceSettings regex_options = new AppearanceSettings();
         AppearanceSettings include_files = new AppearanceSettings();
@@ -78,16 +78,16 @@ namespace WpfApp1.Models
             }
         }
 
-        public AppearanceSettings Variables
+        public AppearanceSettings Variable
         {
             get
             {
-                EmptyFieldToRed(variables);
-                return variables;
+                EmptyFieldToRed(variable);
+                return variable;
             }
             set
             {
-                variables = value;
+                variable = value;
             }
         }
 
@@ -96,7 +96,7 @@ namespace WpfApp1.Models
         {
             get
             {
-                exclude_test_types.ItemsSource = new string[] { "AllDirectories", "LAT", "Prtt" };
+                search_path_option.ItemsSource = new string[] { "CLAT", "LAT", "Prtt" };
                 return search_path_option;
             } 
             set

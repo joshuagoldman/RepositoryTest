@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.IO;
+using System.Xml.XPath;
 
 namespace XmlFeatures.XmlDoc.Tests
 {
@@ -85,7 +87,9 @@ namespace XmlFeatures.XmlDoc.Tests
             Testcases();
 
             ExEmEl xml = new ExEmEl(
-            @"C:\Users\DELL\Documents\GitRepoJosh\Data.xml",
+            Directory.Exists(@"C:\Users\DELL\Documents\GitRepoJosh\Data.xml") ?
+            @"C:\Users\DELL\Documents\GitRepoJosh\Data.xml" :
+            @"C:\Users\jogo\Documents\git_Test\Data.xml",
             ExEmEl.NewDocument.No);
 
             var ArrayInArray = new string[][] { "a11,a111,aspecial,a113,a114,a115,a116".Split(',').ToArray(),
@@ -116,7 +120,7 @@ namespace XmlFeatures.XmlDoc.Tests
 
             xml.Find.FindByElement(new List<string> { "Document"});
             tree.GetTree();
-            xml.Find.ChildParentElement.Add(tree.NewTree.Nodes());
+            xml.Find.ChildParentElement.Add(tree.NewTree.XPathSelectElements("child::*").ToArray());
             xml.XDoc.Save(xml.FilePath);
         }
 

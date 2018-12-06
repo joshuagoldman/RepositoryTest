@@ -21,6 +21,7 @@ using System.Xml.Linq;
 using WpfApp1.Models;
 using WpfApp1.Methods;
 using XmlFeatures.XmlDoc;
+using System.IO;
 
 namespace WpfApp1.Methods
 {
@@ -44,7 +45,11 @@ namespace WpfApp1.Methods
 
         public void PerformInitiliazation()
         {
-            Xml = new ExEmEl(@"C:\Users\jogo\Documents\git_Test\HWLogCriteria.xml", ExEmEl.NewDocument.No);
+            Xml = new ExEmEl(Directory.Exists(@"C:\Users\DELL\Documents\GitRepoJosh\Data.xml") ?
+                                              @"C:\Users\DELL\Documents\GitRepoJosh\Data.xml" :
+                                              @"C:\Users\jogo\Documents\git_Test\Data.xml",
+                                              ExEmEl.NewDocument.No);
+
             Controls ControlInfo = new Controls();
             CreateTreeDict Dict = new CreateTreeDict()
             {
