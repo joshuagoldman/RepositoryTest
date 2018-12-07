@@ -18,6 +18,7 @@ namespace WpfApp1.Models
         AppearanceSettings exclude_test_types = new AppearanceSettings();
         AppearanceSettings serial_number = new AppearanceSettings();
         AppearanceSettings product = new AppearanceSettings();
+        AppearanceSettings expression_button = new AppearanceSettings();        
         AppearanceSettings expression = new AppearanceSettings();
         AppearanceSettings variable = new AppearanceSettings();
         AppearanceSettings search_path_option = new AppearanceSettings();
@@ -62,6 +63,19 @@ namespace WpfApp1.Models
             set
             {
                 product = value;
+            }
+        }
+
+        public AppearanceSettings ExpressionButton
+        {
+            get
+            {
+                EmptyButtonWindowToRed(expression_button, new AppearanceSettings[] { Expression, Variable });
+                return expression_button;
+            }
+            set
+            {
+                expression_button = value;
             }
         }
 

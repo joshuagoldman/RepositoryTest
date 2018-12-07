@@ -108,7 +108,7 @@ namespace WpfApp1.Models
         {
             get
             {
-                longer_text_inputtemplate.Text = "input format : ElementName Attribute Attribute ... NewLine  ElementName Attribute Attribute";
+                longer_text_inputtemplate.Text = "input format : ";
                 return longer_text_inputtemplate;
             }
             set
@@ -135,12 +135,16 @@ namespace WpfApp1.Models
             /*Obj.GetType().GetProperties().ToList().Select(prop => prop.GetValue(Obj));*/
         }
 
-        private AppearanceSettings EmptyFieldToRed(AppearanceSettings Obj)
+        private void EmptyFieldToRed(AppearanceSettings Obj)
         {
             Obj.Background = Obj.Text == "ChangeToRed" ? Brushes.Red : Brushes.White;
             Obj.Foreground = Obj.Text == "ChangeToRed" ? Brushes.White : Brushes.Black;
             Obj.ReqField = AppearanceSettings.RequiredField.Yes;
-            return Obj;
+        }
+
+        private void EmptyButtonWindowToRed(AppearanceSettings Button, params AppearanceSettings[] Objects)
+        {
+            Button.Background = Objects.Any(obj => obj.Text == "ChangeToRed") ? Brushes.Red : Brushes.White;
         }
 
         private AppearanceSettings SetStandardLabelAppearance1(AppearanceSettings Obj)

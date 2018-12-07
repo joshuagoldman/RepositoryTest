@@ -47,12 +47,9 @@ namespace WpfApp1.Methods
 
             var AppearanceSettingsInstances = ControlInfo.GetType().
                 GetProperties().Select(prop => (AppearanceSettings)prop.GetValue(ControlInfo)).
-                Where(prop => prop != null && 
-                              prop.ReqField == AppearanceSettings.RequiredField.Yes).ToList();
+                Where(prop => prop != null).ToList();
 
-            AppearanceSettingsInstances.ForEach(obj => obj.Text = CurrWindows.ToList().Any(window => !string.IsNullOrEmpty(GetWindowText(obj, (Window)window))) ?
-                                                                  CurrWindows.ToList().Select(window => GetWindowText(obj, (Window)window)).
-                                                                  Where(str => !string.IsNullOrEmpty(str)).FirstOrDefault() : "ChangeToRed");
+            AppearanceSettingsInstances.ForEach(obj => obj.Text = ChooseText(CurrWindows.ToList().Select(window => GetWindowText(obj, (Window)window)).ToArray()));
 
         }
 
@@ -60,8 +57,21 @@ namespace WpfApp1.Methods
         {
             var Results = Win.FindName(obj.NameProp)?.GetType().GetProperties().
             Where(prop => prop.Name.Equals("Text"));
-            return Results == null || Results.Count() == 0 ? "" : Results.FirstOrDefault().
-            GetValue(Win.FindName(obj.NameProp)).ToString();
+            return Results == null || Results.Count() == 0 ? "" : 
+                   obj.ReqField == AppearanceSettings.RequiredField.Yes &&
+                   Results.FirstOrDefault().GetValue(Win.FindName(obj.NameProp)).ToString().Count() == 0 ? "ChangeToRed" :
+                   Results.FirstOrDefault().GetValue(Win.FindName(obj.NameProp)).ToString();
+        }
+
+        public string ChooseText(string[] Options)
+        {
+            return Options.All(option => string.IsNullOrEmpty(option)) ?
+                   Options.FirstOrDefault() :
+                   Options.All(option => option != "ChangeToRed") ?
+                   Options.Where(option => option != "ChangeToRed" && !string.IsNullOrEmpty(option)).FirstOrDefault() :
+                   Options.Where(option => option == "ChangeToRed").FirstOrDefault();
+
+
         }
 
         public void RedNotificationPopUpMessage()
@@ -88,7 +98,8 @@ namespace WpfApp1.Methods
                                   parent_above_child_no_attr: "SearchKeys",
                                   instantiate_choice: ExEmEl.Instantiate.Both);
                 Xml.TreeCreation.GetTree();
-                ControlInfo.TextBlockObject.Text = Xml.TreeCreation.NewTree.XPathSelectElements("child::*").FirstOrDefault().ToString();
+                ControlInfo.TextBlockObject.Text = $"Searchgroup: {ControlInfo.SearchGroup.Text} \n\n\n " +
+                    $"{Xml.TreeCreation.NewTree.XPathSelectElements("child::*").FirstOrDefault().ToString()}";
             }
         }
 

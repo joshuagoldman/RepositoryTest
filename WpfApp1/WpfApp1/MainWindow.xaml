@@ -42,14 +42,14 @@
 						<ColumnDefinition Width="*" />
 						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
-					<TextBlock  Background="Yellow" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" Text="Search Key"  Grid.Column="0" Grid.Row="0"></TextBlock>
+					<TextBlock  Background="Chocolate" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" Text="Search Key"  Grid.Column="0" Grid.Row="0"></TextBlock>
 					<TextBox Name="SearchKey" FontSize="15" Grid.Column="0"  Grid.Row="1" Background="{Binding Path= SearchKey.Background, Mode=TwoWay}" Foreground="{Binding Path= SearchKey.Foreground, Mode=TwoWay}" ></TextBox>
-					<TextBlock Background="Green" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" Text="SearchGroup" Grid.Column="1"  Grid.Row="0" ></TextBlock>
+					<TextBlock Background="Chocolate" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" Text="SearchGroup" Grid.Column="1"  Grid.Row="0" ></TextBlock>
 					<TextBox Name="SearchGroup" FontSize="15" Grid.Column="1"  Grid.Row="1" Background="{Binding Path= SearchGroup.Background, Mode=TwoWay}" Foreground="{Binding Path= SearchGroup.Foreground, Mode=TwoWay}"></TextBox>
 				</Grid>
             </StackPanel>
         </Border>
-        <Label Grid.Column="1" Grid.Row="4" BorderBrush="Black" BorderThickness="3,3,3,3" Content="Information" Background="LawnGreen" FontSize="25" HorizontalContentAlignment="Center" />
+		<Label Grid.Column="1" Grid.Row="4" BorderBrush="Black" BorderThickness="3,3,3,3" Content="Information" Background="Chocolate" FontSize="25" HorizontalContentAlignment="Center" />
         <ScrollViewer Grid.Column="1" Margin="0,0,0,10" Grid.Row="5" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" >
             <Border BorderBrush="Black" BorderThickness="3,0,3,3">
                 <StackPanel Orientation="Horizontal">
@@ -100,7 +100,7 @@
                 </StackPanel>
             </Border>
         </ScrollViewer>
-        <Label Grid.Column="1" Grid.Row="6" Content="Searchsettings" BorderBrush="Black" BorderThickness="3,3,3,3" Background= "Red" FontSize="25" HorizontalContentAlignment="Center" />
+		<Label Grid.Column="1" Grid.Row="6" Content="Searchsettings" BorderBrush="Black" BorderThickness="3,3,3,3" Background= "Chocolate" FontSize="25" HorizontalContentAlignment="Center" />
         <ScrollViewer Grid.Column="1" Grid.Row="7" Margin="0,0,0,10" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" >
             <Border BorderBrush="Black" BorderThickness="3,0,3,3">
                 <StackPanel Orientation="Horizontal">
@@ -135,7 +135,7 @@
 							<RowDefinition Height="30"/>
 						</Grid.RowDefinitions>
                         <TextBlock Name="ProductsLabel" Grid.Row="0" Text="Product" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-						<Button Name="Products" Content="Edit" Click="Products_Clicked" Background="{Binding Path= Products.Background}" Grid.Row="1"></Button>
+						<Button Name="Product" Content="Edit" Click="Products_Clicked" Background="{Binding Path= Product.Background}" Grid.Row="1"></Button>
                     </Grid>
 					<Grid>
 						<Grid.ColumnDefinitions>
@@ -143,10 +143,10 @@
 						</Grid.ColumnDefinitions>
 						<Grid.RowDefinitions>
 							<RowDefinition Height="60"/>
-							<RowDefinition Height="30"/>
+							<RowDefinition Height="Auto"/>
 						</Grid.RowDefinitions>
-						<TextBlock Name="ExpressionLabel" Grid.Row="0" Text="Expression" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-						<Button Name="Expression" Content="Edit" Click="Expression_Clicked" Background="{Binding Path= Expression.Background}" Grid.Row="1"></Button>
+						<TextBlock Name="ExpressionButtonLabel" Grid.Row="0" Text="Expression" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+						<Button Name="ExpressionButton" Content="Edit" Click="Expression_Clicked" Background="{Binding Path= ExpressionButton.Background}" Grid.Row="1"></Button>
 					</Grid>
 					<Grid>
 						<Grid.ColumnDefinitions>

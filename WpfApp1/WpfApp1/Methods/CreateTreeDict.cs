@@ -21,11 +21,11 @@ namespace WpfApp1.Methods
 
             return new Dictionary<XmlBranchName, XmlBranchInfo>
             {
-                {new XmlBranchName(new string[] {"SearchKey" }),
+                {new XmlBranchName(new string[] {Information.SearchKey.NameProp, "Name", Information.SearchKey.Text }),
                    new XmlBranchInfo("1") },
 
                 {new XmlBranchName(new string[] {"Information" }),
-                   new XmlBranchInfo("2", new string[] {"SearchKey" }) },
+                   new XmlBranchInfo("2", new string[] {Information.SearchKey.NameProp, "Name", Information.SearchKey.Text }) },
 
                 {new XmlBranchName(new string[]{ Information.InputDateWithIndex.NameProp , "Value", Information.InputDateWithIndex.Text }),
                    new XmlBranchInfo("3", new string[] {"Information" }) },
@@ -40,7 +40,7 @@ namespace WpfApp1.Methods
                    new XmlBranchInfo("3", new string[] {"Information" }) },
 
                 {new XmlBranchName(new string[] {"SearchSettings" }),
-                   new XmlBranchInfo("2",new string[] {"SearchKey" }) },
+                   new XmlBranchInfo("2",new string[] {Information.SearchKey.NameProp, "Name", Information.SearchKey.Text }) },
 
                 {new XmlBranchName(new string[]{ Information.ExcludeTestTypes.NameProp, "Value", Information.ExcludeTestTypes.Text }),
                    new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
@@ -51,14 +51,14 @@ namespace WpfApp1.Methods
                 {new XmlBranchName(new string[] {"Products" }),
                    new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
 
-                {new XmlBranchName(sev_tags: MakeReapeatedTagDictionary(Information.Product.NameProp,
+                {new XmlBranchName(sev_tags: MakeReapeatedTag(Information.Product.NameProp,
                                                         Information.Product.Text)),
-                   new XmlBranchInfo("4", new string[] {"Products" }) },
+                   new XmlBranchInfo("4", new string[] { "Products" }) },
 
                 {new XmlBranchName(new string[]{ Information.Expression.NameProp, "Value", Information.Expression.Text }),
                    new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
 
-                {new XmlBranchName(sev_tags: MakeReapeatedTagDictionary(Information.Variable.NameProp,
+                {new XmlBranchName(sev_tags: MakeReapeatedTag(Information.Variable.NameProp,
                                                         Information.Variable.Text)),
                    new XmlBranchInfo("4", new string[]{ Information.Expression.NameProp, "Value", Information.Expression.Text }) },
 
@@ -66,6 +66,9 @@ namespace WpfApp1.Methods
                    new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
 
                 {new XmlBranchName(new string[]{ Information.RegexOptions.NameProp, "Value", Information.RegexOptions.Text }),
+                   new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
+
+                {new XmlBranchName(new string[]{ Information.IncludeFiles.NameProp, "Value", Information.IncludeFiles.Text }),
                    new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
 
                 {new XmlBranchName(new string[]{ Information.ExcludeFiles.NameProp, "Value", Information.ExcludeFiles.Text }),
@@ -78,7 +81,7 @@ namespace WpfApp1.Methods
                    new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
 
                 {new XmlBranchName(new string[] {"Report" }),
-                   new XmlBranchInfo("2", new string[] {"SearchKey" }) },
+                   new XmlBranchInfo("2", new string[] {Information.SearchKey.NameProp, "Name", Information.SearchKey.Text }) },
 
                 {new XmlBranchName(new string[]{ Information.ReasonReport.NameProp, "Value", Information.ReasonReport.Text }),
                    new XmlBranchInfo("3", new string[] {"Report" }) },
@@ -89,19 +92,19 @@ namespace WpfApp1.Methods
                 {new XmlBranchName(new string[]{ Information.InfoText.NameProp, "Value", Information.InfoText.Text }),
                    new XmlBranchInfo("3", new string[] {"Report" }) },
 
-                {new XmlBranchName(new string[]{ Information.InfoTextExtended.NameProp, "Value", Information.Reason.Text }),
+                {new XmlBranchName(new string[]{ Information.InfoTextExtended.NameProp, "Value", Information.InfoTextExtended.Text }),
                    new XmlBranchInfo("3", new string[] {"Report" }) },
             };
         }
 
-        private string[][] MakeReapeatedTagDictionary(string TagName, string TextInfo)
+        private string[][] MakeReapeatedTag(string TagName, string TextInfo)
         {
 
             var variableRows = TextInfo.Split(new string[] { "\n" }, StringSplitOptions.None).ToArray();
 
             var AllVarsExcessString = variableRows.ToList().
-                Select(row => row.Split(new string[] { "\"" }, StringSplitOptions.None).
-                Select(attr_part => attr_part.Trim().Replace("=", "")));
+                Select(row => row.Split(new string[] { "NEXT" }, StringSplitOptions.None).
+                Select(attr_part => attr_part.Trim()));
 
             var AllVars = AllVarsExcessString.
                 Select(row => new LinkedList<string>(row.ToArray()).AddFirst(TagName).List).
