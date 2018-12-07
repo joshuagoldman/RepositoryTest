@@ -27,7 +27,7 @@ namespace WpfApp1.Models
 
         string name = "";
 
-        Brush foreground = Brushes.Blue;
+        Brush foreground = Brushes.Black;
 
         RequiredField req_field = RequiredField.No;
 

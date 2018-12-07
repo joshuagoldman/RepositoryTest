@@ -130,13 +130,15 @@ namespace WpfApp1.Methods
                                                      SaveXmlFile.No;
                 }
                 if (SaveThisFile == SaveXmlFile.Yes)
-                    Xml.Find.FindByElement(new List<string> { "SearchGroup","Name",ControlInfo.SearchGroup.Text });
-                Xml.Find.ChildParentElement.Add(Xml.TreeCreation.NewTree.Nodes());
-                Xml.XDoc.Save(Xml.FilePath);
-                MessageBoxResult result = MessageBox.Show($"The generated searchkey was saved in: \r\n\r\n {Xml.FilePath}",
-                  "Information",
-                  MessageBoxButton.OK,
-                  MessageBoxImage.Information);
+                {
+                    Xml.Find.FindByElement(new List<string> { "SearchGroup", "Name", ControlInfo.SearchGroup.Text });
+                    Xml.Find.ChildParentElement.Add(Xml.TreeCreation.NewTree.Nodes());
+                    Xml.XDoc.Save(Xml.FilePath);
+                    MessageBoxResult result = MessageBox.Show($"The generated searchkey was saved in: \r\n\r\n {Xml.FilePath}",
+                      "Information",
+                      MessageBoxButton.OK,
+                      MessageBoxImage.Information);
+                }
             }
         }
 

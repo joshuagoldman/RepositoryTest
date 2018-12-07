@@ -25,7 +25,7 @@
 					<RowDefinition Height="100"/>
 				</Grid.RowDefinitions>
 				<TextBlock Name="ProductLabel" Grid.Row="0" Text="{Binding Path= LongerTextInputTemplate.Text, Mode=TwoWay}" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}" HorizontalAlignment="Right" Width="452"></TextBlock>
-				<TextBox Name="Product" AcceptsReturn="True" TextAlignment="Center" Grid.Row="1" Background="{Binding Path= Product.Background, Mode=TwoWay}" Foreground="{Binding Path= Product.Foreground, Mode=TwoWay}"></TextBox>
+				<TextBox Name="Product" AcceptsReturn="True" TextAlignment="Center" Grid.Row="1" Background="{Binding Path= Product.Background, Mode=TwoWay}" Foreground="{Binding Path= Product.Foreground, Mode=TwoWay}" FontSize="{Binding Path= StandardTextBoxAppearance1.FontSize, Mode=TwoWay}"></TextBox>
 			</Grid>
 		</StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center">

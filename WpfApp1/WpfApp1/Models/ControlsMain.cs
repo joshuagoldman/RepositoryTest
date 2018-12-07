@@ -29,8 +29,8 @@ namespace WpfApp1.Models
             get
             {
                 textblock_object.FontSize = double.Parse("14");
-                textblock_object.Background = Brushes.White;
-                textblock_object.Foreground = Brushes.Black;
+                textblock_object.Background = Brushes.Transparent;
+                textblock_object.Foreground = Brushes.White;
                 return textblock_object;
             } 
             set
@@ -150,7 +150,7 @@ namespace WpfApp1.Models
         private AppearanceSettings SetStandardLabelAppearance1(AppearanceSettings Obj)
         {
             Obj.TextWrapping = TextWrapping.Wrap;
-            Obj.Background = Brushes.Aqua;
+            Obj.Background = Brushes.DimGray;
             Obj.FontSize = double.Parse("15");
             return Obj;
         }
@@ -158,14 +158,15 @@ namespace WpfApp1.Models
         private AppearanceSettings SetStandardTextBoxAppearance1(AppearanceSettings Obj)
         {
             Obj.TextWrapping = TextWrapping.Wrap;
-            Obj.FontSize = double.Parse("10");
+            Obj.TextAlignment = TextAlignment.Center;
+            Obj.FontSize = double.Parse("15");
             return Obj;
         }
 
         private AppearanceSettings SetStandardComboBoxBoxAppearance1(AppearanceSettings Obj)
         {
             Obj.Background = Brushes.DimGray;
-            Obj.FontSize = double.Parse("10");
+            Obj.FontSize = double.Parse("15");
             return Obj;
         }
 

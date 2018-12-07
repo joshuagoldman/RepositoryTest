@@ -102,13 +102,19 @@ namespace WpfApp1.Methods
 
             var variableRows = TextInfo.Split(new string[] { "\n" }, StringSplitOptions.None).ToArray();
 
-            var AllVarsExcessString = variableRows.ToList().
+            var AllAttr = variableRows.ToList().
                 Select(row => row.Split(new string[] { "NEXT" }, StringSplitOptions.None).
                 Select(attr_part => attr_part.Trim()));
 
-            var AllVars = AllVarsExcessString.
-                Select(row => new LinkedList<string>(row.ToArray()).AddFirst(TagName).List).
-                Select(row => row.Take(row.Count - 1).ToArray()).ToArray();
+            var ListWTagNAttr = new List<List<string>>();
+
+            AllAttr.ToList().ForEach(row => ListWTagNAttr.Add(new List<string> { TagName }));
+
+            var AllVarsMatrix = AllAttr.Zip(ListWTagNAttr, (x, y) => new { attr = x, tag = y });
+
+            AllVarsMatrix.ToList().ForEach(row => row.tag.AddRange(row.attr.ToList()));
+
+            var AllVars = AllVarsMatrix.Select(row => row.tag.ToArray()).ToArray();
 
             return AllVars;
 
