@@ -22,6 +22,7 @@ using XmlFeatures.XmlDoc;
 using Application = System.Windows.Application;
 using System.Reflection;
 using System.Xml.XPath;
+using System.Xml.Linq;
 
 namespace WpfApp1.Methods
 {
@@ -36,6 +37,10 @@ namespace WpfApp1.Methods
         public AllWindows AllWind { get; set; }
 
         private enum SaveXmlFile { Yes, No }
+
+        private enum CriteriaSearchKeyExistance { CritExists, KeyExists, NoneExist }
+
+        private XElement SearchKeyNode { get; set; }
 
         public ChoiceActions()
         {
@@ -57,7 +62,7 @@ namespace WpfApp1.Methods
         {
             var Results = Win.FindName(obj.NameProp)?.GetType().GetProperties().
             Where(prop => prop.Name.Equals("Text"));
-            return Results == null || Results.Count() == 0 ? "" : 
+            return Results == null || Results.Count() == 0 ? "" :
                    obj.ReqField == AppearanceSettings.RequiredField.Yes &&
                    Results.FirstOrDefault().GetValue(Win.FindName(obj.NameProp)).ToString().Count() == 0 ? "ChangeToRed" :
                    Results.FirstOrDefault().GetValue(Win.FindName(obj.NameProp)).ToString();
@@ -86,7 +91,7 @@ namespace WpfApp1.Methods
 
             if (PopupWindowTest)
             {
-                MessageBoxResult result = MessageBox.Show($"Fields:\r\n\r\n {String.Join(",\r\n\r\n", RedFields).Replace("TextBoxObject","").Replace("LabelObject", "") } ,\r\n\r\nare empty. Fill required fields and retry.",
+                MessageBoxResult result = MessageBox.Show($"Fields:\r\n\r\n {String.Join(",\r\n\r\n", RedFields).Replace("TextBoxObject", "").Replace("LabelObject", "") } ,\r\n\r\nare empty. Fill required fields and retry.",
                                           "Error",
                                           MessageBoxButton.OK,
                                           MessageBoxImage.Error);
@@ -94,7 +99,7 @@ namespace WpfApp1.Methods
             else
             {
                 var TreeDict = Dict.GetTreeDict();
-                Xml.XmlSearchInfo(tree_dict: TreeDict,     
+                Xml.XmlSearchInfo(tree_dict: TreeDict,
                                   parent_above_child_no_attr: "SearchKeys",
                                   instantiate_choice: ExEmEl.Instantiate.Both);
                 Xml.TreeCreation.GetTree();
@@ -118,7 +123,7 @@ namespace WpfApp1.Methods
             else
             {
                 var SearchKeyElement =
-    Xml.XDoc.XPathSelectElement($"*//SearchKey[@Name = '{ControlInfo.SearchKey.Text}']") ?? null;
+                    Xml.XDoc.XPathSelectElement($"*//SearchKey[@Name = '{ControlInfo.SearchKey.Text}']") ?? null;
                 if (SearchKeyElement != null)
                 {
                     MessageBoxResult QuestionResult = MessageBox.Show("The search key already exists. Are you sure you want to continue and save?",
@@ -142,5 +147,40 @@ namespace WpfApp1.Methods
             }
         }
 
+        public void CheckTreeExistence()
+        {
+            var Test = Xml.XDoc.XPathSelectElement($"//{ControlInfo.CriteriaReferenceWithRevision.Text ?? "kkk"}") != null ? CriteriaSearchKeyExistance.CritExists :
+                       Xml.XDoc.XPathSelectElement($"//{ControlInfo.SearchKey.Text ?? "kkk"}/../../.[LAST]") != null ? CriteriaSearchKeyExistance.KeyExists :
+                                                                                                         CriteriaSearchKeyExistance.NoneExist;
+
+            switch (Test)
+            {
+                case CriteriaSearchKeyExistance.CritExists:
+                    SearchKeyNode = Xml.XDoc.XPathSelectElement($"//{ControlInfo.SearchKey.Text}");
+                    ControlInfo.TextBlockObject.Text = $"Searchgroup: {ControlInfo.SearchGroup.Text} \n\n\n " +
+                    $"{SearchKeyNode.XPathSelectElements("child::*").FirstOrDefault().ToString()}";
+
+                    break;
+                case CriteriaSearchKeyExistance.KeyExists:
+                    SearchKeyNode = Xml.XDoc.XPathSelectElement($"//{ControlInfo.CriteriaReferenceWithRevision.Text}/../../.[LAST]");
+                    ControlInfo.TextBlockObject.Text = $"Searchgroup: {ControlInfo.SearchGroup.Text} \n\n\n " +
+                    $"{SearchKeyNode.XPathSelectElements("child::*").FirstOrDefault().ToString()}";
+                    break;
+                case CriteriaSearchKeyExistance.NoneExist:
+                    MessageBoxResult result = MessageBox.Show($"The sought for search key could be located!",
+                      "Information",
+                      MessageBoxButton.OK,
+                      MessageBoxImage.Error);
+                    break;
+            }
+        }
+
+        public void WriteTreeTagValuesToApp()
+        {
+            SearchKeyNode.XPathSelectElements("child::*").ToList().
+                ForEach(tag => ControlInfo.GetType().GetProperties().
+                Select(prop => (AppearanceSettings)prop.GetValue(ControlInfo)).
+                Where(prop => prop.NameProp == tag.Name).FirstOrDefault().Text = tag.Value.ToString());
+        }
     }
 }

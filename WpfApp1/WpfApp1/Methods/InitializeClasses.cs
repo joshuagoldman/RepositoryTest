@@ -45,7 +45,7 @@ namespace WpfApp1.Methods
 
         public void PerformInitiliazation()
         {
-            Xml = new ExEmEl(Directory.Exists(@"C:\Users\DELL\Documents\GitRepoJosh\HWLogCriteria.xml") ?
+            Xml = new ExEmEl(Directory.Exists(@"C:\Users\DELL\Documents\GitRepoJosh") ?
                                               @"C:\Users\DELL\Documents\GitRepoJosh\HWLogCriteria.xml" :
                                               @"C:\Users\jogo\Documents\git_Test\HWLogCriteria.xml",
                                               ExEmEl.NewDocument.No);

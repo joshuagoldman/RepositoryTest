@@ -84,5 +84,10 @@ namespace WpfApp1
             InfoTextWin.Show();
             InfoTextWin.DataContext = ClassInit.ChoicAct.ControlInfo;
         }
+
+        private void Get_Clicked(object sender, RoutedEventArgs e)
+        {
+            ClassInit.ChoicAct.CheckTreeExistence();
+        }
     }
 }

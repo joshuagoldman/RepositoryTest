@@ -91,7 +91,7 @@ namespace WpfApp1.Models
             }
         }
 
-        public AppearanceSettings StandardComboBoxBoxAppearance1
+        public AppearanceSettings StandardComboBoxAppearance1
         {
             get
             {
@@ -163,7 +163,7 @@ namespace WpfApp1.Models
             return Obj;
         }
 
-        private AppearanceSettings SetStandardComboBoxBoxAppearance1(AppearanceSettings Obj)
+        private AppearanceSettings SetStandardComboBoxAppearance1(AppearanceSettings Obj)
         {
             Obj.Background = Brushes.DimGray;
             Obj.FontSize = double.Parse("15");
