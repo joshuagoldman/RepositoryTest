@@ -30,7 +30,7 @@ namespace WpfApp1.Models
             {
                 textblock_object.FontSize = double.Parse("14");
                 textblock_object.Background = Brushes.Transparent;
-                textblock_object.Foreground = Brushes.White;
+                textblock_object.Foreground = Brushes.Black;
                 return textblock_object;
             } 
             set

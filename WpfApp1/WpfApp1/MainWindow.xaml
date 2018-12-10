@@ -6,11 +6,8 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="1000" >
-    <Grid Name="Grid">
-        <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\DELL\Documents\GitRepoJosh\WpfApp1\WpfApp1\Pictures\picture_sky_sunset.jpg" />
-        </Grid.Background>
-        <Grid.ColumnDefinitions>
+	<Grid Name="Grid">
+		<Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
             <ColumnDefinition Width="450" />
             <ColumnDefinition Width="*"/>

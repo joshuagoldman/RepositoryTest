@@ -139,7 +139,7 @@ namespace WpfApp1.Methods
                     Xml.Find.FindByElement(new List<string> { "SearchGroup", "Name", ControlInfo.SearchGroup.Text });
                     Xml.Find.ChildParentElement.Add(Xml.TreeCreation.NewTree.Nodes());
                     Xml.XDoc.Save(Xml.FilePath);
-                    MessageBoxResult result = MessageBox.Show($"The generated searchkey was saved in: \r\n\r\n {Xml.FilePath}",
+                    MessageBoxResult result = MessageBox.Show($"The generated searchkey was saved on: \r\n\r\n {Xml.FilePath}",
                       "Information",
                       MessageBoxButton.OK,
                       MessageBoxImage.Information);
@@ -149,25 +149,32 @@ namespace WpfApp1.Methods
 
         public void CheckTreeExistence()
         {
-            var Test = Xml.XDoc.XPathSelectElement($"//{ControlInfo.CriteriaReferenceWithRevision.Text ?? "kkk"}") != null ? CriteriaSearchKeyExistance.CritExists :
-                       Xml.XDoc.XPathSelectElement($"//{ControlInfo.SearchKey.Text ?? "kkk"}/../../.[LAST]") != null ? CriteriaSearchKeyExistance.KeyExists :
-                                                                                                         CriteriaSearchKeyExistance.NoneExist;
+            var CriteriaWRevisionXPath = Xml.XDoc.
+                XPathSelectElement($"(//{ControlInfo.CriteriaReferenceWithRevision.NameProp}[@Value = '{ControlInfo.CriteriaReferenceWithRevision.Text ?? "kkk"}']/../..)[last()]");
+            var SearchKeyXPath = Xml.XDoc.XPathSelectElement($"//{ControlInfo.SearchKey.NameProp}[@Name = '{ControlInfo.SearchKey.Text ?? "kkk"}']");
+
+            /*ControlInfo.GetType().GetProperties().
+                Select(prop => (AppearanceSettings)prop.GetValue(ControlInfo)).
+                Where(prop => prop.Text == "ChangeToRed").ToList().
+                ForEach(prop => prop.Text = "");*/
+
+            var Test = CriteriaWRevisionXPath != null ? CriteriaSearchKeyExistance.CritExists :
+                       SearchKeyXPath != null ? CriteriaSearchKeyExistance.KeyExists : CriteriaSearchKeyExistance.NoneExist;
 
             switch (Test)
             {
                 case CriteriaSearchKeyExistance.CritExists:
-                    SearchKeyNode = Xml.XDoc.XPathSelectElement($"//{ControlInfo.SearchKey.Text}");
-                    ControlInfo.TextBlockObject.Text = $"Searchgroup: {ControlInfo.SearchGroup.Text} \n\n\n " +
-                    $"{SearchKeyNode.XPathSelectElements("child::*").FirstOrDefault().ToString()}";
-
+                    SearchKeyNode = CriteriaWRevisionXPath;
+                    ControlInfo.TextBlockObject.Text = SearchKeyNode.ToString();
+                    WriteTreeTagValuesToApp();
                     break;
                 case CriteriaSearchKeyExistance.KeyExists:
-                    SearchKeyNode = Xml.XDoc.XPathSelectElement($"//{ControlInfo.CriteriaReferenceWithRevision.Text}/../../.[LAST]");
-                    ControlInfo.TextBlockObject.Text = $"Searchgroup: {ControlInfo.SearchGroup.Text} \n\n\n " +
-                    $"{SearchKeyNode.XPathSelectElements("child::*").FirstOrDefault().ToString()}";
+                    SearchKeyNode = SearchKeyXPath;
+                    ControlInfo.TextBlockObject.Text = SearchKeyNode.ToString();
+                    WriteTreeTagValuesToApp();
                     break;
                 case CriteriaSearchKeyExistance.NoneExist:
-                    MessageBoxResult result = MessageBox.Show($"The sought for search key could be located!",
+                    MessageBoxResult result = MessageBox.Show($"The sought for search key could not be located!",
                       "Information",
                       MessageBoxButton.OK,
                       MessageBoxImage.Error);
@@ -177,10 +184,11 @@ namespace WpfApp1.Methods
 
         public void WriteTreeTagValuesToApp()
         {
-            SearchKeyNode.XPathSelectElements("child::*").ToList().
-                ForEach(tag => ControlInfo.GetType().GetProperties().
-                Select(prop => (AppearanceSettings)prop.GetValue(ControlInfo)).
-                Where(prop => prop.NameProp == tag.Name).FirstOrDefault().Text = tag.Value.ToString());
+            ControlInfo.GetType().GetProperties().
+                 Select(prop => (AppearanceSettings)prop.GetValue(ControlInfo)).ToList().
+                 ForEach(prop => prop.Text = SearchKeyNode.XPathSelectElements("*//*").ToList().
+                Where(tag => tag.HasAttributes == true).ToList().
+                FirstOrDefault(tag => prop.NameProp == tag.Name.ToString())?.FirstAttribute.Name.ToString() ?? "");
         }
     }
 }

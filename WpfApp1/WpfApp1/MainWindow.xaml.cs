@@ -87,6 +87,7 @@ namespace WpfApp1
 
         private void Get_Clicked(object sender, RoutedEventArgs e)
         {
+            ClassInit.ChoicAct.ChangeToRedNotification();
             ClassInit.ChoicAct.CheckTreeExistence();
         }
     }
