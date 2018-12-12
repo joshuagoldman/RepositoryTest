@@ -55,7 +55,7 @@ namespace WpfApp1.Methods
                                                         Information.Product.Text)),
                    new XmlBranchInfo("4", new string[] { "Products" }) },
 
-                {new XmlBranchName(new string[]{ Information.Expression.NameProp, "Value", Information.Expression.Text }),
+                {new XmlBranchName(new string[]{ Information.Expression.NameProp, "Equation", Information.Expression.Text }),
                    new XmlBranchInfo("3", new string[] {"SearchSettings" }) },
 
                 {new XmlBranchName(sev_tags: MakeReapeatedTag(Information.Variable.NameProp,
@@ -86,13 +86,13 @@ namespace WpfApp1.Methods
                 {new XmlBranchName(new string[]{ Information.ReasonReport.NameProp, "Value", Information.ReasonReport.Text }),
                    new XmlBranchInfo("3", new string[] {"Report" }) },
 
-                {new XmlBranchName(new string[]{ Information.InfoTextScreening.NameProp, "Value", Information.InfoTextScreening.Text }),
+                {new XmlBranchName(new string[]{ Information.InfotextScreening.NameProp, "Value", Information.InfotextScreening.Text }),
                    new XmlBranchInfo("3", new string[] {"Report" }) },
 
-                {new XmlBranchName(new string[]{ Information.InfoText.NameProp, "Value", Information.InfoText.Text }),
+                {new XmlBranchName(new string[]{ Information.Infotext.NameProp, "Value", Information.Infotext.Text }),
                    new XmlBranchInfo("3", new string[] {"Report" }) },
 
-                {new XmlBranchName(new string[]{ Information.InfoTextExtended.NameProp, "Value", Information.InfoTextExtended.Text }),
+                {new XmlBranchName(new string[]{ Information.InfotextExtended.NameProp, "Value", Information.InfotextExtended.Text }),
                    new XmlBranchInfo("3", new string[] {"Report" }) },
             };
         }

@@ -40,6 +40,8 @@ namespace WpfApp1.Methods
 
         private enum CriteriaSearchKeyExistance { CritExists, KeyExists, NoneExist }
 
+        public enum XtraChoices { None,ClearTextBoxes, RemoveNewLineAtEnd }
+
         private XElement SearchKeyNode { get; set; }
 
         public ChoiceActions()
@@ -54,11 +56,11 @@ namespace WpfApp1.Methods
                 GetProperties().Select(prop => (AppearanceSettings)prop.GetValue(ControlInfo)).
                 Where(prop => prop != null).ToList();
 
-            AppearanceSettingsInstances.ForEach(obj => obj.Text = ChooseText(CurrWindows.ToList().Select(window => GetWindowText(obj, (Window)window)).ToArray()));
+            AppearanceSettingsInstances.ForEach(obj => obj.Text = ChooseTextChangeToRed(CurrWindows.ToList().Select(window => GetWindowTextOrChangeToRed(obj, (Window)window)).ToArray()));
 
         }
 
-        public string GetWindowText(AppearanceSettings obj, Window Win)
+        public string GetWindowTextOrChangeToRed(AppearanceSettings obj, Window Win)
         {
             var Results = Win.FindName(obj.NameProp)?.GetType().GetProperties().
             Where(prop => prop.Name.Equals("Text"));
@@ -68,15 +70,13 @@ namespace WpfApp1.Methods
                    Results.FirstOrDefault().GetValue(Win.FindName(obj.NameProp)).ToString();
         }
 
-        public string ChooseText(string[] Options)
+        public string ChooseTextChangeToRed(string[] Options)
         {
             return Options.All(option => string.IsNullOrEmpty(option)) ?
                    Options.FirstOrDefault() :
                    Options.All(option => option != "ChangeToRed") ?
                    Options.Where(option => option != "ChangeToRed" && !string.IsNullOrEmpty(option)).FirstOrDefault() :
                    Options.Where(option => option == "ChangeToRed").FirstOrDefault();
-
-
         }
 
         public void RedNotificationPopUpMessage()
@@ -110,7 +110,7 @@ namespace WpfApp1.Methods
 
         public void SaveFileOrNot()
         {
-            var SaveThisFile = SaveXmlFile.Yes;
+            var ReplaceSearchKey = SaveXmlFile.Yes;
             var SearchGroupElement =
                 Xml.XDoc.XPathSelectElement($"*//SearchGroup[@Name = '{ControlInfo.SearchGroup.Text}']") ?? null;
             if (SearchGroupElement == null)
@@ -126,17 +126,21 @@ namespace WpfApp1.Methods
                     Xml.XDoc.XPathSelectElement($"*//SearchKey[@Name = '{ControlInfo.SearchKey.Text}']") ?? null;
                 if (SearchKeyElement != null)
                 {
-                    MessageBoxResult QuestionResult = MessageBox.Show("The search key already exists. Are you sure you want to continue and save?",
+                    MessageBoxResult QuestionResult = MessageBox.Show("The search key already exists, and is about to be replicated and saved. Would you like to replace the current one?",
                       "Warning",
-                      MessageBoxButton.YesNo,
+                      MessageBoxButton.YesNoCancel,
                       MessageBoxImage.Question);
-                    SaveThisFile = QuestionResult == MessageBoxResult.Yes ?
+                    ReplaceSearchKey = QuestionResult == MessageBoxResult.Yes ?
                                                      SaveXmlFile.Yes :
                                                      SaveXmlFile.No;
                 }
-                if (SaveThisFile == SaveXmlFile.Yes)
+                if (ReplaceSearchKey == SaveXmlFile.No || ReplaceSearchKey == SaveXmlFile.Yes)
                 {
                     Xml.Find.FindByElement(new List<string> { "SearchGroup", "Name", ControlInfo.SearchGroup.Text });
+                    if(ReplaceSearchKey == SaveXmlFile.Yes)
+                    {
+                        SearchKeyNode.Remove();
+                    }
                     Xml.Find.ChildParentElement.Add(Xml.TreeCreation.NewTree.Nodes());
                     Xml.XDoc.Save(Xml.FilePath);
                     MessageBoxResult result = MessageBox.Show($"The generated searchkey was saved on: \r\n\r\n {Xml.FilePath}",
@@ -153,11 +157,6 @@ namespace WpfApp1.Methods
                 XPathSelectElement($"(//{ControlInfo.CriteriaReferenceWithRevision.NameProp}[@Value = '{ControlInfo.CriteriaReferenceWithRevision.Text ?? "kkk"}']/../..)[last()]");
             var SearchKeyXPath = Xml.XDoc.XPathSelectElement($"//{ControlInfo.SearchKey.NameProp}[@Name = '{ControlInfo.SearchKey.Text ?? "kkk"}']");
 
-            /*ControlInfo.GetType().GetProperties().
-                Select(prop => (AppearanceSettings)prop.GetValue(ControlInfo)).
-                Where(prop => prop.Text == "ChangeToRed").ToList().
-                ForEach(prop => prop.Text = "");*/
-
             var Test = CriteriaWRevisionXPath != null ? CriteriaSearchKeyExistance.CritExists :
                        SearchKeyXPath != null ? CriteriaSearchKeyExistance.KeyExists : CriteriaSearchKeyExistance.NoneExist;
 
@@ -165,12 +164,10 @@ namespace WpfApp1.Methods
             {
                 case CriteriaSearchKeyExistance.CritExists:
                     SearchKeyNode = CriteriaWRevisionXPath;
-                    ControlInfo.TextBlockObject.Text = SearchKeyNode.ToString();
                     WriteTreeTagValuesToApp();
                     break;
                 case CriteriaSearchKeyExistance.KeyExists:
                     SearchKeyNode = SearchKeyXPath;
-                    ControlInfo.TextBlockObject.Text = SearchKeyNode.ToString();
                     WriteTreeTagValuesToApp();
                     break;
                 case CriteriaSearchKeyExistance.NoneExist:
@@ -184,11 +181,94 @@ namespace WpfApp1.Methods
 
         public void WriteTreeTagValuesToApp()
         {
+            var XmlNodes = SearchKeyNode.XPathSelectElements("*//*").ToList().
+                Where(tag => tag.HasAttributes == true).ToList();
+
+            XmlNodes.Add(SearchKeyNode.XPathSelectElements(".").First());
+
+            XmlNodes.Add(SearchKeyNode.XPathSelectElements("(../..)[last()]").First());
+
+            var CurrWindows = AllWind.GetType().GetProperties().
+                Select(window => window.GetValue(AllWind));
+
+            XmlNodes.ForEach(node => GetXmlSearchKeyTextToWindow(CurrWindows.ToList().Select(window => FindAppearanceSettingsTextToWindow(node, (Window)window)).ToArray(),
+                                                                      node));
+
+            XmlNodes.ToList().Where(node => node.Name.ToString() == "Product" || node.Name.ToString() == "Variable").ToList().
+                ForEach(node => GetXmlSearchKeyTextToWindow(CurrWindows.ToList().Select(window => FindAppearanceSettingsTextToWindow(node, (Window)window)).ToArray(),
+                                                                                        node,
+                                                                                        XtraChoices.ClearTextBoxes));
+
+            XmlNodes.ToList().Where(node => node.Name.ToString() == "Product" || node.Name.ToString() == "Variable").ToList().
+                ForEach(node => GetXmlSearchKeyTextToWindowExpNProd(CurrWindows.ToList().Select(window => FindAppearanceSettingsTextToWindow(node, (Window)window)).ToArray(),
+                                                                      node));
+
+            var ExprNProd = new List<XElement>()
+            {
+                XmlNodes.ToList().Where(node => node.Name.ToString() == "Product").FirstOrDefault(),
+                XmlNodes.ToList().Where(node => node.Name.ToString() == "Variable").FirstOrDefault()
+            };
+
+                ExprNProd.ForEach(node => GetXmlSearchKeyTextToWindow(CurrWindows.ToList().Select(window => FindAppearanceSettingsTextToWindow(node, (Window)window)).ToArray(),
+                                                                                        node,
+                                                                                        XtraChoices.RemoveNewLineAtEnd));
+
             ControlInfo.GetType().GetProperties().
-                 Select(prop => (AppearanceSettings)prop.GetValue(ControlInfo)).ToList().
-                 ForEach(prop => prop.Text = SearchKeyNode.XPathSelectElements("*//*").ToList().
-                Where(tag => tag.HasAttributes == true).ToList().
-                FirstOrDefault(tag => prop.NameProp == tag.Name.ToString())?.FirstAttribute.Name.ToString() ?? "");
+                Select(prop => (AppearanceSettings)prop.GetValue(ControlInfo)).ToList().
+                ForEach(prop => { prop.Background = Brushes.White;
+                                  prop.Foreground = Brushes.Black;
+                                  prop.Text = "";
+                });
+
+            var SearchGroupNameXmlFIleToText = SearchKeyNode.XPathSelectElements("(../..)[last()]").First().FirstAttribute.Value.ToString();
+            ControlInfo.TextBlockObject.Text = $"Searchgroup: {SearchGroupNameXmlFIleToText} \n\n\n " + 
+                                               SearchKeyNode.ToString();
+        }
+
+        public object FindAppearanceSettingsTextToWindow(XElement node, Window Win)
+        {
+            var Results = Win.FindName(node.Name.ToString())?.GetType().GetProperties().
+            Where(prop => prop.Name.Equals("Text"));
+            return Results == null || Results.Count() == 0 ? null :
+                    Win;
+        }
+
+        public void GetXmlSearchKeyTextToWindow(object[] Options, XElement obj, XtraChoices Choice = XtraChoices.None)
+        {
+            if (Options.Any(option => option != null))
+            {
+                var WinNoCast = Options.FirstOrDefault(option => option != null);
+                var Win = (Window)WinNoCast;
+                var WinTextProp = Win.FindName(obj.Name.ToString())?.GetType().GetProperties().
+                    Where(prop => prop.Name.Equals("Text")).FirstOrDefault();
+                WinTextProp.SetValue(Win.FindName(obj.Name.ToString()), 
+                                  Choice == XtraChoices.ClearTextBoxes ? "" :
+                                  Choice == XtraChoices.RemoveNewLineAtEnd ? 
+                                  WinTextProp.GetValue(Win.FindName(obj.Name.ToString())).ToString().
+                                  Substring(0, WinTextProp.GetValue(Win.FindName(obj.Name.ToString())).ToString().Length - "\n".Length) :
+                                  obj.FirstAttribute.Value.ToString());
+            }
+        }
+
+        public void GetXmlSearchKeyTextToWindowExpNProd(object[] Options, XElement obj)
+        {            
+            if (Options.Any(option => option != null))
+            {
+                var WinNoCast = Options.FirstOrDefault(option => option != null);
+                var Win = (Window)WinNoCast;
+                var ExistingValue = Win.FindName(obj.Name.ToString())?.GetType().GetProperties().
+                    Where(prop => prop.Name.Equals("Text")).FirstOrDefault().
+                    GetValue(Win.FindName(obj.Name.ToString()));
+                var ModifiedString = (string)ExistingValue + string.Join(",", obj.Attributes().
+                    Select(attr => attr.Name.ToString() + "NEXT" + attr.Value.ToString() + "NEXT").ToArray()).
+                    Replace(",", "");
+
+                ModifiedString = ModifiedString.Substring(0, ModifiedString.Length - "NEXT".Length) + "\n";
+
+                Win.FindName(obj.Name.ToString())?.GetType().GetProperties().
+                    Where(prop => prop.Name.Equals("Text")).FirstOrDefault().
+                    SetValue(Win.FindName(obj.Name.ToString()), ModifiedString);
+            }
         }
     }
 }

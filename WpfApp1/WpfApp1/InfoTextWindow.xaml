@@ -25,7 +25,7 @@
 					<RowDefinition Height="100"/>
 				</Grid.RowDefinitions>
 				<TextBlock Name="InfoTextLabel" Grid.Row="0" Text="Info Text" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}" HorizontalAlignment="Right" Width="452"></TextBlock>
-				<TextBox Name="InfoText" AcceptsReturn="True" TextAlignment="Center" Grid.Row="1" Background="{Binding Path= InfoText.Background, Mode=TwoWay}" FontSize="{Binding Path= StandardTextBoxAppearance1.FontSize, Mode=TwoWay}"></TextBox>
+				<TextBox Name="Infotext" AcceptsReturn="True" TextAlignment="Center" Grid.Row="1" Background="{Binding Path= InfoText.Background, Mode=TwoWay}" FontSize="{Binding Path= StandardTextBoxAppearance1.FontSize, Mode=TwoWay}"></TextBox>
 			</Grid>
 		</StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center">

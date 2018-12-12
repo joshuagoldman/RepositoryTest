@@ -79,7 +79,7 @@ namespace WpfApp1
             ProdWindow.DataContext = ClassInit.ChoicAct.ControlInfo;
         }
 
-        private void InfoText_Clicked(object sender, RoutedEventArgs e)
+        private void Infotext_Clicked(object sender, RoutedEventArgs e)
         {
             InfoTextWin.Show();
             InfoTextWin.DataContext = ClassInit.ChoicAct.ControlInfo;

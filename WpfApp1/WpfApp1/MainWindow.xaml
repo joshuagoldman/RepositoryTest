@@ -246,7 +246,7 @@
                                         <RowDefinition Height="30"/>
                                     </Grid.RowDefinitions>
                                     <TextBlock Name="InfotextScreeningLabel" Grid.Row="0" Text="Infotext Screening" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-                                    <TextBox Name="InfoTextScreening" Background="{Binding Path= StandardTextBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}" TextAlignment="{Binding Path= StandardTextBoxAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardTextBoxAppearance1.FontSize, Mode=TwoWay}"  Grid.Row="1"></TextBox>
+                                    <TextBox Name="InfotextScreening" Background="{Binding Path= StandardTextBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}" TextAlignment="{Binding Path= StandardTextBoxAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardTextBoxAppearance1.FontSize, Mode=TwoWay}"  Grid.Row="1"></TextBox>
                                 </Grid>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -256,8 +256,8 @@
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="30"/>
                                     </Grid.RowDefinitions>
-                                    <TextBlock Name="InfoTextLabel" Grid.Row="0" Text="Infotext" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-                                    <Button Name="InfoText" Content="Edit" Click="InfoText_Clicked" Background="{Binding Path= InfoText.Background}" Grid.Row="1"></Button>
+                                    <TextBlock Name="InfotextLabel" Grid.Row="0" Text="Infotext" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+                                    <Button Name="Infotext" Content="Edit" Click="Infotext_Clicked" Background="{Binding Path= Infotext.Background}" Grid.Row="1"></Button>
                                 </Grid>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -267,8 +267,8 @@
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="30"/>
                                     </Grid.RowDefinitions>
-                                    <TextBlock Name="InfoTextExtendedLabel" Grid.Row="0" Text="InfoText Extended" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-                                    <TextBox Name="InfoTextExtended" Background="{Binding Path= StandardTextBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}" TextAlignment="{Binding Path= StandardTextBoxAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardTextBoxAppearance1.FontSize, Mode=TwoWay}"  Grid.Row="1"></TextBox>
+                                    <TextBlock Name="InfotextExtendedLabel" Grid.Row="0" Text="Infotext Extended" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+                                    <TextBox Name="InfotextExtended" Background="{Binding Path= StandardTextBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}" TextAlignment="{Binding Path= StandardTextBoxAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardTextBoxAppearance1.FontSize, Mode=TwoWay}"  Grid.Row="1"></TextBox>
                                 </Grid>
                             </StackPanel>
                         </Border>

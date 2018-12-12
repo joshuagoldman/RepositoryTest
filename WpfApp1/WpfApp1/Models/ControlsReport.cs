@@ -33,7 +33,7 @@ namespace WpfApp1.Models
             }
         }
 
-        public AppearanceSettings InfoTextScreening
+        public AppearanceSettings InfotextScreening
         {
             get
             {
@@ -45,7 +45,7 @@ namespace WpfApp1.Models
             }
         }
         
-        public AppearanceSettings InfoText
+        public AppearanceSettings Infotext
         {
             get
             {
@@ -58,7 +58,7 @@ namespace WpfApp1.Models
             }
         }
 
-        public AppearanceSettings InfoTextExtended
+        public AppearanceSettings InfotextExtended
         {
             get
             {

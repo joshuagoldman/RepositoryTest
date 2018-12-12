@@ -2,7 +2,7 @@
 <Document>
   <Date>2018-11-29</Date>
   <DocumentNumber>19062-LPA 108 338</DocumentNumber>
-  <Revision>AY02</Revision>
+  <Revision>AY03</Revision>
   <SearchGroups>
     <SearchGroup Name="DUW_DUL_DUS">
       <ReportFile File="dumpelg.txt" ContentReading="Bottom" LineCount="30" />
@@ -2649,34 +2649,6 @@
             <Infotext Value="Replace the DC diode RKZ323488/1, component pos V5800 at board ROA1283580/1." />
           </Report>
         </SearchKey>
-        <SearchKey Name="I2C_alarms_7">
-          <Information>
-            <InputDateWithIndex Value="2015-11-27;12" />
-            <CriteriaReferenceWithRevision Value="2/002 01-LPA108 833-4;B" />
-            <Responsible Value="EBOLONG Steven Long" />
-            <Reason Value="" />
-          </Information>
-          <SearchSettings>
-            <SerialNumber Value="*" />
-            <Products>
-              <Product ProductNumber="KRC 161 254/2" RState="*" />
-            </Products>
-            <Expression Equation="X &gt;= 2">
-              <Variable Name="X" Value="I2C" />
-            </Expression>
-            <SearchPathOption Value="AllDirectories" />
-            <RegexOptions Value="None" />
-            <IncludeFiles Value="hwlogread.txt" />
-            <ExcludeFiles Value="" />
-            <ScreeningAllowed Value="NO" />
-            <IncludedInTest Value="YES" />
-          </SearchSettings>
-          <Report>
-            <Reason Value="*I2C*" />
-            <InfotextScreening Value="Send to repair centre." />
-            <Infotext Value="Replace the DC diode RKZ323488/1, component pos V5800 at board ROA1283580/1." />
-          </Report>
-        </SearchKey>
         <SearchKey Name="I2C_alarms_8">
           <Information>
             <InputDateWithIndex Value="2015-11-27;12" />
@@ -5026,6 +4998,66 @@
             <Infotext Value="Fault Inds 317 and 837 present in HW Log. Replace components at positions N5400 and N5100. Report both as A105/59" />
           </Report>
         </SearchKey>
+        <SearchKey Name="I2C_alarms_7">
+          <Information>
+            <InputDateWithIndex Value="2015-11-27;12" />
+            <CriteriaReferenceWithRevision Value="2/002 01-LPA108 833-4;B" />
+            <Responsible Value="EBOLONG Steven Long" />
+            <Reason Value="*I2C*" />
+          </Information>
+          <SearchSettings>
+            <SerialNumber Value="*" />
+            <Products>
+              <Product ProductNumber="KRC 161 254/2" RState="*" />
+            </Products>
+            <Expression Value="X &gt;= 2">
+              <Variable Name="X" Value="I2C" />
+            </Expression>
+            <SearchPathOption Value="AllDirectories" />
+            <RegexOptions Value="None" />
+            <IncludeFiles Value="hwlogread.txt" />
+            <ScreeningAllowed Value="NO" />
+            <IncludedInTest Value="YES" />
+          </SearchSettings>
+          <Report>
+            <InfotextScreening Value="Send to repair centre." />
+            <Infotext Value="I changed this text to my own! / Joshua Goldman" />
+          </Report>
+        </SearchKey>
+        <SearchKey Name="Linearization_problems, 2/-7, Rev C">
+          <Information>
+            <InputDateWithIndex Value="2018-10-05" />
+            <CriteriaReferenceWithRevision Value="2/154 51-LPA 108 338-7;C" />
+            <Responsible Value="ERABSUN Bo Sundegård" />
+          </Information>
+          <SearchSettings>
+            <ExcludeTestTypes Value="RcPrtt,RcExtPrtt,RcLat,RcExtLat" />
+            <SerialNumber Value="*" />
+            <Products>
+              <Product ProductNumber="KRC 118*" RState="*" />
+              <Product ProductNumber="KRC 161*" RState="*" />
+            </Products>
+            <Expression Value="((X1 + X2 + X3 + X4 + X5 + X6) &gt;= 1) or ((X7 + X8) &gt;= 1) ">
+              <Variable Name="X1" Value="676;" />
+              <Variable Name="X2" Value="678;" />
+              <Variable Name="X3" Value="691;" />
+              <Variable Name="X4" Value="693;" />
+              <Variable Name="X5" Value="846;" />
+              <Variable Name="X6" Value="848;" />
+              <Variable Name="X7" Value="supervision" />
+              <Variable Name="X8" Value="ramping" />
+            </Expression>
+            <SearchPathOption Value="AllDirectories" />
+            <RegexOptions Value="None" />
+            <IncludeFiles Value="hwlogread.txt,elogread.txt" />
+            <ScreeningAllowed Value="YES" />
+            <IncludedInTest Value="YES" />
+          </SearchSettings>
+          <Report>
+            <InfotextScreening Value="Send to Repair." />
+            <Infotext Value="I added information text here!" />
+          </Report>
+        </SearchKey>
       </SearchKeys>
     </SearchGroup>
     <SearchGroup Name="DUG">
@@ -5350,7 +5382,7 @@
         <SearchKey Name="Boot Fallback - Node suffers from corrupt backup, 1/-35">
           <Information>
             <InputDateWithIndex Value="2018-06-07;5(5)" />
-            <CriteriaReferenceWithRevision Value="1/15451-LPA108 338-35;A" />
+            <CriteriaReferenceWithRevision Value="       " />
             <Responsible Value="UABBETI - Stefan Bertolotti, EIVOCUR - Ivor Curik" />
             <Reason Value="" />
           </Information>
@@ -9732,8 +9764,8 @@
           <SearchSettings>
             <SerialNumber Value="*" />
             <Products>
-              <Product ProductNumber="KDV 137 925/31" RState="*" />
-              <Product ProductNumber="KDV 137 925/41" RState="*" />
+              <Product ProductNumber="KDU 137 925/31" RState="*" />
+              <Product ProductNumber="KDU 137 925/41" RState="*" />
               <Product ProductNumber="KDV 127 620/11" RState="*" />
               <Product ProductNumber="KDV 127 621/11" RState="*" />
               <Product ProductNumber="KDU 137 847/11" RState="*" />

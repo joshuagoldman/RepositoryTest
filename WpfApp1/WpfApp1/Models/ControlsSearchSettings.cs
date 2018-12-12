@@ -32,7 +32,7 @@ namespace WpfApp1.Models
         {
             get
             {
-                exclude_test_types.ItemsSource = new string[] { "RCPrtt", "LAT", "Prtt" };
+                exclude_test_types.ItemsSource = new string[] { "", "RcExtPrtt", "RcExtLat", "RCPrtt" };
                 return exclude_test_types;
             } 
             set
@@ -110,7 +110,7 @@ namespace WpfApp1.Models
         {
             get
             {
-                search_path_option.ItemsSource = new string[] { "CLAT", "LAT", "Prtt" };
+                search_path_option.ItemsSource = new string[] { "", "AllDirectories", "ALLDirectories" };
                 return search_path_option;
             } 
             set
@@ -123,7 +123,7 @@ namespace WpfApp1.Models
         {
             get
             {
-                regex_options.ItemsSource = new string[] { "YES","NO" };
+                regex_options.ItemsSource = new string[] { "YES","None" };
                 EmptyFieldToRed(regex_options);
                 return regex_options;
             }
@@ -150,8 +150,7 @@ namespace WpfApp1.Models
         public AppearanceSettings ExcludeFiles
         {
             get
-            {
-                EmptyFieldToRed(exclude_files);                
+            {               
                 return exclude_files;
             } 
             set

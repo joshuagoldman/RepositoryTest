@@ -108,7 +108,7 @@ namespace WpfApp1.Models
         {
             get
             {
-                longer_text_inputtemplate.Text = "input format : ";
+                longer_text_inputtemplate.Text = "input format variables/products : \nAttribute name 1  NEXT Attribute value 1 ...\nAttribute name 1  NEXT Attribute value 1 ...";
                 return longer_text_inputtemplate;
             }
             set
@@ -124,15 +124,6 @@ namespace WpfApp1.Models
                 Where(subprop => subprop.GetValue(prop.GetValue(this)) != null).
                 Where(subprop => subprop.Name.Equals("NameProp")).ToList().
                 ForEach(subprop => subprop.SetValue(prop.GetValue(this), prop.Name)));
-
-
-            /* var slagerak = GetType().GetProperties().ToList().Where(prop => (AppearanceSettings)prop.GetValue(this) != null).ToList().
-                 Select(prop => prop.GetValue(this).GetType().GetProperties().
-                 Where(subprop => subprop.GetValue(prop.GetValue(this)) != null).
-                 Where(subprop => subprop.Name.Equals("Background")).ToList().
-                 Select(subprop => subprop.GetValue(prop.GetValue(this))));*/
-
-            /*Obj.GetType().GetProperties().ToList().Select(prop => prop.GetValue(Obj));*/
         }
 
         private void EmptyFieldToRed(AppearanceSettings Obj)

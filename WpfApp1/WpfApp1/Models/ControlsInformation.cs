@@ -64,7 +64,6 @@ namespace WpfApp1.Models
         {
             get
             {
-                EmptyFieldToRed(reason);
                 return reason;
             } 
             set
