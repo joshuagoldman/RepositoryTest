@@ -99,7 +99,7 @@ namespace XmlFeatures.XmlDoc.Tests
                                                 "a31,a311,a312,a313,a314,a315,a316".Split(',').ToArray() };
 
             var Dict = new Dictionary<XmlBranchName, XmlBranchInfo>();
-            {
+            /*{
                 Dict.Add(new XmlBranchName(sev_tags:ArrayInArray), new XmlBranchInfo("1"));
                 Dict.Add(new XmlBranchName( "a12,a12,a12".Split(',').ToArray()), new XmlBranchInfo("1"));
                 Dict.Add(new XmlBranchName( "a21,a21,a21".Split(',').ToArray()), new XmlBranchInfo("2",
@@ -108,7 +108,7 @@ namespace XmlFeatures.XmlDoc.Tests
                     "a12,a12,a12".Split(',').ToArray()));
                 Dict.Add(new XmlBranchName(sev_tags: ArrayInArray3), new XmlBranchInfo("3",
                     "a21,a21,a21".Split(',').ToArray()));
-            }
+            }*/
 
             xml.XmlSearchInfo(tree_dict: Dict,
                               parent_above_child_no_attr: "SearchKeys",

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Expression" Height="400" Width="500" Closed="Window_Closed">
+        Title="Expression" Height="600" Width="500" Closed="Window_Closed">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -15,6 +15,7 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="20"/>
 			<RowDefinition Height="100"/>
+			<RowDefinition Height="*"/>
 			<RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
 			<RowDefinition Height="20"/>
@@ -39,7 +40,17 @@
 				<TextBox Name="Variable" AcceptsReturn="True" TextAlignment="Center" Grid.Row="1" Background="{Binding Path= Variable.Background, Mode=TwoWay}" Foreground="{Binding Path= Variable.Foreground, Mode=TwoWay}" FontSize="{Binding Path= StandardTextBoxAppearance1.FontSize, Mode=TwoWay}"></TextBox>
 			</Grid>
 		</StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center">
+		<StackPanel Grid.Row="3" Grid.Column="1" Grid.RowSpan="1">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="150"/>
+				</Grid.RowDefinitions>
+				<TextBlock Name="SearchFilesFilterLabel" Grid.Row="0" Text="{Binding Path= LongerTextInputTemplate.Text, Mode=TwoWay}" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}" HorizontalAlignment="Right" Width="452"></TextBlock>
+				<TextBox Name="SearchFilesFilter" AcceptsReturn="True" TextAlignment="Center" Grid.Row="1" Background="{Binding Path= SearchFilesFilter.Background, Mode=TwoWay}" Foreground="{Binding Path= VSearchFilesFilter.Foreground, Mode=TwoWay}" FontSize="{Binding Path= StandardTextBoxAppearance1.FontSize, Mode=TwoWay}"></TextBox>
+			</Grid>
+		</StackPanel>
+		<StackPanel Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>

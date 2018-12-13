@@ -21,6 +21,7 @@ namespace WpfApp1.Models
         AppearanceSettings expression_button = new AppearanceSettings();        
         AppearanceSettings expression = new AppearanceSettings();
         AppearanceSettings variable = new AppearanceSettings();
+        AppearanceSettings search_files_filter = new AppearanceSettings();
         AppearanceSettings search_path_option = new AppearanceSettings();
         AppearanceSettings regex_options = new AppearanceSettings();
         AppearanceSettings include_files = new AppearanceSettings();
@@ -105,6 +106,17 @@ namespace WpfApp1.Models
             }
         }
 
+        public AppearanceSettings SearchFilesFilter
+        {
+            get
+            {
+                return search_files_filter;
+            }
+            set
+            {
+                search_files_filter = value;
+            }
+        }
 
         public AppearanceSettings SearchPathOption
         {

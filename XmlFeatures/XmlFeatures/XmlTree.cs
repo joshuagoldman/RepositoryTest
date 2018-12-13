@@ -32,47 +32,43 @@ namespace XmlFeatures.XmlDoc
             NewTree.Add(TreeDict.Keys.
                         Where(key => int.Parse(TreeDict[key].Generation) == 1 &&
                                      ExistInTreeCond(key)).
-            Select(key => key?.SevTags != null ?
-                       SeveralTags(key.SevTags) :
-                       key?.Elements.ToList().Count > 3 ?
-                       SeveralAttr(key.Elements) :
-                       key.Elements.ToList().Count == 3 ?
-                       new XElement(key.Elements[0], new XAttribute(key.Elements[1], key.Elements[2])).XPathSelectElements("//.").ToArray() :
-                       new XElement(key.Elements[0]).XPathSelectElements("//.").ToArray()));
+            Select(key => key.Node.Count() % 2 == 0 || key.Node.Count() == 1 ? new XElement(key.Node[0]) :
+                                                                                new XElement(key.Node[0], key.Node.Skip(1)))));
+
             for (int i = 2; i <= NumOfGens; i++)
             {
                 var AllTempNodeElements = TreeDict.Keys.ToList().
                                  Where(key => int.Parse(TreeDict[key].Generation) == i - 1 &&
                                                         ExistInTreeCond(key)).
-                                 Select(key => AllStringArraySelect(key)).
-                                 Select(array_of_array => array_of_array.
-                                 Select(array => FindElement(array)).ToList()).
+                                 Select(key => key.Node).ToArray().
+                                 Select(array => FindElement(array)).
                                  ToList();
 
-                AllTempNodeElements.Where(elementlist => elementlist != null).ToList().
-                    ForEach(elementlist => elementlist.
-                ForEach(element => element.Add(TreeDict.Keys.
+                AllTempNodeElements.ToList().
+                    ForEach(element => element.Add(TreeDict.Keys.
                 Where(key => int.Parse(TreeDict[key].Generation) == i &&
                              ExistInTreeCond(key) &&
                              element.Name == TreeDict[key]?.ParentName[0]).
-                Select(key =>key?.SevTags != null ?
-                       SeveralTags(key.SevTags) :
-                       key?.Elements.ToList().Count > 3 ?
-                       SeveralAttr(key.Elements) :
-                       key.Elements.ToList().Count == 3 ?
-                       new XElement(key.Elements[0], new XAttribute(key.Elements[1], key.Elements[2])).XPathSelectElements("//.").ToArray() :
-                       new XElement(key.Elements[0]).XPathSelectElements("//.").ToArray()
-                       ))));
+               Select(key => key.Node.Count()%2 == 0 || key.Node.Count() == 1 ? new XElement(key.Node[0]) :
+                                                                                new XElement(key.Node[0], key.Node.Skip(1)))));
             }
         }
 
         private bool ExistInTreeCond(XmlBranchName Key)
         {
-            return Key?.SevTags != null ? true : 
-                   Key?.Elements?.Count() == 1 ? true :
-                   !string.IsNullOrEmpty(Key.Elements?[2]);
+            return Key?.Node?.Count() == 1 ? true :
+                   !string.IsNullOrEmpty(Key.Node?[2]);
         }
-        private XElement[] SeveralAttr(string[] Element)
+
+        private XElement FindElement(string[] Info)
+        {
+            return Info.Count()%2 == 0 ?
+                   NewTree.XPathSelectElement($"//{Info[1]}[@{Info[2]} = '{Info[3]}']") :
+                   Info.Count() == 1 ?
+                   NewTree.XPathSelectElement($"//{Info[0]}") :
+                   NewTree.XPathSelectElement($"//{Info[0]}[@{Info[1]} = '{Info[2]}']");
+        }
+        /*private XElement[] SeveralAttr(string[] Element)
         {
             var count = (Element.Count() - 1) / 2;
             Attr = new XAttribute[count];
@@ -102,12 +98,7 @@ namespace XmlFeatures.XmlDoc
                 Key.SevTags;
         }
 
-        private XElement FindElement(string[] Info)
-        {
-            return Info.Count() == 1 ?
-                   NewTree.XPathSelectElement($"//{Info[0]}") :
-                   NewTree.XPathSelectElement($"//{Info[0]}[@{Info[1]} = '{Info[2]}']");
-        }
+        */
 
     }
 }

@@ -22,15 +22,11 @@ namespace XmlFeatures
 
     public class XmlBranchName
     {
-        public string[] Elements { get; set; }
+        public string[] Node { get; set; }
 
-        public string[][] SevTags { get; set; }
-
-        public XmlBranchName(string[] elements = null,
-                        string[][] sev_tags = null)
+        public XmlBranchName(params string[] node)
         {
-            Elements = elements;
-            SevTags = sev_tags;
+            Node = node;
         }
     }
 }
