@@ -22,12 +22,8 @@
             <RowDefinition Height="45"/>
             <RowDefinition Height="120"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="120" />
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="120" />
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="20"/>
+			<RowDefinition Height="120" />
+			<RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <TextBlock Name="Doc" Grid.Column="1" Grid.RowSpan="10" Margin="20,0,0,0" Text="" Grid.ColumnSpan="2"></TextBlock>
         <Button Name="Generate" Grid.Column="1" Margin="1,10" FontWeight="Bold" FontSize="20" BorderThickness="3" BorderBrush="black" Background="DimGray" Grid.Row="1" Content="Generate" Click="Generate_Click" />
@@ -276,6 +272,6 @@
                 </StackPanel>
             </ScrollViewer>
         </Border>
-        <TextBlock Grid.Column="2" Name="TextBlockObject" Text="{Binding Path= TextBlockObject.Text}" FontWeight="ExtraBold" Background="{Binding Path= TextBlockObject.Background}" FontSize="{Binding Path= TextBlockObject.FontSize}" Foreground="{Binding Path= TextBlockObject.Foreground}" Grid.Row="1" Grid.RowSpan="10" Margin="20,0,0,20"></TextBlock>
+        <TextBox Grid.Column="2" Name="TextBlockObject" Text="{Binding Path= TextBlockObject.Text}" FontWeight="ExtraBold" Background="{Binding Path= TextBlockObject.Background}" FontSize="{Binding Path= TextBlockObject.FontSize}" Foreground="{Binding Path= TextBlockObject.Foreground}" Grid.Row="1" Grid.RowSpan="9" Margin="20,0,0,20"></TextBox>
     </Grid>
 </Window>

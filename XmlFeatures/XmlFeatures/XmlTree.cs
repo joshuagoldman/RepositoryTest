@@ -32,8 +32,8 @@ namespace XmlFeatures.XmlDoc
             NewTree.Add(TreeDict.Keys.
                         Where(key => int.Parse(TreeDict[key].Generation) == 1 &&
                                      ExistInTreeCond(key)).
-            Select(key => key.Node.Count() % 2 == 0 || key.Node.Count() == 1 ? new XElement(key.Node[0]) :
-                                                                                new XElement(key.Node[0], key.Node.Skip(1)))));
+            Select(key => key.Node.Count() % 2 == 0 || key.Node.Count() == 1 ? new XElement(key.Node[0]).XPathSelectElements("//.").ToArray() :
+                                                                                SeveralAttr(key.Node)));
 
             for (int i = 2; i <= NumOfGens; i++)
             {
@@ -48,9 +48,9 @@ namespace XmlFeatures.XmlDoc
                     ForEach(element => element.Add(TreeDict.Keys.
                 Where(key => int.Parse(TreeDict[key].Generation) == i &&
                              ExistInTreeCond(key) &&
-                             element.Name == TreeDict[key]?.ParentName[0]).
-               Select(key => key.Node.Count()%2 == 0 || key.Node.Count() == 1 ? new XElement(key.Node[0]) :
-                                                                                new XElement(key.Node[0], key.Node.Skip(1)))));
+                             IsParentToChild(element, key)).
+               Select(key => key.Node.Count() % 2 == 0 || key.Node.Count() == 1 ? new XElement(key.Node[0]).XPathSelectElements("//.").ToArray() :
+                                                                                SeveralAttr(key.Node))));
             }
         }
 
@@ -63,12 +63,12 @@ namespace XmlFeatures.XmlDoc
         private XElement FindElement(string[] Info)
         {
             return Info.Count()%2 == 0 ?
-                   NewTree.XPathSelectElement($"//{Info[1]}[@{Info[2]} = '{Info[3]}']") :
+                   NewTree.XPathSelectElement($"//{Info[1]}[@{Info[2]} = '{Info[3]}']/{Info[0]}") :
                    Info.Count() == 1 ?
                    NewTree.XPathSelectElement($"//{Info[0]}") :
                    NewTree.XPathSelectElement($"//{Info[0]}[@{Info[1]} = '{Info[2]}']");
         }
-        /*private XElement[] SeveralAttr(string[] Element)
+        private XElement[] SeveralAttr(string[] Element)
         {
             var count = (Element.Count() - 1) / 2;
             Attr = new XAttribute[count];
@@ -80,25 +80,26 @@ namespace XmlFeatures.XmlDoc
             }
             return new XElement(Element[0], Attr).XPathSelectElements("//.").ToArray();
         }
-        private XElement[] SeveralTags(string[][] SevTags)
+
+        private bool IsParentToChild(XElement Element, XmlBranchName key)
         {
-            var Tags = new XElement("Initial");
-            Tags.Add(SevTags.Select(sevtag => sevtag.Count() > 3  ?
-                                                   SeveralAttr(sevtag) :
-                                                   sevtag.Count() == 3 ?
-                                                   new XElement(sevtag[0], new XAttribute(sevtag[1], sevtag[2])).XPathSelectElements("//.").ToArray() :
-                                                   new XElement(sevtag[0]).XPathSelectElements("//.").ToArray()));
-            return Tags.XPathSelectElements("child::*").ToArray();
+            var ChosenElement = TreeDict[key]?.ParentName.Length % 2 == 0 ?
+                Element.XPathSelectElement("(./..)[last()]") :
+                Element;
+
+            var ElementList =  new List<string> { ChosenElement.Name.ToString() };
+            var AttrNamesNValues = ChosenElement.Attributes().Select(attr => attr.Name.ToString()).
+                Zip(ChosenElement.Attributes().Select(attr => attr.Value.ToString()), (x, y) => new { attr_name = x, attr_value = y }).ToList();
+
+            AttrNamesNValues.ForEach(attr_pair => ElementList.AddRange(new List<string> { attr_pair.attr_name, attr_pair.attr_value }));
+
+            var ParentToCompare = TreeDict[key]?.ParentName.Length % 2 == 0 ?
+                TreeDict[key]?.ParentName.Skip(1).ToList() :
+                TreeDict[key]?.ParentName.ToList();
+
+            var ElementPairs2Comp = ElementList.Zip(ParentToCompare, (x, y) => new { element_first = x, element_second = y }).ToList();
+
+            return ElementPairs2Comp.All(element_pair => element_pair.element_first == element_pair.element_second);
         }
-
-        private string[][] AllStringArraySelect(XmlBranchName Key)
-        {
-            return Key.Elements != null ?
-                new string[][] { Key.Elements } :
-                Key.SevTags;
-        }
-
-        */
-
     }
 }

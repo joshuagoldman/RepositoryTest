@@ -50,9 +50,9 @@ namespace WpfApp1.Methods
                                     new string[]{ "Information" }
                     },
                     new string[][]{
-                                    new string[]{Information.SearchKey.NameProp, "Name", Information.SearchKey.Text },
-                                    new string[]{"3" },
-                                    new string[]{ "SearchSettings" }
+                                    new string[]{"SearchSettings" },
+                                    new string[]{"2" },
+                                    new string[]{ Information.SearchKey.NameProp, "Name", Information.SearchKey.Text }
                     },
                     new string[][]{
                                     new string[]{Information.ExcludeTestTypes.NameProp, "Value", Information.ExcludeTestTypes.Text },
@@ -134,42 +134,41 @@ namespace WpfApp1.Methods
 
             var InfoBaseRepeatingNodes = new string[]
                 {
-                    string.Join("Variable",Information.Variable.Text),
-                    string.Join("Product",Information.Product.Text),
-                    CreateRepeatingTag("Filters", Information.Variable.Text),
-                    string.Join("SearchFilesFilter",Information.SearchFilesFilter.Text)
+                    CreateRepeatingTagWAttr("Variable", Information.Variable.Text),
+                    CreateRepeatingTagWAttr("Product", Information.Product.Text),
+                    CreateRepeatingTagWAttr("Filters", CreateRepeatingTagWAttr("Variable", Information.Variable.Text)),
+                    CreateRepeatingTagWAttr("SearchFilesFilter", Information.SearchFilesFilter.Text)
                 };
 
             var InfoBaseRepeatingNodesParents = new string[]
                 {
-                    string.Join(Information.Expression.NameProp,Information.Variable.Text),
-                    CreateRepeatingTagNoAttr("Products",Information.Product.Text),
-                    string.Join("Variable",Information.Variable.Text),
-                    string.Join("Variable",Information.Variable.Text)
+                    CreateRepeatingTagNoAttr(Information.Expression.NameProp + "NEXTEquationNEXT" + Information.Expression.Text, Information.Variable.Text),
+                    CreateRepeatingTagNoAttr("Products", Information.Product.Text),
+                    CreateRepeatingTagWAttr("Variable", Information.Variable.Text),
+                    CreateRepeatingTagWAttr("Filters", CreateRepeatingTagWAttr("Variable", Information.Variable.Text))
                 };
 
             var InfoBaseRepeatingNodesGenerations = "4,4,5,6";
 
-            var InfoBaseAll = RepeatedTagInfoUnits(InfoBaseRepeatingNodes, InfoBaseRepeatingNodesGenerations, InfoBaseRepeatingNodesParents);
+            var InfoBaseAll = RepeatedTagInfoUnits(InfoBaseRepeatingNodes, InfoBaseRepeatingNodesGenerations, InfoBaseRepeatingNodesParents).ToList();
 
-            InfoBaseAll.ToList().Add(InfoBaseMain);
+            InfoBaseAll.Add(InfoBaseMain);
 
-            return MakeDict(InfoBaseAll);
+            return MakeDict(InfoBaseAll.ToArray());
         }
 
         private string CreateRepeatingTagWAttr(string PacketName, string PacketAttr)
         {
-            var PacketNodeNmeRep = CreateRepeatingTagNoAttr(PacketName, PacketAttr).Split(new string[] { "\n" }, StringSplitOptions.None).ToList();
-            var PacketAttrRep = PacketAttr.Split(new string[] { "\n" }, StringSplitOptions.None).ToList();
-            var BothStringArrays = PacketNodeNmeRep.Zip(PacketAttrRep, (x, y) => new { node_name = x, node_attr = y });
-            BothStringArrays
-
+            var PacketsAttributes = PacketAttr.Split(new string[] { "\n" }, StringSplitOptions.None).ToList();
+            var BothStringsPackets = new List<string>();
+            PacketsAttributes.ToList().ForEach(packet_attributes => BothStringsPackets.Add(PacketName + "NEXT" + packet_attributes + "\n"));
+            BothStringsPackets[BothStringsPackets.Count - 1] = BothStringsPackets[BothStringsPackets.Count - 1].Replace("\n", ""); 
+            return string.Join(",", BothStringsPackets.ToArray()).Replace(",","");
         }
 
         private string CreateRepeatingTagNoAttr(string Str, string CountStr)
         {
-            return string.Concat(Enumerable.Repeat(Str + "\n", MakeReapeatedTag(CountStr)[0].Count - 1)) + Str;
-
+            return string.Concat(Enumerable.Repeat(Str + "\n", MakeReapeatedTag(CountStr).Count - 1)) + Str;
         }
 
         private List<List<string>> MakeReapeatedTag(string TextInfo)
@@ -198,10 +197,13 @@ namespace WpfApp1.Methods
 
             var InfoUnits= new List<List<List<List<string>>>>();
 
-            AllGens.ToList().ForEach(gen => NodesNParentsUnits.ToList().
-                ForEach(node_n_parent_Unit =>
+            var GensNNodesNParentsUnits = AllGens.Zip(NodesNParentsUnits.ToList(), (x, y) => new { gen = x, node_n_parent_unit = y });
+
+            GensNNodesNParentsUnits.ToList().ForEach(gens_n_nodes_n_parents_unit =>
                 {
-                    var NodeNParentPackets = node_n_parent_Unit.node_packets.Zip(node_n_parent_Unit.parent_packets, (x, y) => new { node_packet = x, parent_packet = y });
+                    var NodeNParentPackets = 
+                    gens_n_nodes_n_parents_unit.node_n_parent_unit.node_packets.
+                    Zip(gens_n_nodes_n_parents_unit.node_n_parent_unit.parent_packets, (x, y) => new { node_packet = x, parent_packet = y });
 
                     var TempUnit = new List<List<List<string>>>();
 
@@ -210,16 +212,15 @@ namespace WpfApp1.Methods
                                                     TempUnit.Add(new List<List<string>>
                                                     {
                                                         node_n_parent_packet.node_packet,
-                                                        new List<string> {gen },
+                                                        new List<string> {gens_n_nodes_n_parents_unit.gen },
                                                         node_n_parent_packet.parent_packet
 
                                                     });
-
                                                 });
 
                     InfoUnits.Add(TempUnit);
                 }
-                ));
+                );
 
             return InfoUnits.Select(info_unit => info_unit.Select(info_packet => info_packet.Select(info_list => info_list.ToArray()).ToArray()).ToArray()).ToArray();
         }
@@ -232,7 +233,9 @@ namespace WpfApp1.Methods
                     ForEach(info_package =>
                     {
                         TreeDict.Add(new XmlBranchName(info_package[0]),
-                                new XmlBranchInfo(info_package[1].ToString(), info_package[2]));
+                                     info_package.Count() < 3 ?
+                                     new XmlBranchInfo(info_package[1][0]) :
+                                     new XmlBranchInfo(info_package[1][0], info_package[2]));
                     }));
 
             return TreeDict;

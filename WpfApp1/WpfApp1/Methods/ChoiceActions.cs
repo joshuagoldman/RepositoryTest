@@ -194,19 +194,24 @@ namespace WpfApp1.Methods
             XmlNodes.ForEach(node => GetXmlSearchKeyTextToWindow(CurrWindows.ToList().Select(window => FindAppearanceSettingsTextToWindow(node, (Window)window)).ToArray(),
                                                                       node));
 
-            XmlNodes.ToList().Where(node => node.Name.ToString() == "Product" || node.Name.ToString() == "Variable").ToList().
+            XmlNodes.ToList().Where(node => node.Name.ToString() == "Product" ||
+                                            node.Name.ToString() == "Variable" ||
+                                            node.Name.ToString() == "SearchFilesFilter").ToList().
                 ForEach(node => GetXmlSearchKeyTextToWindow(CurrWindows.ToList().Select(window => FindAppearanceSettingsTextToWindow(node, (Window)window)).ToArray(),
                                                                                         node,
                                                                                         XtraChoices.ClearTextBoxes));
 
-            XmlNodes.ToList().Where(node => node.Name.ToString() == "Product" || node.Name.ToString() == "Variable").ToList().
+            XmlNodes.ToList().Where(node => node.Name.ToString() == "Product" ||
+                                            node.Name.ToString() == "Variable" ||
+                                            node.Name.ToString() == "SearchFilesFilter").ToList().
                 ForEach(node => GetXmlSearchKeyTextToWindowExpNProd(CurrWindows.ToList().Select(window => FindAppearanceSettingsTextToWindow(node, (Window)window)).ToArray(),
                                                                       node));
 
             var ExprNProd = new List<XElement>()
             {
                 XmlNodes.ToList().Where(node => node.Name.ToString() == "Product").FirstOrDefault(),
-                XmlNodes.ToList().Where(node => node.Name.ToString() == "Variable").FirstOrDefault()
+                XmlNodes.ToList().Where(node => node.Name.ToString() == "Variable").FirstOrDefault(),
+                XmlNodes.ToList().Where(node => node.Name.ToString() == "SearchFilesFilter").FirstOrDefault()
             };
 
                 ExprNProd.ForEach(node => GetXmlSearchKeyTextToWindow(CurrWindows.ToList().Select(window => FindAppearanceSettingsTextToWindow(node, (Window)window)).ToArray(),
