@@ -134,18 +134,19 @@ namespace WpfApp1.Methods
 
             var InfoBaseRepeatingNodes = new string[]
                 {
-                    CreateRepeatingTagWAttr("Variable", Information.Variable.Text),
-                    CreateRepeatingTagWAttr("Product", Information.Product.Text),
-                    CreateRepeatingTagWAttr("Filters", CreateRepeatingTagWAttr("Variable", Information.Variable.Text)),
-                    CreateRepeatingTagWAttr("SearchFilesFilter", Information.SearchFilesFilter.Text)
+                    CreateRepeatingElementWAttr("Variable", Information.Variable.Text),
+                    CreateRepeatingElementWAttr("Product", Information.Product.Text),
+                    CreateRepeatingElementWAttr("Filters", string.IsNullOrEmpty(Information.SearchFilesFilter.Text) ? "" :
+                                                       CreateRepeatingElementWAttr("Variable", Information.Variable.Text)),
+                    CreateRepeatingElementWAttr("SearchFilesFilter", Information.SearchFilesFilter.Text)
                 };
 
             var InfoBaseRepeatingNodesParents = new string[]
                 {
-                    CreateRepeatingTagNoAttr(Information.Expression.NameProp + "NEXTEquationNEXT" + Information.Expression.Text, Information.Variable.Text),
-                    CreateRepeatingTagNoAttr("Products", Information.Product.Text),
-                    CreateRepeatingTagWAttr("Variable", Information.Variable.Text),
-                    CreateRepeatingTagWAttr("Filters", CreateRepeatingTagWAttr("Variable", Information.Variable.Text))
+                    CreateRepeatingElementNoAttr(Information.Expression.NameProp + "NEXTEquationNEXT" + Information.Expression.Text, Information.Variable.Text),
+                    CreateRepeatingElementNoAttr("Products", Information.Product.Text),
+                    CreateRepeatingElementWAttr("Variable", Information.Variable.Text),
+                    CreateRepeatingElementWAttr("Filters", CreateRepeatingElementWAttr("Variable", Information.Variable.Text))
                 };
 
             var InfoBaseRepeatingNodesGenerations = "4,4,5,6";
@@ -157,7 +158,16 @@ namespace WpfApp1.Methods
             return MakeDict(InfoBaseAll.ToArray());
         }
 
-        private string CreateRepeatingTagWAttr(string PacketName, string PacketAttr)
+        private string RemoveNodeWNoAttr(string UnitStr)
+        {
+            var StrPackets = MakeReapeatedTag(UnitStr);
+
+            StrPackets.ForEach(row => { if (row.Count == 1) row[0] = ""; });
+            return string.Join(",", string.Join(",", StrPackets).Replace(",", "")).Replace(",", "");
+
+        }
+
+        private string CreateRepeatingElementWAttr(string PacketName, string PacketAttr)
         {
             var PacketsAttributes = PacketAttr.Split(new string[] { "\n" }, StringSplitOptions.None).ToList();
             var BothStringsPackets = new List<string>();
@@ -166,7 +176,7 @@ namespace WpfApp1.Methods
             return string.Join(",", BothStringsPackets.ToArray()).Replace(",","");
         }
 
-        private string CreateRepeatingTagNoAttr(string Str, string CountStr)
+        private string CreateRepeatingElementNoAttr(string Str, string CountStr)
         {
             return string.Concat(Enumerable.Repeat(Str + "\n", MakeReapeatedTag(CountStr).Count - 1)) + Str;
         }

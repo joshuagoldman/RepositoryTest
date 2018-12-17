@@ -214,7 +214,7 @@ namespace WpfApp1.Methods
                 XmlNodes.ToList().Where(node => node.Name.ToString() == "SearchFilesFilter").FirstOrDefault()
             };
 
-                ExprNProd.ForEach(node => GetXmlSearchKeyTextToWindow(CurrWindows.ToList().Select(window => FindAppearanceSettingsTextToWindow(node, (Window)window)).ToArray(),
+                ExprNProd.Where(node => node != null).ToList().ForEach(node => GetXmlSearchKeyTextToWindow(CurrWindows.ToList().Select(window => FindAppearanceSettingsTextToWindow(node, (Window)window)).ToArray(),
                                                                                         node,
                                                                                         XtraChoices.RemoveNewLineAtEnd));
 

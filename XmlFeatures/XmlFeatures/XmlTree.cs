@@ -45,7 +45,7 @@ namespace XmlFeatures.XmlDoc
                                  ToList();
 
                 AllTempNodeElements.ToList().
-                    ForEach(element => element.Add(TreeDict.Keys.
+                    ForEach(element =>  element?.Add(TreeDict.Keys.
                 Where(key => int.Parse(TreeDict[key].Generation) == i &&
                              ExistInTreeCond(key) &&
                              IsParentToChild(element, key)).
@@ -56,8 +56,10 @@ namespace XmlFeatures.XmlDoc
 
         private bool ExistInTreeCond(XmlBranchName Key)
         {
-            return Key?.Node?.Count() == 1 ? true :
-                   !string.IsNullOrEmpty(Key.Node?[2]);
+            return Key?.Node == null || Key?.Node?.Count() == 0 ? false :
+                   Key?.Node?.Count() == 1 ? true :
+                   Key?.Node?.Count() == 2 ? false :
+                   string.IsNullOrEmpty(Key.Node?[2]) ? false : true;
         }
 
         private XElement FindElement(string[] Info)
@@ -99,7 +101,7 @@ namespace XmlFeatures.XmlDoc
 
             var ElementPairs2Comp = ElementList.Zip(ParentToCompare, (x, y) => new { element_first = x, element_second = y }).ToList();
 
-            return ElementPairs2Comp.All(element_pair => element_pair.element_first == element_pair.element_second);
+            return ElementPairs2Comp.All(element_pair => element_pair.element_first.Trim() == element_pair.element_second.Trim());
         }
     }
 }
