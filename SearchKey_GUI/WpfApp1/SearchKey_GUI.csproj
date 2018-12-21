@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3525C889-C782-4537-977B-D04440F8CD3F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SearchKey_GUI</RootNamespace>
+    <AssemblyName>SearchKey_GUI</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DigitalRune, Version=1.20.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DigitalRune.Engine.1.20.0\lib\DigitalRune.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.Animation, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DigitalRune.Engine.1.20.0\lib\DigitalRune.Animation.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.Game, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DigitalRune.Engine.1.20.0\lib\DigitalRune.Game.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.Geometry, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DigitalRune.Engine.1.20.0\lib\DigitalRune.Geometry.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.Mathematics, Version=1.14.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DigitalRune.Engine.1.20.0\lib\DigitalRune.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.Particles, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DigitalRune.Engine.1.20.0\lib\DigitalRune.Particles.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.Physics, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DigitalRune.Engine.1.20.0\lib\DigitalRune.Physics.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.Physics.Specialized, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DigitalRune.Engine.1.20.0\lib\DigitalRune.Physics.Specialized.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="XmlFeatures, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\XmlFeatures\XmlFeatures\bin\Debug\XmlFeatures.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="ExpressionWindow.xaml.cs">
+      <DependentUpon>ExpressionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Methods\AllWindows.cs" />
+    <Compile Include="Models\ProductModel.cs" />
+    <Compile Include="InfoTextWindow.xaml.cs">
+      <DependentUpon>InfoTextWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductsWindow.xaml.cs">
+      <DependentUpon>ProductsWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ExpressionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="InfoTextWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProductsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Methods\ChoiceActions.cs" />
+    <Compile Include="Methods\CreateTreeDict.cs" />
+    <Compile Include="Methods\InitializeClasses.cs" />
+    <Compile Include="Models\ControlsMain.cs" />
+    <Compile Include="Models\ControlsSearchSettings.cs" />
+    <Compile Include="Models\ControlsReport.cs" />
+    <Compile Include="Models\ControlsInformation.cs" />
+    <Compile Include="Models\TreeDict.cs" />
+    <Compile Include="Models\AppearanceSettings.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Peers.WindowsFormsHostAutomationPeer.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.AutomationInteropProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.IDockProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.IExpandCollapseProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.IGridItemProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.IGridProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.IInvokeProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.IItemContainerProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.IMultipleViewProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.IRangeValueProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.IRawElementProviderAdviseEvents.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.IRawElementProviderFragment.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.IRawElementProviderFragmentRoot.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.IRawElementProviderHwndOverride.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.IRawElementProviderSimple.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.IScrollItemProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.IScrollProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.ISelectionItemProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.ISelectionProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.ISynchronizedInputProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.ITableItemProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.ITableProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.ITextProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.ITextRangeProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.IToggleProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.ITransformProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.IValueProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.IVirtualizedItemProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Automation.Provider.IWindowProvider.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Forms.Integration.ChildChangedEventArgs.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Forms.Integration.ElementHost.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Forms.Integration.IntegrationExceptionEventArgs.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Forms.Integration.LayoutExceptionEventArgs.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Forms.Integration.PropertyMap.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Forms.Integration.PropertyMappingExceptionEventArgs.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Forms.Integration.PropertyTranslator.datasource" />
+    <None Include="Properties\DataSources\System.Windows.Forms.Integration.WindowsFormsHost.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\picture_sky_sunset.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

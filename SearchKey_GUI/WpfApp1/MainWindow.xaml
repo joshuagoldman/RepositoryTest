@@ -1,0 +1,277 @@
+﻿<Window x:Class="SearchKey_GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SearchKey_GUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="900" Width="1000" Closed="Window_Closed" >
+	<Grid Name="Grid">
+		<Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="450" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="50"/>
+			<RowDefinition Height="120" />
+			<RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <TextBlock Name="Doc" Grid.Column="1" Grid.RowSpan="10" Margin="20,0,0,0" Text="" Grid.ColumnSpan="2"></TextBlock>
+        <Button Name="Generate" Grid.Column="1" Margin="1,10" FontWeight="Bold" FontSize="20" BorderThickness="3" BorderBrush="black" Background="DimGray" Grid.Row="1" Content="Generate" Click="Generate_Click" />
+        <Button Name="Get" Grid.Column="1" Margin="1,10" FontWeight="Bold" FontSize="20" BorderThickness="3" BorderBrush="black" Background="DimGray" Grid.Row="2" Content="Get" Click="Get_Clicked"/>
+        <Button Name="Save" Grid.Column="1" Margin="1,10" FontWeight="Bold" FontSize="20" BorderThickness="3" BorderBrush="black" Background="DimGray" Grid.Row="3" Content="Save" Click="Save_Clicked"/>
+        <Border BorderBrush="Black" BorderThickness="3,3,3,3" Grid.Row="4" Grid.Column="1" Grid.RowSpan="6" Margin="1,10">
+            <ScrollViewer Grid.Column="1" Grid.Row="4" Grid.RowSpan="10">
+                <StackPanel>
+                    <Border BorderBrush="Black" BorderThickness="3,3,3,3" Grid.Row="4" Grid.Column="1" Margin="1,10" >
+                        <StackPanel Orientation="Vertical" >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="40"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock  Background="Chocolate" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" Text="Search Key"  Grid.Column="0" Grid.Row="0"></TextBlock>
+                                <TextBox Name="SearchKey" FontSize="15" Grid.Column="0"  Grid.Row="1" Background="{Binding Path= SearchKey.Background, Mode=TwoWay}" Foreground="{Binding Path= SearchKey.Foreground, Mode=TwoWay}" ></TextBox>
+                                <TextBlock Background="Chocolate" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" Text="SearchGroup" Grid.Column="1"  Grid.Row="0" ></TextBlock>
+								<ComboBox Name="SearchGroup" FontSize="15" Grid.Column="1" SelectedIndex="0" ItemsSource="{Binding Path= SearchGroup.ItemsSource, Mode=TwoWay}"  Grid.Row="1" Background="{Binding Path= SearchGroup.Background, Mode=TwoWay}" Foreground="{Binding Path= SearchGroup.Foreground, Mode=TwoWay}"></ComboBox>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                    <Label Grid.Column="1" Grid.Row="5" BorderBrush="Black" BorderThickness="3,3,3,3" Content="Information" Background="Chocolate" FontSize="25" HorizontalContentAlignment="Center" />
+                    <ScrollViewer Grid.Column="1" Margin="0,0,0,10" Grid.Row="6" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" >
+                        <Border BorderBrush="Black" BorderThickness="3,0,3,3">
+                            <StackPanel Orientation="Horizontal">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="60"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="InputDateWithIndexLabel" Grid.Row="0" Text="Input Date With Index Value" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+                                    <TextBox Name="InputDateWithIndex" AcceptsReturn="True" Background="{Binding Path= InputDateWithIndex.Background, Mode=TwoWay}" Foreground="{Binding Path= InputDateWithIndex.Foreground, Mode=TwoWay}" TextAlignment="{Binding Path= StandardTextBoxAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardTextBoxAppearance1.FontSize, Mode=TwoWay}"  Grid.Row="1"></TextBox>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="170"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="60"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="CriteriaReferenceWithRevisionLabel" Grid.Row="0" Text="Criteria Reference with Revision Value" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+                                    <TextBox Name="CriteriaReferenceWithRevision" AcceptsReturn="True" Background="{Binding Path= CriteriaReferenceWithRevision.Background, Mode=TwoWay}" Foreground="{Binding Path= CriteriaReferenceWithRevision.Foreground, Mode=TwoWay}"  TextAlignment="{Binding Path= StandardTextBoxAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardTextBoxAppearance1.FontSize, Mode=TwoWay}"  Grid.Row="1"></TextBox>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="60"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="ResponsibleLabel" Grid.Row="0" Text="Responsible" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+                                    <TextBox Name="Responsible" AcceptsReturn="True" Background="{Binding Path= Responsible.Background, Mode=TwoWay}" Foreground="{Binding Path= Responsible.Foreground, Mode=TwoWay}" TextAlignment="{Binding Path= StandardTextBoxAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardTextBoxAppearance1.FontSize, Mode=TwoWay}"  Grid.Row="1"></TextBox>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="60"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="ReasonLabel" Grid.Row="0" Text="Reason" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+                                    <TextBox Name="Reason" AcceptsReturn="True" Background="{Binding Path= Reason.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}" TextAlignment="{Binding Path= StandardTextBoxAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardTextBoxAppearance1.FontSize, Mode=TwoWay}"  Grid.Row="1"></TextBox>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </ScrollViewer>
+                    <Label Grid.Column="1" Grid.Row="7" Content="Searchsettings" BorderBrush="Black" BorderThickness="3,3,3,3" Background= "Chocolate" FontSize="25" HorizontalContentAlignment="Center" />
+                    <ScrollViewer Grid.Column="1" Grid.Row="8" Margin="0,0,0,10" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" >
+                        <Border BorderBrush="Black" BorderThickness="3,0,3,3">
+                            <StackPanel Orientation="Horizontal">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="ExcludeTestTypesLabel" Grid.Row="0" Text="Exclude Test Types" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+                                    <ComboBox Name="ExcludeTestTypes" Grid.Row="1" SelectedIndex="0" ItemsSource="{Binding Path= ExcludeTestTypes.ItemsSource, Mode=TwoWay}"  Background="{Binding Path= StandardComboBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardComboBoxAppearance1.Foreground, Mode=TwoWay}"/>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="SerialNumberLabel" Grid.Row="0" Text="Serial Number" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+                                    <TextBox Name="SerialNumber" AcceptsReturn="True" Background="{Binding Path= SerialNumber.Background, Mode=TwoWay}" Foreground="{Binding Path= SerialNumber.Foreground, Mode=TwoWay}" TextAlignment="{Binding Path= StandardTextBoxAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardTextBoxAppearance1.FontSize, Mode=TwoWay}"  Grid.Row="1" HorizontalAlignment="Right" Width="170"/>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="ProductsLabel" Grid.Row="0" Text="Product" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+                                    <Button Name="Product" Content="Edit" Click="Products_Clicked" Background="{Binding Path= Product.Background}" Grid.Row="1"></Button>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="ExpressionButtonLabel" Grid.Row="0" Text="Expression" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+                                    <Button Name="ExpressionButton" Content="Edit" Click="Expression_Clicked" Background="{Binding Path= ExpressionButton.Background}" Grid.Row="1"></Button>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="SearchPathOptionLabel" Grid.Row="0" Text="Search Path Option" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+                                    <ComboBox Name="SearchPathOption" SelectedIndex="0" ItemsSource="{Binding Path= SearchPathOption.ItemsSource, Mode=TwoWay}" Background="{Binding Path= StandardComboBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardComboBoxAppearance1.Foreground, Mode=TwoWay}" Grid.Row="1"></ComboBox>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="RegexOptionsLabel" Grid.Row="0" Text="Regex Options" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+                                    <ComboBox Name="RegexOptions" SelectedIndex="0" ItemsSource="{Binding Path= RegexOptions.ItemsSource, Mode=TwoWay}" Background="{Binding Path= StandardComboBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardComboBoxAppearance1.Foreground, Mode=TwoWay}" Grid.Row="1"></ComboBox>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="IncludeFilesLabel" Grid.Row="0" Text="Include Files" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+                                    <TextBox Name="IncludeFiles" AcceptsReturn="True" Background="{Binding Path= IncludeFiles.Background, Mode=TwoWay}" Foreground="{Binding Path= IncludeFiles.Foreground, Mode=TwoWay}" TextAlignment="{Binding Path= StandardTextBoxAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardTextBoxAppearance1.FontSize, Mode=TwoWay}"  Grid.Row="1"></TextBox>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="ExcludeFilesLabel" Grid.Row="0" Text="Exclude Files" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+                                    <TextBox Name="ExcludeFiles" AcceptsReturn="True" Background="{Binding Path= ExcludeFiles.Background, Mode=TwoWay}" Foreground="{Binding Path= ExcludeFiles.Foreground, Mode=TwoWay}" TextAlignment="{Binding Path= StandardTextBoxAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardTextBoxAppearance1.FontSize, Mode=TwoWay}"  Grid.Row="1"></TextBox>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="ScreeningAllowedLabel" Grid.Row="0" Text="Screening Allowed" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+                                    <ComboBox Name="ScreeningAllowed" SelectedIndex="0" ItemsSource="{Binding Path= ScreeningAllowed.ItemsSource, Mode=TwoWay}"  Background="{Binding Path= StandardComboBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}" Grid.Row="1"></ComboBox>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="IncludedInTestLabel" Grid.Row="0" Text="Included In Test" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+                                    <ComboBox Name="IncludedInTest" SelectedIndex="0" ItemsSource="{Binding Path= IncludedInTest.ItemsSource, Mode=TwoWay}" Background="{Binding Path= StandardComboBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardComboBoxBoxAppearance1.Foreground, Mode=TwoWay}" Grid.Row="1"></ComboBox>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </ScrollViewer>
+                    <Label Grid.Column="1" Grid.Row="9" BorderBrush="Black" BorderThickness="3,3,3,3" Content="Report" Background= "Chocolate" FontSize="25" HorizontalContentAlignment="Center" />
+                    <ScrollViewer Grid.Column="1" Grid.Row="10" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" >
+                        <Border BorderBrush="Black" BorderThickness="3,0,3,3" Grid.Column="1" Grid.Row="1">
+                            <StackPanel Orientation="Horizontal">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="ReasonReportLabel" Grid.Row="0" Text="Reason" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+                                    <TextBox Name="ReasonReport" AcceptsReturn="True" Background="{Binding Path= StandardTextBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}"  TextAlignment="{Binding Path= StandardTextBoxAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardTextBoxAppearance1.FontSize, Mode=TwoWay}"  Grid.Row="1"></TextBox>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="170"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="InfotextScreeningLabel" Grid.Row="0" Text="Infotext Screening" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+                                    <TextBox Name="InfotextScreening" Background="{Binding Path= StandardTextBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}" TextAlignment="{Binding Path= StandardTextBoxAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardTextBoxAppearance1.FontSize, Mode=TwoWay}"  Grid.Row="1"></TextBox>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="InfotextLabel" Grid.Row="0" Text="Infotext" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+                                    <Button Name="Infotext" Content="Edit" Click="Infotext_Clicked" Background="{Binding Path= Infotext.Background}" Grid.Row="1"></Button>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="InfotextExtendedLabel" Grid.Row="0" Text="Infotext Extended" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
+                                    <TextBox Name="InfotextExtended" Background="{Binding Path= StandardTextBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardTextBoxAppearance1.Foreground, Mode=TwoWay}" TextAlignment="{Binding Path= StandardTextBoxAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardTextBoxAppearance1.FontSize, Mode=TwoWay}"  Grid.Row="1"></TextBox>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </ScrollViewer>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+        <TextBox Grid.Column="2" AcceptsReturn="True" Name="TextBlockObject" Text="{Binding Path= TextBlockObject.Text}" FontWeight="ExtraBold" Background="{Binding Path= TextBlockObject.Background}" FontSize="{Binding Path= TextBlockObject.FontSize}" Foreground="{Binding Path= TextBlockObject.Foreground}" Grid.Row="1" Grid.RowSpan="9" Margin="20,0,0,20"></TextBox>
+    </Grid>
+</Window>
