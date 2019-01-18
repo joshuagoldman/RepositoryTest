@@ -695,11 +695,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jogo\\source\\repos\\LogSearchTest\\LogSearchTest\\LogSearch.csproj",
+      "projectUniqueName": "C:\\Users\\jogo\\Documents\\git_Test\\LogSearchTest\\LogSearchTest\\LogSearch.csproj",
       "projectName": "LogSearch",
-      "projectPath": "C:\\Users\\jogo\\source\\repos\\LogSearchTest\\LogSearchTest\\LogSearch.csproj",
+      "projectPath": "C:\\Users\\jogo\\Documents\\git_Test\\LogSearchTest\\LogSearchTest\\LogSearch.csproj",
       "packagesPath": "C:\\Users\\jogo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jogo\\source\\repos\\LogSearchTest\\LogSearchTest\\obj\\",
+      "outputPath": "C:\\Users\\jogo\\Documents\\git_Test\\LogSearchTest\\LogSearchTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

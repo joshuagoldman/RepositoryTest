@@ -5795,11 +5795,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jogo\\source\\repos\\LogSearchTest\\NUnitTestProject2\\LogSearchTest.csproj",
+      "projectUniqueName": "C:\\Users\\jogo\\Documents\\git_Test\\LogSearchTest\\NUnitTestProject2\\LogSearchTest.csproj",
       "projectName": "LogSearchTest",
-      "projectPath": "C:\\Users\\jogo\\source\\repos\\LogSearchTest\\NUnitTestProject2\\LogSearchTest.csproj",
+      "projectPath": "C:\\Users\\jogo\\Documents\\git_Test\\LogSearchTest\\NUnitTestProject2\\LogSearchTest.csproj",
       "packagesPath": "C:\\Users\\jogo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jogo\\source\\repos\\LogSearchTest\\NUnitTestProject2\\obj\\",
+      "outputPath": "C:\\Users\\jogo\\Documents\\git_Test\\LogSearchTest\\NUnitTestProject2\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -5818,8 +5818,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\jogo\\source\\repos\\LogSearchTest\\LogSearchTest\\LogSearch.csproj": {
-              "projectPath": "C:\\Users\\jogo\\source\\repos\\LogSearchTest\\LogSearchTest\\LogSearch.csproj"
+            "C:\\Users\\jogo\\Documents\\git_Test\\LogSearchTest\\LogSearchTest\\LogSearch.csproj": {
+              "projectPath": "C:\\Users\\jogo\\Documents\\git_Test\\LogSearchTest\\LogSearchTest\\LogSearch.csproj"
             }
           }
         }

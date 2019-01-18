@@ -7,3 +7,12 @@ C:\Users\jogo\source\repos\LogSearchTest\LogSearchTest\obj\Debug\netcoreapp2.1\L
 C:\Users\jogo\source\repos\LogSearchTest\LogSearchTest\obj\Debug\netcoreapp2.1\LogSearch.dll
 C:\Users\jogo\source\repos\LogSearchTest\LogSearchTest\obj\Debug\netcoreapp2.1\LogSearch.pdb
 C:\Users\jogo\source\repos\LogSearchTest\LogSearchTest\obj\Debug\netcoreapp2.1\LogSearch.csprojAssemblyReference.cache
+C:\Users\jogo\Documents\git_Test\LogSearchTest\LogSearchTest\bin\Debug\netcoreapp2.1\LogSearch.deps.json
+C:\Users\jogo\Documents\git_Test\LogSearchTest\LogSearchTest\bin\Debug\netcoreapp2.1\LogSearch.dll
+C:\Users\jogo\Documents\git_Test\LogSearchTest\LogSearchTest\bin\Debug\netcoreapp2.1\LogSearch.pdb
+C:\Users\jogo\Documents\git_Test\LogSearchTest\LogSearchTest\obj\Debug\netcoreapp2.1\LogSearch.csprojAssemblyReference.cache
+C:\Users\jogo\Documents\git_Test\LogSearchTest\LogSearchTest\obj\Debug\netcoreapp2.1\LogSearch.csproj.CoreCompileInputs.cache
+C:\Users\jogo\Documents\git_Test\LogSearchTest\LogSearchTest\obj\Debug\netcoreapp2.1\LogSearch.AssemblyInfoInputs.cache
+C:\Users\jogo\Documents\git_Test\LogSearchTest\LogSearchTest\obj\Debug\netcoreapp2.1\LogSearch.AssemblyInfo.cs
+C:\Users\jogo\Documents\git_Test\LogSearchTest\LogSearchTest\obj\Debug\netcoreapp2.1\LogSearch.dll
+C:\Users\jogo\Documents\git_Test\LogSearchTest\LogSearchTest\obj\Debug\netcoreapp2.1\LogSearch.pdb
