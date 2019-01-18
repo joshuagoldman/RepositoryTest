@@ -17,17 +17,14 @@ namespace LogSearchTest.Tests
             var Array = new string[]
                 {
                 "ael",
-                "gkjlfj",
-                "rie",
-                "asdljf",
-                "rsölglk",
-                "dfjk",
-                "tkjg"
+                "ael",
+                "ael"
                 };
 
             var SortedArr = Array.QuickSortString().ToList();
 
-            Assert.IsTrue(SortedArr.TakeWhile(el => SortedArr.IndexOf(el) < SortedArr.Count - 2).All(el => string.Compare(el, SortedArr.ElementAt(SortedArr.IndexOf(el) + 1)) == -1));
+            Assert.IsTrue(SortedArr.TakeWhile(el => SortedArr.IndexOf(el) < SortedArr.Count - 2).All(el => string.Compare(el, SortedArr.ElementAt(SortedArr.IndexOf(el) + 1)) == -1 ||
+                                                                                                           string.Compare(el, SortedArr.ElementAt(SortedArr.IndexOf(el) + 1)) == 0));
         }
     }
 }

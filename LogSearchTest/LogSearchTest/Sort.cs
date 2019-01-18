@@ -18,6 +18,11 @@ namespace LogSearchTest
 
             var A = Enum.Select(el => el.ToString()).ToArray();
 
+            if (A.AllEqual())
+            {
+                return A;
+            }
+
             if (A.Count() < 2)
             {
                 return A;
@@ -25,41 +30,66 @@ namespace LogSearchTest
 
             var PossibPivots = new string[] { A[0], A[A.Count() / 2], A[A.Count() - 1] };
 
+            if (A.Count() == 2)
+            {
+                return string.Compare(A[0], A[1]) == -1 ? A : Swap(A, 0, 1);
+            }
+
             var Pivot = Array.IndexOf(A, PossibPivots.FirstOrDefault(el => PossibPivots.Where(el_other => el_other != el).
                             Any(el_other => string.Compare(el_other, el) == 1) &&
                             PossibPivots.Where(el_other => el_other != el).
                             Any(el_other => string.Compare(el_other, el) == -1)));
 
+            if (Pivot == -1)
+            {
+                Pivot = 0;
+            }
+
             A = Swap(A.ToArray(), Pivot, A.Count() - 1);
 
-            var NotPivot = A.TakeWhile(el => Array.IndexOf(A, el) < A.Count() - 1).ToArray();
+            var NotPivot = A.Take(A.Count() - 1).ToArray();
 
             var TempLeft = 0;
             var TempRight = NotPivot.Count() - 1;
+            var SwapWPivot = 0;
 
-            NotPivot.DoWhile(el => Math.Abs(Array.IndexOf(NotPivot, NotPivot[TempLeft]) - Array.IndexOf(NotPivot, NotPivot[TempRight])) > 1,
-                                el =>
-                                {
-                                    NotPivot.DoWhile(new_el => string.Compare(NotPivot[TempLeft], A[Pivot]) == -1,
-                                                        new_el => TempLeft++);
-
-                                    NotPivot.DoWhile(new_el => string.Compare(NotPivot[TempRight], A[Pivot]) == 1,
-                                                        new_el => TempRight--);
-
-                                    NotPivot = Swap(NotPivot.ToArray(), TempLeft, TempRight);
-                                });
+            while (true)
+            {
+                if (string.Compare(NotPivot[TempLeft], A[A.Count() - 1]) != -1 && string.Compare(NotPivot[TempRight], A[A.Count() - 1]) != 1)
+                {
+                    NotPivot = Swap(NotPivot.ToArray(), TempLeft, TempRight);
+                }
+                if (string.Compare(NotPivot[TempLeft], A[A.Count() - 1]) == -1)
+                {
+                    TempLeft++;
+                }
+                if (string.Compare(NotPivot[TempRight], A[A.Count() - 1]) == 1)
+                {
+                    TempRight--;
+                }
+                if (TempRight - TempLeft < 1)
+                {
+                    if (TempLeft == TempRight)
+                    {
+                        SwapWPivot = string.Compare(NotPivot[TempLeft], A[A.Count() - 1]) == 1 ? TempLeft : TempLeft + 1;
+                        break;
+                    }
+                    SwapWPivot = Math.Max(TempLeft, TempRight);
+                    break;
+                }
+            }
 
             var NotPivotList = NotPivot.ToList();
             NotPivotList.Add(A[A.Count() - 1]);
-            NotPivot = Swap(NotPivotList.ToArray(), NotPivotList.Count() - 1, TempRight);
+            NotPivot = Swap(NotPivotList.ToArray(), NotPivotList.Count() - 1, SwapWPivot);
             A = NotPivot.ToArray();
 
-            var partitionFirst = A.TakeWhile(el => Array.IndexOf(A, el) < TempRight);
-            var partitionSec = A.SkipWhile(el => Array.IndexOf(A, el) <= TempRight);
+            var partitionFirst = A.Take(SwapWPivot);
+            var partitionSec = A.Skip(SwapWPivot + 1);
             var AFirst = partitionFirst.QuickSortString().ToList();
             var ASec = partitionSec.QuickSortString().ToList();
 
-            AFirst.Add(A[TempRight]);
+            AFirst.Add(A[SwapWPivot]);
             AFirst.AddRange(ASec);
             return AFirst.ToArray();
         }
@@ -73,20 +103,18 @@ namespace LogSearchTest
             return A;
         }
 
-        public static void DoWhile<T>(
-            this IEnumerable<T> elementsEnum,
-            Func<T , bool> condition,
-            Action<T> Action
-            )
+        public static bool AllEqual<T>(this IEnumerable<T> elementsEnum)
         {
-            var elements = elementsEnum.ToArray();
-            var el = elements[0];
+            var A = elementsEnum.Select(el => el.ToString()).ToArray();
 
-            while (condition(el))
+            for (int i = 0; i < A.Count() - 1; i++)
             {
-                Action(el);
-                el = elements[Array.IndexOf(elements, el) + 1];
+                if (A[i] != A[i + 1])
+                {
+                    return false;
+                }
             }
+            return true;
         }
     }
 }
