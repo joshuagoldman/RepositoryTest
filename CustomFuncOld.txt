@@ -1,0 +1,60 @@
+            /*
+
+            string infoText = "";
+            foreach (var thisLine in CurrSearch.ListOfDictsOfHitsAndLines) //list with dict (line and faultstring) with hits in them
+            {
+                for (int i = 0; i < CurrSearch.DataSourceList.Count; i++) //List of SNIDs from xml
+                {
+                    string line = "";
+                    thisLine.TryGetValue("Line", out line);
+
+                    if (line.Contains("SNID " + CurrSearch.DataSourceList[i][0])) //SNID blablabla
+                    {
+                        string DataText = "";
+
+                        foreach (var Variable in SearchKey.SearchSettings.Expression.Variables)
+                        {
+                            if (Variable.IsDataSource)
+                            {
+                                Variable.VariableData = " ";
+                                continue;
+                            }
+
+                            if (Variable.VariableType != VariableEvaluationType.Expression)
+                                continue;
+
+                            //"Data"-text in PDF
+                            if (Variable.VariableData != null && Variable.VariableData.Contains($"SNID {CurrSearch.DataSourceList[i][0]}=")) //If allready in list => upd count
+                            {
+                                var VariableDataArr = Variable.VariableData.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                                int countSNIDHits = 1;
+                                DataText = "";
+
+                                foreach (var currInfoLine in VariableDataArr)
+                                {
+                                    if (currInfoLine.Contains($"SNID {CurrSearch.DataSourceList[i][0]}="))
+                                    {
+                                        countSNIDHits += Int16.Parse(currInfoLine.Replace($"814; SNID {CurrSearch.DataSourceList[i][0]}=", ""));
+                                        DataText += $"814; SNID {CurrSearch.DataSourceList[i][0]}={countSNIDHits}\r\n"; //Replace current line with the updated countHits
+
+                                    }
+                                    else
+                                    {
+                                        DataText += $"{currInfoLine}\r\n";
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                DataText = Variable.VariableData + $"814; SNID {CurrSearch.DataSourceList[i][0]}=1\r\n";
+                                infoText += SearchKey.ReportSettings.Infotext.Replace("SubList0", CurrSearch.DataSourceList[i][0]).Replace("SubList1", CurrSearch.DataSourceList[i][1]) + "\r\n";
+                                Variable.Count++;
+                                hitCounter++;
+                            }
+
+                            Variable.VariableData = DataText;
+
+                        }
+                    }
+                }
+            }*/
