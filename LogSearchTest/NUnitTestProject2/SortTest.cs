@@ -22,7 +22,7 @@ namespace LogSearchTest.Tests
                 "poo",
                 "dlkdjf",
                 "zske",
-                "hhh",
+                "hhh", 
                 "eldfkjf",
                 "skdlk",
                 "xjk",
