@@ -520,7 +520,7 @@
       ]
     },
     "Microsoft.NETCore.Platforms/2.1.0": {
-      "sha512": "ok+RPAtESz/9MUXeIEz6Lv5XAGQsaNmEYXMsgVALj4D7kqC8gveKWXWXbufLySR2fWrwZf8smyN5RmHu0e4BHA==",
+      "sha512": "aSTPL94NloSiQVL5Len8wbjFKOnoAX/vOh3s3DF6g3c7GUUMLCDvnBhmA72M2iN2AedyA8hpr7m89kzSAKUnJQ==",
       "type": "package",
       "path": "microsoft.netcore.platforms/2.1.0",
       "files": [
@@ -689,23 +689,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jogo\\.nuget\\packages\\": {},
+    "C:\\Users\\DELL\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jogo\\Documents\\git_Test\\LogSearchTest\\LogSearchTest\\LogSearch.csproj",
+      "projectUniqueName": "C:\\Users\\DELL\\Documents\\GitRepoJosh\\LogSearchTest\\LogSearchTest\\LogSearch.csproj",
       "projectName": "LogSearch",
-      "projectPath": "C:\\Users\\jogo\\Documents\\git_Test\\LogSearchTest\\LogSearchTest\\LogSearch.csproj",
-      "packagesPath": "C:\\Users\\jogo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jogo\\Documents\\git_Test\\LogSearchTest\\LogSearchTest\\obj\\",
+      "projectPath": "C:\\Users\\DELL\\Documents\\GitRepoJosh\\LogSearchTest\\LogSearchTest\\LogSearch.csproj",
+      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\DELL\\Documents\\GitRepoJosh\\LogSearchTest\\LogSearchTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\jogo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

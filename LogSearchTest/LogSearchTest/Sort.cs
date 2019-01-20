@@ -2,40 +2,51 @@
 using System.Linq;
 using System.Collections.Generic;
 
-namespace LogSearchTest
+namespace LogSearch
 {
 
-    public static class TestClass
+    public class QuickSort
     {
+       public Dictionary<int, int> QuickDict { get; set; }
 
+        public string[] Array { get; set; }
     }
 
     public static class Sort
     {
-        public static string[] QuickSortString<T1>(
-            this IEnumerable<T1> Enum)
+        public static QuickSort QuickSortString<T1>(
+            this IEnumerable<T1> Enum,
+            QuickSort Q = null,
+            int FormerPivot = 0
+            )
         {
 
-            var A = Enum.Select(el => el.ToString()).ToArray();
-
-            if (A.AllEqual())
+            Q = Q ?? new QuickSort()
             {
-                return A;
+                Array = Enum.Select(el => el.ToString()).ToArray(),
+                QuickDict = Enum.CreatePosDict()
+
+            };
+
+            if (Q.Array.AllEqual())
+            {
+                return Q;
             }
 
-            if (A.Count() < 2)
+            if (Q.Array.Count() < 2)
             {
-                return A;
+                return Q;
             }
 
-            var PossibPivots = new string[] { A[0], A[A.Count() / 2], A[A.Count() - 1] };
+            var PossibPivots = new string[] { Q.Array[0], Q.Array[Q.Array.Count() / 2], Q.Array[Q.Array.Count() - 1] };
 
-            if (A.Count() == 2)
+            if (Q.Array.Count() == 2)
             {
-                return string.Compare(A[0], A[1]) == -1 ? A : Swap(A, 0, 1);
+                return string.Compare(Q.Array[0], Q.Array[1]) == -1 ? Q : Swap(Q, 0, 1, FormerPivotPos: FormerPivot);
+
             }
 
-            var Pivot = Array.IndexOf(A, PossibPivots.FirstOrDefault(el => PossibPivots.Where(el_other => el_other != el).
+            var Pivot = Array.IndexOf(Q.Array, PossibPivots.FirstOrDefault(el => PossibPivots.Where(el_other => el_other != el).
                             Any(el_other => string.Compare(el_other, el) == 1) &&
                             PossibPivots.Where(el_other => el_other != el).
                             Any(el_other => string.Compare(el_other, el) == -1)));
@@ -45,25 +56,31 @@ namespace LogSearchTest
                 Pivot = 0;
             }
 
-            A = Swap(A.ToArray(), Pivot, A.Count() - 1);
+            Q = Swap(Q, Pivot, Q.Array.Count() - 1, FormerPivotPos: FormerPivot);
 
-            var NotPivot = A.Take(A.Count() - 1).ToArray();
+            var QNotPivot = new QuickSort()
+            {
+                Array = Q.Array.Take(Q.Array.Count() - 1).ToArray(),
+                QuickDict = Q.QuickDict
+            };
 
             var TempLeft = 0;
-            var TempRight = NotPivot.Count() - 1;
+            var TempRight = QNotPivot.Array.Count() - 1;
             var SwapWPivot = 0;
 
             while (true)
             {
-                if (string.Compare(NotPivot[TempLeft], A[A.Count() - 1]) != -1 && string.Compare(NotPivot[TempRight], A[A.Count() - 1]) != 1)
+                if (string.Compare(QNotPivot.Array[TempLeft], Q.Array[Q.Array.Count() - 1]) != -1 && string.Compare(QNotPivot.Array[TempRight], Q.Array[Q.Array.Count() - 1]) != 1)
                 {
-                    NotPivot = Swap(NotPivot.ToArray(), TempLeft, TempRight);
+                    QNotPivot = Swap(QNotPivot, TempLeft, TempRight, FormerPivotPos: FormerPivot);
                 }
-                if (string.Compare(NotPivot[TempLeft], A[A.Count() - 1]) == -1)
+                if (string.Compare(QNotPivot.Array[TempLeft], Q.Array[Q.Array.Count() - 1]) == -1 ||
+                    string.Compare(QNotPivot.Array[TempLeft], Q.Array[Q.Array.Count() - 1]) == 0)
                 {
                     TempLeft++;
                 }
-                if (string.Compare(NotPivot[TempRight], A[A.Count() - 1]) == 1)
+                if (string.Compare(QNotPivot.Array[TempRight], Q.Array[Q.Array.Count() - 1]) == 1 ||
+                    string.Compare(QNotPivot.Array[TempRight], Q.Array[Q.Array.Count() - 1]) == 0)
                 {
                     TempRight--;
                 }
@@ -71,7 +88,7 @@ namespace LogSearchTest
                 {
                     if (TempLeft == TempRight)
                     {
-                        SwapWPivot = string.Compare(NotPivot[TempLeft], A[A.Count() - 1]) == 1 ? TempLeft : TempLeft + 1;
+                        SwapWPivot = string.Compare(QNotPivot.Array[TempLeft], Q.Array[Q.Array.Count() - 1]) == 1 ? TempLeft : TempLeft + 1;
                         break;
                     }
                     SwapWPivot = Math.Max(TempLeft, TempRight);
@@ -79,28 +96,74 @@ namespace LogSearchTest
                 }
             }
 
-            var NotPivotList = NotPivot.ToList();
-            NotPivotList.Add(A[A.Count() - 1]);
-            NotPivot = Swap(NotPivotList.ToArray(), NotPivotList.Count() - 1, SwapWPivot);
-            A = NotPivot.ToArray();
+            var NotPivotList = QNotPivot.Array.ToList();
+            NotPivotList.Add(Q.Array[Q.Array.Count() - 1]);
 
-            var partitionFirst = A.Take(SwapWPivot);
-            var partitionSec = A.Skip(SwapWPivot + 1);
-            var AFirst = partitionFirst.QuickSortString().ToList();
-            var ASec = partitionSec.QuickSortString().ToList();
+            QNotPivot.Array = NotPivotList.ToArray();
 
-            AFirst.Add(A[SwapWPivot]);
-            AFirst.AddRange(ASec);
-            return AFirst.ToArray();
+            Q = Swap(QNotPivot, QNotPivot.Array.Count() - 1, SwapWPivot, FormerPivotPos: FormerPivot);
+
+            var QFirst = new QuickSort()
+            {
+                Array = Q.Array.Take(SwapWPivot).ToArray(),
+                QuickDict = Q.QuickDict.Where(pos_pair => pos_pair.Value < SwapWPivot + FormerPivot).
+                              ToDictionary(pos_pair => pos_pair.Key, pos_pair => pos_pair.Value)
+            };
+
+            var QSec = new QuickSort()
+            {
+                Array = Q.Array.Skip(SwapWPivot + 1).ToArray(),
+                QuickDict = Q.QuickDict.Where(pos_pair => pos_pair.Value > SwapWPivot + FormerPivot).
+                              ToDictionary(pos_pair => pos_pair.Key, pos_pair => pos_pair.Value)
+            };
+
+            QFirst = QFirst.Array.QuickSortString(QFirst, FormerPivot);
+            QSec = QSec.Array.QuickSortString(QSec, FormerPivot: SwapWPivot + FormerPivot + 1);
+
+            var ArrayTemp = QFirst.Array.ToList();
+            ArrayTemp.Add(Q.Array[SwapWPivot]);
+            ArrayTemp.AddRange(QSec.Array.ToList());
+
+            QFirst.Array = ArrayTemp.ToArray();
+
+            QFirst.QuickDict.Add(Q.QuickDict.FirstOrDefault(pos_pair => pos_pair.Value == SwapWPivot + FormerPivot).Key, SwapWPivot + FormerPivot);
+
+            QSec.QuickDict.ToList().ForEach(pos_pair =>
+                                    {
+                                        QFirst.QuickDict.Add(pos_pair.Key, pos_pair.Value);
+                                    });
+
+            return QFirst;
         }
 
-        private static string[] Swap(string[] A, int leftPos, int rightPos)
+        private static QuickSort Swap(QuickSort Q, int leftPos, int rightPos, int FormerPivotPos = 0)
         {
-            string tmp = A[leftPos];
-            A[leftPos] = A[rightPos];
-            A[rightPos] = tmp;
+            string tmp = Q.Array[leftPos];
+            Q.Array[leftPos] = Q.Array[rightPos];
+            Q.Array[rightPos] = tmp;
 
-            return A;
+            if (Q.QuickDict != null)
+            {
+                var LeftKey = Q.QuickDict.FirstOrDefault(x => x.Value == leftPos + FormerPivotPos).Key;
+                var RightKey = Q.QuickDict.FirstOrDefault(x => x.Value == rightPos + FormerPivotPos).Key;
+                Q.QuickDict[LeftKey] = rightPos + FormerPivotPos;
+                Q.QuickDict[RightKey] = leftPos + FormerPivotPos;
+            }
+
+            return Q;
+        }
+
+        private static Dictionary<int, int> CreatePosDict<T>(
+            this IEnumerable<T> A)
+        {
+            var Dict = new Dictionary<int, int>();
+
+            for (int i = 0; i < A.Count(); i++)
+            {
+                Dict.Add(i, i);
+            }
+
+            return Dict;
         }
 
         public static bool AllEqual<T>(this IEnumerable<T> elementsEnum)
