@@ -1,17 +1,33 @@
 namespace FSharpProject
 
 open System
+open System
+open System.Linq
+open System.Reflection
+open System.Text.RegularExpressions
 
 module Say =
-    let hello() =
+    open System.Collections
+    
+    type VariablesNEquation =
+        { Variables : seq<string>
+          Equation : string}
 
-        let list1 = ["John";"Josh";"Michael"]
+
+    
+    let SearchNEvaluate logFileText vars eq = 
         
-        list1
-        |> List.filter (fun x -> x.Contains("J"))
-        |> List.map (fun x -> x + " Goldman")
-        |>printfn "%A"
+        let  Obj =
+            {Variables = vars ; Equation = eq};
+        
+        Obj
+        |> (fun x  y -> Regex.Match(x,y) ; Obj.Variables x ; Obj.Equation  
 
-    hello()
+        let ss = 
+            3
+        Console.WriteLine(ss)
+    
+    
+    Console.WriteLine()
 
     Console.ReadKey() |> ignore

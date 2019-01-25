@@ -815,6 +815,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "http://localhost:58084": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
