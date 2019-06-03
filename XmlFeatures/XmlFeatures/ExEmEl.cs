@@ -20,11 +20,11 @@ namespace XmlFeatures.XmlDoc
 
         NewDocument YesOrNo;
 
-        public ExEmEl(string filepath, NewDocument yesorno = NewDocument.No )
+        public ExEmEl(string filepath, NewDocument yesorno = NewDocument.No, Stream stream = null )
         {
             FilePath = filepath;
             YesOrNo = yesorno;
-            DocumentChoice Result = !File.Exists(FilePath) ?
+            DocumentChoice Result = !File.Exists(FilePath) && stream == null ?
                            Result = YesOrNo == NewDocument.No ?
                            DocumentChoice.ThrowException :
                            DocumentChoice.NewDoc :
@@ -47,7 +47,7 @@ namespace XmlFeatures.XmlDoc
                 if (XDoc == null)
                 {
                     XDoc = XDoc ?? new XDocument();
-                    XDoc = XDocument.Load(FilePath);                    
+                    XDoc = stream == null ? XDocument.Load(FilePath) : XDocument.Load(stream);                    
                 }
             }
         }

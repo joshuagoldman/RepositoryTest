@@ -18,7 +18,9 @@ using System.Threading;
 using System.Windows.Interop;
 using System.Web;
 using System.Xml.Linq;
+using System.Reflection;
 using SearchKey_GUI.Models;
+using Ericsson.LogAnalyzer;
 using SearchKey_GUI.Methods;
 using XmlFeatures.XmlDoc;
 using System.IO;
@@ -45,10 +47,22 @@ namespace SearchKey_GUI.Methods
 
         public void PerformInitiliazation()
         {
-            Xml = new ExEmEl(@"C:\Users\jogo\Gitrepos\Nodetest\Nodetest\Datapackets\HWLogCriteria\documents\HWLogCriteria.xml",
-                                              ExEmEl.NewDocument.No);
+            MessageBox.Show($"Please browse the HWLogCriteria.xml file directory in which changes are to be saved",
+                "Information",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
 
-            //C:\Users\DELL\Documents\GitRepoJosh
+            var dialog = new System.Windows.Forms.FolderBrowserDialog();
+            dialog.ShowDialog();
+            var filepath = dialog.SelectedPath + "\\HWLogCriteria.xml";
+
+            if (string.IsNullOrEmpty(dialog.SelectedPath))
+            {
+                System.Windows.Application.Current.Shutdown();
+            }
+
+            var HWLogCritStream = Assembly.GetAssembly(typeof(LogAnalyzer)).GetManifestResourceStream("Ericsson.AM.LogAnalyzer.EmbeddedCriteria.RBS6000.Aftermarket.HWLogCriteria.xml");
+            Xml = new ExEmEl(filepath, yesorno: ExEmEl.NewDocument.No);
 
             Controls ControlInfo = new Controls();
             CreateTreeDict Dict = new CreateTreeDict()

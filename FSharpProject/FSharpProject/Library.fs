@@ -10,24 +10,23 @@ module Say =
     open System.Collections
     
     type VariablesNEquation =
-        { Variables : seq<string>
-          Equation : string}
+        { Variables : Map<List<string>, string>}
 
-
+    let Dictionary = 
+        Map.empty.
+            Add(["mck"; "skl"; "sdf"], "x > 3 && y > 2 || z < 5").
+            Add(["aks"], "x > 0")
     
-    let SearchNEvaluate logFileText vars eq = 
+    let text =
+        "sjdlkkjfkmck sjldkje"
+
+    let SearchNEvaluateVar (logFileText : string) (var : string) = 
+        Regex.IsMatch(logFileText, var)
+
+    let searchNEvaluate (logfileText : string) (dict : Map<List<string>, string>) =
         
-        let  Obj =
-            {Variables = vars ; Equation = eq};
-        
-        Obj
-        |> (fun x  y -> Regex.Match(x,y) ; Obj.Variables x ; Obj.Equation  
-
-        let ss = 
-            3
-        Console.WriteLine(ss)
+        dict
+        |> dict
+            
+    SearchNEvaluate text "kk"
     
-    
-    Console.WriteLine()
-
-    Console.ReadKey() |> ignore
