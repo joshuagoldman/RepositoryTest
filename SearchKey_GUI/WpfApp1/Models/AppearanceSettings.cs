@@ -7,6 +7,7 @@ using System.Windows.Media;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using Xceed.Wpf.Toolkit;
 
 namespace SearchKey_GUI.Models
 {
@@ -34,6 +35,8 @@ namespace SearchKey_GUI.Models
         string[] items = {"", "", ""};
 
         Visibility visibility = Visibility.Visible;
+
+        
 
         public Brush Background
         {

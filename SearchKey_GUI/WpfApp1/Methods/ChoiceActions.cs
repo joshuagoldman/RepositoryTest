@@ -54,7 +54,9 @@ namespace SearchKey_GUI.Methods
                 Select(window => window.GetValue(AllWind));
 
             var AppearanceSettingsInstances = ControlInfo.GetType().
-                GetProperties().Select(prop => (AppearanceSettings)prop.GetValue(ControlInfo)).
+                GetProperties().
+                Where(prop => prop.PropertyType == typeof(AppearanceSettings)).
+                Select(prop => (AppearanceSettings)prop.GetValue(ControlInfo)).
                 Where(prop => prop != null).ToList();
 
                 AppearanceSettingsInstances.ForEach(obj => obj.Text = ChooseTextChangeToRed(CurrWindows.ToList().
@@ -84,7 +86,9 @@ namespace SearchKey_GUI.Methods
         public void RedNotificationPopUpMessage()
         {
 
-            var RedFields = ControlInfo.GetType().GetProperties().ToList().Where(prop => (AppearanceSettings)prop.GetValue(ControlInfo) != null).
+            var RedFields = ControlInfo.GetType().GetProperties().ToList().
+                Where(prop => prop.PropertyType == typeof(AppearanceSettings)).
+                Where(prop => (AppearanceSettings)prop.GetValue(ControlInfo) != null).
                 Select(prop => (AppearanceSettings)prop.GetValue(ControlInfo)).Where(prop => prop.Text.Equals("ChangeToRed")).
                 Select(prop => prop.NameProp).ToList();
 
@@ -178,8 +182,8 @@ namespace SearchKey_GUI.Methods
                 XPathSelectElement($"(//{ControlInfo.CriteriaReferenceWithRevision.NameProp}[@Value = '{ControlInfo.CriteriaReferenceWithRevision.Text ?? "kkk"}']/../..)[last()]");
             var SearchKeyXPath = Xml.XDoc.XPathSelectElement($"//{ControlInfo.SearchKey.NameProp}[@Name = '{ControlInfo.SearchKey.Text ?? "kkkk"}']");
 
-            var Test = CriteriaWRevisionXPath != null ? CriteriaSearchKeyExistance.CritExists :
-                       SearchKeyXPath != null ? CriteriaSearchKeyExistance.KeyExists : CriteriaSearchKeyExistance.NoneExist;
+            var Test = SearchKeyXPath != null ? CriteriaSearchKeyExistance.KeyExists :
+                       CriteriaWRevisionXPath != null ? CriteriaSearchKeyExistance.CritExists : CriteriaSearchKeyExistance.NoneExist;
 
             switch (Test)
             {
@@ -295,6 +299,7 @@ namespace SearchKey_GUI.Methods
         public void EmptyWindow()
         {
             ControlInfo.GetType().GetProperties().
+                Where(prop => prop.PropertyType == typeof(AppearanceSettings)).
                 Select(prop => (AppearanceSettings)prop.GetValue(ControlInfo)).ToList().
                 ForEach(prop => {
                     prop.Background = Brushes.White;
@@ -305,8 +310,11 @@ namespace SearchKey_GUI.Methods
 
         public bool PopupWindowTest()
         {
-            return ControlInfo.GetType().GetProperties().ToList().Where(prop => prop.GetValue(ControlInfo) != null).
-                Any(prop => prop.GetValue(ControlInfo).GetType().GetProperties().ToList().Any(subprop => subprop.GetValue(prop.GetValue(ControlInfo)).Equals("ChangeToRed")));
+            return ControlInfo.GetType().GetProperties().ToList().
+                Where(prop => prop.PropertyType == typeof(AppearanceSettings)).
+                Where(prop => prop.GetValue(ControlInfo) != null).
+                Any(prop => prop.GetValue(ControlInfo).GetType().GetProperties().ToList().
+                Any(subprop => subprop.GetValue(prop.GetValue(ControlInfo)).Equals("ChangeToRed")));
         }
     }
 }

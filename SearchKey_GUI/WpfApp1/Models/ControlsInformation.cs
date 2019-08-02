@@ -38,6 +38,8 @@ namespace SearchKey_GUI.Models
         {
             get
             {
+                criteria_reference_with_revision.ItemsSource =  
+                    GetHWLogCriteriaElementVals("CriteriaReferenceWithRevision").Distinct().ToArray();
                 EmptyFieldToRed(criteria_reference_with_revision);
                 return criteria_reference_with_revision;
             } 

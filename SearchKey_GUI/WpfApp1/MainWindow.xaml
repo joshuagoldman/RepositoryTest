@@ -1,4 +1,5 @@
 ﻿<Window x:Class="SearchKey_GUI.MainWindow"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -44,7 +45,16 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock  Background="Chocolate" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" Text="Search Key"  Grid.Column="0" Grid.Row="0"></TextBlock>
-                                <TextBox Name="SearchKey" FontSize="15" Grid.Column="0"  Grid.Row="1" Background="{Binding Path= SearchKey.Background, Mode=TwoWay}" Foreground="{Binding Path= SearchKey.Foreground, Mode=TwoWay}" ></TextBox>
+                                <ComboBox Name="SearchKey"
+                                          FontSize="15"
+                                          Grid.Column="0"
+                                          Grid.Row="1"
+                                          IsTextSearchEnabled="True"
+                                          IsEditable="True"
+                                          ItemsSource="{Binding Path= SearchKey.ItemsSource, Mode=TwoWay}"
+                                          Background="{Binding Path= SearchKey.Background, Mode=TwoWay}"
+                                          Foreground="{Binding Path= SearchKey.Foreground, Mode=TwoWay}" >
+                                </ComboBox>
                                 <TextBlock Background="Chocolate" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" Text="SearchGroup" Grid.Column="1"  Grid.Row="0" ></TextBlock>
 								<ComboBox Name="SearchGroup" FontSize="15" Grid.Column="1" SelectedIndex="0" ItemsSource="{Binding Path= SearchGroup.ItemsSource, Mode=TwoWay}"  Grid.Row="1" Background="{Binding Path= SearchGroup.Background, Mode=TwoWay}" Foreground="{Binding Path= SearchGroup.Foreground, Mode=TwoWay}"></ComboBox>
                             </Grid>
@@ -74,7 +84,16 @@
                                         <RowDefinition Height="30"/>
                                     </Grid.RowDefinitions>
                                     <TextBlock Name="CriteriaReferenceWithRevisionLabel" Grid.Row="0" Text="Criteria Reference with Revision Value" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
-                                    <TextBox Name="CriteriaReferenceWithRevision" AcceptsReturn="True" Background="{Binding Path= CriteriaReferenceWithRevision.Background, Mode=TwoWay}" Foreground="{Binding Path= CriteriaReferenceWithRevision.Foreground, Mode=TwoWay}"  TextAlignment="{Binding Path= StandardTextBoxAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardTextBoxAppearance1.FontSize, Mode=TwoWay}"  Grid.Row="1"></TextBox>
+                                    <ComboBox 
+                                        Name="CriteriaReferenceWithRevision"
+                                        IsTextSearchEnabled="True"
+                                        IsEditable ="True"
+                                        Background="{Binding Path= CriteriaReferenceWithRevision.Background, Mode=TwoWay}"
+                                        Foreground="{Binding Path= CriteriaReferenceWithRevision.Foreground, Mode=TwoWay}"
+                                        FontSize="{Binding Path= StandardTextBoxAppearance1.FontSize, Mode=TwoWay}"
+                                        ItemsSource="{Binding Path= CriteriaReferenceWithRevision.ItemsSource, Mode=TwoWay}"
+                                        Grid.Row="1">
+                                    </ComboBox>
                                 </Grid>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -105,6 +124,28 @@
                     <ScrollViewer Grid.Column="1" Grid.Row="8" Margin="0,0,0,10" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" >
                         <Border BorderBrush="Black" BorderThickness="3,0,3,3">
                             <StackPanel Orientation="Horizontal">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="IncludeTestTypesLabel"
+                                               Grid.Row="0" Text="Include Test Types"
+                                               TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}"
+                                               Background="{Binding Path= StandardLabelAppearance1.Background}"
+                                               TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" 
+                                               FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}">
+                                    </TextBlock>
+                                    <ComboBox Name="IncludeTestTypes" Grid.Row="1"
+                                              SelectedIndex="0"
+                                              ItemsSource="{Binding Path= IncludeTestTypes.ItemsSource, Mode=TwoWay}"
+                                              Background="{Binding Path= StandardComboBoxAppearance1.Background, Mode=TwoWay}"
+                                              Foreground="{Binding Path= StandardComboBoxAppearance1.Foreground, Mode=TwoWay}">
+                                    </ComboBox> 
+                                </Grid>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="150"/>
@@ -214,6 +255,29 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Name="IncludedInTestLabel" Grid.Row="0" Text="Included In Test" TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}" Background="{Binding Path= StandardLabelAppearance1.Background}" TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}"></TextBlock>
                                     <ComboBox Name="IncludedInTest" SelectedIndex="0" ItemsSource="{Binding Path= IncludedInTest.ItemsSource, Mode=TwoWay}" Background="{Binding Path= StandardComboBoxAppearance1.Background, Mode=TwoWay}" Foreground="{Binding Path= StandardComboBoxBoxAppearance1.Foreground, Mode=TwoWay}" Grid.Row="1"></ComboBox>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="IncludeServiceLocationsLabel"
+                                               Grid.Row="0" Text="Include Service Locations"
+                                               TextWrapping="{Binding Path= StandardLabelAppearance1.TextWrapping, Mode=TwoWay}"
+                                               Background="{Binding Path= StandardLabelAppearance1.Background}"
+                                               TextAlignment="{Binding Path= StandardLabelAppearance1.TextAlignment, Mode=TwoWay}" 
+                                               FontSize="{Binding Path= StandardLabelAppearance1.FontSize, Mode=TwoWay}">
+                                    </TextBlock>
+                                    <ComboBox Name="IncludeServiceLocations" Grid.Row="1"
+                                              IsTextSearchEnabled="True"
+                                              IsEditable="True"
+                                              ItemsSource="{Binding Path= IncludeServiceLocations.ItemsSource, Mode=TwoWay}"
+                                              Background="{Binding Path= StandardComboBoxAppearance1.Background, Mode=TwoWay}"
+                                              Foreground="{Binding Path= StandardComboBoxAppearance1.Foreground, Mode=TwoWay}">
+                                    </ComboBox>
                                 </Grid>
                             </StackPanel>
                         </Border>

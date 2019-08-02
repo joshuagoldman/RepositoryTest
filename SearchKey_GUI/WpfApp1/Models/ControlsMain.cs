@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using XmlFeatures.XmlDoc;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Reflection;
+using System.Xml.XPath;
 
 namespace SearchKey_GUI.Models
 {
@@ -15,6 +17,8 @@ namespace SearchKey_GUI.Models
 
     public partial class Controls
     {
+
+        public ExEmEl XmlFile { get; set; }
 
         AppearanceSettings textblock_object = new AppearanceSettings();
         AppearanceSettings search_key = new AppearanceSettings();
@@ -43,6 +47,7 @@ namespace SearchKey_GUI.Models
         {
             get
             {
+                search_key.ItemsSource = GetHWLogCriteriaElementVals("SearchKey");
                 EmptyFieldToRed(search_key);
                 return search_key;
             }
@@ -116,9 +121,13 @@ namespace SearchKey_GUI.Models
             }
         }
 
-        public Controls()
+        public Controls(ExEmEl xml = null)
         {
-            GetType().GetProperties().ToList().Where(prop => (AppearanceSettings)prop.GetValue(this) != null).ToList().
+            XmlFile = xml;
+
+            GetType().GetProperties().ToList().
+                Where(prop => prop.PropertyType == typeof(AppearanceSettings)).
+                Where(prop => (AppearanceSettings)prop.GetValue(this) != null).ToList().
                 ForEach(prop => prop.GetValue(this).GetType().GetProperties().
                 Where(subprop => subprop.GetValue(prop.GetValue(this)) != null).
                 Where(subprop => subprop.Name.Equals("NameProp")).ToList().
@@ -158,6 +167,18 @@ namespace SearchKey_GUI.Models
             Obj.Background = Brushes.DimGray;
             Obj.FontSize = double.Parse("15");
             return Obj;
+        }
+
+        private string[] GetHWLogCriteriaElementVals(string element)
+        {
+            var xmlNodes = XmlFile.XDoc.XPathSelectElements("*//*").ToList().
+                Where(tag => tag.HasAttributes == true).ToList();
+
+            var elementVals = xmlNodes.Where(node => node.Name.ToString() == element);
+
+            var strings2Obtain = elementVals.Select(node => node.FirstAttribute.Value.ToString());
+
+            return strings2Obtain.ToArray();
         }
 
     }

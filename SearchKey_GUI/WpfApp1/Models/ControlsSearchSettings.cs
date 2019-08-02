@@ -28,6 +28,8 @@ namespace SearchKey_GUI.Models
         AppearanceSettings exclude_files = new AppearanceSettings();
         AppearanceSettings screening_allowed = new AppearanceSettings();
         AppearanceSettings inclded_in_test = new AppearanceSettings();
+        AppearanceSettings include_test_types = new AppearanceSettings();
+        AppearanceSettings include_service_locations = new AppearanceSettings();
 
         public AppearanceSettings ExcludeTestTypes
         {
@@ -149,7 +151,6 @@ namespace SearchKey_GUI.Models
         {
             get
             {
-                EmptyFieldToRed(include_files);
                 return include_files;
             } 
             set
@@ -194,6 +195,61 @@ namespace SearchKey_GUI.Models
             set
             {
                 inclded_in_test = value;
+            }
+        }
+
+        public AppearanceSettings IncludeTestTypes
+        {
+            get
+            {
+                include_test_types.ItemsSource = new string[] 
+                {
+                    "",
+                    "All",
+                    "RcLat",
+                    "RcExtLat",
+                    "ScLat",
+                    "RcPrtt",
+                    "RcExtPrtt",
+                    "ScPrtt",
+                    "CloudLat" };
+                return include_test_types;
+            }
+            set
+            {
+                include_test_types = value;
+            }
+        }
+
+        public AppearanceSettings IncludeServiceLocations
+        {
+            get
+            {
+                include_service_locations.ItemsSource = new[]
+                {
+
+                    "SE-SYNGA",
+                    "MX-SANGU",
+                    "BD-SYNDH",
+                    "BR-ERISJ",
+                    "HU-FLXBU",
+                    "US-ERITX",
+                    "CN-ERINJ",
+                    "MX-JABGU",
+                    "CN-ERIGZ",
+                    "ID-SYNJA",
+                    "IN-JABPU",
+                    "JP-SYNNR",
+                    "MY-ERIKL",
+                    "NL-ERIRI",
+                    "EE-ERITA",
+                    "TW-ERITB"
+                };
+                return include_service_locations;
+            }
+            set
+            {
+                include_service_locations = value;
             }
         }
     }

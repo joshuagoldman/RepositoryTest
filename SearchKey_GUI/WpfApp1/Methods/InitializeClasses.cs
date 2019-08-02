@@ -64,7 +64,8 @@ namespace SearchKey_GUI.Methods
             var HWLogCritStream = Assembly.GetAssembly(typeof(LogAnalyzer)).GetManifestResourceStream("Ericsson.AM.LogAnalyzer.EmbeddedCriteria.RBS6000.Aftermarket.HWLogCriteria.xml");
             Xml = new ExEmEl(filepath, yesorno: ExEmEl.NewDocument.No);
 
-            Controls ControlInfo = new Controls();
+            Controls ControlInfo = new Controls(Xml);
+
             CreateTreeDict Dict = new CreateTreeDict()
             {
                 Information = ControlInfo

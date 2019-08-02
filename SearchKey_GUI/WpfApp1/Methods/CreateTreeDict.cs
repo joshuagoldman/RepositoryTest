@@ -50,6 +50,16 @@ namespace SearchKey_GUI.Methods
                                     new string[]{ "Information" }
                     },
                     new string[][]{
+                                    new string[]{Information.IncludeServiceLocations.NameProp, "Value", Information.IncludeServiceLocations.Text  },
+                                    new string[]{"3" },
+                                    new string[]{ "SearchSettings" }
+                    },
+                    new string[][]{
+                                    new string[]{Information.IncludeTestTypes.NameProp, "Value", Information.IncludeTestTypes.Text  },
+                                    new string[]{"3" },
+                                    new string[]{ "SearchSettings" }
+                    },
+                    new string[][]{
                                     new string[]{"SearchSettings" },
                                     new string[]{"2" },
                                     new string[]{ Information.SearchKey.NameProp, "Name", Information.SearchKey.Text }
