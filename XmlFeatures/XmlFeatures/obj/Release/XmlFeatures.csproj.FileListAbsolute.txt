@@ -1,0 +1,14 @@
+C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeatures\bin\Release\NUnit3.TestAdapter.dll
+C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeatures\bin\Release\NUnit3.TestAdapter.pdb
+C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeatures\bin\Release\nunit.engine.dll
+C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeatures\bin\Release\nunit.engine.api.dll
+C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeatures\bin\Release\XmlFeatures.dll
+C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeatures\bin\Release\XmlFeatures.pdb
+C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeatures\bin\Release\nunit.framework.dll
+C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeatures\bin\Release\nunit.framework.pdb
+C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeatures\bin\Release\nunit.framework.xml
+C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeatures\obj\Release\XmlFeatures.csproj.CoreCompileInputs.cache
+C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeatures\obj\Release\XmlFeatures.csproj.CopyComplete
+C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeatures\obj\Release\XmlFeatures.dll
+C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeatures\obj\Release\XmlFeatures.pdb
+C:\Users\jogo\Documents\git_Test\XmlFeatures\XmlFeatures\obj\Release\XmlFeatures.csprojAssemblyReference.cache
