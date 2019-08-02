@@ -36,12 +36,6 @@ module SetUpCases_SK_1_68 =
             X2 : string
             }
 
-    let createVarsRule2 (conditions : string[]) (vars2Choose : string[][]) =
-        
-        let varMat = 
-            vars2Choose
-            |> Array.zip
-
     let flipArr (arr : string[])=
         
         let flipList = Array.empty
@@ -67,8 +61,23 @@ module SetUpCases_SK_1_68 =
         allArrays
         |> Array.map(fun sub_arr -> sub_arr |> Array.map(fun sub_sub_arr -> sub_sub_arr.[0]))
         |> getTransposeArr finalArr 
+ 
+ 
+    let createVarsRule2 (info : TrapInfos) (vars2Choose : string[][]) =
         
+        ""
+ 
+    let trapInfos = 
+        
+        let RegexstringChunk = Regex.Match("(Rule 2: Valid when no ‘Trap info’ available from Step 1)(.|\n)*(2.5 Criteria Valid for)", fileInStringForm).Result()
 
+        let tableVals = Regex.Split("(2).*", RegexstringChunk)
+
+        let conditions = tableVals |> Array.map(fun str -> Regex.Split("(Y|N|any).*", str))
+
+        let infoTextComponent = tableVals |> Array.map(fun str -> Regex.Match("(A1).*", str).Result())
+
+        {Conditions = conditions ; InfoTextComponent = infoTextComponent}
 
     let Rule2Arr (keyChunkInfos : KeyStringChunkInfo[]) (fileInStringForm : string) =
         
@@ -85,20 +94,8 @@ module SetUpCases_SK_1_68 =
                 Regex.Split(String.Format("({0}).*", keyChunkInfo.Key), stringChunk)
 
             keyChunkInfos
-            |> Array.map(fun info -> tableRowVarsFileSpecific info) >> 
-
-
-        let trapInfos = 
-            
-            let RegexstringChunk = Regex.Match("(Rule 2: Valid when no ‘Trap info’ available from Step 1)(.|\n)*(2.5 Criteria Valid for)", fileInStringForm).Result()
-
-            let tableVals = Regex.Split("(2).*", RegexstringChunk)
-
-            let conditions = tableVals |> Array.map(fun str -> Regex.Split("(Y|N|any).*", str))
-
-            let infoTextComponent = tableVals |> Array.map(fun str -> Regex.Match("(A1).*", str).Result())
-
-            {Conditions = conditions ; InfoTextComponent = infoTextComponent}
+            |> Array.map(fun info -> tableRowVarsFileSpecific info)
+            |> TransposeStrArr >> createVarsRule2 trapInfos  
 
 
         
