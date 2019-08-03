@@ -1,16 +1,16 @@
-﻿namespace SearchKey_Rep.DocumentReading
+﻿namespace SearchKeyRep.DocumentReading
 
 open System
 open System.Windows
 open System.Reflection
 open System.IO
-open SearchKeyRep.RepeatSearchKey
 open System.Diagnostics
+open SearchKeyRep
 open System.Text.RegularExpressions
 
 module SetUpCases_SK_1_68 = 
     
-    let docRegex = 
+    let DocString = 
         
         let stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("SearchKey_Rep.1_68_Update_C.docx")
 
@@ -20,62 +20,64 @@ module SetUpCases_SK_1_68 =
 
         fileInStringForm
 
-    type TrapInfos = 
-        {   Conditions : string[][]
-            InfoTextComponent : string[]
-            }
-
     type KeyStringChunkInfo = 
         {   Key : string
             ChunkStart : string
             ChunkEnd : string
             }
 
-    type TrapVars = 
+    type PLLInfos = 
+        {   Conditions : string[][]
+            InfoTextComponent : string[]
+            }
+
+    type PLLVars = 
         {   X1 : string
             X2 : string
             }
 
-    let flipArr (arr : string[])=
-        
-        let flipList = Array.empty
-        arr
-        |> Array.map(fun str -> Array.append flipList [|str|])
+    type Options = 
+        | None
+        | X1
+        | X2
 
-    let getTransposeArr (arr2Fill : string[][]) (arr : string [][])=
+    let isVariable (cond : string) =
         
-        Array.append arr2Fill arr       
-        
-    let TransposeStrArr (arr : string[][]) =
-        
-        let allArrays = 
-            arr
-            |> Array.map(fun sub_arr -> flipArr sub_arr)
-            |> Array.skip(1)
-        
-        let finalArr = 
-            arr
-            |> Array.map(fun sub_arr -> flipArr sub_arr)
-            |> Array.item(0)
+        match cond with
+        |"Y" -> Options.X1
+        | "N" -> Options.X2
+        | _ -> Options.None
 
-        allArrays
-        |> Array.map(fun sub_arr -> sub_arr |> Array.map(fun sub_sub_arr -> sub_sub_arr.[0]))
-        |> getTransposeArr finalArr 
- 
- 
-    let createVarsRule2 (info : TrapInfos) (vars2Choose : string[][]) =
         
-        ""
+
+    let createVarPair (conds : string []) (vars2Choose : string[]) =
+        
+        let valsZipped = Array.zip conds vars2Choose
+        {X1 = valsZipped 
+                |> Array.filter(fun (cond, _) -> isVariable cond = Options.X1)
+                |> Array.map(fun (_, var) -> var + "|")
+                |> fun x -> "(" + String.Concat(x ,',') + ")"
+         X2 =  valsZipped 
+                |> Array.filter(fun (cond, _) -> isVariable cond = Options.X2) 
+                |> Array.map(fun (_, var) -> var + "|")
+                |> fun x -> "(" + String.Concat(x ,',') + ")"}
+        
+    
+    let createAllVarPairs (info : PLLInfos) (vars2Choose : string[]) =
+        
+        info.Conditions
+        |> Array.map(fun cond -> createVarPair cond vars2Choose)
+        
  
     let trapInfos = 
         
-        let RegexstringChunk = Regex.Match("(Rule 2: Valid when no ‘Trap info’ available from Step 1)(.|\n)*(2.5 Criteria Valid for)", fileInStringForm).Result()
+        let RegexstringChunk = Regex.Split("(Rule 2: Valid when no ‘Trap info’ available from Step 1)(.|\n)*(2.5 Criteria Valid for)", DocString).[0]
 
         let tableVals = Regex.Split("(2).*", RegexstringChunk)
 
         let conditions = tableVals |> Array.map(fun str -> Regex.Split("(Y|N|any).*", str))
 
-        let infoTextComponent = tableVals |> Array.map(fun str -> Regex.Match("(A1).*", str).Result())
+        let infoTextComponent = tableVals |> Array.map(fun str -> Regex.Split("(A1).*", str).[0])
 
         {Conditions = conditions ; InfoTextComponent = infoTextComponent}
 
@@ -86,18 +88,24 @@ module SetUpCases_SK_1_68 =
             
             let tableRowVarsFileSpecific (keyChunkInfo : KeyStringChunkInfo) = 
                 
-                let stringChunk = Regex.Match(String.Format("({0})(.|\n)*({1})",
+                let stringChunk = Regex.Split(String.Format("({0})(.|\n)*({1})",
                                                             keyChunkInfo.ChunkStart,
                                                             keyChunkInfo.ChunkEnd),
-                                              fileInStringForm).Result();
+                                              fileInStringForm).[0];
 
                 Regex.Split(String.Format("({0}).*", keyChunkInfo.Key), stringChunk)
 
             keyChunkInfos
             |> Array.map(fun info -> tableRowVarsFileSpecific info)
-            |> TransposeStrArr >> createVarsRule2 trapInfos  
-
-
+            |> Array.map(fun arr -> createAllVarPairs trapInfos arr)
+        
+        let readyVarRows = 
+            
+            tableRowVarsAllFiles
+            |> Array.collect(fun file_vars -> file_vars 
+                                            |> Array.map(fun var_pair -> "NameNEXTX1NEXTValueNEXT" + var_pair.X1 + "NEXTisRegexNEXTTRUE\n" + 
+                                                                         "NameNEXTX2NEXTValueNEXT" + var_pair.X2 + "NEXTisRegexNEXTTRUE" ))
+        ""                                                                           
         
 
         

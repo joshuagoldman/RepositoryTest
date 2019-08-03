@@ -54,6 +54,7 @@
     <Compile Include="StringModifier.fs" />
     <Compile Include="CheckStationTestTypeTest.fs" />
     <Compile Include="RepScript.fs" />
+    <Compile Include="StringTranspose.fs" />
     <Compile Include="SetUpCases_SK_1_68.fs" />
     <EmbeddedResource Include="1_68_Update_C.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
