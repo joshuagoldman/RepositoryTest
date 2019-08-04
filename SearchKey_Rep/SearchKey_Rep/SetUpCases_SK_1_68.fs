@@ -5,7 +5,8 @@ open System.Windows
 open System.Reflection
 open System.IO
 open System.Diagnostics
-open SearchKeyRep
+open SearchKeyRep.RepeatSearchKey
+open SearchKeyRep.StringTranspose
 open System.Text.RegularExpressions
 
 module SetUpCases_SK_1_68 = 
@@ -24,6 +25,7 @@ module SetUpCases_SK_1_68 =
         {   Key : string
             ChunkStart : string
             ChunkEnd : string
+            file : string
             }
 
     type PLLInfos = 
@@ -48,7 +50,12 @@ module SetUpCases_SK_1_68 =
         | "N" -> Options.X2
         | _ -> Options.None
 
+    let int2Alphabet (num : int) = 
         
+        match num with
+        | 0 -> "a" | 1 -> "b" | 2 -> "c" | 3 -> "d" | 4 -> "e"  | 5 -> "f" | 6 -> "g" | 7 -> "h"
+        | 8 -> "i" | 9 -> "j" | 10 -> "k" | 11 -> "l" | 12 -> "m" | 13 -> "n" | 14 -> "o" | 15 -> "p"
+        | 16 -> "q" | 17 -> "r" | 18 -> "s" | 19 -> "t" | 20 -> "u" | 21 -> "v" | 22 -> "w" | _ -> ""
 
     let createVarPair (conds : string []) (vars2Choose : string[]) =
         
@@ -103,10 +110,65 @@ module SetUpCases_SK_1_68 =
             
             tableRowVarsAllFiles
             |> Array.collect(fun file_vars -> file_vars 
-                                            |> Array.map(fun var_pair -> "NameNEXTX1NEXTValueNEXT" + var_pair.X1 + "NEXTisRegexNEXTTRUE\n" + 
-                                                                         "NameNEXTX2NEXTValueNEXT" + var_pair.X2 + "NEXTisRegexNEXTTRUE" ))
-        ""                                                                           
-        
+                                            |> Array.map(fun var_pair -> "NameNEXTX1NEXTValueNEXT" +
+                                                                         var_pair.X1 +
+                                                                         "NEXTisRegexNEXTTRUE\n" + 
+                                                                         "NameNEXTX2NEXTValueNEXT" +
+                                                                         var_pair.X2 +
+                                                                         "NEXTisRegexNEXTTRUE" ))
 
+        let products (keyChunkInfo : KeyStringChunkInfo) = 
+            
+            let stringChunk = Regex.Split(String.Format("({0})(.|\n)*({1})",
+                                                        keyChunkInfo.ChunkStart,
+                                                        keyChunkInfo.ChunkEnd),
+                                          fileInStringForm).[0];
+
+            Regex.Split(String.Format("({0}).*", keyChunkInfo.Key), stringChunk)
+            |> Array.map(fun serial_number -> "ProductNumberNEXT" +
+                                              serial_number +
+                                              "NEXTRStateNEXT*\n")
+            
         
+        let infoText = 
+            
+            let commonTxt = 
+                Regex.Split("(Information text to repair center)(.|\n)*(Information text to lead repair centre (extended information))", DocString).[0]
+
+            trapInfos.InfoTextComponent
+            |> Array.map(fun txt -> commonTxt.Replace("POS", txt))
+
+        let filters = 
+
+            keyChunkInfos
+            |> Array.collect(fun file_var -> [|1..readyVarRows.Length|]
+                                            |> Array.map(fun _ -> "SearchFilesFilter" + file_var.file))
+
+        let searchKeys = 
+            
+            [|1..readyVarRows.Length|]
+            |> Array.map(fun num -> "" + int2Alphabet num + "; Rev D")
         
+        let dates =
+            
+            [|1..readyVarRows.Length|]
+            |> Array.map(fun _ -> "2019-08-05" )
+        
+        Array.append [|searchKeys|] [| readyVarRows;
+                                       filters;
+                                       dates;
+                                       infoText;
+                                       (products keyChunkInfos.[0]);
+                                      |]
+        |> TransposeStrArr
+        |> Array.map(fun search_key -> { SearchKey = search_key.[0];
+                                         Variable = search_key.[1] ;
+                                         Filter = search_key.[2] ;
+                                         Date = search_key.[3] ;
+                                         Infotext = search_key.[4] ;
+                                         Product = search_key.[5] ;
+                                         CriteriaReferenceWithRevision = "1/154 51-LPA108 338-37;D"
+                                        })
+
+
+                                        
