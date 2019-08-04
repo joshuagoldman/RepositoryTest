@@ -3,8 +3,7 @@
 open SearchKey_GUI.Methods
 open SearchKey_GUI
 open System.Threading
-open System.Windows
-open SearchKeyRep
+open SearchKeyRep.DocumentReading.SetUpCases_SK_1_68
 open System.Windows.Controls
 
 module RepeatSearchKey =
@@ -24,21 +23,29 @@ module RepeatSearchKey =
         init.ChoicAct.NotifyMandatoryFields <- ChoiceActions.TurnEmptyToRed.No;
         init.ChoicAct.WindowText2ControlInfoClass();
         init.ChoicAct.Write32App();
-       
-
-    type SearchKeyElements = 
-        { SearchKey : string 
-          Variable : string
-          Filter : string
-          Date : string
-          Infotext : string
-          Product : string
-          CriteriaReferenceWithRevision : string
-          }
 
     let SearchKeyElements4Use = 
         
+        let keyChunkProd = 
+            { Key = "KDU" ;
+              ChunkStart = "2.1	Product number" ;
+              ChunkEnd = "2.2	Serial number";
+              file = ""}
 
+        let keyChunkInfo = 
+            [|
+              { Key = "(A6M)" ;
+              ChunkStart = "2.4.2	Step 2: Collect other PLL traces" ;
+              ChunkEnd = "Criteria 2: Trace from system log";
+              file = ""};
+
+              { Key = "<A6M>" ;
+              ChunkStart = "Criteria 2: Trace from system log" ;
+              ChunkEnd = "Extract from syslog with some the wanted trace: (from complaintID EMEA:8008402399:2012519726:9)";
+              file = ""};
+              |]
+
+        Rule2Arr keyChunkInfo keyChunkProd DocString
 
     let SaveAction (init : InitializeClasses) = 
         init.ChoicAct.SaveFile <- ChoiceActions.SaveXmlFile.Yes;
@@ -61,9 +68,9 @@ module RepeatSearchKey =
         GenerateNewKey init
         SaveAction init
 
-    let PerformFullAction (searchKeyElements4Use : Set<SearchKeyElements>) (init : InitializeClasses)  =
+    let PerformFullAction (searchKeyElements4Use : SearchKeyElements[]) (init : InitializeClasses)  =
         searchKeyElements4Use
-        |> Set.iter(fun x -> executeSeq x init)
+        |> Array.iter(fun x -> executeSeq x init)
     
     let launcher() = 
         let window = new MainWindow()

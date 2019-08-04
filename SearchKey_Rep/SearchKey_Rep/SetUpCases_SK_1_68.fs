@@ -5,7 +5,6 @@ open System.Windows
 open System.Reflection
 open System.IO
 open System.Diagnostics
-open SearchKeyRep.RepeatSearchKey
 open SearchKeyRep.StringTranspose
 open System.Text.RegularExpressions
 
@@ -21,11 +20,21 @@ module SetUpCases_SK_1_68 =
 
         fileInStringForm
 
+    type SearchKeyElements = 
+        { SearchKey : string 
+          Variable : string
+          Filter : string
+          Date : string
+          Infotext : string
+          Product : string
+          CriteriaReferenceWithRevision : string
+          }
+
     type KeyStringChunkInfo = 
         {   Key : string
             ChunkStart : string
             ChunkEnd : string
-            file : string
+            file : string 
             }
 
     type PLLInfos = 
@@ -88,7 +97,9 @@ module SetUpCases_SK_1_68 =
 
         {Conditions = conditions ; InfoTextComponent = infoTextComponent}
 
-    let Rule2Arr (keyChunkInfos : KeyStringChunkInfo[]) (fileInStringForm : string) =
+    let Rule2Arr (keyChunkInfos : KeyStringChunkInfo[]) 
+                 (keyChunkInfosProd : KeyStringChunkInfo)
+                 (fileInStringForm : string) =
         
         
         let tableRowVarsAllFiles =
@@ -117,14 +128,14 @@ module SetUpCases_SK_1_68 =
                                                                          var_pair.X2 +
                                                                          "NEXTisRegexNEXTTRUE" ))
 
-        let products (keyChunkInfo : KeyStringChunkInfo) = 
+        let products  = 
             
             let stringChunk = Regex.Split(String.Format("({0})(.|\n)*({1})",
-                                                        keyChunkInfo.ChunkStart,
-                                                        keyChunkInfo.ChunkEnd),
+                                                        keyChunkInfosProd.ChunkStart,
+                                                        keyChunkInfosProd.ChunkEnd),
                                           fileInStringForm).[0];
 
-            Regex.Split(String.Format("({0}).*", keyChunkInfo.Key), stringChunk)
+            Regex.Split(String.Format("({0}).*", keyChunkInfosProd.Key), stringChunk)
             |> Array.map(fun serial_number -> "ProductNumberNEXT" +
                                               serial_number +
                                               "NEXTRStateNEXT*\n")
@@ -158,7 +169,7 @@ module SetUpCases_SK_1_68 =
                                        filters;
                                        dates;
                                        infoText;
-                                       (products keyChunkInfos.[0]);
+                                       (products);
                                       |]
         |> TransposeStrArr
         |> Array.map(fun search_key -> { SearchKey = search_key.[0];
