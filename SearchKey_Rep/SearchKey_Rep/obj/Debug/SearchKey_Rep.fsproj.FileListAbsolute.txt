@@ -43,7 +43,6 @@ C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\obj\Debug\SearchKey
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\obj\Debug\SearchKey_Rep.fsprojAssemblyReference.cache
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.AM.Common.pdb
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\1_68_Update_C.docx
-C:\Users\DELL\Documents\GitRepoJosh\SearchKey_Rep\SearchKey_Rep\bin\Debug\1_68_Update_C.docx
 C:\Users\DELL\Documents\GitRepoJosh\SearchKey_Rep\SearchKey_Rep\bin\Debug\SearchKey_Rep.exe.config
 C:\Users\DELL\Documents\GitRepoJosh\SearchKey_Rep\SearchKey_Rep\bin\Debug\SearchKey_Rep.XML
 C:\Users\DELL\Documents\GitRepoJosh\SearchKey_Rep\SearchKey_Rep\bin\Debug\SearchKey_Rep.exe
@@ -85,3 +84,4 @@ C:\Users\DELL\Documents\GitRepoJosh\SearchKey_Rep\SearchKey_Rep\bin\Debug\zh-Han
 C:\Users\DELL\Documents\GitRepoJosh\SearchKey_Rep\SearchKey_Rep\obj\Debug\SearchKey_Rep.fsproj.CopyComplete
 C:\Users\DELL\Documents\GitRepoJosh\SearchKey_Rep\SearchKey_Rep\obj\Debug\SearchKey_Rep.exe
 C:\Users\DELL\Documents\GitRepoJosh\SearchKey_Rep\SearchKey_Rep\obj\Debug\SearchKey_Rep.pdb
+C:\Users\DELL\Documents\GitRepoJosh\SearchKey_Rep\SearchKey_Rep\bin\Debug\1_68_Update_C.txt

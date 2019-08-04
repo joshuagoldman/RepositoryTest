@@ -12,7 +12,7 @@ module SetUpCases_SK_1_68 =
     
     let DocString = 
         
-        let stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("SearchKey_Rep.1_68_Update_C.docx")
+        let stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("SearchKey_Rep.1_68_Update_C.txt")
 
         let stream2Read = new StreamReader(stream)
 

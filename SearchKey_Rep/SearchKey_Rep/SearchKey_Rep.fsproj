@@ -56,8 +56,8 @@
     <Compile Include="StringTranspose.fs" />
     <Compile Include="SetUpCases_SK_1_68.fs" />
     <Compile Include="RepScript.fs" />
-    <EmbeddedResource Include="1_68_Update_C.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <EmbeddedResource Include="1_68_Update_C.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
