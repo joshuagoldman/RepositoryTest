@@ -1,20 +1,20 @@
 ﻿SearchKey_GUI
 
 
-winexe
+exe
 C#
 .cs
-C:\Users\DELL\Documents\GitRepoJosh\SearchKey_GUI\WpfApp1\obj\Release\
+C:\Users\jogo\Documents\git_Test\SearchKey_GUI\WpfApp1\obj\Release\
 SearchKey_GUI
 none
 false
 TRACE
-C:\Users\DELL\Documents\GitRepoJosh\SearchKey_GUI\WpfApp1\App.xaml
+C:\Users\jogo\Documents\git_Test\SearchKey_GUI\WpfApp1\App.xaml
 4-1490316214
 
 19347280403
-144-1744966486
+43-426661340
 ExpressionWindow.xaml;MainWindow.xaml;InfoTextWindow.xaml;ProductsWindow.xaml;
 
-True
+False
 

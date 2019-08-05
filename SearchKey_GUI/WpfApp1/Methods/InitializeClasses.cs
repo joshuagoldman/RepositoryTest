@@ -20,7 +20,7 @@ using System.Web;
 using System.Xml.Linq;
 using System.Reflection;
 using SearchKey_GUI.Models;
-using Ericsson.LogAnalyzer;
+using Ericsson.AM.LogAnalyzer;
 using SearchKey_GUI.Methods;
 using XmlFeatures.XmlDoc;
 using System.IO;
@@ -53,6 +53,7 @@ namespace SearchKey_GUI.Methods
                 MessageBoxImage.Information);
 
             var dialog = new System.Windows.Forms.FolderBrowserDialog();
+            dialog.SelectedPath = @"C:\Users\jogo\Gitrepos\LogAnalyzerRepo\LogAnalyzer\Ericsson.AM.LogAnalyzer\EmbeddedCriteria\RBS6000\Aftermarket";
             dialog.ShowDialog();
             var filepath = dialog.SelectedPath + "\\HWLogCriteria.xml";
 
