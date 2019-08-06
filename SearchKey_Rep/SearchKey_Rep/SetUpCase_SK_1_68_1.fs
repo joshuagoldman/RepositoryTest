@@ -121,20 +121,20 @@ module SetUpCase_SK_1_68_1 =
                                         |> fun str -> str.Replace(",", "")
                                         |> fun str -> str.[0..str.LastIndexOf("or") - 1])
 
-
         let products = 
             
 
             let lengths = 
-                tables
+                allTables
                 |> Array.map(fun arr -> arr.TableInfo.Length)
 
-            let revisions (str : string) = 
+            let getRevision (str : string) = 
                 
-                function
-                | _ when Regex.Match(str, "(?<=for rev ).*(?= and higher)").Success = true -> Regex.Match(str, "(?<=for rev ).*(?= and higher)").Value 
-                | _ when Regex.Match(str, " (?<=for rev ).*(?=\.)").Success = true -> Regex.Match(str, "(?<=for rev ).*(?= and higher)").Value
-                | _ -> "*"
+                str
+                |>function
+                    | _ when Regex.Match(str, "(?<=for rev ).*(?= and higher)").Success = true -> Regex.Match(str, "(?<=for rev ).*(?= and higher)").Value 
+                    | _ when Regex.Match(str, " (?<=for rev ).*(?=\.)").Success = true -> Regex.Match(str, "(?<=for rev ).*(?= and higher)").Value
+                    | _ -> "*"
 
             let prodNumber (str : string) = 
                 
@@ -144,17 +144,17 @@ module SetUpCase_SK_1_68_1 =
                 keyChunkInfosTables
                 |> Array.map(fun table -> Regex.Match(DocString, "(" + table.ChunkStart + ")(\n|.)*(" + table.ChunkEnd + ")").Value
                                           |> fun match_str ->  createRegexMatchesArr match_str "(KDU).*"
-                                                               |> Array.map(fun str ->  { ProdNumber = prodNumber str ; Revision = revisions str})
+                                                               |> Array.map(fun str ->  { ProdNumber = prodNumber str ;
+                                                                                          Revision = getRevision str})
                                           |> Array.map(fun prod_info -> "ProductNumberNEXT" + prod_info.ProdNumber + "NEXTRStateNEXT" + prod_info.Revision + "\n")
                                           |> String.concat ","
                                           |> fun str -> str.Replace(",", "")
                                           |> fun str -> str.Substring(0, str.LastIndexOf("\n")))
 
-            let finalProdNumbers =
                 
-                Array.zip prodInfoUnDistributed lengths 
-                |> Array.collect(fun (prodInfo, table_row_num) -> [|0..table_row_num|]
-                                                                  |> Array.map(fun _ -> prodInfo))
-
-            finalProdNumbers
+            Array.zip prodInfoUnDistributed lengths 
+            |> Array.collect(fun (prodInfo, table_row_num) -> [|0..table_row_num|]
+                                                                |> Array.map(fun _ -> prodInfo))
+        products
+            
                 
