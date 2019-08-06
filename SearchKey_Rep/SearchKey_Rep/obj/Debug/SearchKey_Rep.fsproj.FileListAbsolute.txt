@@ -84,7 +84,6 @@ C:\Users\DELL\Documents\GitRepoJosh\SearchKey_Rep\SearchKey_Rep\obj\Debug\Search
 C:\Users\DELL\Documents\GitRepoJosh\SearchKey_Rep\SearchKey_Rep\obj\Debug\SearchKey_Rep.pdb
 C:\Users\DELL\Documents\GitRepoJosh\SearchKey_Rep\SearchKey_Rep\bin\Debug\1_68_Update_C.txt
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\1_68_Update_C.txt
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\obj\Debug\SearchKey_Rep.fsprojAssemblyReference.cache
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.AM.Pqat.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.AM.LogAnalyzer.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.AM.LogAnalyzer.pdb

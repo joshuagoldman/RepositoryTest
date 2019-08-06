@@ -4,14 +4,9 @@ open System
 
 module Transpose =
                 
-    type PLLVar = 
-        {   Value : string
-            file : string
-            }  
-
     type PLLVars = 
-        {   X1 : PLLVar
-            X2 : PLLVar
+        {   X1 : string
+            X2 : string
             } 
         
     let TransposeStrArr (arr : string[][]) =
