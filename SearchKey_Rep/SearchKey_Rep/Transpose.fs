@@ -3,12 +3,17 @@
 open System
 
 module Transpose =
-                
-    type PLLVars = 
-        {   X1 : string
-            X2 : string
-            } 
-        
+
+    type VarOption =
+        | SpecialVar 
+        | RegularVar
+
+    type PLLVars =
+        {   X1 : string 
+            X2 : string 
+            VarType : VarOption
+            }
+    
     let TransposeStrArr (arr : string[][]) =
         
         let arr2Fill = 

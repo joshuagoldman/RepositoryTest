@@ -7,6 +7,7 @@ open System.IO
 open System.Diagnostics
 open SearchKeyRep.Transpose
 open SearchKeyRep.Methods.SK_1_68_Methods
+open SearchKeyRep.Definitions.Definitions_1_68
 open System.Text.RegularExpressions
 
 module SetUpCase_SK_1_68_2 = 
@@ -58,14 +59,8 @@ module SetUpCase_SK_1_68_2 =
                 |> fun x -> newArr4EachSearchKey x numOfSearchKeys
 
             products
-        
-        let infoText =  
-                
-            let commonText = 
-                "HW Fault indicated. Replace component at position POS. Report as A105/59. Major Fault."
 
-            trapInfos.InfoTextComponent
-            |> Array.map(fun txt -> commonText.Replace("POS", txt))
+        let infoText = getInfoText trapInfos.InfoTextComponent
         
         let filters = getFilters tableRowVarsAllFiles (keyChunkInfos.Length - 1)
 
@@ -77,8 +72,7 @@ module SetUpCase_SK_1_68_2 =
                                         |> Array.map(fun (file_var, number) -> file_var 
                                                                                |> fun var -> expressionFunc var number)
                                         |> String.concat ","
-                                        |> fun str -> str.Replace(",", "")
-                                        |> fun str -> str.[0..str.LastIndexOf("or") - 1])
+                                        |> fun str -> str.Replace(",", "").Replace("(A", "\(A").Replace(") ","\) ").Replace("<A", "\<A").Replace("> ","\> ")                                        |> fun str -> str.[0..str.LastIndexOf("or") - 1])
 
         let searchKeys = getSearchKeys (expression.Length - 1) "2"
 
@@ -90,7 +84,8 @@ module SetUpCase_SK_1_68_2 =
                            dates;
                            infoText;
                            products;
-                           expression|]
+                           expression
+                           infoText|]
 
 
 

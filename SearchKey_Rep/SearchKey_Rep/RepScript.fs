@@ -6,6 +6,7 @@ open System.Threading
 open SearchKeyRep.DocumentReading.SetUpCase_SK_1_68_2
 open SearchKeyRep.DocumentReading.SetUpCase_SK_1_68_1
 open SearchKeyRep.Methods.SK_1_68_Methods
+open SearchKeyRep.Definitions.Definitions_1_68
 open System.Windows.Controls
 
 module RepeatSearchKey =
@@ -77,6 +78,8 @@ module RepeatSearchKey =
         (init.AllWind.InfoTextWin.FindName("Infotext") :?> TextBox).Text <- searchKeyElements4Use.Infotext
         (init.AllWind.Main.FindName("CriteriaReferenceWithRevision") :?> ComboBox).Text <- searchKeyElements4Use.CriteriaReferenceWithRevision
         (init.AllWind.ExWindow.FindName("Expression") :?> TextBox).Text <- searchKeyElements4Use.Expression
+        (init.AllWind.InfoTextWin.FindName("InfoTextExtended") :?> TextBox).Text <- searchKeyElements4Use.InfoTextExtended
+
         
     let executeSeq (searchKeyElements4Use : SearchKeyElements) (init : InitializeClasses) =  
         

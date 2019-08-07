@@ -7,6 +7,7 @@ open System.IO
 open System.Diagnostics
 open SearchKeyRep.Transpose
 open SearchKeyRep.Methods.SK_1_68_Methods
+open SearchKeyRep.Definitions.Definitions_1_68
 open System.Text.RegularExpressions
 
 module SetUpCase_SK_1_68_1 = 
@@ -53,7 +54,7 @@ module SetUpCase_SK_1_68_1 =
 
         let getLastVar (table : Table) (firstPartition : int []) (lastPartition : int []) = 
                 
-                {X1 = fillVars table firstPartition ; X2 = fillVars table lastPartition} 
+            {X1 = fillVars table firstPartition ; X2 = fillVars table lastPartition ; VarType = VarOption.SpecialVar} 
         
         let getVars (table : Table) =
             
@@ -63,9 +64,16 @@ module SetUpCase_SK_1_68_1 =
                 
                 varIndx
                 |> function
-                    | varIndx when varIndx.Index >= 0 && varIndx.Index < tableInfo.PartitionSize -> {X1 = varIndx.Var ; X2 = fillVars table tableInfo.LastPartition}
-                    | varIndx when varIndx.Index >= tableInfo.PartitionSize && varIndx.Index < tableInfo.ArrMaxIndex -> {X1 = varIndx.Var ; X2 = fillVars table tableInfo.FirstPartition}
-                    | _ -> {X1 = varIndx.Var  ; X2 = "" }
+                    | varIndx when varIndx.Index >= 0 && varIndx.Index < tableInfo.PartitionSize -> {X1 = varIndx.Var ;
+                                                                                                     X2 = fillVars table tableInfo.LastPartition ;
+                                                                                                     VarType = VarOption.RegularVar}
+
+                    | varIndx when varIndx.Index >= tableInfo.PartitionSize && varIndx.Index < tableInfo.ArrMaxIndex -> {X1 = varIndx.Var ;
+                                                                                                                         X2 = fillVars table tableInfo.FirstPartition ;
+                                                                                                                         VarType = VarOption.RegularVar}
+                    | _ -> {X1 = varIndx.Var ;
+                            X2 = "" ;
+                            VarType = VarOption.RegularVar}
 
             let varArr = 
                 
@@ -89,7 +97,19 @@ module SetUpCase_SK_1_68_1 =
             
             logVars
             |> Array.map(fun var -> varComponents
-                                    |> Array.map(fun pll_var -> {X1 = var + pll_var.X1 ; X2 = var + pll_var.X2}))
+                                    |> Array.map(fun pll_var -> match pll_var.VarType with
+                                                                | VarOption.RegularVar -> {X1 = (if pll_var.X1.Length = 0 then "" else var + pll_var.X1) ;
+                                                                                           X2 = (if pll_var.X2.Length = 0 then "" else var + pll_var.X2) ;
+                                                                                           VarType = VarOption.RegularVar}
+                                                                                           
+                                                                | VarOption.SpecialVar -> {X1 = (if pll_var.X1.Length = 0 then "" else var + pll_var.X1) ;
+                                                                                           X2 = (if pll_var.X2.Length = 0 then "" else var + pll_var.X2) ;
+                                                                                           VarType = VarOption.SpecialVar}
+
+                                                                | _ -> {X1 = (if pll_var.X1.Length = 0 then "" else var + pll_var.X1) ;
+                                                                        X2 = (if pll_var.X2.Length = 0 then "" else var + pll_var.X2) ;
+                                                                        VarType = VarOption.RegularVar}))
+                                                                 
 
         let tableRowEachTable =
             allTables
@@ -111,12 +131,11 @@ module SetUpCase_SK_1_68_1 =
 
             tableRowVarsAllFiles
             |> fun arr -> SearchKeyRep.Transpose.TransposePLLArr arr 
-            |> Array.map(fun sub_arr -> Array.zip3 sub_arr [|0..logVars.Length - 1|] [|0..sub_arr.Length - 1|]
-                                        |> Array.map(fun (file_var, log_number, arr_number) -> file_var 
-                                                                                               |> function
-                                                                                                    | _ when specialVars allTables
-                                                                                                             |> Array.exists(fun num_compare -> num_compare = arr_number) -> expressionFuncSpecial log_number
-                                                                                                    | _ -> expressionFunc file_var log_number)
+            |> Array.map(fun sub_arr -> Array.zip sub_arr [|0..logVars.Length - 1|]
+                                        |> Array.map(fun (file_var, log_number) -> file_var 
+                                                                                    |> function
+                                                                                        | _ when file_var.VarType = VarOption.SpecialVar  -> expressionFuncSpecial log_number
+                                                                                        | _ -> expressionFunc file_var log_number)
                                         |> String.concat ","
                                         |> fun str -> str.Replace(",", "")
                                         |> fun str -> str.[0..str.LastIndexOf("or") - 1])
@@ -162,6 +181,7 @@ module SetUpCase_SK_1_68_1 =
             |> Array.collect(fun sub_arr -> sub_arr.TableInfo
                                             |> Array.map(fun row -> row.Info)
                                             |> fun rows -> Array.append rows [|"D2000"|])
+                                            |> fun rows -> getInfoText rows
 
         
         let filters = getFilters tableRowVarsAllFiles (logVars.Length - 1)
@@ -176,4 +196,5 @@ module SetUpCase_SK_1_68_1 =
                            dates;
                            infoText;
                            products;
-                           expression|]
+                           expression;
+                           infoText|]

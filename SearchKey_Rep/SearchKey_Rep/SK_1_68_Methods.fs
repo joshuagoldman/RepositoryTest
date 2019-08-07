@@ -4,9 +4,9 @@ open System
 open System.Windows
 open System.Reflection
 open System.IO
-open System.Diagnostics
 open SearchKeyRep.Transpose
-open SearchKeyRep
+open SearchKeyRep.Definitions.Definitions_1_68
+open System.Diagnostics
 open System.Text.RegularExpressions
 
 
@@ -89,7 +89,8 @@ module SK_1_68_Methods =
         
         let valsZipped = Array.zip conds vars2Choose
         {X1 = createVar valsZipped Options.X1 ;
-         X2 = createVar valsZipped Options.X2}
+         X2 = createVar valsZipped Options.X2;
+         VarType = VarOption.RegularVar}
     
     let createAllVarPairs (info : PLLInfos) (vars2Choose : string[]) =
         
@@ -150,8 +151,8 @@ module SK_1_68_Methods =
 
     let getDates (len : int) =
         
-        [|1..len|]
-        |> Array.map(fun _ -> "2019-08-05" )
+        [|0..len|]
+        |> Array.map(fun _ -> "2019-08-07" )
 
     let expressionFunc (varPair : PLLVars) (number : int) = 
                 
@@ -169,6 +170,22 @@ module SK_1_68_Methods =
 
         "(X" + ((number * 2) + 1).ToString() + " > 0" + " and " +
         "X" + ((number * 2) + 2).ToString() + " > 0) or "
+    
+    let getInfoText (infoTextArr : string[]) =  
+            
+        let commonTextPartOne = 
+            "HW Fault indicated.\n"
+        
+        let commonTextPartTwo = 
+            "Report as A105/59. Major Fault."
+
+        let repText = "Replace component at position POS.\n"
+
+        infoTextArr
+        |> Array.map(fun txt -> createRegexMatchesArr txt "[^\s](A10|D20|D3|G1A).*|(A10|D20|D3|G1A)[^\s]*"
+                                |> Array.map(fun pos -> repText.Replace("POS", pos))
+                                |> String.concat ","
+                                |> fun str -> commonTextPartOne + str.Replace(",", "") + commonTextPartTwo)
 
     let trapInfos = 
         
@@ -190,14 +207,14 @@ module SK_1_68_Methods =
             conditionsNInfoText
             |> Array.map(fun arr -> arr
                                     |> Array.filter(fun str -> str.Contains("A1") = false && 
-                                                                str.Contains("G1") = false))
+                                                               str.Contains("G1") = false))
 
         let infoTextComponent = 
             
             conditionsNInfoText
             |> Array.map(fun arr -> arr
                                     |> Array.find(fun str -> str.Contains("A1") = true || 
-                                                                str.Contains("G1") = true))
+                                                             str.Contains("G1") = true))
         
         {Conditions = conditions ; InfoTextComponent = infoTextComponent}
 
@@ -221,8 +238,9 @@ module SK_1_68_Methods =
                                          Variable = search_key.[1] ;
                                          Filter = search_key.[2] ;
                                          Date = search_key.[3] ;
-                                         Infotext = search_key.[4] ;
+                                         Infotext = search_key.[4];
                                          Product = search_key.[5] ;
                                          CriteriaReferenceWithRevision = "1/154 51-LPA108 338-37;D" ;
-                                         Expression = search_key.[6]
+                                         Expression = search_key.[6];
+                                         InfoTextExtended = search_key.[7]
                                         })

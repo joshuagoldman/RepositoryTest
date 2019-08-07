@@ -54,8 +54,8 @@
     <Compile Include="StringModifier.fs" />
     <Compile Include="CheckStationTestTypeTest.fs" />
     <Compile Include="Transpose.fs" />
-    <Compile Include="SK_1_68_Methods.fs" />
     <Compile Include="Definitions_1_68.fs" />
+    <Compile Include="SK_1_68_Methods.fs" />
     <Compile Include="SetUpCase_SK_1_68_1.fs" />
     <Compile Include="SetUpCase_SK_1_68_2.fs" />
     <Compile Include="RepScript.fs" />
