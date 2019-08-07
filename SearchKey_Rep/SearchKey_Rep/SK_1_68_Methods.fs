@@ -6,6 +6,7 @@ open System.Reflection
 open System.IO
 open System.Diagnostics
 open SearchKeyRep.Transpose
+open SearchKeyRep
 open System.Text.RegularExpressions
 
 
@@ -20,68 +21,6 @@ module SK_1_68_Methods =
         let fileInStringForm = stream2Read.ReadToEnd().Replace("�","")
 
         fileInStringForm
-
-    type SearchKeyElements = 
-        { SearchKey : string 
-          Variable : string
-          Filter : string
-          Date : string
-          Infotext : string
-          Product : string
-          CriteriaReferenceWithRevision : string
-          Expression : string
-          }
-
-    type KeyStringChunkInfo = 
-        {   Key : string
-            ChunkStart : string
-            ChunkEnd : string 
-            }
-    
-
-    type VarInfoTxtCompPair =
-        { Var : string
-          Info : string
-          }
-
-    type Table =
-        { TableInfo : VarInfoTxtCompPair[]
-          }
-    
-    type VarLogicType =
-         { Var : string
-           Index : int
-           }
-
-    type PLLInfos = 
-        {   Conditions : string[][]
-            InfoTextComponent : string[]
-            }
-
-    type TableInfo = 
-        {   ArrMaxIndex : int
-            PartitionSize : int
-            FirstPartition : int[]
-            LastPartition : int[]
-                    
-            }
-
-    type ProdInfo = 
-        {   ProdNumber : string
-            Revision : string                    
-            }
-
-    let fileIndexDict = 
-
-        dict[   
-                0, "ee_esi.log" ;
-                1, "syslog.txt"
-            ]
-
-    type Options = 
-        | None
-        | X1 
-        | X2 
 
     let isVariable (cond : string) =
         
@@ -192,6 +131,28 @@ module SK_1_68_Methods =
 
             | _ -> ""
 
+
+    let getFilters (tableRowVarsAllFiles : PLLVars[][]) (len : int ) = 
+
+        tableRowVarsAllFiles
+        |> fun arr -> SearchKeyRep.Transpose.TransposePLLArr arr 
+        |> Array.map(fun sub_arr -> Array.zip sub_arr [|0..len|]
+                                    |> Array.map(fun (file_var, number) -> file_var 
+                                                                           |> fun var -> filtersFunc var number)
+                                    |> String.concat ","
+                                    |> fun str -> str.Replace(",", "")
+                                    |> fun str -> str.[0..str.LastIndexOf('\n') - 1])
+
+    let getSearchKeys (len : int) (rule : string) = 
+        
+        [|0..len|]
+        |> Array.map(fun num -> "ERS BB units with ICM CCR PLL issue, 1/-68; " + rule + int2Alphabet num + ", Rev D")
+
+    let getDates (len : int) =
+        
+        [|1..len|]
+        |> Array.map(fun _ -> "2019-08-05" )
+
     let expressionFunc (varPair : PLLVars) (number : int) = 
                 
         varPair
@@ -252,4 +213,16 @@ module SK_1_68_Methods =
                                     |> fun str -> str.Replace(",", "")
                                     |> fun str -> str.[0..str.LastIndexOf('\n') - 1])
 
-    
+    let getSearchKeysAll (finalArr : string[][]) =
+        
+        finalArr
+        |> fun arr -> TransposeStrArr arr
+        |> Array.map(fun search_key -> { SearchKey = search_key.[0];
+                                         Variable = search_key.[1] ;
+                                         Filter = search_key.[2] ;
+                                         Date = search_key.[3] ;
+                                         Infotext = search_key.[4] ;
+                                         Product = search_key.[5] ;
+                                         CriteriaReferenceWithRevision = "1/154 51-LPA108 338-37;D" ;
+                                         Expression = search_key.[6]
+                                        })
