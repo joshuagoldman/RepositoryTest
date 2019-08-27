@@ -1,0 +1,12 @@
+C:\Users\DELL\Documents\GitRepoJosh\Vradim\Vradim\Vradim\bin\Debug\netstandard2.0\Vradim.deps.json
+C:\Users\DELL\Documents\GitRepoJosh\Vradim\Vradim\Vradim\bin\Debug\netstandard2.0\Vradim.dll
+C:\Users\DELL\Documents\GitRepoJosh\Vradim\Vradim\Vradim\bin\Debug\netstandard2.0\Vradim.pdb
+C:\Users\DELL\Documents\GitRepoJosh\Vradim\Vradim\Vradim\obj\Debug\netstandard2.0\Vradim.csprojAssemblyReference.cache
+C:\Users\DELL\Documents\GitRepoJosh\Vradim\Vradim\Vradim\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\DELL\Documents\GitRepoJosh\Vradim\Vradim\Vradim\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\DELL\Documents\GitRepoJosh\Vradim\Vradim\Vradim\obj\Debug\netstandard2.0\Vradim.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Documents\GitRepoJosh\Vradim\Vradim\Vradim\obj\Debug\netstandard2.0\Vradim.AssemblyInfoInputs.cache
+C:\Users\DELL\Documents\GitRepoJosh\Vradim\Vradim\Vradim\obj\Debug\netstandard2.0\Vradim.AssemblyInfo.cs
+C:\Users\DELL\Documents\GitRepoJosh\Vradim\Vradim\Vradim\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\DELL\Documents\GitRepoJosh\Vradim\Vradim\Vradim\obj\Debug\netstandard2.0\Vradim.dll
+C:\Users\DELL\Documents\GitRepoJosh\Vradim\Vradim\Vradim\obj\Debug\netstandard2.0\Vradim.pdb

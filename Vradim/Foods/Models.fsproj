@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Progression.fs" />
+    <Compile Include="EnvironmentData.fs" />
+    <Compile Include="Foods.fs" />
+    <Compile Include="Location.fs" />
+    <Compile Include="Person.fs" />
+  </ItemGroup>
+
+</Project>
