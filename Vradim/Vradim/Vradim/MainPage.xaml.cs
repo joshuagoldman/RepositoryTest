@@ -5,6 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Vradim.GameLogic;
+using Vradim.Models;
+using Caliburn.Micro;
+using System.Threading;
 
 namespace Vradim
 {
@@ -13,10 +17,27 @@ namespace Vradim
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        public MainPageControls ControlsMainPage { get; set; }
+        private IEventAggregator _events;
         public MainPage()
         {
             InitializeComponent();
-            slider.Value = 0.5;
+            _events.SubscribeOnUIThread(this);
+            ControlsMainPage = new MainPageControls();
+            this.BindingContext = ControlsMainPage;
+            ControlsMainPage.SeasonText.Text = "winter";
         }
+
+        private void SeasonText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var seasonText = e.NewTextValue.ToLower();
+
+            ControlsMainPage.SeasonImage.Source = ImageSource.FromResource(
+                Metabolism.gwtBackGroundImage(seasonText));
+
+            
+
+        }
+
     }
 }

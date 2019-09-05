@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -10,7 +10,42 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Pictures\Seasons\Fall.jpg" />
+    <None Remove="Pictures\Seasons\Spring.jpg" />
+    <None Remove="Pictures\Seasons\Summer.jpg" />
+    <None Remove="Pictures\Seasons\Vradim_Picture.jpg" />
+    <None Remove="Pictures\Seasons\Winter.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Pictures\Seasons\Fall.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\Seasons\Spring.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\Seasons\Summer.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\Seasons\Vradim_Picture.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\Seasons\Winter.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Caliburn.Micro" Version="4.0.62-alpha" />
     <PackageReference Include="Xamarin.Forms" Version="4.1.0.555618" />
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\GameLogic\GameLogic.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pictures\Animals\" />
   </ItemGroup>
 </Project>

@@ -9,6 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Caliburn.Micro" Version="4.0.62-alpha" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Foods\Models.fsproj" />
   </ItemGroup>
 

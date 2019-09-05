@@ -2,6 +2,88 @@
   "version": 3,
   "targets": {
     "MonoAndroid,Version=v9.0": {
+      "Caliburn.Micro/4.0.62-alpha": {
+        "type": "package",
+        "dependencies": {
+          "Caliburn.Micro.Core": "4.0.62-alpha",
+          "Xamarin.Forms": "3.0.0.561731"
+        },
+        "frameworkAssemblies": [
+          "Java.Interop"
+        ],
+        "compile": {
+          "lib/monoandroid80/Caliburn.Micro.Platform.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid80/Caliburn.Micro.Platform.dll": {}
+        }
+      },
+      "Caliburn.Micro.Core/4.0.62-alpha": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Java.Interop",
+          "System.Runtime.Serialization"
+        ],
+        "compile": {
+          "lib/monoandroid80/Caliburn.Micro.Core.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid80/Caliburn.Micro.Core.dll": {}
+        }
+      },
+      "FSharp.Core/4.6.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.6/FSharp.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/FSharp.Core.dll": {}
+        },
+        "resource": {
+          "lib/netstandard1.6/cs/FSharp.Core.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/netstandard1.6/de/FSharp.Core.resources.dll": {
+            "locale": "de"
+          },
+          "lib/netstandard1.6/en/FSharp.Core.resources.dll": {
+            "locale": "en"
+          },
+          "lib/netstandard1.6/es/FSharp.Core.resources.dll": {
+            "locale": "es"
+          },
+          "lib/netstandard1.6/fr/FSharp.Core.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/netstandard1.6/it/FSharp.Core.resources.dll": {
+            "locale": "it"
+          },
+          "lib/netstandard1.6/ja/FSharp.Core.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/netstandard1.6/ko/FSharp.Core.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/netstandard1.6/pl/FSharp.Core.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/netstandard1.6/pt-BR/FSharp.Core.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/netstandard1.6/ru/FSharp.Core.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/netstandard1.6/tr/FSharp.Core.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/netstandard1.6/zh-Hans/FSharp.Core.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/netstandard1.6/zh-Hant/FSharp.Core.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
       "System.Numerics.Vectors/4.5.0": {
         "type": "package",
         "compile": {
@@ -840,10 +922,40 @@
           "build/Xamarin.Forms.targets": {}
         }
       },
+      "GameLogic/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Caliburn.Micro": "4.0.62-alpha",
+          "FSharp.Core": "4.6.2",
+          "Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GameLogic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GameLogic.dll": {}
+        }
+      },
+      "Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "FSharp.Core": "4.6.2"
+        },
+        "compile": {
+          "bin/placeholder/Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Models.dll": {}
+        }
+      },
       "Vradim/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Caliburn.Micro": "4.0.62-alpha",
+          "GameLogic": "1.0.0",
           "Xamarin.Essentials": "1.1.0",
           "Xamarin.Forms": "4.1.0.555618"
         },
@@ -857,6 +969,108 @@
     }
   },
   "libraries": {
+    "Caliburn.Micro/4.0.62-alpha": {
+      "sha512": "XXc30PBEh4ekQwJ42shsIEs05yXLd1RWA356yYwdfuI7WKV1qeX3QHftiRG/AwbLH+UretFLRXosadURXNjMBw==",
+      "type": "package",
+      "path": "caliburn.micro/4.0.62-alpha",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "caliburn.micro.4.0.62-alpha.nupkg.sha512",
+        "caliburn.micro.nuspec",
+        "lib/monoandroid80/Caliburn.Micro.Platform.dll",
+        "lib/monoandroid80/Caliburn.Micro.Platform.pdb",
+        "lib/monoandroid80/Caliburn.Micro.Platform.xml",
+        "lib/net45/Caliburn.Micro.Platform.dll",
+        "lib/net45/Caliburn.Micro.Platform.pdb",
+        "lib/net45/Caliburn.Micro.Platform.xml",
+        "lib/netstandard2.0/Caliburn.Micro.Platform.dll",
+        "lib/netstandard2.0/Caliburn.Micro.Platform.pdb",
+        "lib/netstandard2.0/Caliburn.Micro.Platform.xml",
+        "lib/uap10.0.16299/Caliburn.Micro.Platform.dll",
+        "lib/uap10.0.16299/Caliburn.Micro.Platform.pdb",
+        "lib/uap10.0.16299/Caliburn.Micro.Platform.pri",
+        "lib/uap10.0.16299/Caliburn.Micro.Platform.xml",
+        "lib/uap10.0.16299/Caliburn.Micro.Platform/Properties/Caliburn.Micro.Platform.rd.xml",
+        "lib/xamarinios10/Caliburn.Micro.Platform.dll",
+        "lib/xamarinios10/Caliburn.Micro.Platform.pdb",
+        "lib/xamarinios10/Caliburn.Micro.Platform.xml"
+      ]
+    },
+    "Caliburn.Micro.Core/4.0.62-alpha": {
+      "sha512": "vsqqAWw1spJb5IWniigpPBev2/fQEkMZwgAYdnS0VuOBb87QnoBmv160WEHVSoJc2LIzry6pjYlHl2twyOeC0g==",
+      "type": "package",
+      "path": "caliburn.micro.core/4.0.62-alpha",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "caliburn.micro.core.4.0.62-alpha.nupkg.sha512",
+        "caliburn.micro.core.nuspec",
+        "lib/monoandroid80/Caliburn.Micro.Core.dll",
+        "lib/monoandroid80/Caliburn.Micro.Core.pdb",
+        "lib/monoandroid80/Caliburn.Micro.Core.xml",
+        "lib/net45/Caliburn.Micro.Core.dll",
+        "lib/net45/Caliburn.Micro.Core.pdb",
+        "lib/net45/Caliburn.Micro.Core.xml",
+        "lib/netstandard1.1/Caliburn.Micro.Core.dll",
+        "lib/netstandard1.1/Caliburn.Micro.Core.pdb",
+        "lib/netstandard1.1/Caliburn.Micro.Core.xml",
+        "lib/uap10.0.16299/Caliburn.Micro.Core.dll",
+        "lib/uap10.0.16299/Caliburn.Micro.Core.pdb",
+        "lib/uap10.0.16299/Caliburn.Micro.Core.pri",
+        "lib/uap10.0.16299/Caliburn.Micro.Core.xml",
+        "lib/xamarinios10/Caliburn.Micro.Core.dll",
+        "lib/xamarinios10/Caliburn.Micro.Core.pdb",
+        "lib/xamarinios10/Caliburn.Micro.Core.xml"
+      ]
+    },
+    "FSharp.Core/4.6.2": {
+      "sha512": "/waJ3a7u7MjFOGnXOfokbG1N1FH7VCmP3Fw1tJ8Q75kIj60LYBL3eYzab9hDimL5E21uhQ/1wf04M3dRAYemlw==",
+      "type": "package",
+      "path": "fsharp.core/4.6.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fsharp.core.4.6.2.nupkg.sha512",
+        "fsharp.core.nuspec",
+        "lib/net45/FSharp.Core.dll",
+        "lib/net45/FSharp.Core.optdata",
+        "lib/net45/FSharp.Core.sigdata",
+        "lib/net45/FSharp.Core.xml",
+        "lib/net45/cs/FSharp.Core.resources.dll",
+        "lib/net45/de/FSharp.Core.resources.dll",
+        "lib/net45/en/FSharp.Core.resources.dll",
+        "lib/net45/es/FSharp.Core.resources.dll",
+        "lib/net45/fr/FSharp.Core.resources.dll",
+        "lib/net45/it/FSharp.Core.resources.dll",
+        "lib/net45/ja/FSharp.Core.resources.dll",
+        "lib/net45/ko/FSharp.Core.resources.dll",
+        "lib/net45/pl/FSharp.Core.resources.dll",
+        "lib/net45/pt-BR/FSharp.Core.resources.dll",
+        "lib/net45/ru/FSharp.Core.resources.dll",
+        "lib/net45/tr/FSharp.Core.resources.dll",
+        "lib/net45/zh-Hans/FSharp.Core.resources.dll",
+        "lib/net45/zh-Hant/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/FSharp.Core.dll",
+        "lib/netstandard1.6/FSharp.Core.optdata",
+        "lib/netstandard1.6/FSharp.Core.sigdata",
+        "lib/netstandard1.6/FSharp.Core.xml",
+        "lib/netstandard1.6/cs/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/de/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/en/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/es/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/fr/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/it/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/ja/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/ko/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/pl/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/pt-BR/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/ru/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/tr/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/zh-Hans/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/zh-Hant/FSharp.Core.resources.dll"
+      ]
+    },
     "System.Numerics.Vectors/4.5.0": {
       "sha512": "QQTlPTl06J/iiDbJCiepZ4H//BVraReU4O4EoRw1U02H5TLUIT7xn3GnDp9AXPSlJUDyFs4uWjWafNX6WrAojQ==",
       "type": "package",
@@ -1978,6 +2192,16 @@
         "xamarin.forms.4.1.0.555618.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
+    },
+    "GameLogic/1.0.0": {
+      "type": "project",
+      "path": "../../GameLogic/GameLogic.fsproj",
+      "msbuildProject": "../../GameLogic/GameLogic.fsproj"
+    },
+    "Models/1.0.0": {
+      "type": "project",
+      "path": "../../Foods/Models.fsproj",
+      "msbuildProject": "../../Foods/Models.fsproj"
     },
     "Vradim/1.0.0": {
       "type": "project",

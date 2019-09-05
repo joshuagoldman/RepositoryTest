@@ -95,6 +95,10 @@
       "frameworks": {
         "netstandard2.0": {
           "dependencies": {
+            "Caliburn.Micro": {
+              "target": "Package",
+              "version": "[4.0.62-alpha, )"
+            },
             "FSharp.Core": {
               "target": "Package",
               "version": "[4.6.2, )"
