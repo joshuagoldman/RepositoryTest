@@ -1,0 +1,63 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\DELL\\Documents\\GitRepoJosh\\EricssonSupportHelper\\EricssonSupportHelperFSharp\\EricssonSupportHelperFSharp.fsproj": {}
+  },
+  "projects": {
+    "C:\\Users\\DELL\\Documents\\GitRepoJosh\\EricssonSupportHelper\\EricssonSupportHelperFSharp\\EricssonSupportHelperFSharp.fsproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\DELL\\Documents\\GitRepoJosh\\EricssonSupportHelper\\EricssonSupportHelperFSharp\\EricssonSupportHelperFSharp.fsproj",
+        "projectName": "EricssonSupportHelperFSharp",
+        "projectPath": "C:\\Users\\DELL\\Documents\\GitRepoJosh\\EricssonSupportHelper\\EricssonSupportHelperFSharp\\EricssonSupportHelperFSharp.fsproj",
+        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DELL\\Documents\\GitRepoJosh\\EricssonSupportHelper\\EricssonSupportHelperFSharp\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "dependencies": {
+            "Caliburn.Micro": {
+              "target": "Package",
+              "version": "[4.0.62-alpha, )"
+            },
+            "FSharp.Core": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            },
+            "Microsoft.Xaml": {
+              "target": "Package",
+              "version": "[4.0.0.1, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win7-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

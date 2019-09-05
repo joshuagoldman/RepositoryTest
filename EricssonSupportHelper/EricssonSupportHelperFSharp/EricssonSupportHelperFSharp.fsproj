@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <OutputType>WinExe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup />
+
+  <ItemGroup>
+    <Compile Include="Models.fs" />
+    <Compile Include="ViewModels.fs" />
+  </ItemGroup>
+
+  <ItemGroup />
+
+  <ItemGroup>
+    <PackageReference Include="Caliburn.Micro" Version="4.0.62-alpha" />
+    <PackageReference Include="Microsoft.Xaml" Version="4.0.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="4.7.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,6 @@
+C:\Users\DELL\Documents\GitRepoJosh\EricssonSupportHelper\EricssonSupportHelperFSharp\bin\Debug\netcoreapp2.2\EricssonSupportHelperFSharp.deps.json
+C:\Users\DELL\Documents\GitRepoJosh\EricssonSupportHelper\EricssonSupportHelperFSharp\bin\Debug\netcoreapp2.2\EricssonSupportHelperFSharp.dll
+C:\Users\DELL\Documents\GitRepoJosh\EricssonSupportHelper\EricssonSupportHelperFSharp\obj\Debug\netcoreapp2.2\EricssonSupportHelperFSharp.fsprojAssemblyReference.cache
+C:\Users\DELL\Documents\GitRepoJosh\EricssonSupportHelper\EricssonSupportHelperFSharp\obj\Debug\netcoreapp2.2\EricssonSupportHelperFSharp.fsproj.CoreCompileInputs.cache
+C:\Users\DELL\Documents\GitRepoJosh\EricssonSupportHelper\EricssonSupportHelperFSharp\obj\Debug\netcoreapp2.2\EricssonSupportHelperFSharp.AssemblyInfoInputs.cache
+C:\Users\DELL\Documents\GitRepoJosh\EricssonSupportHelper\EricssonSupportHelperFSharp\obj\Debug\netcoreapp2.2\EricssonSupportHelperFSharp.AssemblyInfo.fs

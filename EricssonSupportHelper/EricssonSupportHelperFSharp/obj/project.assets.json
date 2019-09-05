@@ -1,0 +1,420 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.7.2": {
+      "Caliburn.Micro/4.0.62-alpha": {
+        "type": "package",
+        "dependencies": {
+          "Caliburn.Micro.Core": "4.0.62-alpha",
+          "Microsoft.Xaml.Behaviors.Wpf": "1.0.1"
+        },
+        "frameworkAssemblies": [
+          "PresentationCore",
+          "PresentationFramework",
+          "System.Xaml",
+          "WindowsBase"
+        ],
+        "compile": {
+          "lib/net45/Caliburn.Micro.Platform.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Caliburn.Micro.Platform.dll": {}
+        }
+      },
+      "Caliburn.Micro.Core/4.0.62-alpha": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Caliburn.Micro.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Caliburn.Micro.Core.dll": {}
+        }
+      },
+      "FSharp.Core/4.7.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/FSharp.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net45/FSharp.Core.dll": {}
+        },
+        "resource": {
+          "lib/net45/cs/FSharp.Core.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/net45/de/FSharp.Core.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net45/es/FSharp.Core.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net45/fr/FSharp.Core.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net45/it/FSharp.Core.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net45/ja/FSharp.Core.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net45/ko/FSharp.Core.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net45/pl/FSharp.Core.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/net45/pt-BR/FSharp.Core.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/net45/ru/FSharp.Core.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net45/tr/FSharp.Core.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/net45/zh-Hans/FSharp.Core.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/net45/zh-Hant/FSharp.Core.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Microsoft.Xaml/4.0.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/PresentationCore.dll": {},
+          "lib/PresentationFramework.dll": {},
+          "lib/System.Design.dll": {},
+          "lib/System.Xaml.dll": {},
+          "lib/UIAutomationProvider.dll": {},
+          "lib/WindowsBase.dll": {}
+        },
+        "runtime": {
+          "lib/PresentationCore.dll": {},
+          "lib/PresentationFramework.dll": {},
+          "lib/System.Design.dll": {},
+          "lib/System.Xaml.dll": {},
+          "lib/UIAutomationProvider.dll": {},
+          "lib/WindowsBase.dll": {}
+        }
+      },
+      "Microsoft.Xaml.Behaviors.Wpf/1.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Microsoft.Xaml.Behaviors.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Microsoft.Xaml.Behaviors.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.7.2/win7-x86": {
+      "Caliburn.Micro/4.0.62-alpha": {
+        "type": "package",
+        "dependencies": {
+          "Caliburn.Micro.Core": "4.0.62-alpha",
+          "Microsoft.Xaml.Behaviors.Wpf": "1.0.1"
+        },
+        "frameworkAssemblies": [
+          "PresentationCore",
+          "PresentationFramework",
+          "System.Xaml",
+          "WindowsBase"
+        ],
+        "compile": {
+          "lib/net45/Caliburn.Micro.Platform.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Caliburn.Micro.Platform.dll": {}
+        }
+      },
+      "Caliburn.Micro.Core/4.0.62-alpha": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Caliburn.Micro.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Caliburn.Micro.Core.dll": {}
+        }
+      },
+      "FSharp.Core/4.7.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/FSharp.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net45/FSharp.Core.dll": {}
+        },
+        "resource": {
+          "lib/net45/cs/FSharp.Core.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/net45/de/FSharp.Core.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net45/es/FSharp.Core.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net45/fr/FSharp.Core.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net45/it/FSharp.Core.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net45/ja/FSharp.Core.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net45/ko/FSharp.Core.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net45/pl/FSharp.Core.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/net45/pt-BR/FSharp.Core.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/net45/ru/FSharp.Core.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net45/tr/FSharp.Core.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/net45/zh-Hans/FSharp.Core.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/net45/zh-Hant/FSharp.Core.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Microsoft.Xaml/4.0.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/PresentationCore.dll": {},
+          "lib/PresentationFramework.dll": {},
+          "lib/System.Design.dll": {},
+          "lib/System.Xaml.dll": {},
+          "lib/UIAutomationProvider.dll": {},
+          "lib/WindowsBase.dll": {}
+        },
+        "runtime": {
+          "lib/PresentationCore.dll": {},
+          "lib/PresentationFramework.dll": {},
+          "lib/System.Design.dll": {},
+          "lib/System.Xaml.dll": {},
+          "lib/UIAutomationProvider.dll": {},
+          "lib/WindowsBase.dll": {}
+        }
+      },
+      "Microsoft.Xaml.Behaviors.Wpf/1.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Microsoft.Xaml.Behaviors.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Microsoft.Xaml.Behaviors.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Caliburn.Micro/4.0.62-alpha": {
+      "sha512": "XXc30PBEh4ekQwJ42shsIEs05yXLd1RWA356yYwdfuI7WKV1qeX3QHftiRG/AwbLH+UretFLRXosadURXNjMBw==",
+      "type": "package",
+      "path": "caliburn.micro/4.0.62-alpha",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "caliburn.micro.4.0.62-alpha.nupkg.sha512",
+        "caliburn.micro.nuspec",
+        "lib/monoandroid80/Caliburn.Micro.Platform.dll",
+        "lib/monoandroid80/Caliburn.Micro.Platform.pdb",
+        "lib/monoandroid80/Caliburn.Micro.Platform.xml",
+        "lib/net45/Caliburn.Micro.Platform.dll",
+        "lib/net45/Caliburn.Micro.Platform.pdb",
+        "lib/net45/Caliburn.Micro.Platform.xml",
+        "lib/netstandard2.0/Caliburn.Micro.Platform.dll",
+        "lib/netstandard2.0/Caliburn.Micro.Platform.pdb",
+        "lib/netstandard2.0/Caliburn.Micro.Platform.xml",
+        "lib/uap10.0.16299/Caliburn.Micro.Platform.dll",
+        "lib/uap10.0.16299/Caliburn.Micro.Platform.pdb",
+        "lib/uap10.0.16299/Caliburn.Micro.Platform.pri",
+        "lib/uap10.0.16299/Caliburn.Micro.Platform.xml",
+        "lib/uap10.0.16299/Caliburn.Micro.Platform/Properties/Caliburn.Micro.Platform.rd.xml",
+        "lib/xamarinios10/Caliburn.Micro.Platform.dll",
+        "lib/xamarinios10/Caliburn.Micro.Platform.pdb",
+        "lib/xamarinios10/Caliburn.Micro.Platform.xml"
+      ]
+    },
+    "Caliburn.Micro.Core/4.0.62-alpha": {
+      "sha512": "vsqqAWw1spJb5IWniigpPBev2/fQEkMZwgAYdnS0VuOBb87QnoBmv160WEHVSoJc2LIzry6pjYlHl2twyOeC0g==",
+      "type": "package",
+      "path": "caliburn.micro.core/4.0.62-alpha",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "caliburn.micro.core.4.0.62-alpha.nupkg.sha512",
+        "caliburn.micro.core.nuspec",
+        "lib/monoandroid80/Caliburn.Micro.Core.dll",
+        "lib/monoandroid80/Caliburn.Micro.Core.pdb",
+        "lib/monoandroid80/Caliburn.Micro.Core.xml",
+        "lib/net45/Caliburn.Micro.Core.dll",
+        "lib/net45/Caliburn.Micro.Core.pdb",
+        "lib/net45/Caliburn.Micro.Core.xml",
+        "lib/netstandard1.1/Caliburn.Micro.Core.dll",
+        "lib/netstandard1.1/Caliburn.Micro.Core.pdb",
+        "lib/netstandard1.1/Caliburn.Micro.Core.xml",
+        "lib/uap10.0.16299/Caliburn.Micro.Core.dll",
+        "lib/uap10.0.16299/Caliburn.Micro.Core.pdb",
+        "lib/uap10.0.16299/Caliburn.Micro.Core.pri",
+        "lib/uap10.0.16299/Caliburn.Micro.Core.xml",
+        "lib/xamarinios10/Caliburn.Micro.Core.dll",
+        "lib/xamarinios10/Caliburn.Micro.Core.pdb",
+        "lib/xamarinios10/Caliburn.Micro.Core.xml"
+      ]
+    },
+    "FSharp.Core/4.7.0": {
+      "sha512": "6Bf2qzSCaJoP6tTfO+a5muUS7QbyJANqSut73zQvwQ9It5P0ITz9VKseeia2ofco30c55EQ0jA2wf2+A2gpGnw==",
+      "type": "package",
+      "path": "fsharp.core/4.7.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fsharp.core.4.7.0.nupkg.sha512",
+        "fsharp.core.nuspec",
+        "lib/net45/FSharp.Core.dll",
+        "lib/net45/FSharp.Core.optdata",
+        "lib/net45/FSharp.Core.sigdata",
+        "lib/net45/FSharp.Core.xml",
+        "lib/net45/cs/FSharp.Core.resources.dll",
+        "lib/net45/de/FSharp.Core.resources.dll",
+        "lib/net45/es/FSharp.Core.resources.dll",
+        "lib/net45/fr/FSharp.Core.resources.dll",
+        "lib/net45/it/FSharp.Core.resources.dll",
+        "lib/net45/ja/FSharp.Core.resources.dll",
+        "lib/net45/ko/FSharp.Core.resources.dll",
+        "lib/net45/pl/FSharp.Core.resources.dll",
+        "lib/net45/pt-BR/FSharp.Core.resources.dll",
+        "lib/net45/ru/FSharp.Core.resources.dll",
+        "lib/net45/tr/FSharp.Core.resources.dll",
+        "lib/net45/zh-Hans/FSharp.Core.resources.dll",
+        "lib/net45/zh-Hant/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/FSharp.Core.dll",
+        "lib/netstandard2.0/FSharp.Core.optdata",
+        "lib/netstandard2.0/FSharp.Core.sigdata",
+        "lib/netstandard2.0/FSharp.Core.xml",
+        "lib/netstandard2.0/cs/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/de/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/es/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/fr/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/it/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/ja/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/ko/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/pl/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/pt-BR/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/ru/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/tr/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/zh-Hans/FSharp.Core.resources.dll",
+        "lib/netstandard2.0/zh-Hant/FSharp.Core.resources.dll"
+      ]
+    },
+    "Microsoft.Xaml/4.0.0.1": {
+      "sha512": "O0hZau4JvVVwCxBI8J80+fl34VxXgrENqgGGtCgxy/PELHsBQZyWpVLchJlZC4RqTlPQVVMp7NbM7dViMOgJIw==",
+      "type": "package",
+      "path": "microsoft.xaml/4.0.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/PresentationCore.dll",
+        "lib/PresentationFramework.dll",
+        "lib/System.Design.dll",
+        "lib/System.Xaml.dll",
+        "lib/UIAutomationProvider.dll",
+        "lib/WindowsBase.dll",
+        "microsoft.xaml.4.0.0.1.nupkg.sha512",
+        "microsoft.xaml.nuspec"
+      ]
+    },
+    "Microsoft.Xaml.Behaviors.Wpf/1.0.1": {
+      "sha512": "ZFmmeTIbRP5a5J47lIUeO6WgFdrU+d2NBPSv1BgsQFVdUK9jgIKs0zOnt6RJDOlSvrvlGWzhv0LgNZfXGz9nEA==",
+      "type": "package",
+      "path": "microsoft.xaml.behaviors.wpf/1.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/Microsoft.Xaml.Behaviors.dll",
+        "lib/net45/Microsoft.Xaml.Behaviors.xml",
+        "microsoft.xaml.behaviors.wpf.1.0.1.nupkg.sha512",
+        "microsoft.xaml.behaviors.wpf.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.7.2": [
+      "Caliburn.Micro >= 4.0.62-alpha",
+      "FSharp.Core >= 4.7.0",
+      "Microsoft.Xaml >= 4.0.0.1"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\DELL\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\DELL\\Documents\\GitRepoJosh\\EricssonSupportHelper\\EricssonSupportHelperFSharp\\EricssonSupportHelperFSharp.fsproj",
+      "projectName": "EricssonSupportHelperFSharp",
+      "projectPath": "C:\\Users\\DELL\\Documents\\GitRepoJosh\\EricssonSupportHelper\\EricssonSupportHelperFSharp\\EricssonSupportHelperFSharp.fsproj",
+      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\DELL\\Documents\\GitRepoJosh\\EricssonSupportHelper\\EricssonSupportHelperFSharp\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net472"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net472": {
+          "projectReferences": {}
+        }
+      }
+    },
+    "frameworks": {
+      "net472": {
+        "dependencies": {
+          "Caliburn.Micro": {
+            "target": "Package",
+            "version": "[4.0.62-alpha, )"
+          },
+          "FSharp.Core": {
+            "target": "Package",
+            "version": "[4.7.0, )"
+          },
+          "Microsoft.Xaml": {
+            "target": "Package",
+            "version": "[4.0.0.1, )"
+          }
+        }
+      }
+    },
+    "runtimes": {
+      "win7-x86": {
+        "#import": []
+      }
+    }
+  }
+}
