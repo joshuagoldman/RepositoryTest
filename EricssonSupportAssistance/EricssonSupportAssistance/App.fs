@@ -1,7 +1,18 @@
-﻿// Learn more about F# at http://fsharp.org
-// See the 'F# Tutorial' project for more help.
+﻿namespace EricssonSupportAssistance
 
-[<EntryPoint>]
-let main argv = 
-    printfn "%A" argv
-    0 // return an integer exit code
+open EricssonSupportAssistance.Views
+module App  =
+
+    open System  
+    open FsXaml  
+
+    type App = XAML<"App.xaml">  
+
+    [<EntryPoint;STAThread>]  
+    let main argv =
+        newMainWindow.Initialize
+        App().Run(newMainWindow.MainWin)
+                                   
+
+        
+      

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>EricssonSupportAssistance</name></assembly>
+<members>
+<member name="T:EricssonSupportAssistance.Views.MainWindow">
+<summary>
+Window defined in MainWindow.xaml
+</summary>
+</member>
+<member name="T:EricssonSupportAssistance.App.App">
+<summary>
+Application defined in App.xaml
+</summary>
+</member>
+</members>
+</doc>
