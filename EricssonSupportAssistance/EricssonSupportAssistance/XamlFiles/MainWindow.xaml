@@ -1,0 +1,73 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:erics="clr-namespace:EricssonSupportAssistance.XamlFiles;assembly=EricssonSupportAssistance"
+    Title="Ericsson Support Assistance" Height="600" Width="600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0"
+                    Grid.RowSpan="5"
+                    Orientation="Vertical"
+                    Background="HotPink">
+            <Button 
+                x:Name="Authenticate"
+                Content="Authenticate"
+                Margin="2"
+                Padding="5"/>
+            <Button 
+                x:Name="Upload"
+                Content="Upload"
+                Margin="2"
+                Padding="5"/>
+            <Button 
+                x:Name="Search"
+                Content="Search"
+                Margin="2"
+                Padding="5"/>
+        </StackPanel>
+        <erics:AuthenticatePage
+            DataContext="{Binding AuthenticatePage.DataContext}"
+            x:Name="AuthenticatePage"
+            Grid.Column="1"
+            Grid.Row="1"
+            Grid.ColumnSpan="3"
+            IsEnabled="True"/>
+        <erics:UploadPage
+            DataContext="{Binding UploadPage.DataContext}"
+            x:Name="UploadPage"
+            Grid.Column="1"
+            Grid.Row="1"
+            Grid.ColumnSpan="3"/>
+        <erics:SearchPage
+            DataContext="{Binding SearchPage.DataContext}"
+            x:Name="SearchPage"
+            Grid.Column="1"
+            Grid.Row="1"
+            Grid.ColumnSpan="3"/>
+        <ScrollViewer 
+            Grid.Row="3" Grid.Column="1"
+            Grid.ColumnSpan="3">
+            <TextBlock 
+                Grid.Row="3" Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Padding="5"
+                Text="{Binding InfoLogs.Text}"
+                Foreground="{Binding InfoLogs.TbForeground}"
+                TextWrapping="Wrap"/>
+
+        </ScrollViewer>
+    </Grid>
+</Window>  

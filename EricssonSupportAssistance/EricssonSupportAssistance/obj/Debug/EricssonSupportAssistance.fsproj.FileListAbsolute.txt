@@ -43,3 +43,4 @@ C:\Users\DELL\Documents\GitRepoJosh\EricssonSupportAssistance\EricssonSupportAss
 C:\Users\DELL\Documents\GitRepoJosh\EricssonSupportAssistance\EricssonSupportAssistance\obj\Debug\EricssonSupportAssistance.fsproj.CopyComplete
 C:\Users\DELL\Documents\GitRepoJosh\EricssonSupportAssistance\EricssonSupportAssistance\obj\Debug\EricssonSupportAssistance.exe
 C:\Users\DELL\Documents\GitRepoJosh\EricssonSupportAssistance\EricssonSupportAssistance\obj\Debug\EricssonSupportAssistance.pdb
+C:\Users\DELL\Documents\GitRepoJosh\EricssonSupportAssistance\EricssonSupportAssistance\obj\Debug\EricssonSupportAssistance.fsprojAssemblyReference.cache

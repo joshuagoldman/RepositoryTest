@@ -47,16 +47,30 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <None Include="App.config" />
     <Content Include="packages.config" />
-    <Resource Include="App.xaml" />
-    <Resource Include="MainWindow.xaml" />
+    <Compile Include="MailHandling\MailActions.fs" />
     <Compile Include="ControllAttributes.fs" />
     <Compile Include="Controls.fs" />
-    <Compile Include="MailHandling\MailActions.fs" />
-    <Compile Include="Functions\MainWindowFuncs.fs" />
-    <Compile Include="Views\MainWindowView.xaml.fs" />
-    <Compile Include="App.fs" />
+    <Resource Include="XamlFiles\MainWindow.xaml" />
+    <Resource Include="XamlFiles\SearchPage.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="XamlFiles\UploadPage.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="XamlFiles\AuthenticatePage.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Compile Include="XamlFiles\XamlTypes.fs" />
+    <Compile Include="Functions\Authentication.fs" />
+    <Compile Include="Functions\UploadPageFuncs.fs" />
+    <Compile Include="Functions\AuthenticatePageFuncs.fs" />
+    <Compile Include="Functions\SearchPageFuncs.fs" />
+    <Compile Include="MainWindow\MainWindowFuncs.fs" />
+    <Resource Include="App\App.xaml" />
+    <Content Include="App\App.config" />
+    <Compile Include="App\App.fs" />
+    <EmbeddedResource Include="EmbeddedTestOutput\Ticket_2731.rtf" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ActiveUp.Net.Common">
@@ -99,6 +113,9 @@
       <HintPath>..\packages\FsXaml.Wpf.3.1.6\lib\net45\FsXaml.Wpf.TypeProvider.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
+    <Reference Include="MvvmDialogs">
+      <HintPath>..\packages\MvvmDialogs.5.3.0\lib\net45\MvvmDialogs.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore">
       <Private>True</Private>
     </Reference>
