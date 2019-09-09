@@ -1,0 +1,8 @@
+C:\Users\jogo\Documents\git_Test\SearchKey_GUI\TreeBuilding\bin\Debug\netstandard2.0\TreeBuilding.deps.json
+C:\Users\jogo\Documents\git_Test\SearchKey_GUI\TreeBuilding\bin\Debug\netstandard2.0\TreeBuilding.dll
+C:\Users\jogo\Documents\git_Test\SearchKey_GUI\TreeBuilding\bin\Debug\netstandard2.0\TreeBuilding.pdb
+C:\Users\jogo\Documents\git_Test\SearchKey_GUI\TreeBuilding\obj\Debug\netstandard2.0\TreeBuilding.fsprojAssemblyReference.cache
+C:\Users\jogo\Documents\git_Test\SearchKey_GUI\TreeBuilding\obj\Debug\netstandard2.0\TreeBuilding.AssemblyInfoInputs.cache
+C:\Users\jogo\Documents\git_Test\SearchKey_GUI\TreeBuilding\obj\Debug\netstandard2.0\TreeBuilding.AssemblyInfo.fs
+C:\Users\jogo\Documents\git_Test\SearchKey_GUI\TreeBuilding\obj\Debug\netstandard2.0\TreeBuilding.dll
+C:\Users\jogo\Documents\git_Test\SearchKey_GUI\TreeBuilding\obj\Debug\netstandard2.0\TreeBuilding.pdb

@@ -1,0 +1,82 @@
+<Document>
+	<ReceptionSensitivity>>
+		<TestMethod Name = "ReceptionSensitivity UE1">
+			<Info Value = "Not enough traces has been collected\Traces collected: 0"/>
+			<Ticket Value = "1111"/>
+			<Solution Value = "Solution_1111.pdf"/>
+			<StringToAnalyze Value = "[9]>  [IP:192.168.1.116]
+	[9]>  CreateConfigurationFilesLte, Thread:9, NodeNumber:0, SetupNumer:0
+	[9]>  RX-Branch: RX_A
+	[9]>  Carrier
+	[9]>  Carrier=11, Power=60W, TX_A|RF_A RX_A|RF_A RX_B|RF_B 
+	[9]>  BW Value from HWPidList (MHz): 10
+	[9]>  Bandwidth (10M): HwPidListMHz
+	[9]>  SignalLevel: -102 dBm
+	[9]>  New feeder name: F01
+	[9]>  Old feeder name: S1A
+	[9]>  Calibration Path: S1A:PATH0
+	[9]>  targetDu: 1
+	[9]>  LTE_A13_10M_ID11
+	[9]>  INFO: Arb file LTE_A13_10M_ID11 is loaded in Signal Generator 1
+	[9]>  Frequency: 1752600000
+	[9]>  Gen1 level: -102.00
+	[9]>  LteLogToolPath: C:\logtool\logtool.exe
+	Wait 1000ms
+	Wait 4000ms
+	Wait 2000ms. Comment: 'Wait for instrument..'
+	Wait 2000ms. Comment: 'Wait for instrument..'
+	Wait 50ms. Comment: 'Make sure that we are synced!'
+	[9]>  Start UDP listener on port 55555
+	Wait 1000ms. Comment: 'Wait for receiver thread to be setup'
+	Wait 30000ms. Comment: 'Wait for traces to be collected'
+	[9]>  Not enough traces has been collected
+	[9]>  Traces collected: 0
+	Dut DUT1: LTE.RF.RS: LTE.RS.UE1.TOT 	UE1 Total 
+	Measured: 0 CRC 	Limits: >= 6000 	Fail"/>
+		</TestMethod>
+	</ReceptionSensitivity>>
+	<Sftp>
+		<TestMethod Name = "RBS.SFTP:Sftp Check">
+			<Info Value = "Test execution aborted due to all DUT's have been stopped in 'RBS.SFTP'"/>
+			<Ticket Value = "1112"/>
+			<Solution Value = "Solution_1112.pdf"/>
+			<StringToAnalyze Value = "19059-CXP9015115_1.dat
+	50_19004-CXP9015115_1.tp
+	BlockInformation.bl
+	ConfigKeyDocumentManual.xml
+	ConfigKeyDocumentOriginal.xml
+	ConfigKeyDocumentPostManual.xml
+	ConfigKeyDocumentPreManual.xml
+	ConfigKeyWithManualChanges.xml
+	EncryptedFile.dat
+	Node0
+	Structured.log
+	Testprogram.log
+	SFTP is working!
+	Sftp Server is running, but the process for Core does not appear to be running. Trying to restart Core
+	Could no connect to SFTP Server. Trying to start executable.
+	Could not find executable for msftpsrvr.exe
+	Failed to start msftpsrvr.exe.
+	************ Sftp check ************
+	19059-CXP9015115_1.dat
+	50_19004-CXP9015115_1.tp
+	BlockInformation.bl
+	ConfigKeyDocumentManual.xml
+	ConfigKeyDocumentOriginal.xml
+	ConfigKeyDocumentPostManual.xml
+	ConfigKeyDocumentPreManual.xml
+	ConfigKeyWithManualChanges.xml
+	EncryptedFile.dat
+	Node0
+	Structured.log
+	Testprogram.log
+	SFTP is working!
+	Sftp Server is running, but the process for OpenSSH does not appear to be running. Trying to restart OpenSSH
+	Could no connect to SFTP Server. Trying to start executable.
+	Could not find executable for sshd
+	Failed to start sshd.
+	Dut DUT1: InstCheck: SFTP1 	Sftp Check 
+	Measured: -1  	Limits: >= 0 	Fail "/>
+		</TestMethod>
+	</Sftp>
+</Document>

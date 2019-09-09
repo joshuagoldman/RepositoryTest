@@ -49,6 +49,10 @@
     <Compile Include="AssemblyInfo.fs" />
     <Content Include="packages.config" />
     <Compile Include="MailHandling\MailActions.fs" />
+    <EmbeddedResource Include="EmbeddedTestOutput\Ticket_2222.txt" />
+    <EmbeddedResource Include="EmbeddedTestOutput\FailedMethodInfoDocument.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Compile Include="ControllAttributes.fs" />
     <Compile Include="Controls.fs" />
     <Resource Include="XamlFiles\MainWindow.xaml" />
@@ -62,6 +66,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Compile Include="XamlFiles\XamlTypes.fs" />
+    <Compile Include="Functions\TestOutputDefinitions.fs" />
     <Compile Include="Functions\Authentication.fs" />
     <Compile Include="Functions\UploadPageFuncs.fs" />
     <Compile Include="Functions\AuthenticatePageFuncs.fs" />
@@ -70,7 +75,6 @@
     <Resource Include="App\App.xaml" />
     <Content Include="App\App.config" />
     <Compile Include="App\App.fs" />
-    <EmbeddedResource Include="EmbeddedTestOutput\Ticket_2731.rtf" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ActiveUp.Net.Common">
@@ -113,9 +117,6 @@
       <HintPath>..\packages\FsXaml.Wpf.3.1.6\lib\net45\FsXaml.Wpf.TypeProvider.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
-    <Reference Include="MvvmDialogs">
-      <HintPath>..\packages\MvvmDialogs.5.3.0\lib\net45\MvvmDialogs.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore">
       <Private>True</Private>
     </Reference>
@@ -135,6 +136,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="UIAutomationProvider">
       <Private>True</Private>
     </Reference>
