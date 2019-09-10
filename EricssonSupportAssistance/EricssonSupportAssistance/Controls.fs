@@ -5,20 +5,24 @@ open System.Windows.Media
     
    
     type Controls() =
+        
+        // MainWindow controls
         member this.InfoLogs = new ControlAtributes() 
         member this.AuthenticatePage = new ControlAtributes()
         member this.UploadPage = new ControlAtributes() 
         member this.SearchPage = new ControlAtributes() 
 
-        member this.UploadPageControl = new ControlAtributes() 
+        // Authentization controls
+        member this.AuthenticationControl = new ControlAtributes() 
+        member this.AuthenticateButton = new ControlAtributes() 
         member this.UserNameTextBox = new ControlAtributes(ItemsSource = [|"joshuagoldman94@gmail.com"|]) 
         member this.PasswordTextBox = new ControlAtributes(ItemsSource = [|"flygplan5"|]) 
 
-        member this.AuthenticationControl = new ControlAtributes() 
-        member this.AuthenticateButton = new ControlAtributes() 
+        // Upload controls
+        member this.UploadPageControl = new ControlAtributes() 
 
+        // Search controls
         member this.SearchPageControl = new ControlAtributes() 
-        member this.LoginButton = new ControlAtributes() 
 
 
 type InfoEventArgs(message : string, foreground : SolidColorBrush) =

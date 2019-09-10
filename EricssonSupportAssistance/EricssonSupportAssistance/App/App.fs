@@ -1,6 +1,6 @@
 ﻿namespace EricssonSupportAssistance
 
-open EricssonSupportAssistance.MainWindow
+open EricssonSupportAssistance.EventHandlingFuncs
 module App  =
 
     open System  

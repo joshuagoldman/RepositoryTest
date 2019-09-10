@@ -4,7 +4,6 @@ open FsXaml
 open System.Windows
 open EricssonSupportAssistance
 open EricssonSupportAssistance.XamlFiles
-open EricssonSupportAssistance.Functions
 open System
 open System.Windows.Media
 open System.Windows.Controls

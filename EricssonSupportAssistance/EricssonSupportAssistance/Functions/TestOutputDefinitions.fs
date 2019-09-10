@@ -24,29 +24,43 @@ module TestOutputDefinitions =
     type MethodInfo =
         {   Name : string
             Info : string
-            StringsToAnalyze : seq<seq<string>>
+            StringToAnalyze : seq<seq<string>>
             Ticket : string
             Solution : string
+            Category : string
             }
 
-    type TestMethod =
-        | Sftp  of MethodInfo
-        | ReceptionSensitivity  of MethodInfo
-        | Other of MethodInfo
+    let newSeqUponMatch (str : string) (sequence : seq<string>) =
+        
+        let length = sequence |> Seq.length |> fun i -> i - 1
 
-    let sequencefyStr (str : string) =
-        
-        str
-        |> fun s -> s.Split '\n'
-        |> Seq.map(fun seq -> seq.Split ' '
-                              |> Seq.filter(fun subSeq -> not(subSeq
-                                                          |> String.forall(fun chr -> chr = ' '))))
+        let (_,pos) = Seq.zip sequence [0..length] 
+                      |> Seq.find(fun (strComp,_) -> str = strComp)
 
-    let matchExistsOrNotAction (result : bool) (sequence : seq<string>) =
+        let beforePos = sequence 
+                        |> Seq.toArray
+                        |> fun x -> x.[0..pos - 1]
+                        |> fun x -> x |> Array.toSeq
+        let afterPos = sequence 
+                        |> Seq.toArray
+                        |> fun x -> x.[pos + 1..length]
+                        |> fun x -> x |> Array.toSeq
+
         
-        match result with
-        
-        | true ->  
+        sequence
+        |> function
+           | _ when pos = length - 1 ->
+            
+            sequence |> Seq.toArray |> fun x -> x.[0..length - 2] |> Array.toSeq
+           
+           | _ when pos = 0 -> 
+            
+            sequence |> Seq.toArray |> fun x -> x.[1..length - 1] |> Array.toSeq
+           
+           | _ ->
+           
+            Seq.append beforePos afterPos
+
 
     let stringPairMatches (seqTest : seq<string>) (seqComp : seq<string>) =
         
@@ -54,74 +68,64 @@ module TestOutputDefinitions =
         let mutable numSeq = [0..[|seqCompMutable|].Length]
 
         seqTest
-        |> Seq.map(fun seqTest -> Seq.zip seqCompMutable numSeq
-                                    |> Seq.exists(fun (seqComp,n) -> seqComp = seqTest))
-                                    |> 
+        |> Seq.map(fun seqTest -> seqCompMutable
+                                  |> Seq.exists(fun seqComp-> seqComp = seqTest)
+                                  |> function
+                                     | result when result = true -> fun _ -> seqCompMutable <- (newSeqUponMatch seqTest seqCompMutable)
+                                                                    |> fun _ -> 1
+                                     | _ -> 0)
+        |> Seq.sum
 
-    let tryFindSolution (strChunk : string ) (strChunkCompare : string) =
-        
-        let strSequencefied = sequencefyStr strChunk
-        let strCompareSequencefied = sequencefyStr strChunkCompare
-
-        strSequencefied
-        |> Seq.collect(fun seq -> strCompareSequencefied
-                                  |> Seq.map(fun seqComp -> ))
-
-    
     let getXmlValue (method : XElement) (name : string) =
         
         method.XPathSelectElements("*//*")
         |> Seq.find(fun info -> info.Name.ToString() = name)
         |> fun f -> f.FirstAttribute.Value
-    
-    let StringToSequenceofSequence (method : XElement) (name : string) = 
-        
-        getXmlValue method name
+     
+    let StringToSequenceofSequence (str : string) = 
+         
+        str
         |> fun str -> str.Split '\n'
         |> Seq.map(fun str -> str.Split ' '
-                              |> Seq.map(fun str2 -> str2.Trim())
-                              |> Seq.filter(fun str2 -> str2 = ""))
+                            |> Seq.map(fun str2 -> str2.Trim())
+                            |> Seq.filter(fun str2 -> str2 = ""))
 
-    let ChooseByCathegory (element : XElement) =
+    let getRating (strChunk : string ) (strCompareSequencefied : seq<seq<string>>) =
+        
+        let strSequencefied = StringToSequenceofSequence strChunk
 
-        element
-        |> function 
-            | _ when element.Name.ToString() = "Sftp" -> element.XPathSelectElements("*//*")
-                                                         |> Seq.map(fun method -> Sftp({ Name = method.Name.ToString() ; 
-                                                                                         Info = getXmlValue method "Info" ;
-                                                                                         StringsToAnalyze = StringToSequenceofSequence method "StringsToAnalyze" ;
-                                                                                         Ticket = getXmlValue method "Ticket" ;
-                                                                                         Solution = getXmlValue method "Solution"}))
-
-            | _ when element.Name.ToString() = "ReceptionSensitivity" -> element.XPathSelectElements("*//*")
-                                                                         |> Seq.map(fun method -> ReceptionSensitivity({ Name = method.Name.ToString() ; 
-                                                                                                                         Info = getXmlValue method "Info" ;
-                                                                                                                         StringsToAnalyze = StringToSequenceofSequence method "StringsToAnalyze" ;
-                                                                                                                         Ticket = getXmlValue method "Ticket" ;
-                                                                                                                         Solution = getXmlValue method "Solution"}))
-
-            | _ -> element.XPathSelectElements("*//*")
-                   |> Seq.map(fun method -> Other({ Name = method.Name.ToString() ; 
-                                                    Info = getXmlValue method "Info" ;
-                                                    StringsToAnalyze = StringToSequenceofSequence method "StringsToAnalyze" ;
-                                                    Ticket = getXmlValue method "Ticket" ;
-                                                    Solution = getXmlValue method "Solution"}))
-
-
-    let createStringsForAnalysis = 
+        strSequencefied
+        |> Seq.collect(fun seq -> strCompareSequencefied
+                                  |> Seq.map(fun seqComp -> stringPairMatches seq seqComp))
+        |> Seq.sum
+        
+    let getSolution (category :  string) (strChunk : string) = 
         
         let stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("EricssonSupportAssistance.EmbeddedTestOutPut.FailedMethodInfoDocument.xml")
 
         let FailedTMDoc = XDocument.Load(stream)
 
-        let tesMethodsAll =
+        let methodRatingTuple =
             
-            let MethodNodesAll = FailedTMDoc.XPathSelectElements(".//TestMethod")
+            let methodsNodeAll = FailedTMDoc.XPathSelectElements(".//TestMethod")
+            
+            methodsNodeAll
+            |> Seq.map(fun method -> {  Name = method.Name.ToString() ; 
+                                        Info = getXmlValue method "Info" ;
+                                        StringToAnalyze = StringToSequenceofSequence (getXmlValue method "StringToAnalyze") ;
+                                        Ticket = getXmlValue method "Ticket" ;
+                                        Solution = getXmlValue method "Solution";
+                                        Category = method.XPathSelectElement("(..)[last()]").FirstAttribute.Value })
+            |> Seq.filter(fun method -> method.Category = category)
+            |> Seq.map(fun method -> (method, getRating strChunk method.StringToAnalyze))
 
-            MethodNodesAll
-            |> Seq.collect(fun node -> ChooseByCathegory node)
-            |>
+        let maxRating = 
+            methodRatingTuple
+            |> Seq.map(fun (method, rating) -> rating)
+            |> Seq.max
 
+        methodRatingTuple
+        |> Seq.find(fun (method,rating) -> rating = maxRating)
+        |> fun (method, _) -> method.Solution
         
-        
-        
+    //let uploadFailedMethod  

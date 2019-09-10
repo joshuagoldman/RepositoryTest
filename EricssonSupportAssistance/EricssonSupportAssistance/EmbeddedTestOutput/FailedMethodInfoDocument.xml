@@ -1,5 +1,5 @@
 <Document>
-	<ReceptionSensitivity>>
+	<Category Name ="ReceptionSensitivity">
 		<TestMethod Name = "ReceptionSensitivity UE1">
 			<Info Value = "Not enough traces has been collected\Traces collected: 0"/>
 			<Ticket Value = "1111"/>
@@ -34,8 +34,8 @@
 	Dut DUT1: LTE.RF.RS: LTE.RS.UE1.TOT 	UE1 Total 
 	Measured: 0 CRC 	Limits: >= 6000 	Fail"/>
 		</TestMethod>
-	</ReceptionSensitivity>>
-	<Sftp>
+	</Category>
+  <Category Name ="Sftp">
 		<TestMethod Name = "RBS.SFTP:Sftp Check">
 			<Info Value = "Test execution aborted due to all DUT's have been stopped in 'RBS.SFTP'"/>
 			<Ticket Value = "1112"/>
@@ -78,5 +78,5 @@
 	Dut DUT1: InstCheck: SFTP1 	Sftp Check 
 	Measured: -1  	Limits: >= 0 	Fail "/>
 		</TestMethod>
-	</Sftp>
+	</Category>
 </Document>

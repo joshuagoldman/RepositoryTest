@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>EricssonSupportAssistance</name></assembly>
+<members>
+<member name="T:EricssonSupportAssistance.XamlFiles.SearchPage">
+<summary>
+UserControl defined in XamlFiles/SearchPage.xaml
+</summary>
+</member>
+<member name="T:EricssonSupportAssistance.XamlFiles.AuthenticatePage">
+<summary>
+UserControl defined in XamlFiles/AuthenticatePage.xaml
+</summary>
+</member>
+<member name="T:EricssonSupportAssistance.XamlFiles.UploadPage">
+<summary>
+UserControl defined in XamlFiles/UploadPage.xaml
+</summary>
+</member>
+<member name="T:EricssonSupportAssistance.XamlFiles.MainWindow">
+<summary>
+Window defined in XamlFiles/MainWindow.xaml
+</summary>
+</member>
+<member name="T:EricssonSupportAssistance.App.App">
+<summary>
+Application defined in App/App.xaml
+</summary>
+</member>
+</members>
+</doc>
