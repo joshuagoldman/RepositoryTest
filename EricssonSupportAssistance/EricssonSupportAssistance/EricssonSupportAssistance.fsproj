@@ -68,10 +68,10 @@
     <Compile Include="XamlFiles\XamlTypes.fs" />
     <Compile Include="Functions\TestOutputDefinitions.fs" />
     <Compile Include="Functions\Authentication.fs" />
-    <Compile Include="Functions\UploadPageFuncs.fs" />
-    <Compile Include="Functions\AuthenticatePageFuncs.fs" />
-    <Compile Include="Functions\SearchPageFuncs.fs" />
     <Compile Include="MainWindow\MainWindowFuncs.fs" />
+    <Compile Include="MainWindow\UploadPageFuncs.fs" />
+    <Compile Include="MainWindow\AuthenticatePageFuncs.fs" />
+    <Compile Include="MainWindow\SearchPageFuncs.fs" />
     <Resource Include="App\App.xaml" />
     <Content Include="App\App.config" />
     <Compile Include="App\App.fs" />
