@@ -35,7 +35,7 @@
 	Measured: 0 CRC 	Limits: >= 6000 	Fail"/>
 		</TestMethod>
 	</Category>
-  <Category Name ="Sftp">
+	<Category Name ="Sftp">
 		<TestMethod Name = "RBS.SFTP:Sftp Check">
 			<Info Value = "Test execution aborted due to all DUT's have been stopped in 'RBS.SFTP'"/>
 			<Ticket Value = "1112"/>

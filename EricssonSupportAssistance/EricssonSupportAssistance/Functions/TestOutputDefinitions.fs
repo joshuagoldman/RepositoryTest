@@ -21,6 +21,10 @@ module TestOutputDefinitions =
     
     let infoEv = new Event<InfoEventArgs>()
 
+    let stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("EricssonSupportAssistance.EmbeddedTestOutPut.FailedMethodInfoDocument.xml")
+
+    let mutable FailedTMDoc = XDocument.Load(stream)
+
     type MethodInfo =
         {   Name : string
             Info : string
@@ -100,10 +104,6 @@ module TestOutputDefinitions =
         |> Seq.sum
         
     let getSolution (category :  string) (strChunk : string) = 
-        
-        let stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("EricssonSupportAssistance.EmbeddedTestOutPut.FailedMethodInfoDocument.xml")
-
-        let FailedTMDoc = XDocument.Load(stream)
 
         let methodRatingTuple =
             
@@ -128,4 +128,72 @@ module TestOutputDefinitions =
         |> Seq.find(fun (method,rating) -> rating = maxRating)
         |> fun (method, _) -> method.Solution
         
-    //let uploadFailedMethod  
+    let uploadInfoByDocument (ticket : string) = 
+        
+        MessageBox.Show("Please browse the HWLogCriteria.xml file directory in which changes are to be saved",
+                        "Information",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information)
+        |> ignore
+
+        let dialog = new OpenFileDialog()
+
+        let textFile = File.CreateText(dialog.FileName)
+
+        let textFileString = textFile.ToString()
+
+        let failedMethodStringChunk = Regex.Match(textFileString, "(\n\*\*\*\* )(?:(?!(\n\*\*\*\* )|( 	Fail))(.|\n))*?( 	Fail)").Value
+
+        infoEv.Trigger(InfoEventArgs(String.Format("Getting failed method chunk:\n\n{0}", failedMethodStringChunk),
+                                     Brushes.Black))
+
+        let failedMethodName = Regex.Match(failedMethodStringChunk, "(\*\*\*\* )(\n|.)*?( \*\*\*\*)").Value
+
+        infoEv.Trigger(InfoEventArgs(String.Format("Failed method name set to: {0}", failedMethodName),
+                        Brushes.Black))
+
+        let categories = FailedTMDoc.XPathSelectElements("*//Category")
+                         |> Seq.map(fun cat -> cat.FirstAttribute.Value)
+
+        let category = categories
+                       |> fun sequence -> sequence
+                                          |> Seq.exists(fun cat -> failedMethodName.Contains(cat))
+                                          |> fun res -> (sequence, res)
+                       |> function
+                          | (sequence,result) when result = true -> sequence
+                                                                    |> Seq.find(fun cat -> failedMethodName.Contains(cat))
+                          
+                          | (_,_) -> "Other"
+        
+        infoEv.Trigger(InfoEventArgs(String.Format("Category set to: {0}", category),
+                        Brushes.Black))
+
+        infoEv.Trigger(InfoEventArgs("Getting solution", Brushes.Black))
+        let solution = getSolution category failedMethodStringChunk
+
+        infoEv.Trigger(InfoEventArgs(String.Format("Obtained solution:\n\n{0}", solution),
+                        Brushes.Black))
+
+        MessageBox.Show("Please browse the HWLogCriteria.xml file directory in which changes are to be saved",
+                        "Information",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information)
+        
+        let infoXElement = new XElement("Info", new XAttribute("Value",""))
+        let ticketXElement = new XElement("Ticket", new XAttribute("Value",ticket))
+        let solutionXElement = new XElement("Solution", new XAttribute("Value",solution))
+        let stringToAnalyzeXElement = new XElement("StringToAnalyze", new XAttribute("Value",failedMethodStringChunk))
+
+        let methodXElement = new XElement("Method",
+                                          new XAttribute("Name", failedMethodName),
+                                          infoXElement,
+                                          ticketXElement,
+                                          solutionXElement,
+                                          stringToAnalyzeXElement)
+                                          
+        FailedTMDoc.XPathSelectElement(String.Format("*//Category[@Name = '{0}']", category)).Add(methodXElement)
+
+        FailedTMDoc.Save(fileName)
+
+        
+       
