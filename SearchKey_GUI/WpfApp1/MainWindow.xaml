@@ -49,11 +49,11 @@
                                           FontSize="15"
                                           Grid.Column="0"
                                           Grid.Row="1"
-                                          IsTextSearchEnabled="True"
+                                          Text="{Binding Path= SearchKey.Text, Mode=TwoWay}"
                                           IsEditable="True"
                                           ItemsSource="{Binding Path= SearchKey.ItemsSource, Mode=TwoWay}"
                                           Background="{Binding Path= SearchKey.Background, Mode=TwoWay}"
-                                          Foreground="{Binding Path= SearchKey.Foreground, Mode=TwoWay}" >
+                                          Foreground="{Binding Path= SearchKey.Foreground, Mode=TwoWay}">
                                 </ComboBox>
                                 <TextBlock Background="Chocolate" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" Text="SearchGroup" Grid.Column="1"  Grid.Row="0" ></TextBlock>
 								<ComboBox Name="SearchGroup" FontSize="15" Grid.Column="1" SelectedIndex="0" ItemsSource="{Binding Path= SearchGroup.ItemsSource, Mode=TwoWay}"  Grid.Row="1" Background="{Binding Path= SearchGroup.Background, Mode=TwoWay}" Foreground="{Binding Path= SearchGroup.Foreground, Mode=TwoWay}"></ComboBox>

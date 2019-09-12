@@ -103,10 +103,16 @@ module TestOutputDefinitions =
                                   |> Seq.map(fun seqComp -> stringPairMatches seq seqComp))
         |> Seq.sum
         
-    let getSolution (category :  string) (strChunk : string) = 
+    let getSolution (strChunk : string) = 
+        
+        let stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("EricssonSupportAssistance.EmbeddedTestOutPut.FailedMethodInfoDocument.xml")
+        infoEv.Trigger(InfoEventArgs("Obtaining embedded criteria file 'FailedMethodInfoDocument.xml' for evaluation", Brushes.Black)) 
+
+        let FailedTMDoc = XDocument.Load(stream)
 
         let methodRatingTuple =
             
+            infoEv.Trigger(InfoEventArgs("Calculating rating methods", Brushes.Black)) 
             let methodsNodeAll = FailedTMDoc.XPathSelectElements(".//TestMethod")
             
             methodsNodeAll
@@ -116,16 +122,17 @@ module TestOutputDefinitions =
                                         Ticket = getXmlValue method "Ticket" ;
                                         Solution = getXmlValue method "Solution";
                                         Category = method.XPathSelectElement("(..)[last()]").FirstAttribute.Value })
-            |> Seq.filter(fun method -> method.Category = category)
             |> Seq.map(fun method -> (method, getRating strChunk method.StringToAnalyze))
 
         let maxRating = 
             methodRatingTuple
-            |> Seq.map(fun (method, rating) -> rating)
-            |> Seq.max
+            |> Seq.map(fun (_, rating) -> rating)
+            |> fun x -> x 
+                        |> fun _ -> infoEv.Trigger(InfoEventArgs("Obtaining embedded criteria file 'FailedMethodInfoDocument.xml' for evaluation", Brushes.Black))
+                        |> fun _ -> x |> Seq.max
 
         methodRatingTuple
-        |> Seq.find(fun (method,rating) -> rating = maxRating)
+        |> Seq.find(fun (_,rating) -> rating = maxRating)
         |> fun (method, _) -> method.Solution
         
     let uploadInfoByDocument (ticket : string) = 
@@ -195,5 +202,3 @@ module TestOutputDefinitions =
 
         FailedTMDoc.Save(fileName)
 
-        
-       

@@ -47,3 +47,6 @@ C:\Users\jogo\Documents\git_Test\EricssonSupportAssistance\EricssonSupportAssist
 C:\Users\jogo\Documents\git_Test\EricssonSupportAssistance\EricssonSupportAssistance\obj\Debug\EricssonSupportAssistance.exe.config
 C:\Users\jogo\Documents\git_Test\EricssonSupportAssistance\EricssonSupportAssistance\obj\Debug\EricssonSupportAssistance.g.resources
 C:\Users\DELL\Documents\GitRepoJosh\EricssonSupportAssistance\EricssonSupportAssistance\bin\Debug\EmbeddedTestOutput\FailedMethodInfoDocument.xml
+C:\Users\jogo\Documents\git_Test\EricssonSupportAssistance\EricssonSupportAssistance\bin\Debug\EricssonSupportAssistance.XML
+C:\Users\jogo\Documents\git_Test\EricssonSupportAssistance\EricssonSupportAssistance\obj\Debug\EricssonSupportAssistance.exe
+C:\Users\jogo\Documents\git_Test\EricssonSupportAssistance\EricssonSupportAssistance\obj\Debug\EricssonSupportAssistance.pdb
