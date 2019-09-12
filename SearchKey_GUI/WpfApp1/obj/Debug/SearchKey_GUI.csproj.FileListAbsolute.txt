@@ -88,7 +88,6 @@ C:\Users\jogo\Documents\git_Test\SearchKey_GUI\WpfApp1\bin\Debug\ro\Xceed.Wpf.Av
 C:\Users\jogo\Documents\git_Test\SearchKey_GUI\WpfApp1\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_GUI\WpfApp1\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_GUI\WpfApp1\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\jogo\Documents\git_Test\SearchKey_GUI\WpfApp1\obj\Debug\SearchKey_GUI.csprojAssemblyReference.cache
 C:\Users\DELL\Documents\GitRepoJosh\SearchKey_GUI\WpfApp1\bin\Debug\SearchKey_GUI.exe.config
 C:\Users\DELL\Documents\GitRepoJosh\SearchKey_GUI\WpfApp1\bin\Debug\SearchKey_GUI.exe
 C:\Users\DELL\Documents\GitRepoJosh\SearchKey_GUI\WpfApp1\bin\Debug\SearchKey_GUI.pdb
@@ -148,3 +147,4 @@ C:\Users\DELL\Documents\GitRepoJosh\SearchKey_GUI\WpfApp1\obj\Debug\SearchKey_GU
 C:\Users\DELL\Documents\GitRepoJosh\SearchKey_GUI\WpfApp1\obj\Debug\SearchKey_GUI.csproj.CopyComplete
 C:\Users\DELL\Documents\GitRepoJosh\SearchKey_GUI\WpfApp1\obj\Debug\SearchKey_GUI.exe
 C:\Users\DELL\Documents\GitRepoJosh\SearchKey_GUI\WpfApp1\obj\Debug\SearchKey_GUI.pdb
+C:\Users\jogo\Documents\git_Test\SearchKey_GUI\WpfApp1\obj\Debug\SearchKey_GUI.csprojAssemblyReference.cache
