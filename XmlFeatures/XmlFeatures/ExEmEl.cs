@@ -20,7 +20,7 @@ namespace XmlFeatures.XmlDoc
 
         NewDocument YesOrNo;
 
-        public ExEmEl(string filepath, NewDocument yesorno = NewDocument.No, Stream stream = null )
+        public ExEmEl(string filepath = null, NewDocument yesorno = NewDocument.No, Stream stream = null )
         {
             FilePath = filepath;
             YesOrNo = yesorno;

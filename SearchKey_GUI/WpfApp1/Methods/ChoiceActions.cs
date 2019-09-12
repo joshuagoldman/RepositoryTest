@@ -165,9 +165,9 @@ namespace SearchKey_GUI.Methods
                           MessageBoxButton.OK,
                           MessageBoxImage.Information);
                     }
-                    catch
+                    catch(Exception e)
                     {
-                        MessageBoxResult QuestionResult = MessageBox.Show("The text to be exported is of invalid format. Edit the text and retry!",
+                        MessageBoxResult QuestionResult = MessageBox.Show($"Couldn't save the search key due to the following error:\n\n{e.Message}",
                             "Error",
                             MessageBoxButton.OK,
                             MessageBoxImage.Error);

@@ -98,5 +98,6 @@ namespace SearchKey_GUI
             ClassInit.ChoicAct.WindowText2ControlInfoClass();
             ClassInit.ChoicAct.CheckTreeExistence();
         }
+
     }
 }

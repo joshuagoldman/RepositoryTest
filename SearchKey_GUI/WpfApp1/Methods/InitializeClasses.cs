@@ -23,6 +23,7 @@ using SearchKey_GUI.Models;
 using Ericsson.AM.LogAnalyzer;
 using SearchKey_GUI.Methods;
 using XmlFeatures.XmlDoc;
+using System.Xml.XPath;
 using System.IO;
 
 namespace SearchKey_GUI.Methods
@@ -47,25 +48,47 @@ namespace SearchKey_GUI.Methods
 
         public void PerformInitiliazation()
         {
-            MessageBox.Show($"Please browse the HWLogCriteria.xml file directory in which changes are to be saved",
+
+            var hWLogCritStream = Assembly.GetAssembly(typeof(LogAnalyzer)).GetManifestResourceStream("Ericsson.AM.LogAnalyzer.EmbeddedCriteria.RBS6000.Aftermarket.HWLogCriteria.xml");
+
+            if (hWLogCritStream != null)
+            {
+                var filepath = @"C:\Users\jogo\Gitrepos\LogAnalyzerRepo\LogAnalyzer\Ericsson.AM.LogAnalyzer\EmbeddedCriteria\RBS6000\Aftermarket/HWLogCriteria.xml";
+
+                Xml = new ExEmEl(filepath: filepath, stream: hWLogCritStream, yesorno: ExEmEl.NewDocument.No);
+
+                var revision = Xml.XDoc.XPathSelectElement("*//Revision").Value;
+
+                MessageBox.Show($"The criteria to be used has revision: {revision}",
                 "Information",
                 MessageBoxButton.OK,
                 MessageBoxImage.Information);
-
-            var dialog = new System.Windows.Forms.FolderBrowserDialog();
-            dialog.SelectedPath = @"C:\Users\jogo\Gitrepos\LogAnalyzerRepo\LogAnalyzer\Ericsson.AM.LogAnalyzer\EmbeddedCriteria\RBS6000\Aftermarket";
-            dialog.ShowDialog();
-            var filepath = dialog.SelectedPath + "\\HWLogCriteria.xml";
-
-            if (string.IsNullOrEmpty(dialog.SelectedPath))
-            {
-                System.Windows.Application.Current.Shutdown();
             }
 
-            var HWLogCritStream = Assembly.GetAssembly(typeof(LogAnalyzer)).GetManifestResourceStream("Ericsson.AM.LogAnalyzer.EmbeddedCriteria.RBS6000.Aftermarket.HWLogCriteria.xml");
-            Xml = new ExEmEl(filepath, yesorno: ExEmEl.NewDocument.No);
 
-            Controls ControlInfo = new Controls(Xml);
+            else
+            {
+                MessageBox.Show($"Please browse the HWLogCriteria.xml file directory in which changes are to be saved",
+                   "Information",
+                   MessageBoxButton.OK,
+                   MessageBoxImage.Information);
+
+                var dialog = new System.Windows.Forms.FolderBrowserDialog();
+                dialog.SelectedPath = @"C:\Users\jogo\Gitrepos\LogAnalyzerRepo\LogAnalyzer\Ericsson.AM.LogAnalyzer\EmbeddedCriteria\RBS6000\Aftermarket";
+                dialog.ShowDialog();
+                var filepath = dialog.SelectedPath + "\\HWLogCriteria.xml";
+
+                Xml = new ExEmEl(filepath, yesorno: ExEmEl.NewDocument.No);
+
+                if (string.IsNullOrEmpty(dialog.SelectedPath))
+                {
+                    System.Windows.Application.Current.Shutdown();
+                }
+            }
+
+            var ControlInfo = new Controls(Xml);
+
+            Main.DataContext = ControlInfo;
 
             CreateTreeDict Dict = new CreateTreeDict()
             {
@@ -89,7 +112,17 @@ namespace SearchKey_GUI.Methods
                 Xml = Xml
             };
 
-            Main.DataContext = ControlInfo;            
+            Main.KeyDown += (s, e) =>
+            {
+                if (e.Key == System.Windows.Input.Key.Enter)
+                {
+                    ControlInfo.SearchKey.Text = ControlInfo.SearchKey.ItemsSource.Any(item => item.Contains(ControlInfo.SearchKey.Text)) ?
+                        ControlInfo.SearchKey.ItemsSource.FirstOrDefault(item => item.Contains(ControlInfo.SearchKey.Text)) : ControlInfo.SearchKey.Text;
+
+                }
+            };
+
         }
+
     }
 }
