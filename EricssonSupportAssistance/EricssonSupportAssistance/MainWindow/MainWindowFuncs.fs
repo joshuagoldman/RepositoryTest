@@ -17,6 +17,10 @@ type MainWindowFunctions() as this =
     do
         mainWin.DataContext <- this.Sender
         this.AddAllEvents()
+        sender.OpenSolutionButton.IsEnabled <- false
+        sender.FindSolutionButton.IsEnabled <- false
+        sender.UploadButton.IsEnabled <- false
+
 
     member this.MainWin 
         with get() = mainWin

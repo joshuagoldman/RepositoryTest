@@ -17,6 +17,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
             <Button 
@@ -36,27 +37,53 @@
                     Padding="5"
                     Margin="5,0,0,0"
                     HorizontalAlignment="Center"/>
-                <TextBox
+                <ComboBox
+                    x:Name="TicketTextBox"
                     Padding="5"
-                    Margin="5,0,0,0"/>
+                    Margin="5,0,0,0"
+                    IsEditable="True"
+                    ItemsSource="{Binding TicketComboBox.ItemsSource>}"
+                    Text="{Binding TicketComboBox.Text}"/>
             </StackPanel>
             <Button
-                Grid.Column="3"
-                Grid.Row="1"
-                x:Name="ChooseSolutionButton"
-                Content="Choose Solution"
-                Padding="5"
-                Margin="5"
-                />
+                    Grid.Column="3"
+                    Grid.Row="1"
+                    x:Name="UploadSolutionButton"
+                    Content="Upload Solution"
+                    IsEnabled="{Binding UploadSolutionButton.IsEnabled }"
+                    Padding="5"
+                    Margin="5"
+                    />
             <Button
-            Grid.Column="1"
+                Grid.Column="1"
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                x:Name="FindSolutionButton"
+                Content="Find Solution"
+                Padding="5"
+                Margin="10"
+                HorizontalAlignment="Center"
+            IsEnabled="{Binding FindSolutionButton.IsEnabled}"/>
+        <Button
+            Grid.Column="2"
             Grid.Row="2"
-            Grid.ColumnSpan="3"
-            x:Name="FindSolutionButton"
-            Content="Find Solution"
+            Grid.ColumnSpan="2"
+            x:Name="Upload"
+            Content="Upload"
+            HorizontalAlignment="Center"
             Padding="5"
             Margin="10"
             VerticalAlignment="Center"
-            IsEnabled="{Binding FindSolutionButton.IsEnabled}"/>
+            IsEnabled="{Binding UploadnButton.IsEnabled}"/>
+        <Button
+            Grid.Column="1"
+            Grid.Row="3"
+            Grid.ColumnSpan="3"
+            x:Name="OpenSolutionButton"
+            Content="Upload"
+            Padding="5"
+            Margin="10"
+            VerticalAlignment="Center"
+            IsEnabled="{Binding OpenSolutionButton.IsEnabled}"/>
     </Grid>
 </UserControl>  
