@@ -11,9 +11,19 @@ open EricssonSupportAssistance.MailHandling.MailActions
 open EricssonSupportAssistance.XamlFiles
 open System
 
-module AuthenticateFuncs =
+type AuthenticateFunctions() =
+        
+        let mutable sender = new Controls()
 
-    type MainWindowFunctions with
+        member this.Sender 
+            with get() = sender
+            and set(value) = 
+                if value <> sender then sender <- value
+
+        member this.InfoEv = new Event<InfoEventArgs>()
+
+        [<CLIEvent>]
+        member this.InfoToAdd = this.InfoEv.Publish
 
         member this.OnAuthenticateButtonClicked =
         

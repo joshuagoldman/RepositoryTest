@@ -71,6 +71,7 @@
     <Compile Include="MainWindow\UploadPageFuncs.fs" />
     <Compile Include="MainWindow\AuthenticatePageFuncs.fs" />
     <Compile Include="MainWindow\SearchPageFuncs.fs" />
+    <Compile Include="MainWindow\Initialization.fs" />
     <Resource Include="App\App.xaml" />
     <Content Include="App\App.config" />
     <Compile Include="App\App.fs" />

@@ -11,9 +11,19 @@ open System.Windows.Controls
 open System.Windows.Markup
 
 
-module SearchPageFuncs =
+type SearchPageFuncs() =
+        
+        let mutable sender = new Controls()
 
-    type MainWindowFunctions with
+        member this.Sender 
+            with get() = sender
+            and set(value) = 
+                if value <> sender then sender <- value
+
+        member this.InfoEv = new Event<InfoEventArgs>()
+
+        [<CLIEvent>]
+        member this.InfoToAdd = this.InfoEv.Publish
     
         member internal this.Method = 
             ""

@@ -15,30 +15,34 @@ open System.IO
 open Microsoft.Win32
 
 
- module definitions =
-     let mutable uploadFile = ""
-
-     let mutable solution = ""   
-
+ type UploadFunctions() =
     
-type MainWindowFunctions with
-        
-    member internal this.Uploadfile
-        with get() = definitions.uploadFile
+    let mutable sender = new Controls()
+
+    let mutable uploadFile = ""
+
+    let mutable solution = ""   
+     
+    member this.Sender 
+        with get() = sender
         and set(value) = 
-            if value <> definitions.uploadFile then definitions.uploadFile <- value
+            if value <> sender then sender <- value
+    
+    member internal this.Uploadfile
+        with get() = uploadFile
+        and set(value) = 
+            if value <> uploadFile then uploadFile <- value
 
     member internal this.Solution
-        with get() = definitions.solution
+        with get() = solution
         and set(value) = 
-            if value <> definitions.solution then definitions.solution <- value
+            if value <> solution then solution <- value
 
-    member this.AddUploadPageEvents =
-            
-        (this.MainWin.FindName("TicketComboBox") :?> TextBox).TextChanged.Add(fun _ -> this.CheckIfFindSolutionAction)
-        (this.MainWin.FindName("FindSolutionButton") :?> Button).TextInput.Add(fun _ -> this.OnFindSolutionButtonClicked)
-        (this.MainWin.FindName("ChooseFileButton") :?> Button).Click.Add(fun _ -> this.OnChooseFileButtonClicked )
-        (this.MainWin.FindName("UploadButton") :?> Button).Click.Add(fun _ -> this.OnChooseFileButtonClicked )
+    member this.InfoEv = new Event<InfoEventArgs>()
+
+    [<CLIEvent>]
+    member this.InfoToAdd = this.InfoEv.Publish
+
 
     member this.CheckIfFindSolutionAction =
                

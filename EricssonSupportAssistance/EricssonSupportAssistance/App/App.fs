@@ -10,7 +10,7 @@ module App  =
 
     [<EntryPoint;STAThread>]  
     let main argv =
-        let win = new MainWindowFunctions()
+        let win = new Initilization()
         App().Run(win.MainWin)
                                    
 
