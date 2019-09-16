@@ -15,7 +15,8 @@ module SearchPageFuncs =
 
     type MainWindowFunctions with
     
-        member internal this.Method = ""
+        member internal this.Method = 
+            ""
     
         
         

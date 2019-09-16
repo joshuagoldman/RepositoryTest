@@ -20,7 +20,12 @@ open System.Windows.Media
 
         // Upload controls
         member this.UploadPageControl = new ControlAtributes() 
-
+        member this.UploadSolutionButton = new ControlAtributes()
+        member this.FindSolutionButton = new ControlAtributes() 
+        member this.TicketComboBox = new ControlAtributes()
+        member this.OpenSolutionButton = new ControlAtributes()
+        member this.UploadButton = new ControlAtributes()
+        
         // Search controls
         member this.SearchPageControl = new ControlAtributes() 
 

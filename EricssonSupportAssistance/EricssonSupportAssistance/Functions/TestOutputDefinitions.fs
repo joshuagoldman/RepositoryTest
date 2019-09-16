@@ -18,12 +18,14 @@ open System.Xml.XPath
 open System.Text.RegularExpressions
 
 module TestOutputDefinitions =
-    
+
     let infoEv = new Event<InfoEventArgs>()
 
     let stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("EricssonSupportAssistance.EmbeddedTestOutPut.FailedMethodInfoDocument.xml")
 
     let mutable FailedTMDoc = XDocument.Load(stream)
+
+    let mutable Filepath = ""
 
     type MethodInfo =
         {   Name : string
@@ -85,6 +87,12 @@ module TestOutputDefinitions =
         method.XPathSelectElements("*//*")
         |> Seq.find(fun info -> info.Name.ToString() = name)
         |> fun f -> f.FirstAttribute.Value
+
+    let toXElementSequence (valPairSeq : seq<{|Name : string ; Value : string|}>) =
+
+        valPairSeq
+        |> Seq.map(fun valPair -> new XElement(XName.Get valPair.Name,
+                                                XAttribute(XName.Get "Value", valPair.Value)))
      
     let StringToSequenceofSequence (str : string) = 
          
@@ -134,20 +142,19 @@ module TestOutputDefinitions =
         methodRatingTuple
         |> Seq.find(fun (_,rating) -> rating = maxRating)
         |> fun (method, _) -> method.Solution
-        
-    let uploadInfoByDocument (ticket : string) = 
-        
-        MessageBox.Show("Please browse the HWLogCriteria.xml file directory in which changes are to be saved",
-                        "Information",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Information)
-        |> ignore
+
+    let uploadFile = 
 
         let dialog = new OpenFileDialog()
 
-        let textFile = File.CreateText(dialog.FileName)
+        infoEv.Trigger(InfoEventArgs(String.Format("Current upload file is: {0}", dialog.FileName),
+                             Brushes.Black ))
 
-        let textFileString = textFile.ToString()
+        File.ReadAllText(dialog.FileName)
+        
+    let tryFindSolution (ticket : string) (solutionPrepared : string) = 
+        
+        let textFileString = uploadFile
 
         let failedMethodStringChunk = Regex.Match(textFileString, "(\n\*\*\*\* )(?:(?!(\n\*\*\*\* )|( 	Fail))(.|\n))*?( 	Fail)").Value
 
@@ -155,6 +162,8 @@ module TestOutputDefinitions =
                                      Brushes.Black))
 
         let failedMethodName = Regex.Match(failedMethodStringChunk, "(\*\*\*\* )(\n|.)*?( \*\*\*\*)").Value
+                               |> fun str -> str.Replace("\*","")
+                               |> fun str -> str.Trim()
 
         infoEv.Trigger(InfoEventArgs(String.Format("Failed method name set to: {0}", failedMethodName),
                         Brushes.Black))
@@ -175,30 +184,35 @@ module TestOutputDefinitions =
         infoEv.Trigger(InfoEventArgs(String.Format("Category set to: {0}", category),
                         Brushes.Black))
 
-        infoEv.Trigger(InfoEventArgs("Getting solution", Brushes.Black))
-        let solution = getSolution category failedMethodStringChunk
+        let solution = 
+            
+            solutionPrepared
+            |> function
+               | _ when solutionPrepared = "" ->
+                    
+                    infoEv.Trigger(InfoEventArgs("Getting solution", Brushes.Black))
+                    |> fun _ -> getSolution failedMethodStringChunk
+               
+               | _ -> 
+                    
+                    infoEv.Trigger(InfoEventArgs("Getting prepared solution", Brushes.Black))
+                    |> fun _ -> solutionPrepared
 
         infoEv.Trigger(InfoEventArgs(String.Format("Obtained solution:\n\n{0}", solution),
                         Brushes.Black))
-
-        MessageBox.Show("Please browse the HWLogCriteria.xml file directory in which changes are to be saved",
-                        "Information",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Information)
         
-        let infoXElement = new XElement("Info", new XAttribute("Value",""))
-        let ticketXElement = new XElement("Ticket", new XAttribute("Value",ticket))
-        let solutionXElement = new XElement("Solution", new XAttribute("Value",solution))
-        let stringToAnalyzeXElement = new XElement("StringToAnalyze", new XAttribute("Value",failedMethodStringChunk))
+        let elementSequence = seq[  {|Name = "Info" ; Value = ""|} ;
+                                    {|Name = "Ticket" ; Value = ticket|} ;
+                                    {|Name = "Solution" ; Value = solution|} ;
+                                    {|Name = "StringToAnalyze" ; Value = failedMethodStringChunk|}
+                                    ]
 
-        let methodXElement = new XElement("Method",
-                                          new XAttribute("Name", failedMethodName),
-                                          infoXElement,
-                                          ticketXElement,
-                                          solutionXElement,
-                                          stringToAnalyzeXElement)
+        let methodXElement = new XElement(XName.Get "Method",
+                                          XAttribute(XName.Get "Name", failedMethodName),
+                                          toXElementSequence elementSequence)
                                           
         FailedTMDoc.XPathSelectElement(String.Format("*//Category[@Name = '{0}']", category)).Add(methodXElement)
 
-        FailedTMDoc.Save(fileName)
+        FailedTMDoc.Save(Filepath)
 
+        solution
