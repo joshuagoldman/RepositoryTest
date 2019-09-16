@@ -54,6 +54,8 @@ type Initilization() as this =
         mainFncs.UpdateDataContext.Add(fun evArgs -> this.UpdateDatacontext evArgs)
         autFncs.InfoToAdd.Add(fun args -> this.InfoToRegister args)
         autFncs.UpdateDataContext.Add(fun evArgs -> this.UpdateDatacontext evArgs)
+        uplFncs.InfoToAdd.Add(fun args -> this.InfoToRegister args)
+        uplFncs.UpdateDataContext.Add(fun evArgs -> this.UpdateDatacontext evArgs)
         this.UpdateDataContext.Add(fun evArgs -> this.UpdateDatacontext evArgs)
 
         let authButton = (mainWin.FindName("Authenticate") :?> Button)

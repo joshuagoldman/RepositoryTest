@@ -19,9 +19,13 @@ open System.Text.RegularExpressions
 
 module TestOutputDefinitions =
 
-    let infoEv = new Event<InfoEventArgs>()
+    let mutable infoEv = new Event<InfoEventArgs>()
 
-    let stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("EricssonSupportAssistance.EmbeddedTestOutPut.FailedMethodInfoDocument.xml")
+    [<CLIEvent>]
+    let mutable InfoToAdd = infoEv.Publish
+
+    let exAssembly = Assembly.GetExecutingAssembly()
+    let stream = exAssembly.GetManifestResourceStream("EricssonSupportAssistance.EmbeddedTestOutput.FailedMethodInfoDocument.xml")
 
     let mutable FailedTMDoc = XDocument.Load(stream)
 
@@ -143,18 +147,20 @@ module TestOutputDefinitions =
         |> Seq.find(fun (_,rating) -> rating = maxRating)
         |> fun (method, _) -> method.Solution
 
-    let uploadFile = 
+    let file = 
 
         let dialog = new OpenFileDialog()
+        dialog.ShowDialog()
+        |> ignore
 
         infoEv.Trigger(InfoEventArgs(String.Format("Current upload file is: {0}", dialog.FileName),
                              Brushes.Black ))
 
         File.ReadAllText(dialog.FileName)
-        
+
     let tryFindSolution (ticket : string) (solutionPrepared : string) = 
         
-        let textFileString = uploadFile
+        let textFileString = file
 
         let failedMethodStringChunk = Regex.Match(textFileString, "(\n\*\*\*\* )(?:(?!(\n\*\*\*\* )|( 	Fail))(.|\n))*?( 	Fail)").Value
 

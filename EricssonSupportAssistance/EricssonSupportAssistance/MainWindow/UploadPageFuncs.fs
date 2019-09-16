@@ -22,6 +22,13 @@ open Microsoft.Win32
     let mutable uploadFile = ""
 
     let mutable solution = ""   
+
+    let mutable infoEv = new Event<InfoEventArgs>()
+
+    let mutable dataContextUpdateEv = new Event<ObjectToPassEventArgs>()
+
+    do
+        TestOutputDefinitions.InfoToAdd.Add(fun evArgs -> infoEv.Trigger(evArgs))
      
     member this.Sender 
         with get() = sender
@@ -38,10 +45,12 @@ open Microsoft.Win32
         and set(value) = 
             if value <> solution then solution <- value
 
-    member this.InfoEv = new Event<InfoEventArgs>()
 
     [<CLIEvent>]
-    member this.InfoToAdd = this.InfoEv.Publish
+    member this.InfoToAdd = infoEv.Publish
+
+    [<CLIEvent>]
+    member this.UpdateDataContext = dataContextUpdateEv.Publish
 
 
     member this.CheckIfFindSolutionAction  =
@@ -83,9 +92,11 @@ open Microsoft.Win32
         None
         |>function
 
-            | _ when this.Uploadfile = ""  ->
-
-                this.Uploadfile <- TestOutputDefinitions.uploadFile
+            | _ when this.Uploadfile = ""  -> 
+                
+                this.Uploadfile <- TestOutputDefinitions.file
+                
+                
             
             | _  ->
                  
@@ -98,7 +109,7 @@ open Microsoft.Win32
                  
                 | _ when answer = MessageBoxResult.Yes ->
 
-                    this.Uploadfile <- TestOutputDefinitions.uploadFile
+                    this.Uploadfile <- TestOutputDefinitions.file
 
                 | _ -> None |> ignore
 
