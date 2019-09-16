@@ -9,13 +9,14 @@ open System.Windows.Media
 open System.Windows.Controls
 open System.Windows.Markup
 
-type MainWindowFunctions() as this =
+type MainWindowFunctions() =
 
     let mutable sender = new Controls()
     let mutable mainWin = new MainWindow()
+    let mutable updateDataContext = new Event<ObjectToPassEventArgs>()
+    let mutable infoEv = new Event<InfoEventArgs>()
 
     do
-        mainWin.DataContext <- this.Sender
         sender.OpenSolutionButton.IsEnabled <- false
         sender.FindSolutionButton.IsEnabled <- false
         sender.UploadButton.IsEnabled <- false
@@ -31,35 +32,34 @@ type MainWindowFunctions() as this =
         and set(value) = 
             if value <> sender then sender <- value
 
-    member this.InfoEv = new Event<InfoEventArgs>()
+    [<CLIEvent>]
+    member this.InfoToAdd = infoEv.Publish 
 
     [<CLIEvent>]
-    member this.InfoToAdd = this.InfoEv.Publish
-
-    member this.InfoToRegister (e : InfoEventArgs) =
-
-        this.Sender.InfoLogs.Text <- this.Sender.InfoLogs.Text + "\n> " + e.Message
-        this.Sender.InfoLogs.TbForeground <- e.Foreground
+    member this.UpdateDataContext = updateDataContext.Publish
 
     member this.OnAuthenticateButtonClicked =
         
         this.Sender.AuthenticationControl.Visibility <- Visibility.Visible
         this.Sender.SearchPageControl.Visibility <- Visibility.Hidden
         this.Sender.UploadPageControl.Visibility <- Visibility.Hidden
-        this.InfoEv.Trigger(InfoEventArgs("Entering authentization page", Brushes.DarkRed))
+        infoEv.Trigger(InfoEventArgs("Entering authentization page", Brushes.DarkRed))
+        updateDataContext.Trigger(ObjectToPassEventArgs(this.Sender))
 
     member this.OnUploadButtonClicked =
 
         this.Sender.AuthenticationControl.Visibility <- Visibility.Hidden
         this.Sender.SearchPageControl.Visibility <- Visibility.Hidden
         this.Sender.UploadPageControl.Visibility <- Visibility.Visible
-        this.InfoEv.Trigger(InfoEventArgs("Entering upload page", Brushes.DarkRed))
+        infoEv.Trigger(InfoEventArgs("Entering upload page", Brushes.DarkRed))
+        updateDataContext.Trigger(ObjectToPassEventArgs(this.Sender))
 
     member this.OnSearchButtonClicked =
 
         this.Sender.AuthenticationControl.Visibility <- Visibility.Hidden
         this.Sender.SearchPageControl.Visibility <- Visibility.Visible
         this.Sender.UploadPageControl.Visibility <- Visibility.Hidden
-        this.InfoEv.Trigger(InfoEventArgs("Entering search page", Brushes.DarkRed))
+        infoEv.Trigger(InfoEventArgs("Entering search page", Brushes.DarkRed))
+        updateDataContext.Trigger(ObjectToPassEventArgs(this.Sender))
         
         

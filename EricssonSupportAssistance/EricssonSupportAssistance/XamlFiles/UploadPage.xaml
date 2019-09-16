@@ -38,7 +38,7 @@
                     Margin="5,0,0,0"
                     HorizontalAlignment="Center"/>
                 <ComboBox
-                    x:Name="TicketTextBox"
+                    x:Name="TicketComboBox"
                     Padding="5"
                     Margin="5,0,0,0"
                     IsEditable="True"
@@ -80,7 +80,7 @@
             Grid.Row="3"
             Grid.ColumnSpan="3"
             x:Name="OpenSolutionButton"
-            Content="Upload"
+            Content="Open Solution"
             Padding="5"
             Margin="10"
             VerticalAlignment="Center"

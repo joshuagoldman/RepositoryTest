@@ -39,20 +39,17 @@
                 Padding="5"/>
         </StackPanel>
         <erics:AuthenticatePage
-            DataContext="{Binding AuthenticatePage.DataContext}"
             x:Name="AuthenticatePage"
             Grid.Column="1"
             Grid.Row="1"
             Grid.ColumnSpan="3"
             IsEnabled="True"/>
         <erics:UploadPage
-            DataContext="{Binding UploadPage.DataContext}"
             x:Name="UploadPage"
             Grid.Column="1"
             Grid.Row="1"
             Grid.ColumnSpan="3"/>
         <erics:SearchPage
-            DataContext="{Binding SearchPage.DataContext}"
             x:Name="SearchPage"
             Grid.Column="1"
             Grid.Row="1"

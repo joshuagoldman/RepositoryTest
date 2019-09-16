@@ -44,9 +44,8 @@ open Microsoft.Win32
     member this.InfoToAdd = this.InfoEv.Publish
 
 
-    member this.CheckIfFindSolutionAction =
+    member this.CheckIfFindSolutionAction  =
                
-
         None
         |> function
                        
