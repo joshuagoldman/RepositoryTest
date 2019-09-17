@@ -78,6 +78,35 @@ type Initilization() as this =
     [<CLIEvent>]
     member this.UpdateDataContext = dataContextUpdateEv.Publish
 
+    member this.SenderControls = 
+            
+            let filterProps (infoArr : PropertyInfo[]) (o : obj) =
+                
+                infoArr
+                |> Array.filter(fun prop -> prop.PropertyType = typeof<Controls>)
+                |> Array.map(fun prop -> prop.GetValue(o) :?> Controls)
+
+            let mutable sequenceOfControls = Array.empty
+
+            let senderCtrlsLevelOne =
+                
+                this.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
+                |> Array.filter(fun prop ->  prop.PropertyType = typeof<MainWindowFunctions> ||
+                                             prop.PropertyType = typeof<UploadFunctions> ||
+                                             prop.PropertyType = typeof<SearchPageFuncs> ||
+                                             prop.PropertyType = typeof<AuthenticateFunctions>)
+                |> Array.iter(fun prop -> prop.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
+                                          |> Array.filter(fun subProp -> subProp.PropertyType = typeof<Controls> ||
+                                                                         subProp.PropertyType = typeof<Functions.TestOutputDefinitions>)
+                                          |> fun subProps -> Array.append sequenceOfControls  (filterProps subProps prop)
+                                                             |> fun _ -> subProps
+                                                                         |> Array.iter(fun subProp -> subProp.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
+                                                                                                      |> fun subSubProps -> Array.append sequenceOfControls  (filterProps subSubProps subProp)))
+            
+            sequenceOfControls
+            |> Array.collect(fun ctrl -> ctrl.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
+                                         |> Array.map(fun subProp ->   ))
+
     member this.AddAllEvents() =
 
         let senderControls =
@@ -93,16 +122,6 @@ type Initilization() as this =
         senderControlAttr
         |> Array.iter(fun ctrlAttr -> ctrlAttr.UpdateDataContext.Add(fun evArgs -> this.UpdateDatacontext evArgs))
 
-        let senderControls =
-            this.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
-            |> Array.filter(fun prop ->  prop.PropertyType = typeof<MainWindowFunctions> ||
-                                         prop.PropertyType = typeof<UploadFunctions> ||
-                                         prop.PropertyType = typeof<SearchPageFuncs> ||
-                                         prop.PropertyType = typeof<AuthenticateFunctions>)
-            |> Array.collect(fun prop -> prop.GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
-                                         |> Array.filter(fun subProp -> prop.PropertyType = typeof<Controls> ||
-                                                                        prop.PropertyType = typeof<Functions.TestOutputDefinitions>)
-                                                                        |> Array.map(fun subSubProp -> sub)
 
         let senderControlAttr =
             senderControls
