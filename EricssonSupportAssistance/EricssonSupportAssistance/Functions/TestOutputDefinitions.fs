@@ -17,30 +17,38 @@ open System.Xml.Linq
 open System.Xml.XPath
 open System.Text.RegularExpressions
 
-module TestOutputDefinitions =
+
+type MethodInfo =
+    {   Name : string
+        Info : string
+        StringToAnalyze : seq<seq<string>>
+        Ticket : string
+        Solution : string
+        Category : string
+        }
+
+type TestOutputDefinitions() =
 
     let mutable infoEv = new Event<InfoEventArgs>()
-
-    [<CLIEvent>]
-    let mutable InfoToAdd = infoEv.Publish
+    let mutable sender = new Controls()
 
     let exAssembly = Assembly.GetExecutingAssembly()
     let stream = exAssembly.GetManifestResourceStream("EricssonSupportAssistance.EmbeddedTestOutput.FailedMethodInfoDocument.xml")
 
-    let mutable FailedTMDoc = XDocument.Load(stream)
 
-    let mutable Filepath = ""
+    member val private FailedTMDoc = XDocument.Load(stream) with get, set
 
-    type MethodInfo =
-        {   Name : string
-            Info : string
-            StringToAnalyze : seq<seq<string>>
-            Ticket : string
-            Solution : string
-            Category : string
-            }
+    member val FilePath = "" with get, set
 
-    let newSeqUponMatch (str : string) (sequence : seq<string>) =
+    [<CLIEvent>]
+    member this.InfoToAdd = infoEv.Publish
+
+    member this.Sender 
+        with get() = sender
+        and set(value) = 
+            if value <> sender then sender <- value
+
+    member private this.newSeqUponMatch (str : string) (sequence : seq<string>) =
         
         let length = sequence |> Seq.length |> fun i -> i - 1
 
@@ -72,7 +80,7 @@ module TestOutputDefinitions =
             Seq.append beforePos afterPos
 
 
-    let stringPairMatches (seqTest : seq<string>) (seqComp : seq<string>) =
+    member private this.stringPairMatches (seqTest : seq<string>) (seqComp : seq<string>) =
         
         let mutable seqCompMutable = seqComp 
         let mutable numSeq = [0..[|seqCompMutable|].Length]
@@ -81,24 +89,24 @@ module TestOutputDefinitions =
         |> Seq.map(fun seqTest -> seqCompMutable
                                   |> Seq.exists(fun seqComp-> seqComp = seqTest)
                                   |> function
-                                     | result when result = true -> fun _ -> seqCompMutable <- (newSeqUponMatch seqTest seqCompMutable)
+                                     | result when result = true -> fun _ -> seqCompMutable <- (this.newSeqUponMatch seqTest seqCompMutable)
                                                                     |> fun _ -> 1
                                      | _ -> 0)
         |> Seq.sum
 
-    let getXmlValue (method : XElement) (name : string) =
+    member private this.getXmlValue (method : XElement) (name : string) =
         
         method.XPathSelectElements("*//*")
         |> Seq.find(fun info -> info.Name.ToString() = name)
         |> fun f -> f.FirstAttribute.Value
 
-    let toXElementSequence (valPairSeq : seq<{|Name : string ; Value : string|}>) =
+    member this.toXElementSequence (valPairSeq : seq<{|Name : string ; Value : string|}>) =
 
         valPairSeq
         |> Seq.map(fun valPair -> new XElement(XName.Get valPair.Name,
                                                 XAttribute(XName.Get "Value", valPair.Value)))
      
-    let StringToSequenceofSequence (str : string) = 
+    member this.StringToSequenceofSequence (str : string) = 
          
         str
         |> fun str -> str.Split '\n'
@@ -106,16 +114,16 @@ module TestOutputDefinitions =
                             |> Seq.map(fun str2 -> str2.Trim())
                             |> Seq.filter(fun str2 -> str2 = ""))
 
-    let getRating (strChunk : string ) (strCompareSequencefied : seq<seq<string>>) =
+    member this.getRating (strChunk : string ) (strCompareSequencefied : seq<seq<string>>) =
         
-        let strSequencefied = StringToSequenceofSequence strChunk
+        let strSequencefied = this.StringToSequenceofSequence strChunk
 
         strSequencefied
         |> Seq.collect(fun seq -> strCompareSequencefied
-                                  |> Seq.map(fun seqComp -> stringPairMatches seq seqComp))
+                                  |> Seq.map(fun seqComp -> this.stringPairMatches seq seqComp))
         |> Seq.sum
         
-    let getSolution (strChunk : string) = 
+    member this.getSolution (strChunk : string) = 
         
         let stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("EricssonSupportAssistance.EmbeddedTestOutPut.FailedMethodInfoDocument.xml")
         infoEv.Trigger(InfoEventArgs("Obtaining embedded criteria file 'FailedMethodInfoDocument.xml' for evaluation", Brushes.Black)) 
@@ -129,12 +137,12 @@ module TestOutputDefinitions =
             
             methodsNodeAll
             |> Seq.map(fun method -> {  Name = method.Name.ToString() ; 
-                                        Info = getXmlValue method "Info" ;
-                                        StringToAnalyze = StringToSequenceofSequence (getXmlValue method "StringToAnalyze") ;
-                                        Ticket = getXmlValue method "Ticket" ;
-                                        Solution = getXmlValue method "Solution";
+                                        Info = this.getXmlValue method "Info" ;
+                                        StringToAnalyze = this.StringToSequenceofSequence (this.getXmlValue method "StringToAnalyze") ;
+                                        Ticket = this.getXmlValue method "Ticket" ;
+                                        Solution = this.getXmlValue method "Solution";
                                         Category = method.XPathSelectElement("(..)[last()]").FirstAttribute.Value })
-            |> Seq.map(fun method -> (method, getRating strChunk method.StringToAnalyze))
+            |> Seq.map(fun method -> (method, this.getRating strChunk method.StringToAnalyze))
 
         let maxRating = 
             methodRatingTuple
@@ -147,7 +155,7 @@ module TestOutputDefinitions =
         |> Seq.find(fun (_,rating) -> rating = maxRating)
         |> fun (method, _) -> method.Solution
 
-    let file = 
+    member this.GetFile = 
 
         let dialog = new OpenFileDialog()
         dialog.ShowDialog()
@@ -158,9 +166,9 @@ module TestOutputDefinitions =
 
         File.ReadAllText(dialog.FileName)
 
-    let tryFindSolution (ticket : string) (solutionPrepared : string) = 
+    member this.tryFindSolution (ticket : string) (solutionPrepared : string) = 
         
-        let textFileString = file
+        let textFileString = this.GetFile
 
         let failedMethodStringChunk = Regex.Match(textFileString, "(\n\*\*\*\* )(?:(?!(\n\*\*\*\* )|( 	Fail))(.|\n))*?( 	Fail)").Value
 
@@ -174,7 +182,7 @@ module TestOutputDefinitions =
         infoEv.Trigger(InfoEventArgs(String.Format("Failed method name set to: {0}", failedMethodName),
                         Brushes.Black))
 
-        let categories = FailedTMDoc.XPathSelectElements("*//Category")
+        let categories = this.FailedTMDoc.XPathSelectElements("*//Category")
                          |> Seq.map(fun cat -> cat.FirstAttribute.Value)
 
         let category = categories
@@ -197,7 +205,7 @@ module TestOutputDefinitions =
                | _ when solutionPrepared = "" ->
                     
                     infoEv.Trigger(InfoEventArgs("Getting solution", Brushes.Black))
-                    |> fun _ -> getSolution failedMethodStringChunk
+                    |> fun _ -> this.getSolution failedMethodStringChunk
                
                | _ -> 
                     
@@ -215,10 +223,10 @@ module TestOutputDefinitions =
 
         let methodXElement = new XElement(XName.Get "Method",
                                           XAttribute(XName.Get "Name", failedMethodName),
-                                          toXElementSequence elementSequence)
+                                          this.toXElementSequence elementSequence)
                                           
-        FailedTMDoc.XPathSelectElement(String.Format("*//Category[@Name = '{0}']", category)).Add(methodXElement)
+        this.FailedTMDoc.XPathSelectElement(String.Format("*//Category[@Name = '{0}']", category)).Add(methodXElement)
 
-        FailedTMDoc.Save(Filepath)
+        this.FailedTMDoc.Save(this.FilePath)
 
         solution

@@ -13,7 +13,6 @@ type MainWindowFunctions() =
 
     let mutable sender = new Controls()
     let mutable mainWin = new MainWindow()
-    let mutable updateDataContext = new Event<ObjectToPassEventArgs>()
     let mutable infoEv = new Event<InfoEventArgs>()
 
     do
@@ -35,16 +34,12 @@ type MainWindowFunctions() =
     [<CLIEvent>]
     member this.InfoToAdd = infoEv.Publish 
 
-    [<CLIEvent>]
-    member this.UpdateDataContext = updateDataContext.Publish
-
     member this.OnAuthenticateButtonClicked =
         
         this.Sender.AuthenticationControl.Visibility <- Visibility.Visible
         this.Sender.SearchPageControl.Visibility <- Visibility.Hidden
         this.Sender.UploadPageControl.Visibility <- Visibility.Hidden
         infoEv.Trigger(InfoEventArgs("Entering authentization page", Brushes.DarkRed))
-        updateDataContext.Trigger(ObjectToPassEventArgs(this.Sender))
 
     member this.OnUploadButtonClicked =
 
@@ -52,7 +47,6 @@ type MainWindowFunctions() =
         this.Sender.SearchPageControl.Visibility <- Visibility.Hidden
         this.Sender.UploadPageControl.Visibility <- Visibility.Visible
         infoEv.Trigger(InfoEventArgs("Entering upload page", Brushes.DarkRed))
-        updateDataContext.Trigger(ObjectToPassEventArgs(this.Sender))
 
     member this.OnSearchButtonClicked =
 
@@ -60,6 +54,6 @@ type MainWindowFunctions() =
         this.Sender.SearchPageControl.Visibility <- Visibility.Visible
         this.Sender.UploadPageControl.Visibility <- Visibility.Hidden
         infoEv.Trigger(InfoEventArgs("Entering search page", Brushes.DarkRed))
-        updateDataContext.Trigger(ObjectToPassEventArgs(this.Sender))
+
         
         

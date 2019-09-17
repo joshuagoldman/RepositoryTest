@@ -51,8 +51,7 @@ type AuthenticateFunctions() =
                         
                 | _ -> result |> ignore
 
-            
-            dataContextUpdateEv.Trigger(ObjectToPassEventArgs(this.Sender))
+          
        
     
     

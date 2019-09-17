@@ -25,15 +25,21 @@ open Microsoft.Win32
 
     let mutable infoEv = new Event<InfoEventArgs>()
 
-    let mutable dataContextUpdateEv = new Event<ObjectToPassEventArgs>()
+    let mutable tstOutput = new TestOutputDefinitions()
 
     do
-        TestOutputDefinitions.InfoToAdd.Add(fun evArgs -> infoEv.Trigger(evArgs))
+        tstOutput.InfoToAdd.Add(fun evArgs -> infoEv.Trigger(evArgs))
+        tstOutput.Sender <- sender
      
     member this.Sender 
         with get() = sender
         and set(value) = 
             if value <> sender then sender <- value
+
+    member this.TstOutput 
+        with get() = tstOutput
+        and set(value) = 
+            if value <> tstOutput then tstOutput <- value
     
     member internal this.Uploadfile
         with get() = uploadFile
@@ -48,9 +54,6 @@ open Microsoft.Win32
 
     [<CLIEvent>]
     member this.InfoToAdd = infoEv.Publish
-
-    [<CLIEvent>]
-    member this.UpdateDataContext = dataContextUpdateEv.Publish
 
 
     member this.CheckIfFindSolutionAction  =
@@ -84,7 +87,7 @@ open Microsoft.Win32
                         
     member this.OnFindSolutionButtonClicked =
             
-        this.Solution <- TestOutputDefinitions.tryFindSolution this.Sender.TicketComboBox.Text ""
+        this.Solution <- this.TstOutput.tryFindSolution this.Sender.TicketComboBox.Text ""
 
     member this.OnChooseFileButtonClicked =
             
@@ -94,7 +97,7 @@ open Microsoft.Win32
 
             | _ when this.Uploadfile = ""  -> 
                 
-                this.Uploadfile <- TestOutputDefinitions.file
+                this.Uploadfile <- this.TstOutput.GetFile
                 
                 
             
@@ -109,13 +112,13 @@ open Microsoft.Win32
                  
                 | _ when answer = MessageBoxResult.Yes ->
 
-                    this.Uploadfile <- TestOutputDefinitions.file
+                    this.Uploadfile <- this.TstOutput.GetFile
 
                 | _ -> None |> ignore
 
     member this.OnUploadButtonClicked =
             
-        this.Solution <- TestOutputDefinitions.tryFindSolution this.Sender.TicketComboBox.Text this.Solution
+        this.Solution <- this.TstOutput.tryFindSolution this.Sender.TicketComboBox.Text this.Solution
                 
 
 
