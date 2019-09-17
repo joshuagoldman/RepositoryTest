@@ -60,15 +60,14 @@ type Initilization() as this =
 
     member this.UpdateDatacontext (o : ObjectToPassEventArgs) =
         
-        let controlPropertyToChange = this.GetType().GetProperties()
-                                       |> Array.filter(fun prop ->  prop.PropertyType = typeof<Controls>)
-                                       |> Array.find(fun prop -> nameof(prop) = o.nameWOwner.[0])
-                                       |> fun x -> (x.GetValue(this) :?> Controls)
+        let controlAttrPropertyToChange = this.Sender.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
+                                          |> Array.filter(fun prop ->  prop.PropertyType = typeof<ControlAtributes>)
+                                          |> Array.find(fun prop -> prop.Name = o.nameWOwner.[0])
+                                          |> fun x -> x.GetValue(this.Sender)
 
-        controlPropertyToChange.GetType().GetProperties()
-        |> Array.filter(fun prop ->  prop.PropertyType = typeof<ControlAtributes>)
-        |> Array.find(fun prop -> nameof(prop) = o.nameWOwner.[1])
-        |> fun x -> x.SetValue(controlPropertyToChange, o.Value)
+        controlAttrPropertyToChange.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
+        |> Array.find(fun prop -> prop.Name = o.nameWOwner.[1])
+        |> fun prop -> prop.SetValue(controlAttrPropertyToChange, o.Value)
 
     member this.InfoToRegister (e : InfoEventArgs) =
 
@@ -78,65 +77,56 @@ type Initilization() as this =
     [<CLIEvent>]
     member this.UpdateDataContext = dataContextUpdateEv.Publish
 
-    member this.SenderControls = 
+    member this.listenToAllCtrlAttr = 
             
-            let filterProps (infoArr : PropertyInfo[]) (o : obj) =
+            let mutable sequenceOfControls = [||]
+
+            let fillCtrls (infoArr : PropertyInfo[]) (o : obj) =
                 
                 infoArr
                 |> Array.filter(fun prop -> prop.PropertyType = typeof<Controls>)
                 |> Array.map(fun prop -> prop.GetValue(o) :?> Controls)
+                |> fun x -> sequenceOfControls <- Array.append sequenceOfControls x
 
-            let mutable sequenceOfControls = Array.empty
-
-            let senderCtrlsLevelOne =
+                
+            let firstLevelProperties =
                 
                 this.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
                 |> Array.filter(fun prop ->  prop.PropertyType = typeof<MainWindowFunctions> ||
                                              prop.PropertyType = typeof<UploadFunctions> ||
                                              prop.PropertyType = typeof<SearchPageFuncs> ||
                                              prop.PropertyType = typeof<AuthenticateFunctions>)
-                |> Array.iter(fun prop -> prop.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
-                                          |> Array.filter(fun subProp -> subProp.PropertyType = typeof<Controls> ||
-                                                                         subProp.PropertyType = typeof<Functions.TestOutputDefinitions>)
-                                          |> fun subProps -> Array.append sequenceOfControls  (filterProps subProps prop)
-                                                             |> fun _ -> subProps
-                                                                         |> Array.iter(fun subProp -> subProp.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
-                                                                                                      |> fun subSubProps -> Array.append sequenceOfControls  (filterProps subSubProps subProp)))
+                |> Array.map(fun prop -> prop.GetValue(this))
+
+            firstLevelProperties
+            |> Array.iter(fun prop -> prop.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
+                                      |> Array.filter(fun subProp -> subProp.PropertyType = typeof<Controls> ||
+                                                                     subProp.PropertyType = typeof<Functions.TestOutputDefinitions>)
+                                      |> fun subProps -> (fillCtrls subProps prop)
+                                                         |> fun _ -> subProps
+                                                                     |> Array.map(fun subProp -> subProp.GetValue(prop))
+                                                         |> fun subPropsObj -> subPropsObj
+                                                                               |> Array.iter(fun subPropObj -> subPropObj.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
+                                                                                                               |> fun subSubProps -> fillCtrls subSubProps subPropObj))
+                                                        
             
-            sequenceOfControls
-            |> Array.collect(fun ctrl -> ctrl.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
-                                         |> Array.map(fun subProp ->   ))
+            let ctrlAttrsAll =
+                
+                sequenceOfControls
+                |> Array.collect(fun ctrl -> ctrl.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
+                                             |> Array.filter(fun subProp -> subProp.PropertyType = typeof<ControlAtributes>)
+                                             |> Array.map(fun subProp -> subProp.GetValue(ctrl) :?> ControlAtributes))
+
+            ctrlAttrsAll
+            |> Array.iter(fun ctrlAttr -> ctrlAttr.UpdateDataContext.Add(fun evArgs -> this.UpdateDatacontext evArgs))
 
     member this.AddAllEvents() =
 
-        let senderControls =
-            this.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
-            |> Array.filter(fun prop ->  prop.PropertyType = typeof<Controls>)
-
-        let senderControlAttr =
-            senderControls
-            |> Array.collect(fun prop -> prop.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
-                                         |> Array.filter(fun subProp -> subProp.PropertyType = typeof<ControlAtributes>)
-                                         |> Array.map(fun subProp -> (subProp.GetValue(prop) :?> ControlAtributes)))
-        
-        senderControlAttr
-        |> Array.iter(fun ctrlAttr -> ctrlAttr.UpdateDataContext.Add(fun evArgs -> this.UpdateDatacontext evArgs))
-
-
-        let senderControlAttr =
-            senderControls
-            |> Array.collect(fun prop -> prop.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
-                                         |> Array.filter(fun subProp -> subProp.PropertyType = typeof<ControlAtributes>)
-                                         |> Array.map(fun subProp -> (subProp.GetValue(prop) :?> ControlAtributes)))
-        
-        senderControlAttr
-        |> Array.iter(fun ctrlAttr -> ctrlAttr.UpdateDataContext.Add(fun evArgs -> this.UpdateDatacontext evArgs))
+        this.listenToAllCtrlAttr
 
         mainFncs.InfoToAdd.Add(fun args -> this.InfoToRegister args)
         autFncs.InfoToAdd.Add(fun args -> this.InfoToRegister args)
         uplFncs.InfoToAdd.Add(fun args -> this.InfoToRegister args)
-
-
 
         let authButton = (mainWin.FindName("Authenticate") :?> Button)
         authButton.Click.Add(fun _ -> mainFncs.OnAuthenticateButtonClicked)

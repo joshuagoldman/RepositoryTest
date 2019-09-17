@@ -11,7 +11,7 @@ type ObjectToPassEventArgs(value : obj, nameWOwner : string[]) =
     member this.Value = value
     member this.nameWOwner = nameWOwner
 
-type ControlAtributes(propertyName : string) =
+type ControlAtributes(propertyName : string) as this =
     
     let mutable text = ""
     let mutable itemsSource = [|""|]
@@ -22,55 +22,74 @@ type ControlAtributes(propertyName : string) =
     let mutable visibility = Visibility.Hidden
     let ev = new Event<_,_>()
     let mutable dataCntxtEv = new Event<ObjectToPassEventArgs>()
+
+    member private this.triggerEvents (result : bool) (value : obj) (propName : string)=
+        
+        None
+        |> function
+           | _ when result = false -> 
+                
+                dataCntxtEv.Trigger(ObjectToPassEventArgs(value, [|propertyName ; propName|]))
+
+           | _ -> None |> ignore
+
     
     member this.Text 
         with get() = text 
         and set(value) =
-            text <- value
-            ev.Trigger(this, PropertyChangedEventArgs("Text"))
-            dataCntxtEv.Trigger(ObjectToPassEventArgs(value, [|propertyName ; "Text"|]))
+            if (value <> text)
+            then text <- value
+                 dataCntxtEv.Trigger(ObjectToPassEventArgs(value, [|propertyName ; "Text"|]))
+                 ev.Trigger(this, PropertyChangedEventArgs("Text"))
 
     member this.ItemsSource 
         with get() = itemsSource 
         and set(value) =
-            itemsSource <- value
-            ev.Trigger(this, PropertyChangedEventArgs("ItemsSource"))
-            dataCntxtEv.Trigger(ObjectToPassEventArgs(value, [|propertyName ; "ItemsSource"|]))
+            if (value <> itemsSource)
+            then itemsSource <- value
+                 dataCntxtEv.Trigger(ObjectToPassEventArgs(value, [|propertyName ; "ItemsSource"|]))
+                 ev.Trigger(this, PropertyChangedEventArgs("ItemsSource"))
 
     member this.Color 
         with get() = color 
         and set(value) =
-            color <- value
-            ev.Trigger(this, PropertyChangedEventArgs("Color"))
-            dataCntxtEv.Trigger(ObjectToPassEventArgs(value, [|propertyName ; "Color"|]))
+            if (value <> color)
+            then color <- value
+                 dataCntxtEv.Trigger(ObjectToPassEventArgs(value, [|propertyName ; "Color"|]))
+                 ev.Trigger(this, PropertyChangedEventArgs("Color"))
 
     member this.TbForeground 
         with get() = tbForeground 
         and set(value) =
-            tbForeground <- value
-            ev.Trigger(this, PropertyChangedEventArgs("TbForeground"))
-            dataCntxtEv.Trigger(ObjectToPassEventArgs(value, [|propertyName ; "TbForeground"|]))
+            if (value <> tbForeground)
+            then tbForeground <- value
+                 dataCntxtEv.Trigger(ObjectToPassEventArgs(value, [|propertyName ; "TbForeground"|]))
+                 ev.Trigger(this, PropertyChangedEventArgs("TbForeground"))
 
     member this.IsEnabled 
         with get() = isEnabled 
         and set(value) =
-            isEnabled <- value
-            ev.Trigger(this, PropertyChangedEventArgs("IsEnabled"))
-            dataCntxtEv.Trigger(ObjectToPassEventArgs(value, [|propertyName ; "IsEnabled"|]))
+            if (value <> isEnabled)
+            then isEnabled <- value
+                 dataCntxtEv.Trigger(ObjectToPassEventArgs(value, [|propertyName ; "IsEnabled"|]))
+                 ev.Trigger(this, PropertyChangedEventArgs("IsEnabled"))
 
     member this.DataContext 
         with get() = datacontext 
         and set(value) =
-            datacontext <- value
-            ev.Trigger(this, PropertyChangedEventArgs("DataContext"))
-            dataCntxtEv.Trigger(ObjectToPassEventArgs(value, [|propertyName ; "DataContext"|]))
+            if (value <> datacontext)
+            then datacontext <- value
+                 dataCntxtEv.Trigger(ObjectToPassEventArgs(value, [|propertyName ; "DataContext"|]))
+                 ev.Trigger(this, PropertyChangedEventArgs("DataContext"))
 
     member this.Visibility 
         with get() = visibility 
         and set(value) =
-            visibility <- value
-            ev.Trigger(this, PropertyChangedEventArgs("Visibility"))
-            dataCntxtEv.Trigger(ObjectToPassEventArgs(value, [|propertyName ; "Visibility"|]))
+            if (value <> visibility)
+            then visibility <- value
+                 dataCntxtEv.Trigger(ObjectToPassEventArgs(value, [|propertyName ; "Visibility"|]))
+                 ev.Trigger(this, PropertyChangedEventArgs("Visibility"))
+            
     
     interface INotifyPropertyChanged with
         [<CLIEvent>]

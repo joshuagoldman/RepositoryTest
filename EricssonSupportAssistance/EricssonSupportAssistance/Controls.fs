@@ -11,6 +11,7 @@ open System.Windows.Media
         let mutable authenticatePage = new ControlAtributes("AuthenticatePage")
         let mutable uploadPage = new ControlAtributes("UploadPage")
         let mutable searchPage = new ControlAtributes("SearchPage")
+        let mutable infoLogs = new ControlAtributes("InfoLogs")
         let mutable authenticationControl = new ControlAtributes("AuthenticationControl")
         let mutable authenticateButton = new ControlAtributes("AuthenticateButton")
         let mutable userNameTextBox = new ControlAtributes("UserNameTextBox")
@@ -20,7 +21,6 @@ open System.Windows.Media
         let mutable findSolutionButton = new ControlAtributes("FindSolutionButton")
         let mutable ticketComboBox = new ControlAtributes("TicketComboBox")
         let mutable openSolutionButton = new ControlAtributes("OpenSolutionButton")
-        let mutable updateDataContext = new ControlAtributes("UpdateDataContext")
         let mutable uploadButton = new ControlAtributes("UploadButton")
         let mutable searchPageControl = new ControlAtributes("SearchPageControl")
 
@@ -43,9 +43,9 @@ open System.Windows.Media
                   
 
         member this.InfoLogs
-            with get() = updateDataContext 
+            with get() = infoLogs 
             and set(value) = 
-                if value <> updateDataContext then updateDataContext <- value
+                if value <> infoLogs then infoLogs <- value
                   
 
         // Authentization controls
