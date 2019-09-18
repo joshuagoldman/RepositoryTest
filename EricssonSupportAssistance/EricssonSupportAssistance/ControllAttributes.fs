@@ -11,7 +11,7 @@ type ObjectToPassEventArgs(value : obj, nameWOwner : string[]) =
     member this.Value = value
     member this.nameWOwner = nameWOwner
 
-type ControlAtributes(propertyName : string) as this =
+type ControlAtributes(propertyName : string) =
     
     let mutable text = ""
     let mutable itemsSource = [|""|]

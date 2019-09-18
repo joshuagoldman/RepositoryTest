@@ -27,6 +27,7 @@
                 Content="Choose File"
                 Padding="5"
                 Margin="5"
+                IsEnabled="{Binding ChooseFileButton.IsEnabled}"
                 />
             <StackPanel
                 Grid.Column="2"
@@ -74,7 +75,7 @@
             Padding="5"
             Margin="10"
             VerticalAlignment="Center"
-            IsEnabled="{Binding UploadnButton.IsEnabled}"/>
+            IsEnabled="{Binding UploadButton.IsEnabled}"/>
         <Button
             Grid.Column="1"
             Grid.Row="3"

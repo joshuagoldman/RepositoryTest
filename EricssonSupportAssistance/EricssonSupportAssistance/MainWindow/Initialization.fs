@@ -28,6 +28,12 @@ type Initilization() as this =
         mainWin.DataContext <- this.Sender
         this.AddAllEvents()
 
+        this.Sender.UploadSolutionButton.IsEnabled <- true
+        this.Sender.ChooseFileButton.IsEnabled <- true
+        this.Sender.FindSolutionButton.IsEnabled <- false
+        this.Sender.OpenSolutionButton.IsEnabled <- false
+        this.Sender.UploadButton.IsEnabled <- false
+
     member this.MainWin 
         with get() = mainWin
         and set(value) = 
@@ -153,10 +159,10 @@ type Initilization() as this =
         let uplCtrl = (mainWin.FindName("UploadPage") :?> UserControl)
 
         (authenCtrl.FindName("AuthenticateButton") :?> Button).Click.Add(fun _ -> autFncs.OnAuthenticateButtonClicked )
-        (uplCtrl.FindName("Upload") :?> Button).Click.Add(fun _ -> mainFncs.OnUploadButtonClicked)
         (uplCtrl.FindName("FindSolutionButton") :?> Button).Click.Add(fun _ -> mainFncs.OnSearchButtonClicked)
         (uplCtrl.FindName("TicketComboBox") :?> ComboBox).AddHandler(TextBoxBase.TextChangedEvent, TextChangedEventHandler(fun _ _ -> uplFncs.CheckIfFindSolutionAction))
         (uplCtrl.FindName("ChooseFileButton") :?> Button).Click.Add(fun _ -> uplFncs.OnChooseFileButtonClicked )
         (uplCtrl.FindName("FindSolutionButton") :?> Button).Click.Add(fun _ -> uplFncs.OnFindSolutionButtonClicked)
-        (uplCtrl.FindName("Upload") :?> Button).Click.Add(fun _ -> uplFncs.OnChooseFileButtonClicked )
-        (uplCtrl.FindName("UploadSolutionButton") :?> Button).Click.Add(fun _ -> uplFncs.OnUploadSolutionButtonClicked )
+        (uplCtrl.FindName("UploadSolutionButton") :?> Button).Click.Add(fun _ -> uplFncs.OnUploadSolutionButtonClicked)
+        (uplCtrl.FindName("Upload") :?> Button).Click.Add(fun _ -> uplFncs.OnUploadButtonClicked)
+        (uplCtrl.FindName("OpenSolutionButton") :?> Button).Click.Add(fun _ -> uplFncs.OnOpenSolutionButtonClicked)

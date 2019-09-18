@@ -9,14 +9,9 @@ open System.Windows.Media
 open System.Windows.Controls
 open System.Windows.Markup
 
-type MainWindowFunctions() as this =
+type MainWindowFunctions() =
     
     inherit ControlBase() 
-
-    do
-        this.Sender.OpenSolutionButton.IsEnabled <- false
-        this.Sender.FindSolutionButton.IsEnabled <- false
-        this.Sender.UploadButton.IsEnabled <- false
 
     member this.OnAuthenticateButtonClicked =
         

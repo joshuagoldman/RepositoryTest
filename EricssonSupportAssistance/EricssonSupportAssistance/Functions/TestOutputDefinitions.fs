@@ -16,6 +16,7 @@ open Microsoft.Win32
 open System.Xml.Linq
 open System.Xml.XPath
 open System.Text.RegularExpressions
+open System.Windows.Documents
 
 
 type MethodInfo =
@@ -33,7 +34,12 @@ type TestOutputDefinitions() =
 
     let exAssembly = Assembly.GetExecutingAssembly()
     let stream = exAssembly.GetManifestResourceStream("EricssonSupportAssistance.EmbeddedTestOutput.FailedMethodInfoDocument.xml")
+    let mutable textfileString = ""
 
+    member this.TextFileString
+        with get() = textfileString
+        and set(value) =
+            if value <> textfileString then textfileString <- value
 
     member val private FailedTMDoc = XDocument.Load(stream) with get, set
 
@@ -146,22 +152,24 @@ type TestOutputDefinitions() =
         |> Seq.find(fun (_,rating) -> rating = maxRating)
         |> fun (method, _) -> method.Solution
 
-    member this.GetFile = 
+    member this.GetFile (messageChoice : string) = 
 
         let dialog = new OpenFileDialog()
         dialog.ShowDialog()
         |> ignore
 
-        this.infoEv.Trigger(InfoEventArgs(String.Format("Current upload file is: {0}", dialog.FileName),
-                             Brushes.Black ))
+        if messageChoice <> ""
+        then this.infoEv.Trigger(InfoEventArgs(String.Format("Current {0} is: {1}", messageChoice,dialog.FileName),
+                                  Brushes.Black ))
 
-        File.ReadAllText(dialog.FileName)
 
-    member this.tryFindSolution (ticket : string) (solutionPrepared : string) = 
-        
-        let textFileString = this.GetFile
+        if dialog.FileName <> ""
+        then File.ReadAllText(dialog.FileName, Text.Encoding.UTF8)
+        else ""
 
-        let failedMethodStringChunk = Regex.Match(textFileString, "(\n\*\*\*\* )(?:(?!(\n\*\*\*\* )|( 	Fail))(.|\n))*?( 	Fail)").Value
+    member this.tryFindSolution (ticket : string) (textFileString : string) (solutionPrepared : string) = 
+
+        let failedMethodStringChunk = Regex.Match(textFileString, "(\ntextFileString )(?:(?!(\n\*\*\*\* )|( 	Fail))(.|\n))*?( 	Fail)").Value
 
         this.infoEv.Trigger(InfoEventArgs(String.Format("Getting failed method chunk:\n\n{0}", failedMethodStringChunk),
                                      Brushes.Black))

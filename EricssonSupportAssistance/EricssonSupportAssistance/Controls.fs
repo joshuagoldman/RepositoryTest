@@ -22,6 +22,7 @@ open System.Windows.Media
         let mutable ticketComboBox = new ControlAtributes("TicketComboBox")
         let mutable openSolutionButton = new ControlAtributes("OpenSolutionButton")
         let mutable uploadButton = new ControlAtributes("UploadButton")
+        let mutable chooseFileButton = new ControlAtributes("ChooseFileButton")
         let mutable searchPageControl = new ControlAtributes("SearchPageControl")
 
         // MainWindow controls
@@ -109,6 +110,10 @@ open System.Windows.Media
             and set(value) = 
                 if value <> uploadButton then uploadButton <- value
                   
+        member this.ChooseFileButton
+            with get() = chooseFileButton 
+            and set(value) = 
+                if value <> chooseFileButton then chooseFileButton <- value
         
         // Search controls
         member this.SearchPageControl

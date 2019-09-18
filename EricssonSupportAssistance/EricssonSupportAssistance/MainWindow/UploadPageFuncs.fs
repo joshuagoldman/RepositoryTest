@@ -13,9 +13,10 @@ open System.Windows.Media
 open System.Windows.Controls
 open System.IO
 open Microsoft.Win32
+open System.Diagnostics
 
 
- type UploadFunctions() =
+ type UploadFunctions() as this =
     
     inherit ControlBase()
 
@@ -52,8 +53,6 @@ open Microsoft.Win32
                     | res when res = true ->
 
                         this.Sender.OpenSolutionButton.IsEnabled <- true 
-
-                            | _ -> None |> ignore
                      
                     | _ when this.Solution <> "" && this.Uploadfile <> "" ->
                         
@@ -61,14 +60,18 @@ open Microsoft.Win32
 
                     | _ -> None |> ignore
 
-            | _ -> None |> ignore
+            | _ -> this.Sender.UploadButton.IsEnabled <- false
                
 
                         
     member this.OnFindSolutionButtonClicked =
             
-        this.Solution <- this.TstOutput.tryFindSolution this.Sender.TicketComboBox.Text ""
+        this.Solution <- this.TstOutput.tryFindSolution (this.Sender.TicketComboBox.Text) (this.Uploadfile) ""
         this.Sender.OpenSolutionButton.IsEnabled <- true 
+
+    member this.OnOpenSolutionButtonClicked =
+          
+        this.infoEv.Trigger(InfoEventArgs(this.Solution, Brushes.BlueViolet))
 
     member this.OnChooseFileButtonClicked =
             
@@ -78,7 +81,7 @@ open Microsoft.Win32
 
             | _ when this.Uploadfile = ""  -> 
                 
-                this.Uploadfile <- this.TstOutput.GetFile
+                this.Uploadfile <- this.TstOutput.GetFile "Upload file"
                 
                 
             
@@ -93,40 +96,44 @@ open Microsoft.Win32
                  
                 | _ when answer = MessageBoxResult.Yes ->
 
-                    this.Uploadfile <- this.TstOutput.GetFile
+                    this.Uploadfile <- this.TstOutput.GetFile "Upload file"
 
                 | _ -> None |> ignore
 
-        member this.OnUploadSolutionButtonClicked =
+        this.CheckIfFindSolutionAction
+
+    member this.OnUploadSolutionButtonClicked =
             
 
-            None
-            |>function
+        None
+        |>function
 
-                | _ when this.Solution = ""  -> 
+            | _ when this.Solution = ""  -> 
                 
-                    this.Solution <- this.TstOutput.GetFile
+                this.Solution <- this.TstOutput.GetFile "Upload file"
                 
                 
             
-                | _  ->
+            | _  ->
                  
-                    let answer = MessageBox.Show("Hmmm...An upload solution file already exists, are you certain you want to change the current one?",
-                                                "Warning",
-                                                MessageBoxButton.YesNoCancel,
-                                                MessageBoxImage.Question)
+                let answer = MessageBox.Show("Hmmm...An upload solution file already exists, are you certain you want to change the current one?",
+                                            "Warning",
+                                            MessageBoxButton.YesNoCancel,
+                                            MessageBoxImage.Question)
                                                      
-                    match answer with
+                match answer with
                  
-                    | _ when answer = MessageBoxResult.Yes ->
+                | _ when answer = MessageBoxResult.Yes ->
 
-                        this.Solution <- this.TstOutput.GetFile
+                    this.Solution <- this.TstOutput.GetFile "Upload solution"
 
-                    | _ -> None |> ignore
+                | _ -> None |> ignore
+
+        this.CheckIfFindSolutionAction
 
     member this.OnUploadButtonClicked =
             
-        this.Solution <- this.TstOutput.tryFindSolution this.Sender.TicketComboBox.Text this.Solution
+        this.Solution <- this.TstOutput.tryFindSolution (this.Sender.TicketComboBox.Text) (this.Uploadfile) (this.Solution)
                 
 
 
