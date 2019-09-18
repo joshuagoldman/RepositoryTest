@@ -17,24 +17,11 @@ open Microsoft.Win32
 
  type UploadFunctions() =
     
-    let mutable sender = new Controls()
+    inherit ControlBase()
 
     let mutable uploadFile = ""
-
     let mutable solution = ""   
-
-    let mutable infoEv = new Event<InfoEventArgs>()
-
     let mutable tstOutput = new TestOutputDefinitions()
-
-    do
-        tstOutput.InfoToAdd.Add(fun evArgs -> infoEv.Trigger(evArgs))
-        tstOutput.Sender <- sender
-     
-    member this.Sender 
-        with get() = sender
-        and set(value) = 
-            if value <> sender then sender <- value
 
     member this.TstOutput 
         with get() = tstOutput
@@ -52,32 +39,25 @@ open Microsoft.Win32
             if value <> solution then solution <- value
 
 
-    [<CLIEvent>]
-    member this.InfoToAdd = infoEv.Publish
-
-
     member this.CheckIfFindSolutionAction  =
                
         None
         |> function
                        
-            | _ when this.Sender.TicketComboBox.Text <> "" && this.Uploadfile <> "" ->
+            | _ when this.Sender.TicketComboBox.Text <> "" ->
                             
                 this.Sender.TicketComboBox.ItemsSource
                 |> Seq.exists(fun t -> t = this.Sender.TicketComboBox.Text)
                 |> function
                     | res when res = true ->
 
-                        this.Sender.FindSolutionButton.IsEnabled <- true 
-
-                        None
-                        |> function
-                                
-                            | _ when this.Solution <> "" ->
-                                    
-                                this.Sender.UploadButton.IsEnabled <- true
+                        this.Sender.OpenSolutionButton.IsEnabled <- true 
 
                             | _ -> None |> ignore
+                     
+                    | _ when this.Solution <> "" && this.Uploadfile <> "" ->
+                        
+                        this.Sender.UploadButton.IsEnabled <- true
 
                     | _ -> None |> ignore
 
@@ -88,6 +68,7 @@ open Microsoft.Win32
     member this.OnFindSolutionButtonClicked =
             
         this.Solution <- this.TstOutput.tryFindSolution this.Sender.TicketComboBox.Text ""
+        this.Sender.OpenSolutionButton.IsEnabled <- true 
 
     member this.OnChooseFileButtonClicked =
             
@@ -115,6 +96,33 @@ open Microsoft.Win32
                     this.Uploadfile <- this.TstOutput.GetFile
 
                 | _ -> None |> ignore
+
+        member this.OnUploadSolutionButtonClicked =
+            
+
+            None
+            |>function
+
+                | _ when this.Solution = ""  -> 
+                
+                    this.Solution <- this.TstOutput.GetFile
+                
+                
+            
+                | _  ->
+                 
+                    let answer = MessageBox.Show("Hmmm...An upload solution file already exists, are you certain you want to change the current one?",
+                                                "Warning",
+                                                MessageBoxButton.YesNoCancel,
+                                                MessageBoxImage.Question)
+                                                     
+                    match answer with
+                 
+                    | _ when answer = MessageBoxResult.Yes ->
+
+                        this.Solution <- this.TstOutput.GetFile
+
+                    | _ -> None |> ignore
 
     member this.OnUploadButtonClicked =
             

@@ -12,20 +12,20 @@ open System.Windows.Markup
 open System.Reflection
 
 type Initilization() as this =
-    
-    let mutable sender = new Controls()
+
+    inherit ControlBase()    
+
     let mutable mainWin = new MainWindow()
     let mutable mainFncs = new MainWindowFunctions()
     let mutable uplFncs = new UploadFunctions()
     let mutable autFncs = new AuthenticateFunctions()
     let mutable srchFncs = new SearchPageFuncs()
     let mutable dataContextUpdateEv = new Event<ObjectToPassEventArgs>()
+    let mutable sequenceOfControls = [||]
+    let mutable sequenceOfCtrlBase = [|this :> ControlBase|]
 
     do
-        mainWin.DataContext <- sender
-        uplFncs.Sender <- sender
-        autFncs.Sender <- sender
-        srchFncs.Sender <- sender
+        mainWin.DataContext <- this.Sender
         this.AddAllEvents()
 
     member this.MainWin 
@@ -53,10 +53,15 @@ type Initilization() as this =
         and set(value) =
             if value <> mainFncs then mainFncs <- value
 
-    member this.Sender 
-        with get() = sender
-        and set(value) = 
-            if value <> sender then sender <- value
+    member this.SequenceOfControls 
+        with get() = sequenceOfControls
+        and set(value) =
+            if value <> sequenceOfControls then sequenceOfControls <- value
+    
+    member this.SequenceOfCtrlBase 
+        with get() = sequenceOfCtrlBase
+        and set(value) =
+            if value <> sequenceOfCtrlBase then sequenceOfCtrlBase <- value
 
     member this.UpdateDatacontext (o : ObjectToPassEventArgs) =
         
@@ -69,6 +74,9 @@ type Initilization() as this =
         |> Array.find(fun prop -> prop.Name = o.nameWOwner.[1])
         |> fun prop -> prop.SetValue(controlAttrPropertyToChange, o.Value)
 
+        this.SequenceOfCtrlBase
+        |> Seq.iter(fun ctrlBase -> ctrlBase.Sender <- this.Sender)
+
     member this.InfoToRegister (e : InfoEventArgs) =
 
         mainFncs.Sender.InfoLogs.Text <- mainFncs.Sender.InfoLogs.Text + "\n> " + e.Message
@@ -78,41 +86,51 @@ type Initilization() as this =
     member this.UpdateDataContext = dataContextUpdateEv.Publish
 
     member this.listenToAllCtrlAttr = 
-            
-            let mutable sequenceOfControls = [||]
 
             let fillCtrls (infoArr : PropertyInfo[]) (o : obj) =
                 
                 infoArr
                 |> Array.filter(fun prop -> prop.PropertyType = typeof<Controls>)
                 |> Array.map(fun prop -> prop.GetValue(o) :?> Controls)
-                |> fun x -> sequenceOfControls <- Array.append sequenceOfControls x
+                |> fun x -> this.SequenceOfControls <- Array.append this.SequenceOfControls x
 
+            let fillCtrlsBase (infoArr : PropertyInfo[]) (o : obj) =
                 
+                infoArr
+                |> Array.filter(fun prop -> prop.PropertyType.IsSubclassOf(typeof<ControlBase>))
+                |> Array.map(fun prop -> prop.GetValue(o) :?> ControlBase)
+                |> fun x -> this.SequenceOfCtrlBase <- Array.append this.SequenceOfCtrlBase x          
+
+
             let firstLevelProperties =
                 
                 this.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
-                |> Array.filter(fun prop ->  prop.PropertyType = typeof<MainWindowFunctions> ||
-                                             prop.PropertyType = typeof<UploadFunctions> ||
-                                             prop.PropertyType = typeof<SearchPageFuncs> ||
-                                             prop.PropertyType = typeof<AuthenticateFunctions>)
+                |> fun props -> fillCtrlsBase props this
+                                |> fun _ -> props
+                |> Array.filter(fun prop ->  prop.PropertyType.IsSubclassOf(typeof<ControlBase>))
                 |> Array.map(fun prop -> prop.GetValue(this))
+
 
             firstLevelProperties
             |> Array.iter(fun prop -> prop.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
+                                      |> fun props -> fillCtrlsBase props prop
+                                                      |> fun _ -> props
                                       |> Array.filter(fun subProp -> subProp.PropertyType = typeof<Controls> ||
-                                                                     subProp.PropertyType = typeof<Functions.TestOutputDefinitions>)
+                                                                     subProp.PropertyType.IsSubclassOf(typeof<ControlBase>))
                                       |> fun subProps -> (fillCtrls subProps prop)
                                                          |> fun _ -> subProps
                                                                      |> Array.map(fun subProp -> subProp.GetValue(prop))
                                                          |> fun subPropsObj -> subPropsObj
                                                                                |> Array.iter(fun subPropObj -> subPropObj.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
                                                                                                                |> fun subSubProps -> fillCtrls subSubProps subPropObj))
-                                                        
             
+            
+            this.SequenceOfCtrlBase
+            |> Seq.iter(fun ctrlBase -> ctrlBase.InfoToAdd.Add(fun evArgs -> this.InfoToRegister evArgs))
+
             let ctrlAttrsAll =
                 
-                sequenceOfControls
+                this.SequenceOfControls
                 |> Array.collect(fun ctrl -> ctrl.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
                                              |> Array.filter(fun subProp -> subProp.PropertyType = typeof<ControlAtributes>)
                                              |> Array.map(fun subProp -> subProp.GetValue(ctrl) :?> ControlAtributes))
@@ -123,10 +141,6 @@ type Initilization() as this =
     member this.AddAllEvents() =
 
         this.listenToAllCtrlAttr
-
-        mainFncs.InfoToAdd.Add(fun args -> this.InfoToRegister args)
-        autFncs.InfoToAdd.Add(fun args -> this.InfoToRegister args)
-        uplFncs.InfoToAdd.Add(fun args -> this.InfoToRegister args)
 
         let authButton = (mainWin.FindName("Authenticate") :?> Button)
         authButton.Click.Add(fun _ -> mainFncs.OnAuthenticateButtonClicked)
@@ -145,3 +159,4 @@ type Initilization() as this =
         (uplCtrl.FindName("ChooseFileButton") :?> Button).Click.Add(fun _ -> uplFncs.OnChooseFileButtonClicked )
         (uplCtrl.FindName("FindSolutionButton") :?> Button).Click.Add(fun _ -> uplFncs.OnFindSolutionButtonClicked)
         (uplCtrl.FindName("Upload") :?> Button).Click.Add(fun _ -> uplFncs.OnChooseFileButtonClicked )
+        (uplCtrl.FindName("UploadSolutionButton") :?> Button).Click.Add(fun _ -> uplFncs.OnUploadSolutionButtonClicked )

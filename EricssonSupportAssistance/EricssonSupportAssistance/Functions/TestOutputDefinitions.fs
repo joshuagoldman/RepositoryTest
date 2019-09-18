@@ -28,9 +28,8 @@ type MethodInfo =
         }
 
 type TestOutputDefinitions() =
-
-    let mutable infoEv = new Event<InfoEventArgs>()
-    let mutable sender = new Controls()
+    
+    inherit ControlBase()
 
     let exAssembly = Assembly.GetExecutingAssembly()
     let stream = exAssembly.GetManifestResourceStream("EricssonSupportAssistance.EmbeddedTestOutput.FailedMethodInfoDocument.xml")
@@ -39,14 +38,6 @@ type TestOutputDefinitions() =
     member val private FailedTMDoc = XDocument.Load(stream) with get, set
 
     member val FilePath = "" with get, set
-
-    [<CLIEvent>]
-    member this.InfoToAdd = infoEv.Publish
-
-    member this.Sender 
-        with get() = sender
-        and set(value) = 
-            if value <> sender then sender <- value
 
     member private this.newSeqUponMatch (str : string) (sequence : seq<string>) =
         
@@ -126,13 +117,13 @@ type TestOutputDefinitions() =
     member this.getSolution (strChunk : string) = 
         
         let stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("EricssonSupportAssistance.EmbeddedTestOutPut.FailedMethodInfoDocument.xml")
-        infoEv.Trigger(InfoEventArgs("Obtaining embedded criteria file 'FailedMethodInfoDocument.xml' for evaluation", Brushes.Black)) 
+        this.infoEv.Trigger(InfoEventArgs("Obtaining embedded criteria file 'FailedMethodInfoDocument.xml' for evaluation", Brushes.Black)) 
 
         let FailedTMDoc = XDocument.Load(stream)
 
         let methodRatingTuple =
             
-            infoEv.Trigger(InfoEventArgs("Calculating rating methods", Brushes.Black)) 
+            this.infoEv.Trigger(InfoEventArgs("Calculating rating methods", Brushes.Black)) 
             let methodsNodeAll = FailedTMDoc.XPathSelectElements(".//TestMethod")
             
             methodsNodeAll
@@ -148,7 +139,7 @@ type TestOutputDefinitions() =
             methodRatingTuple
             |> Seq.map(fun (_, rating) -> rating)
             |> fun x -> x 
-                        |> fun _ -> infoEv.Trigger(InfoEventArgs("Obtaining embedded criteria file 'FailedMethodInfoDocument.xml' for evaluation", Brushes.Black))
+                        |> fun _ -> this.infoEv.Trigger(InfoEventArgs("Obtaining embedded criteria file 'FailedMethodInfoDocument.xml' for evaluation", Brushes.Black))
                         |> fun _ -> x |> Seq.max
 
         methodRatingTuple
@@ -161,7 +152,7 @@ type TestOutputDefinitions() =
         dialog.ShowDialog()
         |> ignore
 
-        infoEv.Trigger(InfoEventArgs(String.Format("Current upload file is: {0}", dialog.FileName),
+        this.infoEv.Trigger(InfoEventArgs(String.Format("Current upload file is: {0}", dialog.FileName),
                              Brushes.Black ))
 
         File.ReadAllText(dialog.FileName)
@@ -172,15 +163,15 @@ type TestOutputDefinitions() =
 
         let failedMethodStringChunk = Regex.Match(textFileString, "(\n\*\*\*\* )(?:(?!(\n\*\*\*\* )|( 	Fail))(.|\n))*?( 	Fail)").Value
 
-        infoEv.Trigger(InfoEventArgs(String.Format("Getting failed method chunk:\n\n{0}", failedMethodStringChunk),
+        this.infoEv.Trigger(InfoEventArgs(String.Format("Getting failed method chunk:\n\n{0}", failedMethodStringChunk),
                                      Brushes.Black))
 
         let failedMethodName = Regex.Match(failedMethodStringChunk, "(\*\*\*\* )(\n|.)*?( \*\*\*\*)").Value
                                |> fun str -> str.Replace("\*","")
                                |> fun str -> str.Trim()
 
-        infoEv.Trigger(InfoEventArgs(String.Format("Failed method name set to: {0}", failedMethodName),
-                        Brushes.Black))
+        this.infoEv.Trigger(InfoEventArgs(String.Format("Failed method name set to: {0}", failedMethodName),
+                             Brushes.Black))
 
         let categories = this.FailedTMDoc.XPathSelectElements("*//Category")
                          |> Seq.map(fun cat -> cat.FirstAttribute.Value)
@@ -195,8 +186,8 @@ type TestOutputDefinitions() =
                           
                           | (_,_) -> "Other"
         
-        infoEv.Trigger(InfoEventArgs(String.Format("Category set to: {0}", category),
-                        Brushes.Black))
+        this.infoEv.Trigger(InfoEventArgs(String.Format("Category set to: {0}", category),
+                             Brushes.Black))
 
         let solution = 
             
@@ -204,16 +195,16 @@ type TestOutputDefinitions() =
             |> function
                | _ when solutionPrepared = "" ->
                     
-                    infoEv.Trigger(InfoEventArgs("Getting solution", Brushes.Black))
+                    this.infoEv.Trigger(InfoEventArgs("Getting solution", Brushes.Black))
                     |> fun _ -> this.getSolution failedMethodStringChunk
                
                | _ -> 
                     
-                    infoEv.Trigger(InfoEventArgs("Getting prepared solution", Brushes.Black))
+                    this.infoEv.Trigger(InfoEventArgs("Getting prepared solution", Brushes.Black))
                     |> fun _ -> solutionPrepared
 
-        infoEv.Trigger(InfoEventArgs(String.Format("Obtained solution:\n\n{0}", solution),
-                        Brushes.Black))
+        this.infoEv.Trigger(InfoEventArgs(String.Format("Obtained solution:\n\n{0}", solution),
+                             Brushes.Black))
         
         let elementSequence = seq[  {|Name = "Info" ; Value = ""|} ;
                                     {|Name = "Ticket" ; Value = ticket|} ;

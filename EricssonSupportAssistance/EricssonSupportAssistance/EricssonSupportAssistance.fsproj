@@ -54,6 +54,7 @@
     </EmbeddedResource>
     <Compile Include="ControllAttributes.fs" />
     <Compile Include="Controls.fs" />
+    <Compile Include="ControlBase.fs" />
     <Resource Include="XamlFiles\MainWindow.xaml" />
     <Resource Include="XamlFiles\SearchPage.xaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

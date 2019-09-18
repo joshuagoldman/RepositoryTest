@@ -90,7 +90,6 @@ C:\Users\jogo\Documents\git_Test\EricssonSupportAssistance\EricssonSupportAssist
 C:\Users\jogo\Documents\git_Test\EricssonSupportAssistance\EricssonSupportAssistance\bin\Debug\zh-Hans\FSharp.Core.resources.dll
 C:\Users\jogo\Documents\git_Test\EricssonSupportAssistance\EricssonSupportAssistance\bin\Debug\zh-Hant\FSharp.Core.resources.dll
 C:\Users\jogo\Documents\git_Test\EricssonSupportAssistance\EricssonSupportAssistance\obj\Debug\EricssonSupportAssistance.fsproj.CopyComplete
-C:\Users\jogo\Documents\git_Test\EricssonSupportAssistance\EricssonSupportAssistance\obj\Debug\EricssonSupportAssistance.fsprojAssemblyReference.cache
 C:\Users\DELL\Documents\GitRepos\RepositoryTest\EricssonSupportAssistance\EricssonSupportAssistance\bin\Debug\EmbeddedTestOutput\FailedMethodInfoDocument.xml
 C:\Users\DELL\Documents\GitRepos\RepositoryTest\EricssonSupportAssistance\EricssonSupportAssistance\bin\Debug\EricssonSupportAssistance.exe.config
 C:\Users\DELL\Documents\GitRepos\RepositoryTest\EricssonSupportAssistance\EricssonSupportAssistance\bin\Debug\EricssonSupportAssistance.XML
@@ -138,3 +137,4 @@ C:\Users\DELL\Documents\GitRepos\RepositoryTest\EricssonSupportAssistance\Ericss
 C:\Users\DELL\Documents\GitRepos\RepositoryTest\EricssonSupportAssistance\EricssonSupportAssistance\obj\Debug\EricssonSupportAssistance.exe
 C:\Users\DELL\Documents\GitRepos\RepositoryTest\EricssonSupportAssistance\EricssonSupportAssistance\obj\Debug\EricssonSupportAssistance.pdb
 C:\Users\DELL\Documents\GitRepos\RepositoryTest\EricssonSupportAssistance\EricssonSupportAssistance\obj\Debug\EricssonSupportAssistance.fsprojAssemblyReference.cache
+C:\Users\jogo\Documents\git_Test\EricssonSupportAssistance\EricssonSupportAssistance\obj\Debug\EricssonSupportAssistance.fsprojAssemblyReference.cache

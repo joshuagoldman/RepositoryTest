@@ -9,51 +9,35 @@ open System.Windows.Media
 open System.Windows.Controls
 open System.Windows.Markup
 
-type MainWindowFunctions() =
-
-    let mutable sender = new Controls()
-    let mutable mainWin = new MainWindow()
-    let mutable infoEv = new Event<InfoEventArgs>()
+type MainWindowFunctions() as this =
+    
+    inherit ControlBase() 
 
     do
-        sender.OpenSolutionButton.IsEnabled <- false
-        sender.FindSolutionButton.IsEnabled <- false
-        sender.UploadButton.IsEnabled <- false
-
-
-    member this.MainWin 
-        with get() = mainWin
-        and set(value) = 
-            if value <> mainWin then mainWin <- value
-
-    member this.Sender 
-        with get() = sender
-        and set(value) = 
-            if value <> sender then sender <- value
-
-    [<CLIEvent>]
-    member this.InfoToAdd = infoEv.Publish 
+        this.Sender.OpenSolutionButton.IsEnabled <- false
+        this.Sender.FindSolutionButton.IsEnabled <- false
+        this.Sender.UploadButton.IsEnabled <- false
 
     member this.OnAuthenticateButtonClicked =
         
         this.Sender.AuthenticationControl.Visibility <- Visibility.Visible
         this.Sender.SearchPageControl.Visibility <- Visibility.Hidden
         this.Sender.UploadPageControl.Visibility <- Visibility.Hidden
-        infoEv.Trigger(InfoEventArgs("Entering authentization page", Brushes.DarkRed))
+        this.infoEv.Trigger(InfoEventArgs("Entering authentization page", Brushes.DarkRed))
 
     member this.OnUploadButtonClicked =
 
         this.Sender.AuthenticationControl.Visibility <- Visibility.Hidden
         this.Sender.SearchPageControl.Visibility <- Visibility.Hidden
         this.Sender.UploadPageControl.Visibility <- Visibility.Visible
-        infoEv.Trigger(InfoEventArgs("Entering upload page", Brushes.DarkRed))
+        this.infoEv.Trigger(InfoEventArgs("Entering upload page", Brushes.DarkRed))
 
     member this.OnSearchButtonClicked =
 
         this.Sender.AuthenticationControl.Visibility <- Visibility.Hidden
         this.Sender.SearchPageControl.Visibility <- Visibility.Visible
         this.Sender.UploadPageControl.Visibility <- Visibility.Hidden
-        infoEv.Trigger(InfoEventArgs("Entering search page", Brushes.DarkRed))
+        this.infoEv.Trigger(InfoEventArgs("Entering search page", Brushes.DarkRed))
 
         
         
