@@ -43,7 +43,8 @@
                     Padding="5"
                     Margin="5,0,0,0"
                     IsEditable="True"
-                    ItemsSource="{Binding TicketComboBox.ItemsSource>}"
+                    IsTextSearchEnabled="False"
+                    ItemsSource="{Binding TicketComboBox.ItemsSource}"
                     Text="{Binding TicketComboBox.Text}"/>
             </StackPanel>
             <Button

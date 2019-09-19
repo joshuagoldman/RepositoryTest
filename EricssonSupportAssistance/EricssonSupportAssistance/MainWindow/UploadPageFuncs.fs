@@ -52,22 +52,62 @@ open System.Diagnostics
                 |> function
                     | res when res = true ->
 
+                        this.Sender.UploadButton.IsEnabled <- false
                         this.Sender.OpenSolutionButton.IsEnabled <- true 
                      
                     | _ when this.Solution <> "" && this.Uploadfile <> "" ->
                         
                         this.Sender.UploadButton.IsEnabled <- true
+                        this.Sender.OpenSolutionButton.IsEnabled <- false
 
-                    | _ -> None |> ignore
+                    | _ -> 
+                        
+                        this.Sender.OpenSolutionButton.IsEnabled <- false
 
             | _ -> this.Sender.UploadButton.IsEnabled <- false
                
 
                         
     member this.OnFindSolutionButtonClicked =
+        
+        None
+        |> function
             
-        this.Solution <- this.TstOutput.tryFindSolution (this.Sender.TicketComboBox.Text) (this.Uploadfile) ""
-        this.Sender.OpenSolutionButton.IsEnabled <- true 
+           | _ when this.Solution <> "" ->
+            
+                let answer = MessageBox.Show(String.Format("Hmmm...A solution file already exists, are you certain you wish to find" +
+                                                            " a solution even though a solution may already exist?"),
+                                            "Warning",
+                                            MessageBoxButton.YesNoCancel,
+                                            MessageBoxImage.Question)
+
+                answer
+                |> function
+                   
+                   | _ when answer = MessageBoxResult.Yes -> 
+                        
+                        this.Solution <- this.TstOutput.tryFindSolution (this.Sender.TicketComboBox.Text) (this.Uploadfile) ""
+                        this.Sender.OpenSolutionButton.IsEnabled <- true 
+                   
+                   | _ -> None |> ignore
+
+           | _ -> 
+                
+                let answer = MessageBox.Show(String.Format("Hold yo horses..." +
+                                                           "Do you really want to find a solution, or was this purely a mistake? ;)",
+                                                            this.Solution),
+                                            "Warning",
+                                            MessageBoxButton.YesNoCancel,
+                                            MessageBoxImage.Question)
+                answer
+                |> function
+                   
+                   | _ when answer = MessageBoxResult.Yes -> 
+                        
+                        this.Solution <- this.TstOutput.tryFindSolution (this.Sender.TicketComboBox.Text) (this.Uploadfile) ""
+                        this.Sender.OpenSolutionButton.IsEnabled <- true 
+                   
+                   | _ -> None |> ignore
 
     member this.OnOpenSolutionButtonClicked =
           
@@ -82,6 +122,7 @@ open System.Diagnostics
             | _ when this.Uploadfile = ""  -> 
                 
                 this.Uploadfile <- this.TstOutput.GetFile "Upload file"
+                this.Sender.FindSolutionButton.IsEnabled <- true
                 
                 
             
@@ -110,7 +151,7 @@ open System.Diagnostics
 
             | _ when this.Solution = ""  -> 
                 
-                this.Solution <- this.TstOutput.GetFile "Upload file"
+                this.Solution <- this.TstOutput.GetFile "Upload solution file"
                 
                 
             
@@ -125,15 +166,16 @@ open System.Diagnostics
                  
                 | _ when answer = MessageBoxResult.Yes ->
 
-                    this.Solution <- this.TstOutput.GetFile "Upload solution"
+                    this.Solution <- this.TstOutput.GetFile "Upload solution file"
 
                 | _ -> None |> ignore
 
         this.CheckIfFindSolutionAction
 
     member this.OnUploadButtonClicked =
-            
-        this.Solution <- this.TstOutput.tryFindSolution (this.Sender.TicketComboBox.Text) (this.Uploadfile) (this.Solution)
+        
+        this.TstOutput.tryFindSolution (this.Sender.TicketComboBox.Text) (this.Uploadfile) (this.Solution)
+        |> fun _ -> None |> ignore
                 
 
 

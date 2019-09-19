@@ -10,6 +10,7 @@ open System.Windows.Controls
 open System.Windows.Controls.Primitives
 open System.Windows.Markup
 open System.Reflection
+open System.Xml.XPath
 
 type Initilization() as this =
 
@@ -33,6 +34,9 @@ type Initilization() as this =
         this.Sender.FindSolutionButton.IsEnabled <- false
         this.Sender.OpenSolutionButton.IsEnabled <- false
         this.Sender.UploadButton.IsEnabled <- false
+        this.Sender.TicketComboBox.ItemsSource <- uplFncs.TstOutput.FailedTMDoc.XPathSelectElements("*//Ticket")
+                                                  |> Seq.map(fun el -> el.FirstAttribute.Value)
+                                                  |> fun x -> x |> Seq.toArray
 
     member this.MainWin 
         with get() = mainWin
@@ -159,7 +163,6 @@ type Initilization() as this =
         let uplCtrl = (mainWin.FindName("UploadPage") :?> UserControl)
 
         (authenCtrl.FindName("AuthenticateButton") :?> Button).Click.Add(fun _ -> autFncs.OnAuthenticateButtonClicked )
-        (uplCtrl.FindName("FindSolutionButton") :?> Button).Click.Add(fun _ -> mainFncs.OnSearchButtonClicked)
         (uplCtrl.FindName("TicketComboBox") :?> ComboBox).AddHandler(TextBoxBase.TextChangedEvent, TextChangedEventHandler(fun _ _ -> uplFncs.CheckIfFindSolutionAction))
         (uplCtrl.FindName("ChooseFileButton") :?> Button).Click.Add(fun _ -> uplFncs.OnChooseFileButtonClicked )
         (uplCtrl.FindName("FindSolutionButton") :?> Button).Click.Add(fun _ -> uplFncs.OnFindSolutionButtonClicked)
