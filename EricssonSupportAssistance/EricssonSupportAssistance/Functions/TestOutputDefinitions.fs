@@ -16,6 +16,7 @@ open Microsoft.Win32
 open System.Xml.Linq
 open System.Xml.XPath
 open System.Text.RegularExpressions
+open System.Linq
 open System.IO
 
 
@@ -28,6 +29,15 @@ type MethodInfo =
         Category : string
         }
 
+
+type UploadSolution =
+    | Yes
+    | No
+
+type FileType =
+    | UploadFile
+    | Solution
+
 type TestOutputDefinitions() =
     
     inherit ControlBase()
@@ -35,11 +45,23 @@ type TestOutputDefinitions() =
     let exAssembly = Assembly.GetExecutingAssembly()
     let stream = exAssembly.GetManifestResourceStream("EricssonSupportAssistance.EmbeddedTestOutput.FailedMethodInfoDocument.xml")
     let mutable textfileString = ""
+    let mutable uploadFileName = ""
+    let mutable solutionFileName = ""
 
     member this.TextFileString
         with get() = textfileString
         and set(value) =
             if value <> textfileString then textfileString <- value
+
+    member this.UploadFileName
+        with get() = uploadFileName
+        and set(value) =
+            if value <> uploadFileName then uploadFileName <- value
+
+    member this.SolutionFileName
+        with get() = solutionFileName
+        and set(value) =
+            if value <> solutionFileName then solutionFileName <- value
 
     member val FailedTMDoc = XDocument.Load(stream) with get, set
 
@@ -80,15 +102,16 @@ type TestOutputDefinitions() =
         let mutable seqCompMutable = seqComp 
         let mutable numSeq = [0..[|seqCompMutable|].Length]
 
-        seqTest
-        |> Seq.map(fun seqTest -> seqCompMutable
-                                  |> Seq.exists(fun seqComp-> seqComp = seqTest)
-                                  |> function
-                                     | result when result = true -> fun _ -> seqCompMutable <- (this.newSeqUponMatch seqTest seqCompMutable)
-                                                                    |> fun _ -> 1
-                                     | _ -> 0)
-        |> Seq.sum
-
+        let res =
+            seqTest
+            |> Seq.map(fun seqTest -> seqCompMutable
+                                      |> Seq.exists(fun seqComp-> seqComp = seqTest)
+                                      |> function
+                                         | result when result = true -> fun _ -> seqCompMutable <- (this.newSeqUponMatch seqTest seqCompMutable)
+                                                                        |> fun _ -> 1
+                                         | _ -> 0)
+            |> Seq.sum
+        (res, seqCompMutable)
     member private this.getXmlValue (method : XElement) (name : string) =
         
         method.XPathSelectElement(".//" + name)
@@ -102,59 +125,92 @@ type TestOutputDefinitions() =
      
     member this.StringToSequenceofSequence (str : string) = 
          
-        str
-        |> fun str -> str.Split '\n'
-        |> Seq.map(fun str -> str.Split ' '
-                            |> Seq.map(fun str2 -> str2.Trim())
-                            |> Seq.filter(fun str2 -> str2 <> ""))
+        let res =
+            str
+            |> fun str -> str.Split([| "]>  " |], StringSplitOptions.None)
+            |> Seq.distinct
+            |> Seq.map(fun str -> str.Split ' '
+                                  |>Seq.filter(fun str -> not(Regex.IsMatch(str, "\[[0-9]")))
+                                  |> Seq.map(fun str2 -> str2.Trim())
+                                  |> Seq.filter(fun str2 -> str2 <> ""))
+
+        res
 
     member this.getRating (strChunk : string ) (strCompareSequencefied : seq<seq<string>>) =
         
         let strSequencefied = this.StringToSequenceofSequence strChunk
+        let mutable strCompareArrMutable = strCompareSequencefied |> Seq.toArray
+        let mutable numSeq = [|0..[|strCompareArrMutable|].Length|]
 
-        strSequencefied
-        |> Seq.collect(fun seq -> strCompareSequencefied
-                                  |> Seq.map(fun seqComp -> this.stringPairMatches seq seqComp))
+        Seq.zip strCompareArrMutable numSeq
+        |> Seq.collect(fun (seqComp,num) -> strSequencefied
+                                            |> Seq.map(fun seq -> this.stringPairMatches seq seqComp
+                                                                  |> fun (matches, newSeq) -> strCompareArrMutable
+                                                                                              |> fun arr -> arr.[num] <- newSeq
+                                                                                              |> fun _ -> matches))
         |> Seq.sum
         
-    member this.getSolution (strChunk : string) = 
+    member this.getSolution (strChunk : string) (category : string) = 
 
         let methodRatingTuple =
             
             this.infoEv.Trigger(InfoEventArgs("Calculating rating methods", Brushes.Black)) 
-            let methodsNodeAll = this.FailedTMDoc.XPathSelectElements(".//TestMethod")
+            let methodsNodeAll = this.FailedTMDoc.XPathSelectElements(".//Method")
+                                 |> Seq.filter(fun x -> x.XPathSelectElement("(..)[last()]").FirstAttribute.Value = category)
             
             methodsNodeAll
-            |> Seq.map(fun method -> {  Name = method.Name.ToString() ; 
+            |> Seq.map(fun method -> {  Name = method.FirstAttribute.Value ; 
                                         Info = this.getXmlValue method "Info" ;
                                         StringToAnalyze = this.StringToSequenceofSequence (this.getXmlValue method "StringToAnalyze") ;
                                         Ticket = this.getXmlValue method "Ticket" ;
                                         Solution = this.getXmlValue method "Solution";
-                                        Category = method.XPathSelectElement("(..)[last()]").FirstAttribute.Value })
+                                        Category = category})
             |> Seq.map(fun method -> (method, this.getRating strChunk method.StringToAnalyze))
+        
+        this.infoEv.Trigger(InfoEventArgs(String.Format("Rating result looking on category {0}:\n\n", category),
+                                          Brushes.Black ))
 
         let maxRating = 
             methodRatingTuple
-            |> Seq.map(fun (_, rating) -> rating)
+            |> Seq.map(fun (meth, rating) -> this.infoEv.Trigger(InfoEventArgs(String.Format("Name: {0}, Rating: {1}, Ticket: {2}\n", meth.Name, rating, meth.Ticket),
+                                                                  Brushes.Black ))
+                                             rating)
             |> fun x -> x 
-                        |> fun _ -> this.infoEv.Trigger(InfoEventArgs("Obtaining embedded criteria file 'FailedMethodInfoDocument.xml' for evaluation", Brushes.Black))
+
                         |> fun _ -> x |> Seq.max
 
         methodRatingTuple
         |> Seq.find(fun (_,rating) -> rating = maxRating)
         |> fun (method, _) -> method.Solution
 
-    member this.GetFile (messageChoice : string) = 
+    member this.GetFile (uploadChoice : FileType) = 
 
         let dialog = new OpenFileDialog()
         dialog.ShowDialog()
         |> ignore
 
         if dialog.FileName <> ""
-        then this.infoEv.Trigger(InfoEventArgs(String.Format("Current {0} is: {1}", messageChoice,dialog.FileName),
-                                  Brushes.Black ))
+
+        then None
+             |> function
+
+                 | f when uploadChoice = FileType.UploadFile ->
+                    
+                        this.infoEv.Trigger(InfoEventArgs(String.Format("Current upload file is: {0}", dialog.FileName),
+                                                          Brushes.Black ))
+                        this.UploadFileName <- dialog.FileName
+                        
+
+                 | f -> 
+                
+                    this.infoEv.Trigger(InfoEventArgs(String.Format("Current solution is: {0}", dialog.FileName),
+                                                      Brushes.Black ))
+
+                    this.SolutionFileName <- dialog.FileName
+
              |> fun _ -> new StreamReader(dialog.FileName)
-             |> fun x -> x.ReadToEnd()
+                         |> fun x -> x.ReadToEnd()
+
         else ""
 
     member this.tryFindSolution (ticket : string) (textFileString : string) (solutionPrepared : string) = 
@@ -162,9 +218,9 @@ type TestOutputDefinitions() =
         let failedMethodStringChunk = 
             
             Regex.Match(textFileString,
-                        @"(cf3 \*\*\*\*)(?:(?!(cf3 \*\*\*\*)|(Fail ))(.|\n))*?(Fail )").Value
+                        @"(\*\*\*\* )(?:(?!(\*\*\*\* )|(Fail ))(.|\n))*?(Fail )").Value
 
-        this.infoEv.Trigger(InfoEventArgs(String.Format("Getting failed method chunk:\n\n{0}", failedMethodStringChunk),
+        this.infoEv.Trigger(InfoEventArgs(String.Format("Getting failed method chunk:\n\n{0}\n\n", failedMethodStringChunk),
                                      Brushes.Black))
 
         let failedMethodName = Regex.Match(failedMethodStringChunk, "(\*\*\*\* )(\n|.)*?( \*\*\*\*)").Value
@@ -190,35 +246,72 @@ type TestOutputDefinitions() =
         this.infoEv.Trigger(InfoEventArgs(String.Format("Category set to: {0}", category),
                              Brushes.Black))
 
+        let mutable uploadSolOrNot = UploadSolution.No 
+
         let solution = 
             
             solutionPrepared
             |> function
                | _ when solutionPrepared = "" ->
                     
-                    this.infoEv.Trigger(InfoEventArgs("Getting solution", Brushes.Black))
-                    |> fun _ -> this.getSolution failedMethodStringChunk
-               
+                    let answer = MessageBox.Show("Do you wish to store solution for future comparison?",
+                                                "Warning",
+                                                MessageBoxButton.YesNoCancel,
+                                                MessageBoxImage.Question)
+                    answer
+                    |> function
+                       
+                       | _ when answer = MessageBoxResult.Yes &&
+                                         (this.Sender.TicketComboBox.Text = "" ||
+                                          this.Sender.TicketComboBox.ItemsSource
+                                          |> Array.exists(fun str -> str = this.Sender.TicketComboBox.Text)) ->
+                            
+                            MessageBox.Show("Sorry mate, a (unique) ticket number is required in order to store a solution" +
+                                            ". Redo the procedure, but add a ticket number as well!",
+                                            "Error",
+                                            MessageBoxButton.OK,
+                                            MessageBoxImage.Error)
+                            |> fun _ -> ""
+                       
+                       | _ -> 
+                            
+                            if answer = MessageBoxResult.Yes 
+                            then uploadSolOrNot <- UploadSolution.Yes
+                            this.infoEv.Trigger(InfoEventArgs("Getting solution", Brushes.Black))
+                            this.getSolution failedMethodStringChunk category
+
                | _ -> 
                     
+                    uploadSolOrNot <- UploadSolution.Yes
                     this.infoEv.Trigger(InfoEventArgs("Getting prepared solution", Brushes.Black))
                     |> fun _ -> solutionPrepared
 
         this.infoEv.Trigger(InfoEventArgs(String.Format("Obtained solution:\n\n{0}", solution),
                              Brushes.Black))
         
-        let elementSequence = seq[  {|Name = "Info" ; Value = ""|} ;
-                                    {|Name = "Ticket" ; Value = ticket|} ;
-                                    {|Name = "Solution" ; Value = solution|} ;
-                                    {|Name = "StringToAnalyze" ; Value = failedMethodStringChunk|}
-                                    ]
+        let getMethodXElement =
+            
+            let elementSequence = seq[  {|Name = "Info" ; Value = ""|} ;
+                                        {|Name = "Ticket" ; Value = ticket|} ;
+                                        {|Name = "Solution" ; Value = solution|} ;
+                                        {|Name = "StringToAnalyze" ; Value = failedMethodStringChunk|}
+                                        ]
 
-        let methodXElement = new XElement(XName.Get "Method",
-                                          XAttribute(XName.Get "Name", failedMethodName),
-                                          this.toXElementSequence elementSequence)
-                                          
-        this.FailedTMDoc.XPathSelectElement(String.Format("*//Category[@Name = '{0}']", category)).Add(methodXElement)
+            new XElement(XName.Get "Method",
+                         XAttribute(XName.Get "Name", failedMethodName),
+                         this.toXElementSequence elementSequence)
 
-        this.FailedTMDoc.Save(Assembly.GetExecutingAssembly().GetManifestResourceInfo("EricssonSupportAssistance.EmbeddedTestOutput.FailedMethodInfoDocument.xml").FileName)
-
+        if uploadSolOrNot = UploadSolution.Yes
+        then getMethodXElement
+             |> fun methodXElement -> this.FailedTMDoc.XPathSelectElement(String.Format("*//Category[@Name = '{0}']", category)).Add(methodXElement)
+             |> fun _ -> let embeddedCritPath = exAssembly.GetManifestResourceNames()
+                         this.FailedTMDoc.Save(embeddedCritPath.[1]
+                                               |> fun x -> x.Replace(".", "\\")
+                                               |> fun x -> x.Replace("\\xml", ".xml")
+                                               |> fun x -> "..\\..\\..\\" + x)
+                         this.Sender.TicketComboBox.ItemsSource <- this.FailedTMDoc.XPathSelectElements("*//Ticket")
+                                                                   |> Seq.map(fun el -> el.FirstAttribute.Value)
+                                                                   |> fun x -> x |> Seq.toArray
+        
+        this.SolutionFileName <- "Ticket no " + ticket
         solution

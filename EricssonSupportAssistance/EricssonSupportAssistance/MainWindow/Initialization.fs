@@ -112,7 +112,7 @@ type Initilization() as this =
                 |> fun x -> this.SequenceOfCtrlBase <- Array.append this.SequenceOfCtrlBase x          
 
 
-            let firstLevelProperties =
+            let allCtrlBaseInstancesFirstLevel =
                 
                 this.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
                 |> fun props -> fillCtrlsBase props this
@@ -121,7 +121,7 @@ type Initilization() as this =
                 |> Array.map(fun prop -> prop.GetValue(this))
 
 
-            firstLevelProperties
+            allCtrlBaseInstancesFirstLevel
             |> Array.iter(fun prop -> prop.GetType().GetProperties(BindingFlags.Public ||| BindingFlags.Instance)
                                       |> fun props -> fillCtrlsBase props prop
                                                       |> fun _ -> props
@@ -152,20 +152,42 @@ type Initilization() as this =
 
         this.listenToAllCtrlAttr
 
+        // Authentication button located in the main window
         let authButton = (mainWin.FindName("Authenticate") :?> Button)
         authButton.Click.Add(fun _ -> mainFncs.OnAuthenticateButtonClicked)
+
+        // Upload button located in the main window
         let uplButton = (mainWin.FindName("Upload") :?> Button)
         uplButton.Click.Add(fun _ -> mainFncs.OnUploadButtonClicked)
+
+        // Search button located in the main window
         let srchButton = (mainWin.FindName("Search") :?> Button)
         srchButton.Click.Add(fun _ -> mainFncs.OnSearchButtonClicked)
 
+        // The two pages existing on the main window
         let authenCtrl = (mainWin.FindName("AuthenticatePage") :?> UserControl)
         let uplCtrl = (mainWin.FindName("UploadPage") :?> UserControl)
 
+        // Authentication button located in the Authentication page
         (authenCtrl.FindName("AuthenticateButton") :?> Button).Click.Add(fun _ -> autFncs.OnAuthenticateButtonClicked )
+
+        // Ticket combobox located in the upload page
         (uplCtrl.FindName("TicketComboBox") :?> ComboBox).AddHandler(TextBoxBase.TextChangedEvent, TextChangedEventHandler(fun _ _ -> uplFncs.CheckIfFindSolutionAction))
-        (uplCtrl.FindName("ChooseFileButton") :?> Button).Click.Add(fun _ -> uplFncs.OnChooseFileButtonClicked )
+
+        // Upload file button located in the upload page
+        (uplCtrl.FindName("ChooseFileButton") :?> Button).Click.Add(fun _ -> uplFncs.OnChooseFileButtonClicked)
+        (uplCtrl.FindName("ChooseFileButton") :?> Button).ToolTipOpening.Add(fun _ -> uplFncs.OnUploadFileHover)
+
+
+        // Finfninf solution button located in the upload page
         (uplCtrl.FindName("FindSolutionButton") :?> Button).Click.Add(fun _ -> uplFncs.OnFindSolutionButtonClicked)
+
+        // Upload button located in the upload page
         (uplCtrl.FindName("UploadSolutionButton") :?> Button).Click.Add(fun _ -> uplFncs.OnUploadSolutionButtonClicked)
+        (uplCtrl.FindName("UploadSolutionButton") :?> Button).ToolTipOpening.Add(fun _ -> uplFncs.OnUploadSolutioneHover)
+
+        // Upload button located in the upload page
         (uplCtrl.FindName("Upload") :?> Button).Click.Add(fun _ -> uplFncs.OnUploadButtonClicked)
+
+        // Button for opening solution located in the upload page
         (uplCtrl.FindName("OpenSolutionButton") :?> Button).Click.Add(fun _ -> uplFncs.OnOpenSolutionButtonClicked)

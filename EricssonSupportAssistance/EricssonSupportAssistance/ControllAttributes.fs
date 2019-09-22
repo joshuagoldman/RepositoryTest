@@ -20,6 +20,7 @@ type ControlAtributes(propertyName : string) =
     let mutable datacontext = new obj()
     let mutable isEnabled = false
     let mutable visibility = Visibility.Hidden
+    let mutable toolTip = ""
     let ev = new Event<_,_>()
     let mutable dataCntxtEv = new Event<ObjectToPassEventArgs>()
 
@@ -89,6 +90,14 @@ type ControlAtributes(propertyName : string) =
             then visibility <- value
                  dataCntxtEv.Trigger(ObjectToPassEventArgs(value, [|propertyName ; "Visibility"|]))
                  ev.Trigger(this, PropertyChangedEventArgs("Visibility"))
+
+    member this.ToolTip 
+        with get() = toolTip 
+        and set(value) =
+            if (value <> toolTip)
+            then toolTip <- value
+                 dataCntxtEv.Trigger(ObjectToPassEventArgs(value, [|propertyName ; "ToolTip"|]))
+                 ev.Trigger(this, PropertyChangedEventArgs("ToolTip"))
             
     
     interface INotifyPropertyChanged with

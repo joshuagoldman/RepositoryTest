@@ -14,9 +14,10 @@ open System.Windows.Controls
 open System.IO
 open Microsoft.Win32
 open System.Diagnostics
+open System.Xml.XPath
 
 
- type UploadFunctions() as this =
+ type UploadFunctions() =
     
     inherit ControlBase()
 
@@ -54,11 +55,18 @@ open System.Diagnostics
 
                         this.Sender.UploadButton.IsEnabled <- false
                         this.Sender.OpenSolutionButton.IsEnabled <- true 
-                     
-                    | _ when this.Solution <> "" && this.Uploadfile <> "" ->
+                        let methodObtained =  this.TstOutput.FailedTMDoc.XPathSelectElements("*//Ticket")
+                                              |> Seq.find(fun element -> element.FirstAttribute.Value = this.Sender.TicketComboBox.Text)
+                                              |> fun element -> element.XPathSelectElement("(..)[last()]")
+                                              
+                        this.TstOutput.SolutionFileName <- "Ticket no " + methodObtained.XPathSelectElement("Ticket").FirstAttribute.Value
+                        this.Solution <- methodObtained.XPathSelectElement("Solution").FirstAttribute.Value
+
+                    | _ when this.Solution <> "" ->
                         
-                        this.Sender.UploadButton.IsEnabled <- true
-                        this.Sender.OpenSolutionButton.IsEnabled <- false
+                        this.Sender.OpenSolutionButton.IsEnabled <- true
+                        if this.Uploadfile <> ""
+                        then this.Sender.UploadButton.IsEnabled <- true
 
                     | _ -> 
                         
@@ -86,7 +94,9 @@ open System.Diagnostics
                    
                    | _ when answer = MessageBoxResult.Yes -> 
                         
-                        this.Solution <- this.TstOutput.tryFindSolution (this.Sender.TicketComboBox.Text) (this.Uploadfile) ""
+                        let currSol = this.TstOutput.tryFindSolution (this.Sender.TicketComboBox.Text) (this.Uploadfile) ""
+                        if  currSol <> ""
+                        then this.Solution <- currSol
                         this.Sender.OpenSolutionButton.IsEnabled <- true 
                    
                    | _ -> None |> ignore
@@ -111,7 +121,7 @@ open System.Diagnostics
 
     member this.OnOpenSolutionButtonClicked =
           
-        this.infoEv.Trigger(InfoEventArgs(this.Solution, Brushes.BlueViolet))
+        this.infoEv.Trigger(InfoEventArgs(this.Solution, Brushes.Black))
 
     member this.OnChooseFileButtonClicked =
             
@@ -121,7 +131,7 @@ open System.Diagnostics
 
             | _ when this.Uploadfile = ""  -> 
                 
-                this.Uploadfile <- this.TstOutput.GetFile "Upload file"
+                this.Uploadfile <- this.TstOutput.GetFile FileType.UploadFile
                 this.Sender.FindSolutionButton.IsEnabled <- true
                 
                 
@@ -137,7 +147,7 @@ open System.Diagnostics
                  
                 | _ when answer = MessageBoxResult.Yes ->
 
-                    this.Uploadfile <- this.TstOutput.GetFile "Upload file"
+                    this.Uploadfile <- this.TstOutput.GetFile FileType.UploadFile
 
                 | _ -> None |> ignore
 
@@ -151,7 +161,8 @@ open System.Diagnostics
 
             | _ when this.Solution = ""  -> 
                 
-                this.Solution <- this.TstOutput.GetFile "Upload solution file"
+                this.Solution <- this.TstOutput.GetFile FileType.Solution
+                this.Sender.OpenSolutionButton.IsEnabled <- true
                 
                 
             
@@ -166,7 +177,7 @@ open System.Diagnostics
                  
                 | _ when answer = MessageBoxResult.Yes ->
 
-                    this.Solution <- this.TstOutput.GetFile "Upload solution file"
+                    this.Solution <- this.TstOutput.GetFile FileType.Solution
 
                 | _ -> None |> ignore
 
@@ -176,8 +187,18 @@ open System.Diagnostics
         
         this.TstOutput.tryFindSolution (this.Sender.TicketComboBox.Text) (this.Uploadfile) (this.Solution)
         |> fun _ -> None |> ignore
+        this.Sender.OpenSolutionButton.IsEnabled <- true
                 
+    member this.OnUploadFileHover =
+        
+        this.Sender.ChooseFileButton.ToolTip <- String.Format("Current upload file: {0}\n", this.TstOutput.UploadFileName)
+        
 
+    member this.OnUploadSolutioneHover =
+        
+        this.Sender.UploadSolutionButton.ToolTip <- String.Format("Current solution file: {0}\n" +
+                                                                  "Click \"Open Solution\" " +
+                                                                  "to view solution file text", this.TstOutput.SolutionFileName)
 
 
         

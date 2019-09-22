@@ -27,6 +27,7 @@
                 Content="Choose File"
                 Padding="5"
                 Margin="5"
+                ToolTip="{Binding ChooseFileButton.ToolTip}"
                 IsEnabled="{Binding ChooseFileButton.IsEnabled}"
                 />
             <StackPanel
@@ -52,6 +53,7 @@
                     Grid.Row="1"
                     x:Name="UploadSolutionButton"
                     Content="Upload Solution"
+                    ToolTip="{Binding UploadSolutionButton.ToolTip}"
                     IsEnabled="{Binding UploadSolutionButton.IsEnabled }"
                     Padding="5"
                     Margin="5"
