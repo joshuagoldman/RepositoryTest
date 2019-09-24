@@ -56,7 +56,7 @@
     <Compile Include="Controls.fs" />
     <Compile Include="ControlBase.fs" />
     <Resource Include="XamlFiles\MainWindow.xaml" />
-    <Resource Include="XamlFiles\SearchPage.xaml">
+    <Resource Include="XamlFiles\DocumentViewerPage.xaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="XamlFiles\UploadPage.xaml">
@@ -71,7 +71,7 @@
     <Compile Include="MainWindow\MainWindowFuncs.fs" />
     <Compile Include="MainWindow\UploadPageFuncs.fs" />
     <Compile Include="MainWindow\AuthenticatePageFuncs.fs" />
-    <Compile Include="MainWindow\SearchPageFuncs.fs" />
+    <Compile Include="MainWindow\DocumentViewerFuncs.fs" />
     <Compile Include="MainWindow\Initialization.fs" />
     <Resource Include="App\App.xaml" />
     <Content Include="App\App.config" />
@@ -124,6 +124,7 @@
     <Reference Include="PresentationFramework">
       <Private>True</Private>
     </Reference>
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design">

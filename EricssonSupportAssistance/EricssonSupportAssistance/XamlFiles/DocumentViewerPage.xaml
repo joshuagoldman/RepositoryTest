@@ -1,0 +1,24 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  
+    xmlns:fsxaml="http://github.com/fsprojects/FsXaml"
+    x:Name="SearchPage"
+    Visibility="{Binding DocumentViewerPageControl.Visibility}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <DocumentViewer
+                Grid.Column="1"
+                Grid.Row="1"
+                Document="{Binding Path=DocumentViewer.Document}">
+        </DocumentViewer>
+    </Grid>
+</UserControl>  

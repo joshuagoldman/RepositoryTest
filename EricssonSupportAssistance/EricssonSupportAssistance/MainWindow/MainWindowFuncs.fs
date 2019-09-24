@@ -15,24 +15,27 @@ type MainWindowFunctions() =
 
     member this.OnAuthenticateButtonClicked =
         
-        this.Sender.AuthenticationControl.Visibility <- Visibility.Visible
-        this.Sender.SearchPageControl.Visibility <- Visibility.Hidden
+        this.Sender.AuthenticationPageControl.Visibility <- Visibility.Visible
+        this.Sender.DocumentViewerPageControl.Visibility <- Visibility.Hidden
         this.Sender.UploadPageControl.Visibility <- Visibility.Hidden
+        this.Sender.InfoLogs.Visibility <- Visibility.Visible
         this.infoEv.Trigger(InfoEventArgs("Entering authentization page", Brushes.DarkRed))
 
     member this.OnUploadButtonClicked =
 
-        this.Sender.AuthenticationControl.Visibility <- Visibility.Hidden
-        this.Sender.SearchPageControl.Visibility <- Visibility.Hidden
+        this.Sender.AuthenticationPageControl.Visibility <- Visibility.Hidden
+        this.Sender.DocumentViewerPageControl.Visibility <- Visibility.Hidden
         this.Sender.UploadPageControl.Visibility <- Visibility.Visible
+        this.Sender.InfoLogs.Visibility <- Visibility.Visible
         this.infoEv.Trigger(InfoEventArgs("Entering upload page", Brushes.DarkRed))
 
-    member this.OnSearchButtonClicked =
+    member this.OnDocumentViewerButtonClicked =
 
-        this.Sender.AuthenticationControl.Visibility <- Visibility.Hidden
-        this.Sender.SearchPageControl.Visibility <- Visibility.Visible
+        this.Sender.AuthenticationPageControl.Visibility <- Visibility.Hidden
+        this.Sender.DocumentViewerPageControl.Visibility <- Visibility.Visible
         this.Sender.UploadPageControl.Visibility <- Visibility.Hidden
-        this.infoEv.Trigger(InfoEventArgs("Entering search page", Brushes.DarkRed))
+        this.Sender.InfoLogs.Visibility <- Visibility.Hidden
+        this.infoEv.Trigger(InfoEventArgs("Entering document viewer page", Brushes.DarkRed))
 
         
         

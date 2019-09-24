@@ -25,14 +25,14 @@ type AuthenticateFunctions() =
             result
             |> function
                 | _ when result.Result = Authentication.ResOptions.Fail -> 
-                    this.Sender.SearchPageControl.IsEnabled <- false
+                    this.Sender.DocumentViewerPageControl.IsEnabled <- false
                     this.Sender.UploadPageControl.IsEnabled <- false
                     this.infoEv.Trigger(InfoEventArgs(result.Message, Brushes.IndianRed))
 
                         
 
                 | _ when result.Result = Authentication.ResOptions.Pass ->
-                    this.Sender.SearchPageControl.IsEnabled <- true
+                    this.Sender.DocumentViewerPageControl.IsEnabled <- true
                     this.Sender.UploadPageControl.IsEnabled <- true
                     this.infoEv.Trigger(InfoEventArgs(result.Message, Brushes.IndianRed))
                         

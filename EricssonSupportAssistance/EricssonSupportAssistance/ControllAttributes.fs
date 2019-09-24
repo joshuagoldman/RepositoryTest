@@ -5,6 +5,7 @@ open System.Windows.Controls
 open System
 open System.Xaml
 open System.ComponentModel
+open System.Windows.Xps.Packaging
 open System.Windows
 
 type ObjectToPassEventArgs(value : obj, nameWOwner : string[]) =
@@ -21,6 +22,7 @@ type ControlAtributes(propertyName : string) =
     let mutable isEnabled = false
     let mutable visibility = Visibility.Hidden
     let mutable toolTip = ""
+    let mutable document = new obj()
     let ev = new Event<_,_>()
     let mutable dataCntxtEv = new Event<ObjectToPassEventArgs>()
 
@@ -98,6 +100,14 @@ type ControlAtributes(propertyName : string) =
             then toolTip <- value
                  dataCntxtEv.Trigger(ObjectToPassEventArgs(value, [|propertyName ; "ToolTip"|]))
                  ev.Trigger(this, PropertyChangedEventArgs("ToolTip"))
+
+    member this.Document 
+        with get() = document 
+        and set(value) =
+            if (value <> document)
+            then document <- value
+                 dataCntxtEv.Trigger(ObjectToPassEventArgs(value, [|propertyName ; "Document"|]))
+                 ev.Trigger(this, PropertyChangedEventArgs("Document"))
             
     
     interface INotifyPropertyChanged with

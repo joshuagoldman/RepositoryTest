@@ -20,7 +20,7 @@ type Initilization() as this =
     let mutable mainFncs = new MainWindowFunctions()
     let mutable uplFncs = new UploadFunctions()
     let mutable autFncs = new AuthenticateFunctions()
-    let mutable srchFncs = new SearchPageFuncs()
+    let mutable docViewFncs = new DocumentViewerFuncs()
     let mutable dataContextUpdateEv = new Event<ObjectToPassEventArgs>()
     let mutable sequenceOfControls = [||]
     let mutable sequenceOfCtrlBase = [|this :> ControlBase|]
@@ -29,6 +29,7 @@ type Initilization() as this =
         mainWin.DataContext <- this.Sender
         this.AddAllEvents()
 
+        this.Sender.InfoLogs.Visibility <- Visibility.Visible
         this.Sender.UploadSolutionButton.IsEnabled <- true
         this.Sender.ChooseFileButton.IsEnabled <- true
         this.Sender.FindSolutionButton.IsEnabled <- false
@@ -53,10 +54,10 @@ type Initilization() as this =
         and set(value) =
             if value <> autFncs then autFncs <- value
 
-    member this.SrchFncs 
-        with get() = srchFncs
+    member this.DocViewFncs 
+        with get() = docViewFncs
         and set(value) =
-            if value <> srchFncs then srchFncs <- value
+            if value <> docViewFncs then docViewFncs <- value
 
     member this.MainFncs 
         with get() = mainFncs
@@ -153,20 +154,20 @@ type Initilization() as this =
         this.listenToAllCtrlAttr
 
         // Authentication button located in the main window
-        let authButton = (mainWin.FindName("Authenticate") :?> Button)
+        let authButton = (mainWin.FindName("AuthenticatePageButton") :?> Button)
         authButton.Click.Add(fun _ -> mainFncs.OnAuthenticateButtonClicked)
 
         // Upload button located in the main window
-        let uplButton = (mainWin.FindName("Upload") :?> Button)
+        let uplButton = (mainWin.FindName("UploadPageButton") :?> Button)
         uplButton.Click.Add(fun _ -> mainFncs.OnUploadButtonClicked)
 
-        // Search button located in the main window
-        let srchButton = (mainWin.FindName("Search") :?> Button)
-        srchButton.Click.Add(fun _ -> mainFncs.OnSearchButtonClicked)
+        // Document Viewer button located in the main window
+        let docViewCtrl = (mainWin.FindName("DocumentViewerPageButton") :?> Button)
+        docViewCtrl.Click.Add(fun _ -> mainFncs.OnDocumentViewerButtonClicked)
 
-        // The two pages existing on the main window
-        let authenCtrl = (mainWin.FindName("AuthenticatePage") :?> UserControl)
-        let uplCtrl = (mainWin.FindName("UploadPage") :?> UserControl)
+        // The two of three pages existing on the main window
+        let authenCtrl = (mainWin.FindName("AuthenticationPageControl") :?> UserControl)
+        let uplCtrl = (mainWin.FindName("UploadPageControl") :?> UserControl)
 
         // Authentication button located in the Authentication page
         (authenCtrl.FindName("AuthenticateButton") :?> Button).Click.Add(fun _ -> autFncs.OnAuthenticateButtonClicked )

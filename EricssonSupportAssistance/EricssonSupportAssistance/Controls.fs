@@ -8,11 +8,11 @@ open System.Windows.Media
     
     type Controls() =
         
-        let mutable authenticatePage = new ControlAtributes("AuthenticatePage")
-        let mutable uploadPage = new ControlAtributes("UploadPage")
-        let mutable searchPage = new ControlAtributes("SearchPage")
+        let mutable authenticatePageButton = new ControlAtributes("AuthenticatePageButton")
+        let mutable uploadPageButton = new ControlAtributes("UploadPageButton")
+        let mutable documentViewerPageButton = new ControlAtributes("DocumentViewerPageButton")
         let mutable infoLogs = new ControlAtributes("InfoLogs")
-        let mutable authenticationControl = new ControlAtributes("AuthenticationControl")
+        let mutable authenticationPageControl = new ControlAtributes("AuthenticationPageControl")
         let mutable authenticateButton = new ControlAtributes("AuthenticateButton")
         let mutable userNameTextBox = new ControlAtributes("UserNameTextBox", ItemsSource = [|"joshuagoldman94@gmail.com"|])
         let mutable passwordTextBox = new ControlAtributes("PasswordTextBox", ItemsSource = [|"imale"|]) 
@@ -23,24 +23,25 @@ open System.Windows.Media
         let mutable openSolutionButton = new ControlAtributes("OpenSolutionButton")
         let mutable uploadButton = new ControlAtributes("UploadButton")
         let mutable chooseFileButton = new ControlAtributes("ChooseFileButton")
-        let mutable searchPageControl = new ControlAtributes("SearchPageControl")
+        let mutable documentViewer = new ControlAtributes("DocumentViewer")
+        let mutable documentViewerPageControl = new ControlAtributes("DocumentViewerPageControl")
 
         // MainWindow controls
-        member this.AuthenticatePage
-            with get() = authenticatePage 
+        member this.AuthenticatePageButton
+            with get() = authenticatePageButton 
             and set(value) = 
-                if value <> authenticatePage then authenticatePage <- value
+                if value <> authenticatePageButton then authenticatePageButton <- value
 
-        member this.UploadPage
-            with get() = uploadPage 
+        member this.UploadPageButton
+            with get() = uploadPageButton 
             and set(value) = 
-                if value <> uploadPage then uploadPage <- value
+                if value <> uploadPageButton then uploadPageButton <- value
                 
     
-        member this.SearchPage
-            with get() = searchPage 
+        member this.DocumentViewerPageButton
+            with get() = documentViewerPageButton 
             and set(value) = 
-                if value <> searchPage then searchPage <- value
+                if value <> documentViewerPageButton then documentViewerPageButton <- value
                   
 
         member this.InfoLogs
@@ -50,10 +51,10 @@ open System.Windows.Media
                   
 
         // Authentization controls
-        member this.AuthenticationControl
-            with get() = authenticationControl 
+        member this.AuthenticationPageControl
+            with get() = authenticationPageControl 
             and set(value) = 
-                if value <> authenticationControl then authenticationControl <- value
+                if value <> authenticationPageControl then authenticationPageControl <- value
                   
 
         member this.AuthenticateButton
@@ -115,9 +116,15 @@ open System.Windows.Media
             and set(value) = 
                 if value <> chooseFileButton then chooseFileButton <- value
         
-        // Search controls
-        member this.SearchPageControl
-            with get() = searchPageControl 
+        // Document Viewer controls
+
+        member this.DocumentViewerPageControl
+            with get() = documentViewerPageControl 
             and set(value) = 
-                if value <> searchPageControl then searchPageControl <- value
+                if value <> documentViewerPageControl then documentViewerPageControl <- value
+
+        member this.DocumentViewer
+            with get() = documentViewer 
+            and set(value) = 
+                if value <> documentViewer then documentViewer <- value
                   

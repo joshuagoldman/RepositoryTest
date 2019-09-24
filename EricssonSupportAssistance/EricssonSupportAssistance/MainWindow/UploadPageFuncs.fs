@@ -15,6 +15,8 @@ open System.IO
 open Microsoft.Win32
 open System.Diagnostics
 open System.Xml.XPath
+open System.Windows.Xps.Packaging
+open System.IO.Packaging
 
 
  type UploadFunctions() =
@@ -121,7 +123,22 @@ open System.Xml.XPath
 
     member this.OnOpenSolutionButtonClicked =
           
-        this.infoEv.Trigger(InfoEventArgs(this.Solution, Brushes.Black))
+        let solutionBytes = Convert.FromBase64String(this.Solution)
+        let solURI = new Uri("C:\\Users\\DELL\\Documents\\Test_Outputs_Solutions\\myXps.xps")
+        using (new MemoryStream(solutionBytes)) 
+            (fun docStream  -> 
+            using(Packaging.Package.Open(docStream))
+                (fun packaging ->
+                    let xpsDoc = new XpsDocument(packaging, CompressionOption.Maximum, solURI.AbsoluteUri)
+                    PackageStore.AddPackage(solURI, packaging)
+                    this.Sender.DocumentViewer.Document <- xpsDoc.GetFixedDocumentSequence()
+                        ))
+        |> fun _ -> None |> ignore
+        this.Sender.AuthenticationPageControl.Visibility <- Visibility.Hidden
+        this.Sender.DocumentViewerPageControl.Visibility <- Visibility.Visible
+        this.Sender.UploadPageControl.Visibility <- Visibility.Hidden
+        this.Sender.InfoLogs.Visibility <- Visibility.Hidden
+
 
     member this.OnChooseFileButtonClicked =
             

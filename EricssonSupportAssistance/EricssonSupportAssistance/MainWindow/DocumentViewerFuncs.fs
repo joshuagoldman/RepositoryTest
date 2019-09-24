@@ -11,7 +11,7 @@ open System.Windows.Controls
 open System.Windows.Markup
 
 
-type SearchPageFuncs() =
+type DocumentViewerFuncs() =
         
         inherit ControlBase()
     

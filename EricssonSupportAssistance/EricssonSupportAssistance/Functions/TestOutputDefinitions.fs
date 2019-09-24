@@ -18,6 +18,7 @@ open System.Xml.XPath
 open System.Text.RegularExpressions
 open System.Linq
 open System.IO
+open System.Windows.Xps.Packaging
 
 
 type MethodInfo =
@@ -208,8 +209,8 @@ type TestOutputDefinitions() =
 
                     this.SolutionFileName <- dialog.FileName
 
-             |> fun _ -> new StreamReader(dialog.FileName)
-                         |> fun x -> x.ReadToEnd()
+             |> fun _ -> File.ReadAllBytes(dialog.FileName)
+                         |> fun x -> Convert.ToBase64String(x)
 
         else ""
 
@@ -267,7 +268,7 @@ type TestOutputDefinitions() =
                                           |> Array.exists(fun str -> str = this.Sender.TicketComboBox.Text)) ->
                             
                             MessageBox.Show("Sorry mate, a (unique) ticket number is required in order to store a solution" +
-                                            ". Redo the procedure, but add a ticket number as well!",
+                                            ". Redo the procedure, but add a (unique) ticket number as well!",
                                             "Error",
                                             MessageBoxButton.OK,
                                             MessageBoxImage.Error)
@@ -286,7 +287,7 @@ type TestOutputDefinitions() =
                     this.infoEv.Trigger(InfoEventArgs("Getting prepared solution", Brushes.Black))
                     |> fun _ -> solutionPrepared
 
-        this.infoEv.Trigger(InfoEventArgs(String.Format("Obtained solution:\n\n{0}", solution),
+        this.infoEv.Trigger(InfoEventArgs("Solution obtained! View solution by clicking \"Open Solution\"",
                              Brushes.Black))
         
         let getMethodXElement =

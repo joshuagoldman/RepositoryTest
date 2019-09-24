@@ -2,9 +2,9 @@
 <doc>
 <assembly><name>EricssonSupportAssistance</name></assembly>
 <members>
-<member name="T:EricssonSupportAssistance.XamlFiles.SearchPage">
+<member name="T:EricssonSupportAssistance.XamlFiles.DocumentViewerPage">
 <summary>
-UserControl defined in XamlFiles/SearchPage.xaml
+UserControl defined in XamlFiles/DocumentViewerPage.xaml
 </summary>
 </member>
 <member name="T:EricssonSupportAssistance.XamlFiles.AuthenticatePage">

@@ -23,37 +23,38 @@
                     Orientation="Vertical"
                     Background="HotPink">
             <Button 
-                x:Name="Authenticate"
+                x:Name="AuthenticatePageButton"
                 Content="Authenticate"
                 Margin="2"
                 Padding="5"/>
             <Button 
-                x:Name="Upload"
+                x:Name="UploadPageButton"
                 Content="Upload"
                 Margin="2"
                 Padding="5"/>
             <Button 
-                x:Name="Search"
-                Content="Search"
+                x:Name="DocumentViewerPageButton"
+                Content="View Document"
                 Margin="2"
                 Padding="5"/>
         </StackPanel>
         <erics:AuthenticatePage
-            x:Name="AuthenticatePage"
+            x:Name="AuthenticationPageControl"
             Grid.Column="1"
             Grid.Row="1"
             Grid.ColumnSpan="3"
             IsEnabled="True"/>
         <erics:UploadPage
-            x:Name="UploadPage"
+            x:Name="UploadPageControl"
             Grid.Column="1"
             Grid.Row="1"
             Grid.ColumnSpan="3"/>
-        <erics:SearchPage
-            x:Name="SearchPage"
+        <erics:DocumentViewerPage
+            x:Name="DocumentViewerPageControl"
             Grid.Column="1"
             Grid.Row="1"
-            Grid.ColumnSpan="3"/>
+            Grid.ColumnSpan="3"
+            Grid.RowSpan="5"/>
         <ScrollViewer 
             Grid.Row="3" Grid.Column="1"
             Grid.ColumnSpan="3">
@@ -63,6 +64,7 @@
                 Padding="5"
                 Text="{Binding InfoLogs.Text}"
                 Foreground="{Binding InfoLogs.TbForeground}"
+                Visibility="{Binding InfoLogs.Visibility}"
                 TextWrapping="Wrap"/>
 
         </ScrollViewer>
