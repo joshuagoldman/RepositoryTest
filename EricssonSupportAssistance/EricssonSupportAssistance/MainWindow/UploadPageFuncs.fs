@@ -124,16 +124,21 @@ open System.IO.Packaging
     member this.OnOpenSolutionButtonClicked =
           
         let solutionBytes = Convert.FromBase64String(this.Solution)
-        let solURI = new Uri("C:\\Users\\DELL\\Documents\\Test_Outputs_Solutions\\myXps.xps")
-        using (new MemoryStream(solutionBytes)) 
-            (fun docStream  -> 
-            using(Packaging.Package.Open(docStream))
-                (fun packaging ->
-                    let xpsDoc = new XpsDocument(packaging, CompressionOption.Maximum, solURI.AbsoluteUri)
-                    PackageStore.AddPackage(solURI, packaging)
-                    this.Sender.DocumentViewer.Document <- xpsDoc.GetFixedDocumentSequence()
-                        ))
-        |> fun _ -> None |> ignore
+        let solPath = Environment.CurrentDirectory + "\\TestSolution.xps"
+        
+        using (new MemoryStream(solutionBytes))
+        
+            (
+                
+                fun docStream  -> 
+                let fileStream = File.Create(solPath)
+                docStream.CopyTo(fileStream)
+                fileStream.Close()
+                let xpsDoc = new XpsDocument(solPath, FileAccess.ReadWrite, CompressionOption.Maximum)
+                this.Sender.DocumentViewer.Document <- xpsDoc.GetFixedDocumentSequence()
+                xpsDoc.Close()
+                )
+
         this.Sender.AuthenticationPageControl.Visibility <- Visibility.Hidden
         this.Sender.DocumentViewerPageControl.Visibility <- Visibility.Visible
         this.Sender.UploadPageControl.Visibility <- Visibility.Hidden
