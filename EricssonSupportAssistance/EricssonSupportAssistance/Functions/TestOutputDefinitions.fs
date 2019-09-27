@@ -191,27 +191,26 @@ type TestOutputDefinitions() =
         |> ignore
 
         if dialog.FileName <> ""
-
         then None
              |> function
-
-                 | f when uploadChoice = FileType.UploadFile ->
+                
+                | _ when uploadChoice = FileType.UploadFile ->
                     
                         this.infoEv.Trigger(InfoEventArgs(String.Format("Current upload file is: {0}", dialog.FileName),
                                                           Brushes.Black ))
-                        this.UploadFileName <- dialog.FileName
+                        |> fun  _ -> this.UploadFileName <- dialog.FileName
+                        |> fun _ -> File.ReadAllText(dialog.FileName)
                         
 
-                 | f -> 
+                | _ -> 
                 
-                    this.infoEv.Trigger(InfoEventArgs(String.Format("Current solution is: {0}", dialog.FileName),
-                                                      Brushes.Black ))
+                   this.infoEv.Trigger(InfoEventArgs(String.Format("Current solution is: {0}", dialog.FileName),
+                                                     Brushes.Black ))
 
-                    this.SolutionFileName <- dialog.FileName
-
-             |> fun _ -> File.ReadAllBytes(dialog.FileName)
-                         |> fun x -> Convert.ToBase64String(x)
-
+                   |> fun  _ -> this.SolutionFileName <- dialog.FileName
+                   |> fun _ -> File.ReadAllBytes(dialog.FileName)
+                   |> fun x -> Convert.ToBase64String(x)
+        
         else ""
 
     member this.tryFindSolution (ticket : string) (textFileString : string) (solutionPrepared : string) = 
