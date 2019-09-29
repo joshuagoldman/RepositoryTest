@@ -1,0 +1,9 @@
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter.Fsharp\bin\Debug\netstandard2.0\HaPsanter.Fsharp.deps.json
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter.Fsharp\bin\Debug\netstandard2.0\HaPsanter.Fsharp.dll
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter.Fsharp\obj\Debug\netstandard2.0\HaPsanter.Fsharp.AssemblyInfoInputs.cache
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter.Fsharp\obj\Debug\netstandard2.0\HaPsanter.Fsharp.AssemblyInfo.fs
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter.Fsharp\bin\Debug\netstandard2.0\HaPsanter.Fsharp.pdb
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter.Fsharp\obj\Debug\netstandard2.0\HaPsanter.Fsharp.dll
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter.Fsharp\obj\Debug\netstandard2.0\HaPsanter.Fsharp.pdb
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter.Fsharp\obj\Debug\netstandard2.0\HaPsanter.Fsharp.fsprojAssemblyReference.cache
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter.Fsharp\obj\Debug\netstandard2.0\XamlC.stamp
