@@ -1,0 +1,8 @@
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter\ControlDefinitions\bin\Debug\netcoreapp2.0\ControlDefinitions.deps.json
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter\ControlDefinitions\bin\Debug\netcoreapp2.0\ControlDefinitions.dll
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter\ControlDefinitions\bin\Debug\netcoreapp2.0\ControlDefinitions.pdb
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter\ControlDefinitions\obj\Debug\netcoreapp2.0\ControlDefinitions.AssemblyInfoInputs.cache
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter\ControlDefinitions\obj\Debug\netcoreapp2.0\ControlDefinitions.AssemblyInfo.fs
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter\ControlDefinitions\obj\Debug\netcoreapp2.0\XamlC.stamp
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter\ControlDefinitions\obj\Debug\netcoreapp2.0\ControlDefinitions.dll
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter\ControlDefinitions\obj\Debug\netcoreapp2.0\ControlDefinitions.pdb

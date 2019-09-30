@@ -5,7 +5,7 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using HaPsanter.Fsharp;
+using HaPsanter.Fsharp.App;
 using Android.OS;
 
 namespace HaPsanter.Droid

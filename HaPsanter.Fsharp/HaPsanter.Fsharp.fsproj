@@ -6,31 +6,40 @@
 
   <ItemGroup>
     <EmbeddedResource Remove="App.xaml" />
+    <EmbeddedResource Remove="App\App.xaml" />
     <EmbeddedResource Remove="MainPage.xaml" />
+    <EmbeddedResource Remove="XamlFiles\MainPage.xaml" />
+    <EmbeddedResource Remove="XamlFiles\VideoPlayerPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="ControlUtilities\ControllAttributes.fs" />
-    <Compile Include="ControlUtilities\Controls.fs" />
-    <Compile Include="ControlUtilities\ControlBase.fs" />
-    <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Definitions.fs" />
+    <EmbeddedResource Include="VideosEmbeddedResource.xml" />
+    <Compile Include="VideoPlayerPage.fs" />
     <Compile Include="GameStart.fs" />
-    <Compile Include="App.fs" />
+    <Compile Include="Definitions.fs" />
+    <Compile Include="AssemblyInfo.fs" />
+    <Resource Include="XamlFiles\VideoPlayerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+    <Resource Include="XamlFiles\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+    <Resource Include="App\App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+    <Compile Include="App\App.fs" />
   </ItemGroup>
 
+  <ItemGroup />
+
   <ItemGroup>
+    <PackageReference Include="Octane.Xam.VideoPlayer" Version="3.1.0" />
     <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
     <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Resource>
-    <Resource Include="MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Resource>
+    <ProjectReference Include="..\HaPsanter\ControlDefinitions\ControlDefinitions.fsproj" />
   </ItemGroup>
 
 </Project>

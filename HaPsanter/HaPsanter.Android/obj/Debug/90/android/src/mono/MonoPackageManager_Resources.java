@@ -6,6 +6,8 @@ public class MonoPackageManager_Resources {
 		"FormsViewGroup.dll",
 		"FSharp.Core.dll",
 		"HaPsanter.Fsharp.dll",
+		"Octane.Xamarin.Forms.VideoPlayer.Android.dll",
+		"Octane.Xamarin.Forms.VideoPlayer.dll",
 		"Xamarin.Android.Arch.Core.Common.dll",
 		"Xamarin.Android.Arch.Core.Runtime.dll",
 		"Xamarin.Android.Arch.Lifecycle.Common.dll",
@@ -48,6 +50,7 @@ public class MonoPackageManager_Resources {
 		"Xamarin.Forms.Platform.Android.dll",
 		"Xamarin.Forms.Platform.dll",
 		"Xamarin.Forms.Xaml.dll",
+		"ControlDefinitions.dll",
 	};
 	public static String[] Dependencies = new String[]{
 	};

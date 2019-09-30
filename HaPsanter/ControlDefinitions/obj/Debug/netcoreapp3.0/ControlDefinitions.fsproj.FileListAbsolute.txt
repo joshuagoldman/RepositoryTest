@@ -1,0 +1,6 @@
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter\ControlDefinitions\bin\Debug\netcoreapp3.0\ControlDefinitions.deps.json
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter\ControlDefinitions\bin\Debug\netcoreapp3.0\ControlDefinitions.dll
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter\ControlDefinitions\obj\Debug\netcoreapp3.0\ControlDefinitions.fsprojAssemblyReference.cache
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter\ControlDefinitions\obj\Debug\netcoreapp3.0\ControlDefinitions.fsproj.CoreCompileInputs.cache
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter\ControlDefinitions\obj\Debug\netcoreapp3.0\ControlDefinitions.AssemblyInfoInputs.cache
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\HaPsanter\ControlDefinitions\obj\Debug\netcoreapp3.0\ControlDefinitions.AssemblyInfo.fs

@@ -76,6 +76,18 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
+      "Octane.Xam.VideoPlayer/3.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "4.0.0.497661"
+        },
+        "compile": {
+          "lib/netstandard2.0/Octane.Xamarin.Forms.VideoPlayer.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Octane.Xamarin.Forms.VideoPlayer.dll": {}
+        }
+      },
       "System.Numerics.Vectors/4.5.0": {
         "type": "package",
         "compile": {
@@ -112,6 +124,21 @@
         "build": {
           "build/Xamarin.Forms.props": {},
           "build/Xamarin.Forms.targets": {}
+        }
+      },
+      "ControlDefinitions/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "FSharp.Core": "4.7.0",
+          "Xamarin.Essentials": "1.2.0",
+          "Xamarin.Forms": "4.2.0.709249"
+        },
+        "compile": {
+          "bin/placeholder/ControlDefinitions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ControlDefinitions.dll": {}
         }
       }
     }
@@ -303,6 +330,31 @@
         "lib/netstandard1.0/_._",
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
+      ]
+    },
+    "Octane.Xam.VideoPlayer/3.1.0": {
+      "sha512": "JFjIeDBrmv1cX8B/N7vuaz2DM75hxufRbfPQVoVNkjp+j/9964lwcIyY6tfZwS3OW2INoPih6snjXG+PdlM6aw==",
+      "type": "package",
+      "path": "octane.xam.videoplayer/3.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/MonoAndroid81/Octane.Xamarin.Forms.VideoPlayer.Android.dll",
+        "lib/MonoAndroid81/Octane.Xamarin.Forms.VideoPlayer.Android.xml",
+        "lib/MonoAndroid81/Octane.Xamarin.Forms.VideoPlayer.dll",
+        "lib/MonoAndroid81/Octane.Xamarin.Forms.VideoPlayer.xml",
+        "lib/Xamarin.iOS10/Octane.Xamarin.Forms.VideoPlayer.dll",
+        "lib/Xamarin.iOS10/Octane.Xamarin.Forms.VideoPlayer.iOS.dll",
+        "lib/Xamarin.iOS10/Octane.Xamarin.Forms.VideoPlayer.iOS.xml",
+        "lib/Xamarin.iOS10/Octane.Xamarin.Forms.VideoPlayer.xml",
+        "lib/netstandard2.0/Octane.Xamarin.Forms.VideoPlayer.dll",
+        "lib/netstandard2.0/Octane.Xamarin.Forms.VideoPlayer.xml",
+        "lib/uap10.0/Octane.Xamarin.Forms.VideoPlayer.UWP.dll",
+        "lib/uap10.0/Octane.Xamarin.Forms.VideoPlayer.UWP.xml",
+        "lib/uap10.0/Octane.Xamarin.Forms.VideoPlayer.dll",
+        "lib/uap10.0/Octane.Xamarin.Forms.VideoPlayer.xml",
+        "octane.xam.videoplayer.3.1.0.nupkg.sha512",
+        "octane.xam.videoplayer.nuspec"
       ]
     },
     "System.Numerics.Vectors/4.5.0": {
@@ -640,12 +692,19 @@
         "xamarin.forms.4.2.0.709249.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
+    },
+    "ControlDefinitions/1.0.0": {
+      "type": "project",
+      "path": "../HaPsanter/ControlDefinitions/ControlDefinitions.fsproj",
+      "msbuildProject": "../HaPsanter/ControlDefinitions/ControlDefinitions.fsproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
+      "ControlDefinitions >= 1.0.0",
       "FSharp.Core >= 4.7.0",
       "NETStandard.Library >= 2.0.3",
+      "Octane.Xam.VideoPlayer >= 3.1.0",
       "Xamarin.Essentials >= 1.2.0",
       "Xamarin.Forms >= 4.2.0.709249"
     ]
@@ -682,7 +741,11 @@
       },
       "frameworks": {
         "netstandard2.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\DELL\\Documents\\GitRepos\\RepositoryTest\\HaPsanter\\ControlDefinitions\\ControlDefinitions.fsproj": {
+              "projectPath": "C:\\Users\\DELL\\Documents\\GitRepos\\RepositoryTest\\HaPsanter\\ControlDefinitions\\ControlDefinitions.fsproj"
+            }
+          }
         }
       }
     },
@@ -698,6 +761,10 @@
             "target": "Package",
             "version": "[2.0.3, )",
             "autoReferenced": true
+          },
+          "Octane.Xam.VideoPlayer": {
+            "target": "Package",
+            "version": "[3.1.0, )"
           },
           "Xamarin.Essentials": {
             "target": "Package",
