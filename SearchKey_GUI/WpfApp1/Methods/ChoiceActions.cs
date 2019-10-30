@@ -160,6 +160,7 @@ namespace SearchKey_GUI.Methods
                         var TreeInStringForm = ControlInfo.TextBlockObject.Text.Substring(StartIndex);
                         Xml.Find.ChildParentElement.Add(XElement.Parse(TreeInStringForm));
                         Xml.XDoc.Save(Xml.FilePath);
+                        Xml.XDoc = XDocument.Load(Xml.FilePath, LoadOptions.None);
                         MessageBoxResult result = MessageBox.Show($"The generated searchkey was saved on: \r\n\r\n {Xml.FilePath}",
                           "Information",
                           MessageBoxButton.OK,

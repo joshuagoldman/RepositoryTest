@@ -1,2 +1,0 @@
-C:\Users\DELL\Documents\GitRepoJosh\EricssonSupportAssistance\EricssonSupportAssistance\obj\Release\EricssonSupportAssistance.exe.config
-C:\Users\DELL\Documents\GitRepoJosh\EricssonSupportAssistance\EricssonSupportAssistance\obj\Release\EricssonSupportAssistance.g.resources

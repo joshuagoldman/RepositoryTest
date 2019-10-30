@@ -81,14 +81,15 @@
     <Reference Include="DotNetZip, Version=1.13.3.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetZip.1.13.3\lib\net40\DotNetZip.dll</HintPath>
     </Reference>
-    <Reference Include="Ericsson.AM.Common, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ericsson.AM.Common.1.1.3-r10d.7\lib\netstandard2.0\Ericsson.AM.Common.dll</HintPath>
+    <Reference Include="Ericsson.AM.Common, Version=1.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ericsson.AM.Common.1.1.4\lib\netstandard2.0\Ericsson.AM.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Ericsson.AM.LogAnalyzer, Version=7.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ericsson.AM.LogAnalyzer.7.0.3-r10d.9\lib\netstandard2.0\Ericsson.AM.LogAnalyzer.dll</HintPath>
+    <Reference Include="Ericsson.AM.LogAnalyzer, Version=7.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Gitrepos\LogAnalyzerRepo\LogAnalyzer\Ericsson.AM.LogAnalyzer\bin\Debug\netstandard2.0\Ericsson.AM.LogAnalyzer.dll</HintPath>
     </Reference>
     <Reference Include="Ericsson.AM.Pqat, Version=0.2.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ericsson.AM.Pqat.0.2.7-r10d.8\lib\netstandard2.0\Ericsson.AM.Pqat.dll</HintPath>
+      <HintPath>..\packages\Ericsson.AM.Pqat.0.2.7\lib\netstandard2.0\Ericsson.AM.Pqat.dll</HintPath>
     </Reference>
     <Reference Include="FlexCel, Version=6.23.0.0, Culture=neutral, PublicKeyToken=cb8f6080e6d5a4d6, processorArchitecture=MSIL">
       <HintPath>..\packages\TMS.FlexCel.6.23.0\lib\net46\FlexCel.dll</HintPath>

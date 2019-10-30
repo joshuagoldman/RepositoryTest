@@ -16,6 +16,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="3*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0"
@@ -54,12 +55,13 @@
             Grid.Column="1"
             Grid.Row="1"
             Grid.ColumnSpan="3"
-            Grid.RowSpan="5"/>
+            Grid.RowSpan="4"/>
         <ScrollViewer 
             Grid.Row="3" Grid.Column="1"
             Grid.ColumnSpan="3">
             <TextBlock 
                 Grid.Row="3" Grid.Column="0"
+                Grid.RowSpan="3"
                 Grid.ColumnSpan="3"
                 Padding="5"
                 Text="{Binding InfoLogs.Text}"
@@ -68,5 +70,11 @@
                 TextWrapping="Wrap"/>
 
         </ScrollViewer>
+        <Button Grid.Row="4"
+                Grid.Column="2"
+                x:Name="ClearLogsButton"
+                Content="Clear Logs"
+                Visibility="{Binding ClearLogsButton.Visibility}"/>
+
     </Grid>
 </Window>  

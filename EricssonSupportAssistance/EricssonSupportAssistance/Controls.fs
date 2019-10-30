@@ -25,6 +25,7 @@ open System.Windows.Media
         let mutable chooseFileButton = new ControlAtributes("ChooseFileButton")
         let mutable documentViewer = new ControlAtributes("DocumentViewer")
         let mutable documentViewerPageControl = new ControlAtributes("DocumentViewerPageControl")
+        let mutable clearLogsButton = new ControlAtributes("ClearLogsButton")
 
         // MainWindow controls
         member this.AuthenticatePageButton
@@ -48,6 +49,11 @@ open System.Windows.Media
             with get() = infoLogs 
             and set(value) = 
                 if value <> infoLogs then infoLogs <- value
+
+        member this.ClearLogsButton
+            with get() = clearLogsButton 
+            and set(value) = 
+                if value <> clearLogsButton then clearLogsButton <- value
                   
 
         // Authentization controls

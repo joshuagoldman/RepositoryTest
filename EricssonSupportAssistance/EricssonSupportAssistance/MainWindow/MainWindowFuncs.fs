@@ -19,6 +19,7 @@ type MainWindowFunctions() =
         this.Sender.DocumentViewerPageControl.Visibility <- Visibility.Hidden
         this.Sender.UploadPageControl.Visibility <- Visibility.Hidden
         this.Sender.InfoLogs.Visibility <- Visibility.Visible
+        this.Sender.ClearLogsButton.Visibility <- Visibility.Visible 
         this.infoEv.Trigger(InfoEventArgs("Entering authentization page", Brushes.DarkRed))
 
     member this.OnUploadButtonClicked =
@@ -27,6 +28,7 @@ type MainWindowFunctions() =
         this.Sender.DocumentViewerPageControl.Visibility <- Visibility.Hidden
         this.Sender.UploadPageControl.Visibility <- Visibility.Visible
         this.Sender.InfoLogs.Visibility <- Visibility.Visible
+        this.Sender.ClearLogsButton.Visibility <- Visibility.Visible
         this.infoEv.Trigger(InfoEventArgs("Entering upload page", Brushes.DarkRed))
 
     member this.OnDocumentViewerButtonClicked =
@@ -35,7 +37,12 @@ type MainWindowFunctions() =
         this.Sender.DocumentViewerPageControl.Visibility <- Visibility.Visible
         this.Sender.UploadPageControl.Visibility <- Visibility.Hidden
         this.Sender.InfoLogs.Visibility <- Visibility.Hidden
+        this.Sender.ClearLogsButton.Visibility <- Visibility.Hidden
         this.infoEv.Trigger(InfoEventArgs("Entering document viewer page", Brushes.DarkRed))
+
+    member this.OnClearLogsButtonClicked =
+        
+        this.Sender.InfoLogs.Text <- ""
 
         
         
