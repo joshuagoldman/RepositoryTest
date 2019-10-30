@@ -19,7 +19,7 @@ type ProductNumber =
         Value : string
     }
 
-type PortBaseInfo = 
+type PortInfo = 
     {
         Band : string
         Power : string
@@ -30,18 +30,11 @@ type PortLetter =
     {
         Value : string
     }
-    
-type PortInfo = 
-    {
 
-        BaseInfo : seq<PortBaseInfo>
+type Port =
+    {
+        PortSeq : seq<PortInfo>
         Letter : PortLetter
-    }
-
-type Ports =
-    {
-        First : seq<PortInfo>
-        Second : seq<PortInfo>
     }
 
 type HwPidListPRTTBase =
@@ -49,7 +42,7 @@ type HwPidListPRTTBase =
         Number : ProductNumber
         Name : string
         MarketName : string
-        PortSeq : seq<Ports>
+        PortSeq : seq<Port>
     }
 
 type Tags =
@@ -70,12 +63,6 @@ type HWPidListLAT =
     | FullElement of FullElementType
     | ProcedureDone of unit
 
-
-let getPortLetter (aOrB : int) (pairNumber : int) =
-    let letterNumber = aOrB + pairNumber
-
-    int2Alphabet letterNumber
-
 let getPortSequence (infoArr : string[]) =
     
     let numOfPorts = 
@@ -83,10 +70,6 @@ let getPortSequence (infoArr : string[]) =
         |> function
         | res when not(Regex.Match(res.Value , "[1-9]\d*)").Success) -> 0
         | res -> res.Value.[0] |> int
-
-    let numOfPortPairs =
-        round(float(numOfPorts) * 0.5)
-        |> int
 
     let powers =
         infoArr.[3].Split ','
@@ -101,18 +84,11 @@ let getPortSequence (infoArr : string[]) =
                                            Power = powers.[pos] ;
                                            FrequencyWidth = freqWidth })
 
-    seq[0..numOfPortPairs - 1]
-    |> Seq.map (fun pairNum -> seq[0..1]
-                               |> Seq.map (fun portNum -> portBaseInfos
-                                                          |> fun portBaseInfo ->
-                                                                { BaseInfo = portBaseInfo |> Array.toSeq ;
-                                                                  Letter = { Value = getPortLetter pairNum portNum } 
-                                                                  }) 
-                                |> fun firstsSecondsArr -> 
-                                    {
-                                        First = firstsSecondsArr  ;
-                                        Second = firstsSecondsArr
-                                    })
+    seq[0..numOfPorts - 1]
+    |> Seq.map (fun pairNum -> portBaseInfos
+                               |> fun portBaseInfo ->
+                                    { PortSeq = portBaseInfo ;
+                                      Letter = { Value = int2Alphabet pairNum} })
 
 
 let getFullElement =
@@ -133,22 +109,56 @@ let getTags =
     let categoryTag = {|Name = "lat-category" ; Value = "radio"|}
     {PrttSupp = prttSuppTag ; LatSupp = latSuppTag ; LatCat = categoryTag }
 
-let getPortAttribs (portSeq : seq<Ports>) =
+let makePortSeqToString (portInfos : seq<PortInfo>) =
+    portInfos
+    |> Seq.map (fun band -> band.Band + ";" +
+                            band.Power + ";" +
+                            band.FrequencyWidth + ",")
+    |> fun strSeq -> String.Join("kkk", strSeq).Replace("kkk", "")
+    |> fun str -> str.Substring(0, str.LastIndexOf(','))
+
+let getPortAttribs (portSeq : seq<Port>) =
+    let portInfoAttrValue =
+        makePortSeqToString (portSeq
+                             |> Seq.item 0
+                             |> fun x -> x.PortSeq)
     portSeq
-    |> Seq.map (fun port -> new XAttribute(XName.Get port.First))
+    |> Seq.map (fun port -> new XAttribute(XName.Get port.Letter.Value,
+                                                     portInfoAttrValue))
 
 let getProdAttribs (fullElement : FullElementType) =
-    new XAttribute(XName.Get "Number", fullElement.Base.Number),
-    new XAttribute(XName.Get "Name", fullElement.Base.Name),
-    new XAttribute(XName.Get "MarketName", fullElement.Base.MarketName),
-    new XAttribute(XName.Get "RadioTestAllowed", "YES"),
-    new XAttribute(XName.Get "RequiresRadioTest", "YES"),
+    
+    let firstSeq =
+        seq[new XAttribute(XName.Get "Number", fullElement.Base.Number) ;
+        new XAttribute(XName.Get "Name", fullElement.Base.Name) ;
+        new XAttribute(XName.Get "MarketName", fullElement.Base.MarketName) ;
+        new XAttribute(XName.Get "RadioTestAllowed", "YES") ;
+        new XAttribute(XName.Get "RequiresRadioTest", "YES")]
+    
+    let secSeq = getPortAttribs fullElement.Base.PortSeq
 
+    Seq.append firstSeq secSeq
 
+let createTagElement (tags : Tags) = 
+
+    new XElement(XName.Get "Tags",
+        new XElement(XName.Get "Tag",
+                        XAttribute(XName.Get "Name", tags.PrttSupp.Name),
+                        XAttribute(XName.Get "Value", tags.PrttSupp.Value)),
+        new XElement(XName.Get "Tag",
+                        XAttribute(XName.Get "Name", tags.LatSupp.Name),
+                        XAttribute(XName.Get "Value", tags.LatSupp.Value)),
+        new XElement(XName.Get "Tag",
+                        XAttribute(XName.Get "Name", tags.LatCat.Name),
+                        XAttribute(XName.Get "Value", tags.LatCat.Value)))
 
 let getXmlTree (fullElement : FullElementType) = 
     let tree = 
-        new XElement(XName.Get "Product", )
+        new XElement(XName.Get "Product", getProdAttribs fullElement,
+            createTagElement fullElement.Tag)
+
+    tree
+                        
 
 let rec msgFunc (state : HWPidListLAT) =
     match state with
@@ -157,7 +167,7 @@ let rec msgFunc (state : HWPidListLAT) =
         FullElement(fullElementType )
 
     | FullElement(fullElementType) -> 
-        getXmlTree fullElementType
+        let finalTree = getXmlTree fullElementType
         ProcedureDone()
 
     | ProcedureDone() ->

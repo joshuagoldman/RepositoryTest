@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jogo\\Documents\\git_Test\\SearchKey_Rep\\FindSearchKeyRep\\FindSearchKeyRep.csproj": {}
+    "C:\\Users\\DELL\\Documents\\GitRepos\\RepositoryTest\\SearchKey_Rep\\FindSearchKeyRep\\FindSearchKeyRep.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jogo\\Documents\\git_Test\\SearchKey_Rep\\FindSearchKeyRep\\FindSearchKeyRep.csproj": {
+    "C:\\Users\\DELL\\Documents\\GitRepos\\RepositoryTest\\SearchKey_Rep\\FindSearchKeyRep\\FindSearchKeyRep.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jogo\\Documents\\git_Test\\SearchKey_Rep\\FindSearchKeyRep\\FindSearchKeyRep.csproj",
+        "projectUniqueName": "C:\\Users\\DELL\\Documents\\GitRepos\\RepositoryTest\\SearchKey_Rep\\FindSearchKeyRep\\FindSearchKeyRep.csproj",
         "projectName": "FindSearchKeyRep",
-        "projectPath": "C:\\Users\\jogo\\Documents\\git_Test\\SearchKey_Rep\\FindSearchKeyRep\\FindSearchKeyRep.csproj",
-        "packagesPath": "C:\\Users\\jogo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jogo\\Documents\\git_Test\\SearchKey_Rep\\FindSearchKeyRep\\obj\\",
+        "projectPath": "C:\\Users\\DELL\\Documents\\GitRepos\\RepositoryTest\\SearchKey_Rep\\FindSearchKeyRep\\FindSearchKeyRep.csproj",
+        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DELL\\Documents\\GitRepos\\RepositoryTest\\SearchKey_Rep\\FindSearchKeyRep\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\jogo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -27,8 +27,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\jogo\\Gitrepos\\LogAnalyzerRepo\\LogAnalyzer\\Ericsson.AM.LogAnalyzer\\bin\\Release": {},
-          "http://localhost:58084": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
