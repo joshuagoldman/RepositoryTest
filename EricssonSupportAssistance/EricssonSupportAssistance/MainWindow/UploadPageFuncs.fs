@@ -131,6 +131,7 @@ open System.IO.Packaging
             (
                 
                 fun docStream  -> 
+                if File.Exists(solPath) then File.Delete(solPath)
                 let fileStream = File.Create(solPath)
                 docStream.CopyTo(fileStream)
                 fileStream.Close()

@@ -57,7 +57,6 @@ C:\Users\jogo\Documents\git_Test\SearchKey_GUI\WpfApp1\obj\Debug\ProductsWindow.
 C:\Users\jogo\Documents\git_Test\SearchKey_GUI\WpfApp1\obj\Debug\SearchKey_GUI.g.resources
 C:\Users\jogo\Documents\git_Test\SearchKey_GUI\WpfApp1\obj\Debug\SearchKey_GUI.Properties.Resources.resources
 C:\Users\jogo\Documents\git_Test\SearchKey_GUI\WpfApp1\obj\Debug\SearchKey_GUI.csproj.GenerateResource.cache
-C:\Users\jogo\Documents\git_Test\SearchKey_GUI\WpfApp1\obj\Debug\SearchKey_GUI.csproj.CoreCompileInputs.cache
 C:\Users\jogo\Documents\git_Test\SearchKey_GUI\WpfApp1\obj\Debug\SearchKey_GUI.csproj.CopyComplete
 C:\Users\jogo\Documents\git_Test\SearchKey_GUI\WpfApp1\obj\Debug\SearchKey_GUI.exe
 C:\Users\jogo\Documents\git_Test\SearchKey_GUI\WpfApp1\obj\Debug\SearchKey_GUI.pdb
@@ -147,3 +146,4 @@ C:\Users\DELL\Documents\GitRepoJosh\SearchKey_GUI\WpfApp1\obj\Debug\SearchKey_GU
 C:\Users\DELL\Documents\GitRepoJosh\SearchKey_GUI\WpfApp1\obj\Debug\SearchKey_GUI.csproj.CopyComplete
 C:\Users\DELL\Documents\GitRepoJosh\SearchKey_GUI\WpfApp1\obj\Debug\SearchKey_GUI.exe
 C:\Users\DELL\Documents\GitRepoJosh\SearchKey_GUI\WpfApp1\obj\Debug\SearchKey_GUI.pdb
+C:\Users\jogo\Documents\git_Test\SearchKey_GUI\WpfApp1\obj\Debug\SearchKey_GUI.csprojAssemblyReference.cache

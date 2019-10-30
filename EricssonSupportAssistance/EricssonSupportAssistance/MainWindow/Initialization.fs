@@ -180,7 +180,7 @@ type Initilization() as this =
         (uplCtrl.FindName("ChooseFileButton") :?> Button).ToolTipOpening.Add(fun _ -> uplFncs.OnUploadFileHover)
 
 
-        // Finfninf solution button located in the upload page
+        // Find solution button located in the upload page
         (uplCtrl.FindName("FindSolutionButton") :?> Button).Click.Add(fun _ -> uplFncs.OnFindSolutionButtonClicked)
 
         // Upload button located in the upload page
@@ -192,3 +192,6 @@ type Initilization() as this =
 
         // Button for opening solution located in the upload page
         (uplCtrl.FindName("OpenSolutionButton") :?> Button).Click.Add(fun _ -> uplFncs.OnOpenSolutionButtonClicked)
+
+        // Button for clearing all logs
+        (mainWin.FindName("ClearLogsButton") :?> Button).Click.Add(fun _ -> mainFncs.OnClearLogsButtonClicked)

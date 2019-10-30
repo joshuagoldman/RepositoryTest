@@ -62,18 +62,43 @@
     <EmbeddedResource Include="1_68_Update_C.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Compile Include="SK_1_50.fs" />
+    <Compile Include="SK_2_41.fs" />
+    <Compile Include="Add2HwPidLIst.fs" />
+    <Compile Include="CheckBandAvailibility.fs" />
+    <Compile Include="AddConfigKeyDefinitions.fs" />
+    <Compile Include="AddHePidListPRTT.fs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="DotNetZip">
+      <HintPath>..\packages\DotNetZip.1.13.3\lib\net40\DotNetZip.dll</HintPath>
+    </Reference>
     <Reference Include="Ericsson.AM.Common">
-      <HintPath>..\..\..\..\Gitrepos\LogAnalyzerRepo\LogAnalyzer\Ericsson.AM.Common\bin\Release\netstandard2.0\Ericsson.AM.Common.dll</HintPath>
+      <HintPath>..\packages\Ericsson.AM.Common.1.1.4\lib\netstandard2.0\Ericsson.AM.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ericsson.AM.LogAnalyzer">
+      <HintPath>..\packages\Ericsson.AM.LogAnalyzer.7.0.4\lib\netstandard2.0\Ericsson.AM.LogAnalyzer.dll</HintPath>
+    </Reference>
+    <Reference Include="Ericsson.AM.Pqat">
+      <HintPath>..\packages\Ericsson.AM.Pqat.0.2.7\lib\netstandard2.0\Ericsson.AM.Pqat.dll</HintPath>
     </Reference>
     <Reference Include="Ericsson.TM.Node.CommonRbs6000">
       <HintPath>K:\Ericsson.TM.Node.CommonRbs6000.dll</HintPath>
     </Reference>
+    <Reference Include="FlexCel">
+      <HintPath>..\packages\TMS.FlexCel.6.23.0\lib\net47\FlexCel.dll</HintPath>
+    </Reference>
     <Reference Include="FSharp.Core">
       <HintPath>..\packages\FSharp.Core.4.6.2\lib\net45\FSharp.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="mscorlib" />
+    <Reference Include="NCalc">
+      <HintPath>..\packages\CoreCLR-NCalc.2.2.51\lib\net45\NCalc.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore">
       <Private>True</Private>
     </Reference>
@@ -84,17 +109,47 @@
       <HintPath>..\..\SearchKey_GUI\WpfApp1\bin\Debug\SearchKey_GUI.exe</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.IO">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Reflection">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.ValueTuple">
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xaml">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="UIAutomationProvider">
       <Private>True</Private>
     </Reference>
