@@ -9,10 +9,10 @@ open System.Linq
 open SearchKeyRep.AddConfigKeyDefinitions
 
 
-let prods2Add = File.ReadAllText("C:\Users\jogo\Documents\jogo\Ericsson\products2Add.txt")
-let HwPidStream = File.Open("C:\Users\jogo\Gitrepos\Nodetest\Datapackets\HWPidList\documents\HWPidList.xml", FileMode.OpenOrCreate)
-let mutable xDoc = XDocument.Load(HwPidStream)
-HwPidStream.Close() 
+let prods2Add = File.ReadAllText("C:\\Users\\DELL\\Documents\\Ericsson\\products2Add.txt")
+//let HwPidStream = File.Open("C:\Users\jogo\Gitrepos\Nodetest\Datapackets\HWPidList\documents\HWPidList.xml", FileMode.OpenOrCreate)
+//let mutable xDoc = XDocument.Load(HwPidStream)
+//HwPidStream.Close() 
 
 type ProductNumber =
     {
@@ -66,10 +66,10 @@ type HWPidListLAT =
 let getPortSequence (infoArr : string[]) =
     
     let numOfPorts = 
-        Regex.Match(infoArr.[1], "(?<= ).*")
+        Regex.Match(infoArr.[1].Trim(), "[1-9]\d")
         |> function
-        | res when not(Regex.Match(res.Value , "[1-9]\d*)").Success) -> 0
-        | res -> res.Value.[0] |> int
+            | res when not(res.Success) -> 0
+            | res -> res.Value.Substring(0,1) |> int
 
     let powers =
         infoArr.[3].Split ','
@@ -84,7 +84,7 @@ let getPortSequence (infoArr : string[]) =
                                            Power = powers.[pos] ;
                                            FrequencyWidth = freqWidth })
 
-    seq[0..numOfPorts - 1]
+    seq[1..numOfPorts]
     |> Seq.map (fun pairNum -> portBaseInfos
                                |> fun portBaseInfo ->
                                     { PortSeq = portBaseInfo ;
@@ -129,7 +129,7 @@ let getPortAttribs (portSeq : seq<Port>) =
 let getProdAttribs (fullElement : FullElementType) =
     
     let firstSeq =
-        seq[new XAttribute(XName.Get "Number", fullElement.Base.Number) ;
+        seq[new XAttribute(XName.Get "Number", fullElement.Base.Number.Value) ;
         new XAttribute(XName.Get "Name", fullElement.Base.Name) ;
         new XAttribute(XName.Get "MarketName", fullElement.Base.MarketName) ;
         new XAttribute(XName.Get "RadioTestAllowed", "YES") ;
@@ -168,6 +168,7 @@ let rec msgFunc (state : HWPidListLAT) =
 
     | FullElement(fullElementType) -> 
         let finalTree = getXmlTree fullElementType
+        File.AppendAllText("C:\Users\DELL\Documents\Ericsson\Test.txt",finalTree.ToString())
         ProcedureDone()
 
     | ProcedureDone() ->
