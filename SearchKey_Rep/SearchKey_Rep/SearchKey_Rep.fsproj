@@ -67,7 +67,8 @@
     <Compile Include="Add2HwPidLIst.fs" />
     <Compile Include="CheckBandAvailibility.fs" />
     <Compile Include="AddConfigKeyDefinitions.fs" />
-    <Compile Include="AddHePidListPRTT.fs" />
+    <Compile Include="FindHwPidListItems.fs" />
+    <Compile Include="AddHwPidListPRTT.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DotNetZip">

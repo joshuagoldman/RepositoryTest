@@ -6,3 +6,11 @@ C:\Users\jogo\Documents\git_Test\SearchKey_Rep\FindSearchKeyRep\obj\Debug\netcor
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\FindSearchKeyRep\obj\Debug\netcoreapp3.0\FindSearchKeyRep.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\FindSearchKeyRep\obj\Debug\netcoreapp3.0\FindSearchKeyRep.pdb
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\FindSearchKeyRep\obj\Debug\netcoreapp3.0\FindSearchKeyRep.csprojAssemblyReference.cache
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\SearchKey_Rep\FindSearchKeyRep\bin\Debug\netcoreapp3.0\FindSearchKeyRep.deps.json
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\SearchKey_Rep\FindSearchKeyRep\bin\Debug\netcoreapp3.0\FindSearchKeyRep.dll
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\SearchKey_Rep\FindSearchKeyRep\bin\Debug\netcoreapp3.0\FindSearchKeyRep.pdb
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\SearchKey_Rep\FindSearchKeyRep\obj\Debug\netcoreapp3.0\FindSearchKeyRep.csprojAssemblyReference.cache
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\SearchKey_Rep\FindSearchKeyRep\obj\Debug\netcoreapp3.0\FindSearchKeyRep.AssemblyInfoInputs.cache
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\SearchKey_Rep\FindSearchKeyRep\obj\Debug\netcoreapp3.0\FindSearchKeyRep.AssemblyInfo.cs
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\SearchKey_Rep\FindSearchKeyRep\obj\Debug\netcoreapp3.0\FindSearchKeyRep.dll
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\SearchKey_Rep\FindSearchKeyRep\obj\Debug\netcoreapp3.0\FindSearchKeyRep.pdb

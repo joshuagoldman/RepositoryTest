@@ -1,4 +1,4 @@
-﻿module AddHePidListPRTT
+﻿module AddHwPidListPRTT
 
 open System.IO
 open System.Xml.Linq
@@ -7,6 +7,7 @@ open System
 open System.Text.RegularExpressions
 open System.Linq
 open SearchKeyRep.AddConfigKeyDefinitions
+open FindHwPidListItems
 
 
 let prods2Add = File.ReadAllText("C:\\Users\\DELL\\Documents\\Ericsson\\products2Add.txt")
@@ -73,9 +74,11 @@ let getPortSequence (infoArr : string[]) =
 
     let powers =
         infoArr.[3].Split ','
+        |> Seq.map (fun str -> if str = "" then getPower.Power)
 
     let freqWidth = 
         infoArr.[4]
+        |> Seq.map (fun str -> if str = "" then getFreqWidth.FrequenceWidth)
 
     let portBaseInfos = 
         let bands = infoArr.[2].Split ','

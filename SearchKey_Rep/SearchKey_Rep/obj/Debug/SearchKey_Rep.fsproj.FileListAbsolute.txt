@@ -306,3 +306,4 @@ C:\Users\DELL\Documents\GitRepos\RepositoryTest\SearchKey_Rep\SearchKey_Rep\bin\
 C:\Users\DELL\Documents\GitRepos\RepositoryTest\SearchKey_Rep\SearchKey_Rep\obj\Debug\SearchKey_Rep.fsproj.CopyComplete
 C:\Users\DELL\Documents\GitRepos\RepositoryTest\SearchKey_Rep\SearchKey_Rep\obj\Debug\SearchKey_Rep.exe
 C:\Users\DELL\Documents\GitRepos\RepositoryTest\SearchKey_Rep\SearchKey_Rep\obj\Debug\SearchKey_Rep.pdb
+C:\Users\DELL\Documents\GitRepos\RepositoryTest\SearchKey_Rep\SearchKey_Rep\obj\Debug\SearchKey_Rep.fsprojAssemblyReference.cache

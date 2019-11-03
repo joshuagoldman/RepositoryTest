@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FindSearchKeyRep\FindSearchKeyRep.csproj" />
+    <ProjectReference Include="..\SearchKey_Rep\SearchKey_Rep.fsproj" />
   </ItemGroup>
 
 </Project>
