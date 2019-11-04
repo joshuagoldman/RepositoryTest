@@ -3,6 +3,7 @@ namespace FindRepSearchKey.Tests
 open System
 open Xunit
 open FindRepSearchKey
+open FindHwPidListItems
 
 
 module Tests =
@@ -128,3 +129,19 @@ module Tests =
             |> fun x -> (",", x) |> System.String.Join
 
         Assert.True(true)
+
+    [<Fact>]
+    let ``TestHwPidListCreation`` () =
+        let testCase = {
+              ProdNumber = "KRC 161 833/2" ; 
+              Name = "Radio 2208 B7" ;
+              Power = "" ;
+              FrequenceWidth = "" }
+
+        let final = 
+            testCase
+            |> getPower
+            |> getFreqWidth
+
+        Assert.True (final.Power = "" &&
+                     final.FrequenceWidth = "")

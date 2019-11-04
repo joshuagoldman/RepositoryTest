@@ -34,6 +34,9 @@
             "projectReferences": {
               "C:\\Users\\DELL\\Documents\\GitRepos\\RepositoryTest\\SearchKey_Rep\\FindSearchKeyRep\\FindSearchKeyRep.csproj": {
                 "projectPath": "C:\\Users\\DELL\\Documents\\GitRepos\\RepositoryTest\\SearchKey_Rep\\FindSearchKeyRep\\FindSearchKeyRep.csproj"
+              },
+              "C:\\Users\\DELL\\Documents\\GitRepos\\RepositoryTest\\SearchKey_Rep\\SearchKey_Rep\\SearchKey_Rep.fsproj": {
+                "projectPath": "C:\\Users\\DELL\\Documents\\GitRepos\\RepositoryTest\\SearchKey_Rep\\SearchKey_Rep\\SearchKey_Rep.fsproj"
               }
             }
           }
@@ -137,6 +140,17 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
+      }
+    },
+    "C:\\Users\\DELL\\Documents\\GitRepos\\RepositoryTest\\SearchKey_Rep\\SearchKey_Rep\\SearchKey_Rep.fsproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\DELL\\Documents\\GitRepos\\RepositoryTest\\SearchKey_Rep\\SearchKey_Rep\\SearchKey_Rep.fsproj",
+        "projectName": "SearchKey_Rep",
+        "projectPath": "C:\\Users\\DELL\\Documents\\GitRepos\\RepositoryTest\\SearchKey_Rep\\SearchKey_Rep\\SearchKey_Rep.fsproj"
+      },
+      "frameworks": {
+        "net472": {}
       }
     }
   }

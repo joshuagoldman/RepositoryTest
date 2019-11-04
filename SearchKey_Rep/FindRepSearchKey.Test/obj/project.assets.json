@@ -2022,6 +2022,15 @@
         "runtime": {
           "bin/placeholder/FindSearchKeyRep.dll": {}
         }
+      },
+      "SearchKey_Rep/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/SearchKey_Rep.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SearchKey_Rep.dll": {}
+        }
       }
     }
   },
@@ -6620,6 +6629,11 @@
       "type": "project",
       "path": "../FindSearchKeyRep/FindSearchKeyRep.csproj",
       "msbuildProject": "../FindSearchKeyRep/FindSearchKeyRep.csproj"
+    },
+    "SearchKey_Rep/1.0.0": {
+      "type": "project",
+      "path": "../SearchKey_Rep/SearchKey_Rep.fsproj",
+      "msbuildProject": "../SearchKey_Rep/SearchKey_Rep.fsproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6627,6 +6641,7 @@
       "FSharp.Core >= 4.7.0",
       "FindSearchKeyRep >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 16.2.0",
+      "SearchKey_Rep >= 1.0.0",
       "coverlet.collector >= 1.0.1",
       "xunit >= 2.4.0",
       "xunit.runner.visualstudio >= 2.4.0"
@@ -6667,6 +6682,9 @@
           "projectReferences": {
             "C:\\Users\\DELL\\Documents\\GitRepos\\RepositoryTest\\SearchKey_Rep\\FindSearchKeyRep\\FindSearchKeyRep.csproj": {
               "projectPath": "C:\\Users\\DELL\\Documents\\GitRepos\\RepositoryTest\\SearchKey_Rep\\FindSearchKeyRep\\FindSearchKeyRep.csproj"
+            },
+            "C:\\Users\\DELL\\Documents\\GitRepos\\RepositoryTest\\SearchKey_Rep\\SearchKey_Rep\\SearchKey_Rep.fsproj": {
+              "projectPath": "C:\\Users\\DELL\\Documents\\GitRepos\\RepositoryTest\\SearchKey_Rep\\SearchKey_Rep\\SearchKey_Rep.fsproj"
             }
           }
         }
