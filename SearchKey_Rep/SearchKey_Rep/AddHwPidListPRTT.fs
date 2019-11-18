@@ -10,7 +10,7 @@ open SearchKeyRep.AddConfigKeyDefinitions
 open FindHwPidListItems
 
 
-let prods2Add = File.ReadAllText("C:\\Users\\DELL\\Documents\\Ericsson\\products2Add.txt")
+let prods2Add = File.ReadAllText("C:\Users\jogo\Documents\jogo\Ericsson\products2Add.txt")
 //let HwPidStream = File.Open("C:\Users\jogo\Gitrepos\Nodetest\Datapackets\HWPidList\documents\HWPidList.xml", FileMode.OpenOrCreate)
 //let mutable xDoc = XDocument.Load(HwPidStream)
 //HwPidStream.Close() 
@@ -72,20 +72,30 @@ let getPortSequence (infoArr : string[]) =
             | res when not(res.Success) -> 0
             | res -> res.Value.Substring(0,1) |> int
 
-    let powers =
-        infoArr.[3].Split ','
-        |> Seq.map (fun str -> if str = "" then getPower.Power)
+    let hwPidItems = 
+        {
+             ProdNumber = infoArr.[0].Trim()
+             Name = infoArr.[1].Trim().Replace(" ","")
+             Power = ""
+             FrequenceWidth = ""
+        }
+
+    let bands =
+        infoArr.[2].Split ','
+        |> Array.map (fun str -> str.Replace(" ", "").Trim()) 
+
+    let power =
+        if infoArr.[3].Trim() = "" then (getPower hwPidItems infoArr.[2]).Power else hwPidItems.Power
 
     let freqWidth = 
         infoArr.[4]
-        |> Seq.map (fun str -> if str = "" then getFreqWidth.FrequenceWidth)
+        |> fun str -> if str.Trim() = "" then (getFreqWidth hwPidItems infoArr.[2]).FrequenceWidth else str
 
     let portBaseInfos = 
-        let bands = infoArr.[2].Split ','
-        Array.zip bands [|0..bands.Length - 1|]
-        |> Array.map (fun (band, pos) -> { Band = band ;
-                                           Power = powers.[pos] ;
-                                           FrequencyWidth = freqWidth })
+        bands
+        |> Array.map (fun band -> { Band = band  ;
+                                    Power = power ;
+                                    FrequencyWidth = freqWidth })
 
     seq[1..numOfPorts]
     |> Seq.map (fun pairNum -> portBaseInfos
@@ -125,9 +135,13 @@ let getPortAttribs (portSeq : seq<Port>) =
         makePortSeqToString (portSeq
                              |> Seq.item 0
                              |> fun x -> x.PortSeq)
+
+    let letter (lettLowCase : string) =
+        "REF_" + lettLowCase.ToUpper()
+
     portSeq
-    |> Seq.map (fun port -> new XAttribute(XName.Get port.Letter.Value,
-                                                     portInfoAttrValue))
+    |> Seq.map (fun port -> new XAttribute(XName.Get (letter port.Letter.Value),
+                                                      portInfoAttrValue))
 
 let getProdAttribs (fullElement : FullElementType) =
     
@@ -171,7 +185,7 @@ let rec msgFunc (state : HWPidListLAT) =
 
     | FullElement(fullElementType) -> 
         let finalTree = getXmlTree fullElementType
-        File.AppendAllText("C:\Users\DELL\Documents\Ericsson\Test.txt",finalTree.ToString())
+        File.AppendAllText("C:\Users\jogo\Documents\jogo\Ericsson\Test.txt",finalTree.ToString())
         ProcedureDone()
 
     | ProcedureDone() ->

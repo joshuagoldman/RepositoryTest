@@ -97,9 +97,7 @@ C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\System.Se
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\System.Security.Cryptography.Primitives.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\System.Security.Cryptography.X509Certificates.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\FlexCel.xml
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\obj\Debug\SearchKey_Rep.fsprojAssemblyReference.cache
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.TM.Node.CommonRbs6000.dll
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.NodeCommunication.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.TM.BaseIdefix.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\rcmInterfaces.Interop.dll
@@ -124,7 +122,6 @@ C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\ComponentSerializer.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\CabinetConfiguration.Parser.Ssc.ConfigTree.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.Rbs6000MultiDUTHandler.dll
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.CabinetConfigurationManager.exe
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\CabinetConfiguration.Parser.Ssc.ConfigDoc.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.ConfigKeyParser.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ionic.Zip.dll
@@ -136,7 +133,6 @@ C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.RfMuxRbs.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.Dmm.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.CabinetConfiguration.Definitions.dll
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.InstructionHandler.exe
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\SoftwareSelectionTool.Common.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\TestplanParser.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.Logging.Abstractions.dll
@@ -146,9 +142,6 @@ C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.SccParser.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\IPamelaNet.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.CommonTypeLibrary.dll
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\edtFTPnet.dll
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Renci.SshNet.dll
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Rebex.Syslog.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\INIFileParser.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.SoftwareManager.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\System.Windows.Controls.Input.Toolkit.dll
@@ -165,7 +158,6 @@ C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\GongSolut
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\GalaSoft.MvvmLight.Extras.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\WPFToolkit.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.TM.TestMethodBase.dll
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Wpf.ZoomAndPan.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Memory.ObjectStoreCollection.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.TcTpHelper.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.MpAnalysisHelper.dll
@@ -174,12 +166,8 @@ C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Microsoft
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\System.Windows.Interactivity.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.MeasurementValueAnalysis2.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.MeasurementValueAnalysis.dll
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\System.Memory.dll
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\System.Numerics.Vectors.dll
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\System.Buffers.dll
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.TM.Node.CommonRbs6000.pdb
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.TM.Node.CommonRbs6000.dll.config
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.NodeCommunication.pdb
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.TM.BaseIdefix.xml
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.Testsetup.pdb
@@ -209,8 +197,6 @@ C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Component
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\CabinetConfiguration.Parser.Ssc.ConfigTree.pdb
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.Rbs6000MultiDUTHandler.pdb
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.Rbs6000MultiDUTHandler.xml
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.CabinetConfigurationManager.pdb
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.CabinetConfigurationManager.exe.config
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\CabinetConfiguration.Parser.Ssc.ConfigDoc.pdb
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.ConfigKeyParser.pdb
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.RbsMasterNet.pdb
@@ -221,16 +207,12 @@ C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.Dmm.pdb
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.Dmm.xml
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.CabinetConfiguration.Definitions.pdb
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.InstructionHandler.pdb
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.InstructionHandler.exe.config
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\SoftwareSelectionTool.Common.pdb
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\TestplanParser.pdb
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.OMT.pdb
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.CabinetConfiguration.Parser.ConfigKeyTree.pdb
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.SccParser.pdb
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\IPamelaNet.xml
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Renci.SshNet.xml
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Rebex.Syslog.xml
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\INIFileParser.xml
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Ericsson.SC.Node.SoftwareManager.pdb
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\ChkTestMethod.pdb
@@ -245,9 +227,6 @@ C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\GalaSoft.
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\GalaSoft.MvvmLight.Extras.xml
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\Microsoft.Extensions.Primitives.xml
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\System.Memory.xml
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\System.Numerics.Vectors.xml
-C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\bin\Debug\System.Buffers.xml
 C:\Users\jogo\Documents\git_Test\SearchKey_Rep\SearchKey_Rep\obj\Debug\SearchKey_Rep.exe.config
 C:\Users\DELL\Documents\GitRepos\RepositoryTest\SearchKey_Rep\SearchKey_Rep\bin\Debug\1_68_Update_C.txt
 C:\Users\DELL\Documents\GitRepos\RepositoryTest\SearchKey_Rep\SearchKey_Rep\bin\Debug\SearchKey_Rep.exe.config

@@ -134,14 +134,14 @@ module Tests =
     let ``TestHwPidListCreation`` () =
         let testCase = {
               ProdNumber = "KRC 161 833/2" ; 
-              Name = "Radio 2208 B7" ;
+              Name = "Radio 8836" ;
               Power = "" ;
               FrequenceWidth = "" }
 
         let final = 
             testCase
-            |> getPower
-            |> getFreqWidth
+            |> fun x -> getPower x "B7"
+            |> getFreqWidth  
 
-        Assert.True (final.Power = "" &&
-                     final.FrequenceWidth = "")
+        Assert.True (final.Power = "20" &&
+                     final.FrequenceWidth = "5")

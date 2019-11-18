@@ -23,18 +23,29 @@ HwPidStream.Close()
 let findRightFreqWidth ( widthsStr : string )  =
     let widthsCrosses = widthsStr.Split ','
 
-    let widths = [|5 ; 10 ; 20 ; 25|]
+    let widths = [| 1.4 ; 3.0 ; 4.2 ; 4.4 ; 4.6 ;
+                    4.8 ; 5.0 ; 9.0 ; 10.0 ; 14.8 ;
+                    15.0 ; 20.0 ; 5.0 ; 10.0 ; 15.0 ;
+                    20.0 ; 25.0 ; 30.0 ; 40.0 ; 50.0 ;
+                    60.0 ; 70.0 ; 80.0 ; 90.0 ; 100.0 ;
+                    200.0 ; 400.0|]
 
     let anonRecSeq =
         Array.zip widthsCrosses [|0..widthsCrosses.Length - 1|]
         |> Array.map (fun (value, pos) -> {| Cross = value ;
                                              Value = widths.[pos]|})
+    
+    let foundSeq = 
+       anonRecSeq
+       |> Array.filter (fun anonRec -> anonRec.Cross <> "")
 
-    anonRecSeq
-    |> Array.filter (fun anonRec -> anonRec.Cross <> "")
-    |> fun sequence -> if sequence.Length <> 0
-                       then sequence.[0].Value |> string
-                       else ""
+    let result =
+        foundSeq
+        |> fun sequence -> if sequence.Length <> 0
+                           then sequence.[0].Value |> string
+                           else ""
+
+    result
     
 
 let infoRecSeq = 
@@ -45,33 +56,40 @@ let infoRecSeq =
                                     |> function
                                         | _ when infoSeq.Length >= 3 ->
                                     
-                                            { ProdNumber = infoSeq.[2] |> fun str -> str.Trim() ;
-                                              Name = infoSeq.[1] |> fun str -> str.Trim().Replace(" ","") ;
-                                              Power = infoSeq.[3] |> fun str -> str.Trim().Replace(" ","") ;
-                                              FrequenceWidth = findRightFreqWidth (infoSeq.[4]
+                                            { ProdNumber = infoSeq.[2] |> fun str -> str.Trim().Replace(" ","") ;
+                                              Name = infoSeq.[0] |> fun str -> str.Trim().Replace(" ","") ;
+                                              Power = infoSeq.[4] |> fun str -> str.Trim().Replace(" ","") ;
+                                              FrequenceWidth = findRightFreqWidth (infoSeq.[3]
                                                                                    |> fun str -> 
-                                                                                    str.Trim().Replace(" ","")) }
+                                                                                    str.Trim().Replace(" ",""))}
 
                                         | _ -> 
                                             { ProdNumber = "" ;
                                               Name = "" ;
                                               Power = "" ;
-                                              FrequenceWidth = "" })
+                                              FrequenceWidth = ""})
 
-let getPower (case : HwPidListItems) =
+let getPower (case : HwPidListItems) (bands : string) =
+    
+    let mutable ProdName = case.Name 
+    bands.Split ','
+    |> Array.map (fun band -> band.Trim())
+    |> Array.iter (fun band -> ProdName <- ProdName.Replace(band, ""))
+
+    let sss = case
     let dataFoundThroughNumber =
         infoRecSeq
-        |> Seq.tryFind (fun data -> data.ProdNumber = case.ProdNumber)
+        |> Seq.tryFind (fun data -> data.ProdNumber.Replace(" ", "") = case.ProdNumber.Replace(" ", "").Trim())
 
     let dataFoundThroughName =
         infoRecSeq
-        |> Seq.tryFind (fun data -> data.Name = case.Name)
+        |> Seq.tryFind (fun data -> ProdName = data.Name)
     
     None
     |>function
      | _ when dataFoundThroughNumber <> None -> 
             
-            {case with Power = dataFoundThroughNumber.Value.ProdNumber}
+            {case with Power = dataFoundThroughNumber.Value.Power}
      
      | _ when dataFoundThroughName <> None &&  
               dataFoundThroughNumber = None ->
@@ -80,24 +98,31 @@ let getPower (case : HwPidListItems) =
      
      | _ -> case
     
-let getFreqWidth (case : HwPidListItems) =
+let getFreqWidth (case : HwPidListItems) (bands : string) =
+    
+    let mutable ProdName = case.Name 
+    bands.Split ','
+    |> Array.map (fun band -> band.Trim())
+    |> Array.iter (fun band -> ProdName <- ProdName.Replace(band, ""))
+
+    let sss = case
     let dataFoundThroughNumber =
         infoRecSeq
-        |> Seq.tryFind (fun data -> data.ProdNumber = case.ProdNumber)
+        |> Seq.tryFind (fun data -> data.ProdNumber.Replace(" ", "").Trim() = case.ProdNumber.Replace(" ", "").Trim())
 
     let dataFoundThroughName =
         infoRecSeq
-        |> Seq.tryFind (fun data -> data.Name = case.Name)
+        |> Seq.tryFind (fun data -> data.Name = ProdName)
     
     None
     |>function
      | _ when dataFoundThroughNumber <> None -> 
             
-            {case with Power = dataFoundThroughNumber.Value.ProdNumber}
+            {case with FrequenceWidth = dataFoundThroughNumber.Value.FrequenceWidth}
      
      | _ when dataFoundThroughName <> None &&  
               dataFoundThroughNumber = None ->
              
-             { case with Power = dataFoundThroughName.Value.Power}
+             { case with FrequenceWidth = dataFoundThroughName.Value.FrequenceWidth}
      
      | _ -> case
