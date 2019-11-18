@@ -1,0 +1,3160 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IPamelaNet</name>
+    </assembly>
+    <members>
+        <member name="T:Idefix.PamelaNet.IProductInfo3">
+            <summary>
+            Extra product information
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.IProductInfo3.UpdateTestStatus(System.String,System.String,System.String,System.DateTime)">
+            <summary>
+            Update the test status for an individual in the underlying database.
+            </summary>
+            <param name="idNumber"></param>
+            <param name="testStatus"></param>
+            <param name="testCategory"></param>
+            <param name="testTime"></param>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore3.GetAllPerformed(System.String,System.String,System.String)">
+            <summary>
+            Get information of latest test for each test type performed for individual.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore3.GetAllTestTypeTests(System.String,System.String)">
+            <summary>
+            Get tests performed for individual and test type. Get additional information 
+            for tests fetched by GetAllPerformed function.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore3.GetAllParameters">
+            <summary>
+            Get entire contents from PARAM and SYS_SETTINGS tables + web service info.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore3.GetAllBlobInfo(System.String,System.String,System.Int32)">
+            <summary>
+            Get information about all BLOBs for a specific test (DUT id + type + count)
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore3.GetAllCriterias(System.String,System.String)">
+            <summary>
+            For given criteria document number and (optional) revision, get a list with criteria combinations.
+            This function can be used to check if the combination of criteria document number and revision
+            already exists in TestNet, to avoid creating criteria with same revision with different date
+            that will be rejected by TestNet.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore3.GetAllLayouts(System.String,System.String)">
+            <summary>
+            For given layout document number and (optional) revision, get a list with layout combinations.
+            This function can be used to check if the combination of layout document number and revision 
+            already exists in TestNet, to avoid creating layout with same revision with different date 
+            that will be rejected by TestNet.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore4.GetCpkInfo(Idefix.PamelaNet.CpkAlgorithm,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32,System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
+            <summary>
+            Calculate and fetch CPK information that can be used for sample based testing.
+            </summary>
+            <param name="algorithm">The algorithm to use for calculating CPK info.</param>
+            <param name="stationId">The station identifier.</param>
+            <param name="idNumber">The DUT serial number.</param>
+            <param name="productNumber">The product number.</param>
+            <param name="rState">The R-state.</param>
+            <param name="criteriaDocumentNumber">The criteria document number.</param>
+            <param name="criteriaRevision">The criteria revision.</param>
+            <param name="testType">The test type / station type.</param>
+            <param name="maxCount">The maximum number of returned values.</param>
+            <param name="mpNames">The measurement point names to use in calculation.</param>
+            <param name="forceNewCalculation">Set to <c>true</c> to force a new calculation.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore4.GetFaultMpList(System.String,System.String,System.Int32)">
+            <summary>
+            Gets a list of faulty measurement points.
+            </summary>
+            <param name="idNumber">The DUT serial number.</param>
+            <param name="testType">The test type / station type.</param>
+            <param name="maxCount">The maximum number of returned values.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Idefix.PamelaNet.IProductInfo2">
+            <summary>
+            Extra product information
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.IProductInfo2.GetIdInfoBaso(System.String)">
+            <summary>
+            Get information about an individual’s base product (the “parent” or “container” product).
+            </summary>
+            <param name="idNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Idefix.PamelaNet.DriverBaseClass">
+            <summary>
+            Base class for drivers accessing old Pamela drivers
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.DriverBaseClass.GetInfo(System.String)">
+            <summary>
+            Gets the driver information.
+            </summary>
+            <param name="filename">The filename of the driver.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.DriverBaseClass.CheckError(System.UInt32,System.Text.StringBuilder)">
+            <summary>
+            Checks the pamStatus error code.
+            </summary>
+            <param name="pamStatus">The pamStatus error code.</param>
+            <param name="errMsg">The error message.</param>
+            <exception cref="T:Idefix.PamelaNet.PamelaNetException"></exception>
+        </member>
+        <member name="M:Idefix.PamelaNet.DriverBaseClass.GetPamelaStatus">
+            <summary>
+            Get Pamela driver status.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Idefix.PamelaNet.IDriverUpdate">
+            <summary>
+            Deprecated interface for auto-updating Pamela drivers.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.IDriverUpdate.IsUpdateRequired">
+            <summary>
+            Determines whether an update is required.
+            </summary>
+            <returns>True if the driver needs to be updated.</returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.IDriverUpdate.InstallDriver(System.String)">
+            <summary>
+            Installs the driver.
+            </summary>
+            <param name="installPath">The install path.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Idefix.PamelaNet.IFlowControl">
+            <summary>
+            Interface for checking if a test is allowed to run and what MPGs and MPs should /should not be executed.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.IFlowControl.AllowedToTest(System.String,System.String)">
+            <summary>
+            Verify that the test is allowed to execute. This calls intention is to control the flow based on statistical testing.
+            </summary>
+            <param name="idNumber"></param>
+            <param name="categoryNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.IFlowControl.GetDoList(Idefix.PamelaNet.FlowControlData,System.String,System.String)">
+            <summary>
+            Get list of dynamically tested MPG/MP:s that should be executed.
+            </summary>
+            <param name="prodData">Production data</param>
+            <param name="stationId">The station id</param>
+            <param name="criteriaFile">The criteria file path</param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.IFlowControl.GetSkipList(Idefix.PamelaNet.FlowControlData,System.String)">
+            <summary>
+            Returns list with MPG:s and/or MP:s to skip in the test
+            </summary>
+            <param name="prodData">Production data</param>
+            <param name="stationId">The station id</param>
+            <returns></returns>
+        </member>
+        <member name="T:Idefix.PamelaNet.PamelaStatusCode">
+            <summary>
+            Status codes (bitfields) that Pamela drivers return.
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.PamelaStatusResult">
+            <summary>
+            Status code and message describing the current status or error.
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.PamelaNetException">
+            <summary>
+            Pamela.NET exception class for encapsulating additional exception information.
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.PamelaNetException.ErrorCode">
+            <summary>
+            Gets the error code.
+            </summary>
+            <value>
+            The error code.
+            </value>
+        </member>
+        <member name="M:Idefix.PamelaNet.PamelaNetException.#ctor(System.String,System.UInt32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Idefix.PamelaNet.PamelaNetException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="error">The error.</param>
+        </member>
+        <member name="M:Idefix.PamelaNet.PamelaNetException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Idefix.PamelaNet.PamelaNetException"/> class.
+            </summary>
+            <param name="info">The object that holds the serialized object data.</param>
+            <param name="context">The contextual information about the source or destination.</param>
+        </member>
+        <member name="M:Idefix.PamelaNet.PamelaNetException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            When overridden in a derived class, sets the <see cref="T:System.Runtime.Serialization.SerializationInfo" /> with information about the exception.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
+            <PermissionSet>
+              <IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Read="*AllFiles*" PathDiscovery="*AllFiles*" />
+              <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="SerializationFormatter" />
+            </PermissionSet>
+        </member>
+        <member name="T:Idefix.PamelaNet.IPamelaStatus">
+            <summary>
+            Interface for distributing Pamela status through PamelaNet
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.IPamelaStatus.GetPamelaStatus">
+            <summary>
+            Get Pamela status message.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Idefix.PamelaNet.IPrint">
+            <summary>
+            Interface for printing protocols
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.IPrint.TestRecord(Idefix.PamelaNet.TestRecordItem,System.Boolean)">
+            <summary>
+            Print test record on local default printer.
+            </summary>
+            <param name="result"></param>
+            <param name="printAll"></param>
+        </member>
+        <member name="M:Idefix.PamelaNet.IPrint.FaultReport(Idefix.PamelaNet.TestRecordItem)">
+            <summary>
+            Print fault report for test record on local default printer.
+            </summary>
+            <param name="result"></param>
+        </member>
+        <member name="T:Idefix.PamelaNet.IProductInfo">
+            <summary>
+            Interface for product information
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.IProductInfo.ConnectId(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Connect a child to a parent.
+            </summary>
+            <param name="idNumber"></param>
+            <param name="childId"></param>
+            <param name="assembleDone"></param>
+            <param name="structureCheck"></param>
+        </member>
+        <member name="M:Idefix.PamelaNet.IProductInfo.DisconnectId(System.String,System.String,System.Boolean)">
+            <summary>
+            Disconnect an individual.
+            </summary>
+            <param name="parentSerialNumber"></param>
+            <param name="childSerialNumber"></param>
+            <param name="softDisconnect"></param>
+        </member>
+        <member name="M:Idefix.PamelaNet.IProductInfo.ScrapId(System.String)">
+            <summary>
+            Scrap an individual in the underlying ID database.
+            </summary>
+            <param name="idNumber"></param>
+        </member>
+        <member name="M:Idefix.PamelaNet.IProductInfo.ShipId(System.String,System.String,Idefix.PamelaNet.LabelItem)">
+            <summary>
+            Ship an individual in the underlying ID database.
+            </summary>
+            <param name="idNumber"></param>
+            <param name="destination"></param>
+            <param name="label"></param>
+        </member>
+        <member name="M:Idefix.PamelaNet.IProductInfo.StoreId(System.String,System.String,Idefix.PamelaNet.LabelItem)">
+            <summary>
+            Flag an individual in the underlying ID database to be tested OK and stored for future shipping.
+            </summary>
+            <param name="idNumber"></param>
+            <param name="destination"></param>
+            <param name="label"></param>
+        </member>
+        <member name="M:Idefix.PamelaNet.IProductInfo.UpdateComment(System.String,System.String,System.Boolean)">
+            <summary>
+            Update the text comment for an individual in the underlying database.
+            </summary>
+            <param name="idNumber"></param>
+            <param name="comment"></param>
+            <param name="replyWanted"></param>
+        </member>
+        <member name="M:Idefix.PamelaNet.IProductInfo.UpdateExemption(System.String,System.String,System.Boolean)">
+            <summary>
+            Update the exemption field for an individual in the underlying database.
+            </summary>
+            <param name="idNumber"></param>
+            <param name="excemption"></param>
+            <param name="replyWanted"></param>
+        </member>
+        <member name="M:Idefix.PamelaNet.IProductInfo.UpdateTestStatus(System.String,System.String,System.Boolean)">
+            <summary>
+            Update the test status for an individual in the underlying database.
+            </summary>
+            <param name="idNumber"></param>
+            <param name="testStatus"></param>
+            <param name="replyWanted"></param>
+        </member>
+        <member name="M:Idefix.PamelaNet.IProductInfo.PrintLabel(System.String,Idefix.PamelaNet.LabelItem)">
+            <summary>
+            Print a barcode label.
+            </summary>
+            <param name="idNumber"></param>
+            <param name="label"></param>
+        </member>
+        <member name="M:Idefix.PamelaNet.IProductInfo.CreateId(System.String)">
+            <summary>
+            Create new ID number/s for individuals in the underlying database.
+            </summary>
+            <param name="idNumber"></param>
+        </member>
+        <member name="M:Idefix.PamelaNet.IProductInfo.CreateId(Idefix.PamelaNet.ProductIdItem,Idefix.PamelaNet.LabelItem,System.String,System.String)">
+            <summary>
+            Create new ID number/s for individuals in the underlying database.
+            </summary>
+            <param name="product"></param>
+            <param name="label"></param>
+            <param name="excemption"></param>
+            <param name="comment"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.IProductInfo.CreateId(Idefix.PamelaNet.OrderNumberItem,Idefix.PamelaNet.LabelItem,System.String,System.String)">
+            <summary>
+            Create new ID number/s for individuals in the underlying database based on a specific customer order.
+            </summary>
+            <param name="order"></param>
+            <param name="label"></param>
+            <param name="excemption"></param>
+            <param name="comment"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.IProductInfo.GetAdditionalInfo(System.String)">
+            <summary>
+            Get additional numbers for an individual.
+            </summary>
+            <param name="idNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.IProductInfo.GetChildren(System.String)">
+            <summary>
+            Get assembled individuals.
+            </summary>
+            <param name="idNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.IProductInfo.GetOrderStructure(Idefix.PamelaNet.OrderNumberItem)">
+            <summary>
+            Get structure information about the requested order.
+            </summary>
+            <param name="order"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.IProductInfo.GetIdInfo(System.String)">
+            <summary>
+            Get information about an individual.
+            </summary>
+            <param name="idNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.IProductInfo.GetOrderInfo(Idefix.PamelaNet.OrderNumberItem)">
+            <summary>
+            Get information about requested order.
+            </summary>
+            <param name="order"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Idefix.PamelaNet.IConfig">
+            <summary>
+            Interface for basic control of a Pamela driver (activate / deactivate).
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.IConfig.Activate(System.String,System.String,System.String)">
+            <summary>
+            Activates Pamela and maps all Pamela drivers.
+            </summary>
+            <param name="stationId"></param>
+            <param name="userId"></param>
+            <param name="password"></param>
+        </member>
+        <member name="M:Idefix.PamelaNet.IConfig.Deactivate">
+            <summary>
+            Deactivates all Pamela drivers and Pamela.
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.IDriverSettings">
+            <summary>
+            Interface for getting information about a driver and changing its settings.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.IDriverSettings.GetInfo">
+            <summary>
+            Get info on the Pamela interface.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Idefix.PamelaNet.ITestDistribution">
+            <summary>
+            Interface for managing test cases and other test-related files.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestDistribution.IsUpdateRequired(System.String)">
+            <summary>
+            Checks if anything needs to be updated on the station
+            </summary>
+            <param name="stationId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestDistribution.Update(System.String)">
+            <summary>
+            Update station information
+            </summary>
+            <param name="stationId"></param>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestDistribution.GetTestCaseList(System.String)">
+            <summary>
+            Get list of testCases for station
+            </summary>
+            <param name="stationId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestDistribution.GetTestProgram(Idefix.PamelaNet.TestCaseItem)">
+            <summary>
+            Get test program from program library.
+            </summary>
+            <param name="testData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestDistribution.GetTestProgram(System.String,System.String)">
+            <summary>
+            Get test program from program library.
+            </summary>
+            <param name="programNumber">The test program number</param>
+            <param name="rstate">The r-State of the test program</param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestDistribution.UpdateTestCase(Idefix.PamelaNet.TestCaseItem)">
+            <summary>
+            Download all files connected to the specified TestCase locally from the server
+            </summary>
+            <param name="testData"></param>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestDistribution.GetProgramInfo(Idefix.PamelaNet.TestCaseItem)">
+            <summary>
+            Get program information
+            </summary>
+            <param name="testCase"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestDistribution.GetCriteria(Idefix.PamelaNet.DocumentItem)">
+            <summary>
+            Get criteria filename and path from program library
+            </summary>
+            <param name="criteria">Criteria document information</param>
+            <returns>Path and filename for the criteria file</returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestDistribution.GetLayoutList(Idefix.PamelaNet.ProductItem,Idefix.PamelaNet.DocumentItem)">
+            <summary>
+            Translate test case with certain criteria to layouts
+            </summary>
+            <param name="product"></param>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestDistribution.GetLayout(Idefix.PamelaNet.DocumentItem)">
+            <summary>
+            Get layout from program library
+            </summary>
+            <param name="layout"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestDistribution.GetDataPacketList(Idefix.PamelaNet.ProductItem,System.String)">
+            <summary>
+            Get all data packets in the test case
+            </summary>
+            <param name="product"></param>
+            <param name="description"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestDistribution.GetDataPacket(Idefix.PamelaNet.DocumentItem)">
+            <summary>
+            Get data packet from program library
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Idefix.PamelaNet.ITestMonitor">
+            <summary>
+            Interface for monitoring a test station.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestMonitor.TestResult(Idefix.PamelaNet.TestRecordItem)">
+            <summary>
+            Save test record to the test system database.
+            </summary>
+            <param name="result"></param>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestMonitor.TestStatus(System.String,Idefix.PamelaNet.StatusType,Idefix.PamelaNet.StatusItem)">
+            <summary>
+            Send status information regarding test stations. Example of passed information is DUT status, 
+            test plan status, free disk space and free memory.
+            </summary>
+            <param name="stationId"></param>
+            <param name="type"></param>
+            <param name="status"></param>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestMonitor.Message(Idefix.PamelaNet.MessageItem)">
+            <summary>
+            Messages the specified message.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestMonitor.AlarmWarning(Idefix.PamelaNet.MessageItem)">
+            <summary>
+            Alarms the warning.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestMonitor.AlarmError(Idefix.PamelaNet.MessageItem)">
+            <summary>
+            Alarms the error.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestMonitor.AlarmCritical(Idefix.PamelaNet.MessageItem)">
+            <summary>
+            Alarms the critical.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestMonitor.ResetAlarm(Idefix.PamelaNet.MessageItem)">
+            <summary>
+            Resets the alarm.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="T:Idefix.PamelaNet.ITestResultStore">
+            <summary>
+            Interface for storing test records.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore.Store(Idefix.PamelaNet.TestRecordItem)">
+            <summary>
+            Stores the specified result.
+            </summary>
+            <param name="result">The result.</param>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore.FetchRecords(System.String,System.String)">
+            <summary>
+            Fetches the records.
+            </summary>
+            <param name="idNumber">The identifier number.</param>
+            <param name="processStep">The process step.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore.FetchRecord(System.String,System.String,System.Int32)">
+            <summary>
+            Fetches the record.
+            </summary>
+            <param name="idNumber">The identifier number.</param>
+            <param name="processStep">The process step.</param>
+            <param name="index">The index.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore.RecordCount(System.String,System.String)">
+            <summary>
+            Gets the test record count.
+            </summary>
+            <param name="idNumber">The identifier number.</param>
+            <param name="processStep">The process step.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore.FetchRecordsInfo(System.String,System.String)">
+            <summary>
+            Fetches the records information.
+            </summary>
+            <param name="idNumber">The identifier number.</param>
+            <param name="processStep">The process step.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore.FetchRecordInfo(System.String,System.String,System.Int32)">
+            <summary>
+            Fetches the record information.
+            </summary>
+            <param name="idNumber">The identifier number.</param>
+            <param name="processStep">The process step.</param>
+            <param name="index">The index.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore.BlobCount(System.String)">
+            <summary>
+            Gets the blob count.
+            </summary>
+            <param name="idNumber">The identifier number.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore.FetchBlob(System.String,System.Int32,System.String)">
+            <summary>
+            Fetches a BLOB.
+            </summary>
+            <param name="idNumber">The identifier number.</param>
+            <param name="index">The index.</param>
+            <param name="path">The path.</param>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore.GetProcessSteps(System.String)">
+            <summary>
+            Gets the process steps.
+            </summary>
+            <param name="idNumber">The identifier number.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Idefix.PamelaNet.ITestResultStore2">
+            <summary>
+            Interface for additional functionality relating to test records.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore2.GetLatestTestResultForMP(System.String,System.String,System.String,System.String)">
+            <summary>
+            Get the latest result of a specific measurement point.
+            </summary>
+            <param name="idNumber">the dut to query</param>
+            <param name="criteriaDocumentNumber">the criteria document number</param>
+            <param name="criteriaRevision">the criteria revision</param>
+            <param name="mp">the mp that is result is for</param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore2.GetLatestTestResult(System.String)">
+            <summary>
+            Get the test status of the DUT (Passed or failed).
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore2.GetLatestTestTime(System.String)">
+            <summary>
+            Get the time stamp of when the DUT was last tested.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore2.GetTotalNumberOfTests(System.String)">
+            <summary>
+            Get the total number of times the DUT has been tested.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore2.GetNumericTestRecords(System.String,System.String,System.String,System.String,System.String,System.Boolean,System.Int32,System.String,System.String,System.String,System.String)">
+            <summary>
+            Gets the numeric test records.
+            </summary>
+            <param name="productNumber">The product no.</param>
+            <param name="rState">State of the r.</param>
+            <param name="criteriaDocumentNumber">The criteria document.</param>
+            <param name="criteriaRevision">The criteria rev.</param>
+            <param name="mp">The mp.</param>
+            <param name="onlyPassedMp">if set to <c>true</c> [only passed mp].</param>
+            <param name="maxNoMp">The maximum no mp.</param>
+            <param name="mpFromDate">The mp from date.</param>
+            <param name="mpToDate">The mp to date.</param>
+            <param name="stationId">The station identifier.</param>
+            <param name="stationType">Type of the station.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore2.GetBooleanTestRecords(System.String,System.String,System.String,System.String,System.String,System.Boolean,System.Int32,System.String,System.String,System.String,System.String)">
+            <summary>
+            Gets the boolean test records.
+            </summary>
+            <param name="productNumber">The product no.</param>
+            <param name="rState">State of the r.</param>
+            <param name="criteriaDocumentNumber">The criteria document.</param>
+            <param name="criteriaRevision">The criteria rev.</param>
+            <param name="mp">The mp.</param>
+            <param name="onlyPassedMp">if set to <c>true</c> [only passed mp].</param>
+            <param name="maxNoMp">The maximum no mp.</param>
+            <param name="mpFromDate">The mp from date.</param>
+            <param name="mpToDate">The mp to date.</param>
+            <param name="stationId">The station identifier.</param>
+            <param name="stationType">Type of the station.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore2.GetTextTestRecords(System.String,System.String,System.String,System.String,System.String,System.Boolean,System.Int32,System.String,System.String,System.String,System.String)">
+            <summary>
+            Gets the text test records.
+            </summary>
+            <param name="productNumber">The product no.</param>
+            <param name="rState">State of the r.</param>
+            <param name="criteriaDocumentNumber">The criteria document.</param>
+            <param name="criteriaRevision">The criteria rev.</param>
+            <param name="mp">The mp.</param>
+            <param name="onlyPassedMp">if set to <c>true</c> [only passed mp].</param>
+            <param name="maxNoMp">The maximum no mp.</param>
+            <param name="mpFromDate">The mp from date.</param>
+            <param name="mpToDate">The mp to date.</param>
+            <param name="stationId">The station identifier.</param>
+            <param name="stationType">Type of the station.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore2.GetBlob(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Get a specific BLOB as an array of bytes.
+            </summary>
+            <param name="testType">Type of the test.</param>
+            <param name="idNumber">The identifier no.</param>
+            <param name="testCount">The test count.</param>
+            <param name="blobCount">The BLOB count.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore2.GetBlobInfo(System.String,System.String,System.Int32)">
+            <summary>
+            This method has been obsoleted because the return type is wrong. Please use ITestResultStore3.GetAllBlobInfo() instead.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore2.GetCriterias(System.String,System.String)">
+            <summary>
+            This method has been obsoleted because the return type is wrong. Please use ITestResultStore3.GetAllCritarias() instead.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore2.GetLayouts(System.String,System.String)">
+            <summary>
+            This method has been obsoleted because the return type is wrong. Please use ITestResultStore3.GetAllLayouts() instead.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore2.GetPARAMS">
+            <summary>
+            This method has been obsoleted because the return type is wrong. Please use ITestResultStore3.GetAllParameters() instead.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore2.GetPERFORMED(System.String,System.String,System.String)">
+            <summary>
+            This method has been obsoleted because the return type is wrong. Please use ITestResultStore3.GetAllPerformed() instead.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore2.GetTestTypeTests(System.String,System.String)">
+            <summary>
+            This method has been obsoleted because the return type is wrong. Please use ITestResultStore3.GetAllTestTypeTests() instead.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestResultStore2.GetQSyncRequest(System.String,System.DateTime)">
+            <summary>
+            Get tests performed for individual. Used to get software id and test count to use in 
+            Fetch application when recreating protocols. This function is obsolete since there 
+            is a query file format that uses idNumber and start time.
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.ITestStation">
+            <summary>
+            Interface for getting information about the test station.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestStation.Name(System.String)">
+            <summary>
+            Get station name 
+            </summary>
+            <param name="stationId">Station id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Idefix.PamelaNet.ITestStation.Responsible(System.String)">
+            <summary>
+            Get station responsible
+            </summary>
+            <param name="stationId">Station id</param>
+            <returns></returns>
+        </member>
+        <member name="T:Idefix.PamelaNet.PamNetTypes">
+            <summary>
+            Debug message types used when storing debug messages
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.DriverInfo">
+            <summary>
+            Information about a Pamela.NET driver
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.DriverInfo.Name">
+            <summary>
+            The name of the driver
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.DriverInfo.ProductNumber">
+            <summary>
+            The product number of the driver
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.DriverInfo.RState">
+            <summary>
+            The R-state of the driver
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.DocumentItem">
+            <summary>
+            Meta-data for a document, such as document number, revision and date.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.DocumentItem.DocumentNumber">
+            <summary>
+            The document number. Example: &quot;190 04-ABC 123 456&quot;
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.DocumentItem.Revision">
+            <summary>
+            The document revision. Example: &quot;A&quot;
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.DocumentItem.Description">
+            <summary>
+            The document description.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.DocumentItem.Date">
+            <summary>
+            The document date. Must be formatted as &quot;YYYY-MM-DD&quot;.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.DocumentItem.Responsible">
+            <summary>
+            The person responsible for the document.
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.DocumentUrlItem">
+            <summary>
+            Meta-data for a document accessed via a URL, such as document number, revision and date. This class is obsolete and should not be used.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.DocumentUrlItem.Url">
+            <summary>
+            The URL of the document.
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.ProductItem">
+            <summary>
+            Meta-data for a product, such as product number and R-state.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductItem.TestType">
+            <summary>
+            The test type used.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductItem.ProductNumber">
+            <summary>
+            The product number. Example: &quot;ABC 123 456&quot;
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductItem.RState">
+            <summary>
+            The R-state of the product. Example: &quot;R1A&quot;
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductItem.Description">
+            <summary>
+            A description for the test.
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.FileItem">
+            <summary>
+            Meta-data for a file.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.FileItem.Path">
+            <summary>
+            The path of the file.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.FileItem.Filename">
+            <summary>
+            The filename.
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.TestCaseItem">
+            <summary>
+            Meta-data for a test case.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.TestCaseItem.Product">
+            <summary>
+            Information about the product.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.TestCaseItem.ConfigKey">
+            <summary>
+            The configuration key.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.TestCaseItem.Category">
+            <summary>
+            The test category (also known as &quot;Process Step&quot; in Bartrack).
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.TestCaseItem.Description">
+            <summary>
+            A human readable description.
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.TestProgramItem">
+            <summary>
+            Meta-data for a test program
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.TestProgramItem.Path">
+            <summary>
+            The path to the directory containing the test case files.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.TestProgramItem.EntryPoint">
+            <summary>
+            The entry point. Usually the name of the main DLL that implements the test methods.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.TestProgramItem.Argument">
+            <summary>
+            Additional arguments needed when executing the test.
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.TestItem">
+            <summary>
+            Meta-data for a test item
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.TestItem.Criteria">
+            <summary>
+            The criteria
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.TestItem.Product">
+            <summary>
+            The product
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.TestItem.ConfigKey">
+            <summary>
+            The configuration key
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.TestItem.CategoryNo">
+            <summary>
+            The category number
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.LabelItem">
+            <summary>
+            Meta-data for a label
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.LabelItem.Name">
+            <summary>
+            The name
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.LabelItem.Count">
+            <summary>
+            The count
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.OrderNumberItem">
+            <summary>
+            Meta-data for an order number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.OrderNumberItem.OrderNumber">
+            <summary>
+            The order number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.OrderNumberItem.OrderItemNumber">
+            <summary>
+            The order item number
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.ProductIdItem">
+            <summary>
+            Meta-data for a product ID
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdItem.ProductNumber">
+            <summary>
+            The product number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdItem.RState">
+            <summary>
+            The R-state
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdItem.Quantity">
+            <summary>
+            The quantity
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.AddNoItem">
+            <summary>
+            Meta-data for an additional number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.AddNoItem.Identifier">
+            <summary>
+            The identifier
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.AddNoItem.Value">
+            <summary>
+            The value
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.ProductInfoItem">
+            <summary>
+            Meta-data for a product
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductInfoItem.IdNumber">
+            <summary>
+            The serial number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductInfoItem.ProductNumber">
+            <summary>
+            The product number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductInfoItem.RState">
+            <summary>
+            The R-state
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.ProductIdInfoItem">
+            <summary>
+            Product information
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoItem.ProductNumber">
+            <summary>
+            The product number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoItem.RState">
+            <summary>
+            The R-state
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoItem.ProductName">
+            <summary>
+            The product name
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoItem.OrderNumber">
+            <summary>
+            The order number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoItem.OrderItemNumber">
+            <summary>
+            The order item number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoItem.Date">
+            <summary>
+            The date
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoItem.Status">
+            <summary>
+            The status
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoItem.TestFlag">
+            <summary>
+            The test flag
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoItem.Comment">
+            <summary>
+            The comment
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoItem.ParentId">
+            <summary>
+            The parent serial number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoItem.ChildrenCount">
+            <summary>
+            The number of children
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoItem.AdditionalNoCount">
+            <summary>
+            The number of additional numbers
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoItem.ManufacturerInfo">
+            <summary>
+            The manufacturer information
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.ProductVersionItem">
+            <summary>
+            Product version information
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductVersionItem.ProductNumber">
+            <summary>
+            The product number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductVersionItem.RState">
+            <summary>
+            The R-state
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductVersionItem.Parent">
+            <summary>
+            The version information for the parent
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductVersionItem.Childrens">
+            <summary>
+            The version information of all children
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductVersionItem.Dynamic">
+            <summary>
+            Is the structure dynamic
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductVersionItem.PositionInParent">
+            <summary>
+            The position in the parent product
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductVersionItem.ManufacturerInfo">
+            <summary>
+            The manufacturer information
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.ManufacturerInfoItem">
+            <summary>
+            Manufacturer information
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ManufacturerInfoItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Idefix.PamelaNet.ManufacturerInfoItem"/> class.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ManufacturerInfoItem.Init">
+            <summary>
+            Initializes this instance.
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.ManufacturerInfoItem.Manufacturer">
+            <summary>
+            Gets or sets the manufacturer.
+            </summary>
+            <value>
+            The manufacturer.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.ManufacturerInfoItem.Country">
+            <summary>
+            Gets or sets the country.
+            </summary>
+            <value>
+            The country.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.ManufacturerInfoItem.Function">
+            <summary>
+            Gets or sets the function.
+            </summary>
+            <value>
+            The function.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.ManufacturerInfoItem.Dimensions">
+            <summary>
+            Gets or sets the dimensions.
+            </summary>
+            <value>
+            The dimensions.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.ManufacturerInfoItem.Weight">
+            <summary>
+            Gets or sets the weight.
+            </summary>
+            <value>
+            The weight.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.ManufacturerInfoItem.MaxReplace">
+            <summary>
+            Gets or sets the maximum replace count.
+            </summary>
+            <value>
+            The maximum replace count.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.ManufacturerInfoItem.Title">
+            <summary>
+            Gets or sets the title.
+            </summary>
+            <value>
+            The title.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.ManufacturerInfoItem.RoHS">
+            <summary>
+            Gets or sets the RoHS info.
+            </summary>
+            <value>
+            The RoHS info.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.ManufacturerInfoItem.Price">
+            <summary>
+            Gets or sets the price.
+            </summary>
+            <value>
+            The price.
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.OrderInfoItem">
+            <summary>
+            Order information
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.OrderInfoItem.ProductNumber">
+            <summary>
+            The product number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.OrderInfoItem.RState">
+            <summary>
+            The R-state
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.OrderInfoItem.Used">
+            <summary>
+            Used
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.OrderInfoItem.SalesOrderInfo">
+            <summary>
+            The sales order information
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.OrderInfoItem.Country">
+            <summary>
+            The country
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.OrderInfoItem.ConfigKey">
+            <summary>
+            The configuration key
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.OrderInfoItem.ElsnNumber">
+            <summary>
+            The ELSN number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.OrderInfoItem.IpbNumber">
+            <summary>
+            The IPB number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.OrderInfoItem.ChildrenCount">
+            <summary>
+            The number of children
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.OrderStructureItem">
+            <summary>
+            Order structure information
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.OrderStructureItem.ProductNumber">
+            <summary>
+            The product number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.OrderStructureItem.RState">
+            <summary>
+            The R-state
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.OrderStructureItem.Position">
+            <summary>
+            The position
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.OrderStructureItem.Quantity">
+            <summary>
+            The quantity
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.ProductIdInfoBasoItem">
+            <summary>
+            Product information with ASO/BASO data
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoBasoItem.ProductNumber">
+            <summary>
+            The product number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoBasoItem.RState">
+            <summary>
+            The R-state
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoBasoItem.ProductName">
+            <summary>
+            The product name
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoBasoItem.OrderNumber">
+            <summary>
+            The order number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoBasoItem.OrderItemNumber">
+            <summary>
+            The order item number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoBasoItem.Date">
+            <summary>
+            The date
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoBasoItem.Status">
+            <summary>
+            The status
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoBasoItem.TestFlag">
+            <summary>
+            The test flag
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoBasoItem.Comment">
+            <summary>
+            The comment
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoBasoItem.ParentId">
+            <summary>
+            The parent serial number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoBasoItem.ChildrenCount">
+            <summary>
+            The number of children
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoBasoItem.AdditionalNoCount">
+            <summary>
+            The additional number count
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoBasoItem.ASOFlag">
+            <summary>
+            The ASO flag
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoBasoItem.BASOProductNumber">
+            <summary>
+            The BASO product number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoBasoItem.BASORState">
+            <summary>
+            The BASO R-state
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.ProductIdInfoBasoItem.ManufacturerInfo">
+            <summary>
+            The manufacturer information
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.StatusType">
+            <summary>
+            Test monitor status type
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.StatusType.Testplan">
+            <summary>
+            The status relates to the test plan
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.StatusType.Dut">
+            <summary>
+            The status relates to the DUT
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.StatusType.Unknown">
+            <summary>
+            The status relates to an unknown/undefined category
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.MessageItem">
+            <summary>
+            Test monitor message
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.MessageItem.StationId">
+            <summary>
+            The station identifier
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.MessageItem.MsgCode">
+            <summary>
+            The message code
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.MessageItem.Message">
+            <summary>
+            The message
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.MessageItem.DateTime">
+            <summary>
+            The date time
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.StatusItem">
+            <summary>
+            Test monitor status
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.StatusItem.Value">
+            <summary>
+            The value
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.StatusItem.Text">
+            <summary>
+            The text
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.StatusItem.Status">
+            <summary>
+            The status
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.AllowedResult">
+            <summary>
+            Allowed result
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.AllowedResult.Yes">
+            <summary>
+            Yes, test is allowed to run
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.AllowedResult.No">
+            <summary>
+            No, test should not run
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.FlowControlData">
+            <summary>
+            Flow control meta-data
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.FlowControlData.ProductNumber">
+            <summary>
+            The product number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.FlowControlData.RState">
+            <summary>
+            The R-state
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.FlowControlData.TestType">
+            <summary>
+            The test type
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.FlowControlData.Description">
+            <summary>
+            The description
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.FlowControlData.CategoryNumber">
+            <summary>
+            The category number
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.FlowControlData.RunMode">
+            <summary>
+            The run mode
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.FlowControlResult">
+            <summary>
+            Flow control result
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.FlowControlResult.MpgList">
+            <summary>
+            A list of MPGs that should / should not be tested
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.FlowControlResult.MpList">
+            <summary>
+            A list of MPs that should / should not be tested
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.NumericTestRecord">
+            <summary>
+            A value-based test record
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.NumericTestRecord.IdNo">
+            <summary>
+            Gets or sets the serial number.
+            </summary>
+            <value>
+            The serial number.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.NumericTestRecord.RState">
+            <summary>
+            Gets or sets the R-state.
+            </summary>
+            <value>
+            The R-state.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.NumericTestRecord.CriteriaDocumentNumber">
+            <summary>
+            Gets or sets the criteria document number.
+            </summary>
+            <value>
+            The criteria document number.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.NumericTestRecord.CriteriaRevision">
+            <summary>
+            Gets or sets the criteria revision.
+            </summary>
+            <value>
+            The criteria revision.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.NumericTestRecord.StationId">
+            <summary>
+            Gets or sets the station identifier.
+            </summary>
+            <value>
+            The station identifier.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.NumericTestRecord.StationType">
+            <summary>
+            Gets or sets the type of the station.
+            </summary>
+            <value>
+            The type of the station.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.NumericTestRecord.TestCount">
+            <summary>
+            Gets or sets the test count.
+            </summary>
+            <value>
+            The test count.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.NumericTestRecord.TestResult">
+            <summary>
+            Gets or sets the test result.
+            </summary>
+            <value>
+            The test result.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.NumericTestRecord.MpResult">
+            <summary>
+            Gets or sets the MP result.
+            </summary>
+            <value>
+            The MP result.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.NumericTestRecord.Cardmark">
+            <summary>
+            Gets or sets the cardmark.
+            </summary>
+            <value>
+            The cardmark.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.NumericTestRecord.StartTime">
+            <summary>
+            Gets or sets the start time.
+            </summary>
+            <value>
+            The start time.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.NumericTestRecord.ValueOfMeasurementPoint">
+            <summary>
+            Gets or sets the value of the measurement point.
+            </summary>
+            <value>
+            The value of the measurement point.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.NumericTestRecord.Site">
+            <summary>
+            Gets or sets the site.
+            </summary>
+            <value>
+            The site.
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.BooleanTestRecord">
+            <summary>
+            A bool-based test record
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.BooleanTestRecord.IdNo">
+            <summary>
+            Gets or sets the serial number.
+            </summary>
+            <value>
+            The serial number.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.BooleanTestRecord.RState">
+            <summary>
+            Gets or sets the R-state.
+            </summary>
+            <value>
+            The R-state.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.BooleanTestRecord.CriteriaDocumentNumber">
+            <summary>
+            Gets or sets the criteria document number.
+            </summary>
+            <value>
+            The criteria document number.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.BooleanTestRecord.CriteriaRevision">
+            <summary>
+            Gets or sets the criteria revision.
+            </summary>
+            <value>
+            The criteria revision.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.BooleanTestRecord.StationId">
+            <summary>
+            Gets or sets the station identifier.
+            </summary>
+            <value>
+            The station identifier.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.BooleanTestRecord.StationType">
+            <summary>
+            Gets or sets the type of the station.
+            </summary>
+            <value>
+            The type of the station.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.BooleanTestRecord.TestCount">
+            <summary>
+            Gets or sets the test count.
+            </summary>
+            <value>
+            The test count.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.BooleanTestRecord.TestResult">
+            <summary>
+            Gets or sets the test result.
+            </summary>
+            <value>
+            The test result.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.BooleanTestRecord.MpResult">
+            <summary>
+            Gets or sets the MP result.
+            </summary>
+            <value>
+            The MP result.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.BooleanTestRecord.Cardmark">
+            <summary>
+            Gets or sets the cardmark.
+            </summary>
+            <value>
+            The cardmark.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.BooleanTestRecord.StartTime">
+            <summary>
+            Gets or sets the start time.
+            </summary>
+            <value>
+            The start time.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.BooleanTestRecord.Site">
+            <summary>
+            Gets or sets the site.
+            </summary>
+            <value>
+            The site.
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.TextTestRecord">
+            <summary>
+            A string-based test record
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.TextTestRecord.IdNo">
+            <summary>
+            Gets or sets the serial number.
+            </summary>
+            <value>
+            The serial number.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TextTestRecord.RState">
+            <summary>
+            Gets or sets the R-state.
+            </summary>
+            <value>
+            The R-state.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TextTestRecord.CriteriaDocumentNumber">
+            <summary>
+            Gets or sets the criteria document number.
+            </summary>
+            <value>
+            The criteria document number.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TextTestRecord.CriteriaRevision">
+            <summary>
+            Gets or sets the criteria revision.
+            </summary>
+            <value>
+            The criteria revision.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TextTestRecord.StationId">
+            <summary>
+            Gets or sets the station identifier.
+            </summary>
+            <value>
+            The station identifier.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TextTestRecord.StationType">
+            <summary>
+            Gets or sets the type of the station.
+            </summary>
+            <value>
+            The type of the station.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TextTestRecord.TestCount">
+            <summary>
+            Gets or sets the test count.
+            </summary>
+            <value>
+            The test count.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TextTestRecord.TestResult">
+            <summary>
+            Gets or sets the test result.
+            </summary>
+            <value>
+            The test result.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TextTestRecord.MpResult">
+            <summary>
+            Gets or sets the MP result.
+            </summary>
+            <value>
+            The MP result.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TextTestRecord.Cardmark">
+            <summary>
+            Gets or sets the cardmark.
+            </summary>
+            <value>
+            The cardmark.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TextTestRecord.StartTime">
+            <summary>
+            Gets or sets the start time.
+            </summary>
+            <value>
+            The start time.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TextTestRecord.ValueOfMeasurementPoint">
+            <summary>
+            Gets or sets the value of measurement point.
+            </summary>
+            <value>
+            The value of measurement point.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TextTestRecord.Site">
+            <summary>
+            Gets or sets the site.
+            </summary>
+            <value>
+            The site.
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.BlobItem">
+            <summary>
+            A class that represents a BLOB.
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.BlobItem.Name">
+            <summary>
+            The name or identifier of the BLOB.
+            </summary>
+            <value>
+            Name
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.BlobItem.Description">
+            <summary>
+            A description of the BLOB.
+            </summary>
+            <value>
+            Description
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.BlobItem.FileName">
+            <summary>
+            The file name of the BLOB. This usually points to a file on the local file system.
+            </summary>
+            <value>
+            Filename
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.BlobItem.Date">
+            <summary>
+            The creation date of the BLOB.
+            </summary>
+            <value>
+            Creation date
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.BlobItem.ExpireDate">
+            <summary>
+            The date the BLOB is set to expire (purged from the online storage). This is just a hint and might be overridden by the storage provider.
+            </summary>
+            <value>
+            Expire date
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.CircumstanceItem">
+            <summary>
+            A circumstance key/value item.
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.CircumstanceItem.Name">
+            <summary>
+            The name (key) of the circumstance.
+            </summary>
+            <value>
+            Name
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.CircumstanceItem.Description">
+            <summary>
+            The description (value) of the circumstance.
+            </summary>
+            <value>
+            Description
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.MeasureItem">
+            <summary>
+            Class that represents one measurement point item.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.MeasureItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Idefix.PamelaNet.MeasureItem"/> class.
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasureItem.Result">
+            <summary>
+            The (last saved) measurement value
+            </summary>
+            <value>
+            Measurement value
+            </value>
+        </member>
+        <member name="F:Idefix.PamelaNet.MeasureItem.CurveResult">
+            <summary>
+            A list of x/y coordinates that represent a curve measurement.
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasureItem.Status">
+            <summary>
+            The pass/fail status of the measurement point.
+            </summary>
+            <value>
+            Measurement point status
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasureItem.TestDate">
+            <summary>
+            The date of when the measurement was taken.
+            </summary>
+            <value>
+            Test date
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasureItem.TestTime">
+            <summary>
+            Gets or sets the test time. Elapsed time in seconds and milliseconds.
+            </summary>
+            <value>
+            Test time
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasureItem.ElapsedBefore">
+            <summary>
+            The time since the test started, in seconds and milliseconds.
+            </summary>
+            <value>
+            Elapsed time since test start
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasureItem.Attribute1">
+            <summary>
+            Extra attribute 1. Not used.
+            </summary>
+            <value>
+            Extra attribute 1
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasureItem.Attribute2">
+            <summary>
+            Extra attribute 2. Not used.
+            </summary>
+            <value>
+            Extra attribute 2
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasureItem.Attribute3">
+            <summary>
+            Extra attribute 3. Not used.
+            </summary>
+            <value>
+            Extra attribute 3
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasureItem.Attribute4">
+            <summary>
+            Extra attribute 4. Not used.
+            </summary>
+            <value>
+            Extra attribute 4
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasureItem.Name">
+            <summary>
+            The name of the measurement point.
+            </summary>
+            <value>
+            Measure point name
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.MPDataType">
+            <summary>
+            The type of data for an MP
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.MeasurementStatus">
+            <summary>
+            The status of a measurement
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.CurveLimitItem">
+            <summary>
+            A curve limit
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.CurveLimitItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Idefix.PamelaNet.CurveLimitItem"/> class.
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.CurveLimitItem.X">
+            <summary>
+            Gets or sets the x-value.
+            </summary>
+            <value>
+            The x-value.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.CurveLimitItem.Y1">
+            <summary>
+            Gets or sets the y1-value (lower limit).
+            </summary>
+            <value>
+            The y1-value (lower limit).
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.CurveLimitItem.Y2">
+            <summary>
+            Gets or sets the y2-value (upper limit).
+            </summary>
+            <value>
+            The y2-value (upper limit).
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.CurvePointItem">
+            <summary>
+            A curve measurement point
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.CurvePointItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Idefix.PamelaNet.CurvePointItem"/> class.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.CurvePointItem.#ctor(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Idefix.PamelaNet.CurvePointItem"/> class.
+            </summary>
+            <param name="x">The x-axis position</param>
+            <param name="y">The y-axis measurement value</param>
+        </member>
+        <member name="P:Idefix.PamelaNet.CurvePointItem.X">
+            <summary>
+            The x-axis position.
+            </summary>
+            <value>
+            X-axis position
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.CurvePointItem.Y">
+            <summary>
+            The y-axis value.
+            </summary>
+            <value>
+            Measurement value
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.DataLabelItem">
+            <summary>
+            A datalabel
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.DataLabelItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Idefix.PamelaNet.DataLabelItem"/> class.
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.DataLabelItem.Name">
+            <summary>
+            The data label name.
+            </summary>
+            <value>
+            Name
+            </value>
+        </member>
+        <member name="F:Idefix.PamelaNet.DataLabelItem.Values">
+            <summary>
+            The value(s) of the datalabel.
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.MeasureLimitItem">
+            <summary>
+            A measurement limit
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.MeasureLimitItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Idefix.PamelaNet.MeasureLimitItem"/> class.
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasureLimitItem.Limit1">
+            <summary>
+            Gets or sets limit 1.
+            </summary>
+            <value>
+            The first limit.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasureLimitItem.Limit2">
+            <summary>
+            Gets or sets limit 2.
+            </summary>
+            <value>
+            The second limit.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasureLimitItem.Unit">
+            <summary>
+            Gets or sets the unit for measured value.
+            </summary>
+            <value>
+            The unit.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasureLimitItem.RoundUpRule">
+            <summary>
+            Gets or sets the round up rule.
+            </summary>
+            <value>
+            The round up rule.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasureLimitItem.CompareRule">
+            <summary>
+            Gets or sets the compare rule.
+            </summary>
+            <value>
+            The compare rule.
+            </value>
+        </member>
+        <member name="F:Idefix.PamelaNet.MeasureLimitItem.CurveLimit">
+            <summary>
+            A list of curve limits
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasureLimitItem.CurveXUnit">
+            <summary>
+            Gets or sets the X axis unit.
+            </summary>
+            <value>
+            The unit for the X axis.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasureLimitItem.CurveYUnit">
+            <summary>
+            Gets or sets the Y axis unit.
+            </summary>
+            <value>
+            The unit for the Y axis.
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.MeasurePointItem">
+            <summary>
+            A measurement value
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.MeasurePointItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Idefix.PamelaNet.MeasurePointItem"/> class.
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasurePointItem.Status">
+            <summary>
+            Gets or sets the status of the MP.
+            </summary>
+            <value>
+            The MP status.
+            </value>
+        </member>
+        <member name="F:Idefix.PamelaNet.MeasurePointItem.Measures">
+            <summary>
+            A list of measurements
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.MeasurePointItem.MeasureLimit">
+            <summary>
+            The measurement limit for the MP
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.MeasurePointItem.DataLabels">
+            <summary>
+            A list of data labels for the MP
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasurePointItem.DataType">
+            <summary>
+            Gets or sets the MP data type.
+            </summary>
+            <value>
+            The MP data type.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasurePointItem.DynamicMP">
+            <summary>
+            Gets or sets the dynamic rules for the MP.
+            </summary>
+            <value>
+            The dynamic MP.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasurePointItem.Name">
+            <summary>
+            Gets or sets the name of the MP.
+            </summary>
+            <value>
+            The MP name.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasurePointItem.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>
+            The description.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasurePointItem.Comment">
+            <summary>
+            Gets or sets the comment.
+            </summary>
+            <value>
+            The comment.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasurePointItem.Print">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Idefix.PamelaNet.MeasurePointItem"/> should be printed.
+            </summary>
+            <value>
+              <c>true</c> if MP should be printed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MeasurePointItem.NominalValue">
+            <summary>
+            Gets or sets the nominal value.
+            </summary>
+            <value>
+            The nominal value.
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.MpGroupItem">
+            <summary>
+            A measurement point group (MPG)
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.MpGroupItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Idefix.PamelaNet.MpGroupItem"/> class.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.MpGroupItem.MeasurePoints">
+            <summary>
+            List of measurement points
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.MpGroupItem.Status">
+            <summary>
+            Gets or sets the status of the MPG.
+            </summary>
+            <value>
+            The MPG status.
+            </value>
+        </member>
+        <member name="F:Idefix.PamelaNet.MpGroupItem.DataLabels">
+            <summary>
+            List of data labels
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.MpGroupItem.DynamicMpg">
+            <summary>
+            The dynamic rules for the MPG
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.MpGroupItem.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MpGroupItem.Comment">
+            <summary>
+            Gets or sets the comment.
+            </summary>
+            <value>
+            The comment.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MpGroupItem.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>
+            The description.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MpGroupItem.TestTime">
+            <summary>
+            Gets or sets the test time in seconds and milliseconds.
+            </summary>
+            <value>
+            The test time in seconds and milliseconds.
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.MPInfoItem">
+            <summary>
+            Additional information about an MP
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.MPInfoItem.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Idefix.PamelaNet.MPInfoItem"/> class.
+            </summary>
+            <param name="id">The identifier.</param>
+        </member>
+        <member name="M:Idefix.PamelaNet.MPInfoItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Idefix.PamelaNet.MPInfoItem"/> class.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.MPInfoItem.InitType">
+            <summary>
+            Initializes the type.
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.MPInfoItem.Id">
+            <summary>
+            Gets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MPInfoItem.MpgName">
+            <summary>
+            Gets or sets the name of the MPG.
+            </summary>
+            <value>
+            The name of the MPG.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MPInfoItem.MpgDescription">
+            <summary>
+            Gets or sets the MPG description.
+            </summary>
+            <value>
+            The MPG description.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MPInfoItem.MPName">
+            <summary>
+            Gets or sets the name of the MP.
+            </summary>
+            <value>
+            The name of the MP.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.MPInfoItem.MPDescription">
+            <summary>
+            Gets or sets the MP description.
+            </summary>
+            <value>
+            The MP description.
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.EquipmentItem">
+            <summary>
+            Equipment information
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.EquipmentItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Idefix.PamelaNet.EquipmentItem"/> class.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.EquipmentItem.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Idefix.PamelaNet.EquipmentItem"/> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="serialNumber">The serial number.</param>
+        </member>
+        <member name="P:Idefix.PamelaNet.EquipmentItem.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.EquipmentItem.SerialNumber">
+            <summary>
+            Gets or sets the serial number.
+            </summary>
+            <value>
+            The serial number.
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.Dynamic">
+            <summary>
+            Dynamic MP or MPG rule
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.Dynamic.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Idefix.PamelaNet.Dynamic"/> class.
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.Dynamic.NumberOfOk">
+            <summary>
+            Gets or sets the number of OK measurements.
+            </summary>
+            <value>
+            The number of OK measurements.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.Dynamic.Percent">
+            <summary>
+            Gets or sets the percent.
+            </summary>
+            <value>
+            The percent.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.Dynamic.ExternalStatistics">
+            <summary>
+            Gets or sets a value indicating whether external statistics should be used.
+            </summary>
+            <value>
+              <c>true</c> if external statistics should be used; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.RecordInfoItem">
+            <summary>
+            Test record information such as serial number, product number, operator name and pass/fail status.
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.RecordInfoItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Idefix.PamelaNet.RecordInfoItem"/> class.
+            </summary>
+            <remarks>
+            The constructor creates instances of all contained properties and fields. This means the user does not need to instantiate anything. This is how it is implemented:
+            <code>
+            public RecordInfoItem()
+            {
+                Area = string.Empty;
+                Line = string.Empty;
+                SerialNumber = string.Empty;
+                Station = string.Empty;
+                User = string.Empty;
+                ProcessStep = string.Empty;
+                Testplan = new DocumentItem();
+                Criteria = new DocumentItem();
+                Layout = new DocumentItem();
+                TestInstruction = new DocumentItem();
+                RunMode = string.Empty;
+                Mark = string.Empty;
+                StartTime = new DateTime();
+                StopTime = new DateTime();
+                Status = MeasurementStatus.NotExecuted;
+                ConfigurationKey = string.Empty;
+                DynamicTest = false;
+                FirstFailed = new MPInfoItem();
+                Comment = string.Empty;
+                Product = new ProductItem();
+            }
+            </code>
+            </remarks>
+        </member>
+        <member name="P:Idefix.PamelaNet.RecordInfoItem.CriteriaType">
+            <summary>
+            The criteria file format. Currently the only allowed value is &quot;STD&quot;.
+            </summary>
+            <value>
+            Criteria file format
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.RecordInfoItem.Area">
+            <summary>
+            The area in which the test station is located.
+            </summary>
+            <value>
+            Test station area
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.RecordInfoItem.Line">
+            <summary>
+            The production line that the test station belongs to.
+            </summary>
+            <value>
+            Test station production line
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.RecordInfoItem.SerialNumber">
+            <summary>
+            The serial number of the DUT.
+            </summary>
+            <value>
+            Serial number
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.RecordInfoItem.Station">
+            <summary>
+            The name of the test station.
+            </summary>
+            <value>
+            Test station name
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.RecordInfoItem.User">
+            <summary>
+            The signum of the operator running the test station.
+            </summary>
+            <value>
+            Operator signum
+            </value>
+        </member>
+        <member name="F:Idefix.PamelaNet.RecordInfoItem.Product">
+            <summary>
+            Information about the product being tested.
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.RecordInfoItem.Status">
+            <summary>
+            The pass/fail status of the DUT.
+            </summary>
+            <value>
+            Pass/fail status of DUT
+            </value>
+        </member>
+        <member name="F:Idefix.PamelaNet.RecordInfoItem.FirstFailed">
+            <summary>
+            Information about the first failed measurement point (if any).
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.RecordInfoItem.Testplan">
+            <summary>
+            Information about the testplan file, such as document number and revision.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.RecordInfoItem.Criteria">
+            <summary>
+            Information about the criteria file, such as document number and revision.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.RecordInfoItem.Layout">
+            <summary>
+            Information about the layout file, such as document number and revision. Optional.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.RecordInfoItem.TestInstruction">
+            <summary>
+            Information about the test instruction file, such as document number and revision. Optional.
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.RecordInfoItem.RunMode">
+            <summary>
+            The mode the test was executed in. AUTO, MANUAL or CUSTOM.
+            </summary>
+            <value>
+            Run mode
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.RecordInfoItem.Mark">
+            <summary>
+            A special card mark provided by the operator. Can be used to signal that the DUT is part of a special batch. Optional.
+            </summary>
+            <value>
+            Card mark
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.RecordInfoItem.StartTime">
+            <summary>
+            The start time of the test run.
+            </summary>
+            <value>
+            Test start time
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.RecordInfoItem.StopTime">
+            <summary>
+            The stop time of the test run.
+            </summary>
+            <value>
+            Test stop time
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.RecordInfoItem.ConfigurationKey">
+            <summary>
+            The configuration key used during testing. The configuration key is used to provide additional configuration details such as which firmware version to use. Optional.
+            </summary>
+            <value>
+            Configuration key
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.RecordInfoItem.ProcessStep">
+            <summary>
+            The test category of the test. This is known in Bartrack as the &quot;Process Step&quot;.
+            </summary>
+            <value>
+            Test category
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.RecordInfoItem.DynamicTest">
+            <summary>
+            Value indicating whether dynamic testing was used or not.
+            </summary>
+            <value>
+              <c>true</c> if dynamic testing was used; otherwise, <c>false</c>
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.RecordInfoItem.Comment">
+            <summary>
+            A comment for the test, provided by the test program.
+            </summary>
+            <value>
+            Comment
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.ProcessStepItem">
+            <summary>
+            A process step
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.ProcessStepItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Idefix.PamelaNet.ProcessStepItem"/> class.
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.ProcessStepItem.ProcessStep">
+            <summary>
+            Gets or sets the process step.
+            </summary>
+            <value>
+            The process step.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.ProcessStepItem.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.ProcessStepItem.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>
+            The description.
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.TestRecordItem">
+            <summary>
+            A complete test record
+            </summary>
+        </member>
+        <member name="M:Idefix.PamelaNet.TestRecordItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Idefix.PamelaNet.TestRecordItem"/> class.
+            </summary>
+            <remarks>
+            The constructor creates instances of all contained properties and fields, including the lists. This means the user does not need to instantiate anything. This is how it is implemented:
+            <code>
+            public TestRecordItem()
+            {
+                MpGroups = new List&lt;MpGroupItem&gt;();
+                Circumstances = new List&lt;CircumstanceItem&gt;();
+                Blobs = new List&lt;BlobItem&gt;();
+                DataLabels = new List&lt;DataLabelItem&gt;();
+                Info = new RecordInfoItem();
+                Equipment = new List&lt;EquipmentItem&gt;();
+                CriteriaFilePath = string.Empty;
+                LayoutFilePath = string.Empty;
+                RecordFilePath = string.Empty;
+                TestplanFilePath = string.Empty;
+            }
+            </code>
+            </remarks>
+        </member>
+        <member name="P:Idefix.PamelaNet.TestRecordItem.CriteriaFilePath">
+            <summary>
+            The full path to the criteria file. This parameter is optional but always provided by Idefix.
+            </summary>
+            <remarks>
+            If a call to Pamela.NET is made through the StoreEx function in PamelaNetBridge (which is what Idefix does)
+            then the file is parsed and the rest of the <see cref="T:Idefix.PamelaNet.TestRecordItem"/> object is populated before a call
+            is made into the ITestResultStore driver(s).
+            </remarks>
+            <value>
+            The criteria file path.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TestRecordItem.LayoutFilePath">
+            <summary>
+            The full path to the layout file. This parameter is optional.
+            </summary>
+            <value>
+            The layout file path.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TestRecordItem.RecordFilePath">
+            <summary>
+            The full path to the record file. This parameter is optional but always provided by Idefix.
+            </summary>
+            <remarks>
+            If a call to Pamela.NET is made through the StoreEx function in PamelaNetBridge (which is what Idefix does)
+            then the file is parsed and the rest of the <see cref="T:Idefix.PamelaNet.TestRecordItem"/> object is populated before a call
+            is made into the ITestResultStore driver(s).
+            </remarks>
+            <value>
+            The record file path.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TestRecordItem.TestplanFilePath">
+            <summary>
+            The full path to the testplan file. This parameter is optional and NOT provided by Idefix.
+            </summary>
+            <value>
+            The testplan file path.
+            </value>
+        </member>
+        <member name="F:Idefix.PamelaNet.TestRecordItem.Info">
+            <summary>
+            Test record information such as serial number, product number, operator name and pass/fail status.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.TestRecordItem.MpGroups">
+            <summary>
+            List of all measurement point groups contained in the criteria file.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.TestRecordItem.Circumstances">
+            <summary>
+            List of all circumstances generated during the test.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.TestRecordItem.Blobs">
+            <summary>
+            List of blobs stored by the test program.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.TestRecordItem.DataLabels">
+            <summary>
+            List of all data labels at the global scope in the criteria file.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.TestRecordItem.Equipment">
+            <summary>
+            List of all equipment information stored by the test program.
+            </summary>
+        </member>
+        <member name="T:Idefix.PamelaNet.SyncInfo">
+            <summary>
+            Synchronization info
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.SyncInfo.SoftwareId">
+            <summary>
+            Gets or sets the software identifier.
+            </summary>
+            <value>
+            The software identifier.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.SyncInfo.TestCount">
+            <summary>
+            Gets or sets the test count.
+            </summary>
+            <value>
+            The test count.
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.BlobInfo">
+            <summary>
+            A blob
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.BlobInfo.Count">
+            <summary>
+            Gets or sets the count.
+            </summary>
+            <value>
+            The count.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.BlobInfo.Id">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.BlobInfo.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>
+            The description.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.BlobInfo.Filename">
+            <summary>
+            Gets or sets the filename.
+            </summary>
+            <value>
+            The filename.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.BlobInfo.ExpiryDate">
+            <summary>
+            Gets or sets the expiry date.
+            </summary>
+            <value>
+            The expiry date.
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.TestTypeInfo">
+            <summary>
+            Test type information
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.TestTypeInfo.Count">
+            <summary>
+            Gets or sets the count.
+            </summary>
+            <value>
+            The count.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TestTypeInfo.Result">
+            <summary>
+            Gets or sets the result.
+            </summary>
+            <value>
+            The result.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TestTypeInfo.ProgramRevision">
+            <summary>
+            Gets or sets the program revision.
+            </summary>
+            <value>
+            The program revision.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TestTypeInfo.EmployeeNumber">
+            <summary>
+            Gets or sets the employee number.
+            </summary>
+            <value>
+            The employee number.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TestTypeInfo.StartTime">
+            <summary>
+            Gets or sets the start time.
+            </summary>
+            <value>
+            The start time.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TestTypeInfo.NodeNumber">
+            <summary>
+            Gets or sets the node number.
+            </summary>
+            <value>
+            The node number.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TestTypeInfo.Cardmark">
+            <summary>
+            Gets or sets the cardmark.
+            </summary>
+            <value>
+            The cardmark.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TestTypeInfo.Comment">
+            <summary>
+            Gets or sets the comment.
+            </summary>
+            <value>
+            The comment.
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.TestInfo">
+            <summary>
+            Extra test information
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.TestInfo.DutId">
+            <summary>
+            Gets or sets the dut identifier.
+            </summary>
+            <value>
+            The dut identifier.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TestInfo.ProductNumber">
+            <summary>
+            Gets or sets the product number.
+            </summary>
+            <value>
+            The product number.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TestInfo.RState">
+            <summary>
+            Gets or sets the state of the r.
+            </summary>
+            <value>
+            The state of the r.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TestInfo.SoftwareId">
+            <summary>
+            Gets or sets the software identifier.
+            </summary>
+            <value>
+            The software identifier.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TestInfo.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>
+            The description.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TestInfo.StartTime">
+            <summary>
+            Gets or sets the start time.
+            </summary>
+            <value>
+            The start time.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TestInfo.Result">
+            <summary>
+            Gets or sets the result.
+            </summary>
+            <value>
+            The result.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TestInfo.TestCount">
+            <summary>
+            Gets or sets the test count.
+            </summary>
+            <value>
+            The test count.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.TestInfo.TestType">
+            <summary>
+            Gets or sets the type of the test.
+            </summary>
+            <value>
+            The type of the test.
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.ParameterInfo">
+            <summary>
+            Test parameter information
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.ParameterInfo.Object">
+            <summary>
+            Gets or sets the object.
+            </summary>
+            <value>
+            The object.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.ParameterInfo.Data">
+            <summary>
+            Gets or sets the data.
+            </summary>
+            <value>
+            The data.
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.LayoutInfo">
+            <summary>
+            Layout file information
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.LayoutInfo.DocumentNumber">
+            <summary>
+            Gets or sets the document number.
+            </summary>
+            <value>
+            The document number.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.LayoutInfo.Revision">
+            <summary>
+            Gets or sets the revision.
+            </summary>
+            <value>
+            The revision.
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.CriteriaInfo">
+            <summary>
+            Criteria file information
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.CriteriaInfo.DocumentNumber">
+            <summary>
+            Gets or sets the document number.
+            </summary>
+            <value>
+            The document number.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.CriteriaInfo.Revision">
+            <summary>
+            Gets or sets the revision.
+            </summary>
+            <value>
+            The revision.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.CriteriaInfo.Date">
+            <summary>
+            Gets or sets the date.
+            </summary>
+            <value>
+            The date.
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.CpkResult">
+            <summary>
+            CPK calculation results
+            </summary>
+        </member>
+        <member name="P:Idefix.PamelaNet.CpkResult.MpName">
+            <summary>
+            The name of the measurement point.
+            </summary>
+            <value>
+            The name of the measurement point.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.CpkResult.Cp">
+            <summary>
+            The Cp value.
+            </summary>
+            <value>
+            The Cp value.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.CpkResult.Cpk">
+            <summary>
+            The Cpk value.
+            </summary>
+            <value>
+            The Cpk value.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.CpkResult.SampleRate">
+            <summary>
+            The sample rate.
+            </summary>
+            <value>
+            The sample rate.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.CpkResult.SampleSkip">
+            <summary>
+            Value indicating whether to skip a sample.
+            </summary>
+            <value>
+              <c>true</c> if sample should be skipped; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.CpkResult.PrevMpOk">
+            <summary>
+            Gets or sets a value indicating whether previous measurment point was OK.
+            </summary>
+            <value>
+              <c>true</c> if previous measurment point was OK; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.CpkResult.ErrorStatus">
+            <summary>
+            Indicates if the calculation succeeded.
+            </summary>
+            <value>
+            The error status.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.CpkResult.ErrorDescription">
+            <summary>
+            The error description.
+            </summary>
+            <value>
+            The error description.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.CpkResult.CalculateTime">
+            <summary>
+            When was the calculation done.
+            </summary>
+            <value>
+            The calculation time.
+            </value>
+        </member>
+        <member name="P:Idefix.PamelaNet.CpkResult.CalculatePrevMpOkTime">
+            <summary>
+            When was the last successful calculation done.
+            </summary>
+            <value>
+            The last successful calculation time.
+            </value>
+        </member>
+        <member name="T:Idefix.PamelaNet.CpkAlgorithm">
+            <summary>
+            Testnet method for analysing CPK.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.CpkAlgorithm.TestNetOriginal">
+            <summary>
+            Original TestNet method for analysing CPK.
+            </summary>
+        </member>
+        <member name="F:Idefix.PamelaNet.CpkAlgorithm.TestNetImproved">
+            <summary>
+            Improved TestNet method for analysing CPK (sometimes called 0_8).
+            </summary>
+        </member>
+    </members>
+</doc>

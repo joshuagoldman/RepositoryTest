@@ -1,0 +1,2118 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ericsson.TM.BaseIdefix</name>
+    </assembly>
+    <members>
+        <member name="T:Ericsson.TM.BadDataLabelSuffixException">
+            <summary>
+            The exception that is thrown when a data label has an incorrect suffix.
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.BadDataLabelSuffixException.#ctor">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.BadDataLabelSuffixException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:Ericsson.TM.BadDataLabelSuffixException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the class with serialized data.
+            </summary>
+            <param name="info">
+            The <see cref="T:System.Runtime.Serialization.SerializationInfo">SerializationInfo</see>
+            that holds the serialized object data about the exception being thrown.
+            </param>
+            <param name="context">
+            The The <see cref="T:System.Runtime.Serialization.StreamingContext">StreamingContext</see> 
+            that contains contextual information about the source or destination.
+            </param>
+        </member>
+        <member name="M:Ericsson.TM.BadDataLabelSuffixException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            When overridden in a derived class, sets the SerializationInfo with information about the exception. 
+            </summary>
+            <param name="info">
+            The <see cref="T:System.Runtime.Serialization.SerializationInfo">SerializationInfo</see>
+            that holds the serialized object data about the exception being thrown.
+            </param>
+            <param name="context">
+            The The <see cref="T:System.Runtime.Serialization.StreamingContext">StreamingContext</see> 
+            that contains contextual information about the source or destination.
+            </param>
+        </member>
+        <member name="M:Ericsson.TM.CurveWindow.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Ericsson.TM.OnCommonData">
+            <summary>
+            A delagate to handle the OnCommonData event, called when data prefix /$/ is stated in TP/TC
+            </summary>
+            <param name="label">The label asked for</param>
+            <param name="value">The current value</param>
+            <returns>The new value</returns>
+        </member>
+        <member name="T:Ericsson.TM.DataLabelHandler">
+            <summary>
+            Subclass for handling data labels.
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.#ctor">
+            <summary>
+            Constructor for DataLabelHandler.
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.#ctor(Ericsson.SC.Logger.ILogger)">
+            <summary>
+            Constructor for DataLabelHandler.
+            </summary>
+            <param name="log">An ILogger object for DataLabelHandler logging.</param>
+        </member>
+        <member name="E:Ericsson.TM.DataLabelHandler.DoOnCommonData">
+            <summary>
+            Event when common data is triggered
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.OnCommonDataEvent(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            A event that is triggered when prefix /$/ is used as data in TP/TC
+            </summary>
+            <param name="label">The label asked for</param>
+            <param name="value">The current data value</param>
+            <returns>The new data value</returns>
+        </member>
+        <member name="P:Ericsson.TM.DataLabelHandler.FrequencyBand">
+            <summary>
+            Frequency band property, normal values 'B1', 'B2', 'B25'...
+            Returned when $(Band) is stated in data value.
+            </summary>
+        </member>
+        <member name="P:Ericsson.TM.DataLabelHandler.MultipleFrequencyBandUsage">
+            <summary>
+            Set to true when multiple frequency band usage from different threads are required when using the $(Band) identifier.
+            </summary>
+        </member>
+        <member name="F:Ericsson.TM.DataLabelHandler._log">
+            <summary>
+            Placeholder for externally injected ILogger object. If this is set, logging will be enabled to this object.
+            </summary>       
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.Exists(System.String)">
+            <summary>
+            Checks if the specified data label exists.
+            </summary>
+            <param name="label">The label to look for.</param>
+            <returns>True if found, otherwise false.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown if <paramref name="label"/> is null or empty.
+            </exception>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetAny(System.String)">
+            <summary>
+            Get a data label of any type.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned. 
+            <paramref name="label"/> must have the suffix "_X".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetAny(System.String,System.String)">
+            <summary>
+            Get a data label of any type.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <param name="defaultValue">The deafult value to return if the data label isn't found.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned. 
+            <paramref name="label"/> must have the suffix "_X".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetAny(Idefix.TxApi.Runtime.DataLabel.RequiredDataLabel)">
+            <summary>
+            Get a data label of any type.
+            </summary>
+            <param name="label">The name of the RequiredDataLabel.</param>
+            <returns>The data label value.</returns>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetAnyArray(System.String)">
+            <summary>
+            Get an array of values, of any type, from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The data label values.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned. 
+            <paramref name="label"/> must have the suffix "_AX".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetAnyArray(System.String,System.String[])">
+            <summary>
+            Get an array of values, of any type, from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <param name="defaultValue">The deafult value to return if the data label isn't found.</param>
+            <returns>The data label values.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_AX".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetAnyArray(Idefix.TxApi.Runtime.DataLabel.RequiredDataLabel)">
+            <summary>
+            Get an array of values, of any type, from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The data label values.</returns>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetBool(System.String)">
+            <summary>
+            Get a boolean data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_B".
+            </remarks>
+            <exception cref="T:System.FormatException">
+            Thrown if the data label value, after data label variables have been processed,
+            isn't 0 or 1.
+            </exception>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetBool(System.String,System.Boolean)">
+            <summary>
+            Get a boolean data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <param name="defaultValue">The deafult value to return if the data label isn't found.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned. 
+            <paramref name="label"/> must have the suffix "_B".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetBool(System.String,System.String)">
+            <summary>
+            Get a boolean data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <param name="defaultValue">The deafult value to return if the data label isn't found.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned. 
+            <paramref name="label"/> must have the suffix "_B".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetBool(Idefix.TxApi.Runtime.DataLabel.RequiredDataLabel)">
+            <summary>
+            Get a boolean data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The data label value.</returns>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetBoolArray(System.String)">
+            <summary>
+            Get an array of boolean values from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned. 
+            <paramref name="label"/> must have the suffix "_AB".
+            </remarks>
+            <exception cref="T:System.FormatException">
+            Thrown if any data label value, after data label variables have been processed,
+            isn't 0 or 1.
+            </exception>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetBoolArray(System.String,System.Boolean[])">
+            <summary>
+            Get an array of boolean values from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <param name="defaultValue">The deafult value to return if the data label isn't found.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned. 
+            <paramref name="label"/> must have the suffix "_AB".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetBoolArray(Idefix.TxApi.Runtime.DataLabel.RequiredDataLabel)">
+            <summary>
+            Get an array of boolean values from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The data label values.</returns>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetBoolList(System.String,System.String)">
+            <summary>
+            Get an list of boolean values from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <param name="defaultValue">The deafult value to return if the data label isn't found.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned. 
+            <paramref name="label"/> must have the suffix "_AB" or "_B".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetBoolList(Idefix.TxApi.Runtime.DataLabel.RequiredDataLabel)">
+            <summary>
+            Get a list of boolean values from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The data label values.</returns>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetBoolList(System.String)">
+            <summary>
+            Get an list of boolean values from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned. 
+            <paramref name="label"/> must have the suffix "_AB".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.ConvertToBool(System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            Converts a list of strings to bool.
+            </summary>
+            <param name="value">The string to be converted to bool, may include substrings separated by ',', ex. "1,0,TRUE,ON.</param>
+            <param name="label">The label where the data comes from, only used for error message if needed.</param>
+            <returns>A bool converted from the string.</returns>
+            <remarks>
+            Valid values to convert is "0", "1", "FALSE", "TRUE", "OFF" and "ON".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.ConvertToBool(System.String,System.String)">
+            <summary>
+            Converts a string to a list of bool.
+            </summary>
+            <param name="value">The string to be converted to bool, may include substrings separated by ',', ex. "1,0,TRUE,ON.</param>
+            <param name="label">The label where the data comes from, only used for error message if needed.</param>
+            <returns>A list of bool converted from the string.</returns>
+            <remarks>
+            Valid values to convert is "0", "1", "FALSE", "TRUE", "OFF" and "ON".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetDouble(System.String)">
+            <summary>
+            Get a double data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_D".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetDouble(System.String,System.Double)">
+            <summary>
+            Get a double data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <param name="defaultValue">The deafult value to return if the data label isn't found.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_D".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetDouble(System.String,System.String)">
+            <summary>
+            Get a double data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <param name="defaultValue">The deafult value to return if the data label isn't found.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_D".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetDouble(Idefix.TxApi.Runtime.DataLabel.RequiredDataLabel)">
+            <summary>
+            Get a double from data label.
+            </summary>
+            <param name="label">The name of the label.</param>
+            <returns>The value of the label.</returns>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetDoubleArray(System.String)">
+            <summary>
+            Get an array of double values from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_AD or _D".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetDoubleArray(System.String,System.Double[])">
+            <summary>
+            Get an array of double values from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <param name="defaultValue">The deafult value to return if the data label isn't found.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_AD or _D".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetDoubleArray(Idefix.TxApi.Runtime.DataLabel.RequiredDataLabel)">
+            <summary>
+            Get an array of doubles from a data label.
+            </summary>
+            <param name="label">The name of the label.</param>
+            <returns>The values of the label.</returns>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetDoubleList(System.String,System.String)">
+            <summary>
+            Get an list of double values from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <param name="defaultValue">The value returned if the data label doesn't exist in TP/TC.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_AD or _D".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetDoubleList(Idefix.TxApi.Runtime.DataLabel.RequiredDataLabel)">
+            <summary>
+            Get a list of double values from a data label.
+            </summary>
+            <param name="label">The name of the label.</param>
+            <returns>The data label values.</returns>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetDoubleList(System.String)">
+            <summary>
+            Get an list of double values from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_AD or _D".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetEnum``1(System.String)">
+            <summary>
+            Get an enum data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_E".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetEnum``1(System.String,``0)">
+            <summary>
+            Get an enum data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <param name="defaultValue">The deafult value to return if the data label isn't found.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_E".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetEnum``1(Idefix.TxApi.Runtime.DataLabel.RequiredDataLabel)">
+            <summary>
+            Get an enum data label.
+            </summary>
+            <typeparam name="T">Enum type.</typeparam>
+            <param name="label">The name of the data label.</param>
+            <returns>The data label value.</returns>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetEnumArray``1(System.String)">
+            <summary>
+            Get an array of enum values from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_AE".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetEnumArray``1(System.String,``0[])">
+            <summary>
+            Get an array of enum values from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <param name="defaultValue">The deafult value to return if the data label isn't found.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_AE".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetEnumArray``1(Idefix.TxApi.Runtime.DataLabel.RequiredDataLabel)">
+            <summary>
+            Get an array of enum values from a data label.
+            </summary>
+            <typeparam name="T">Type of enum.</typeparam>
+            <param name="label">The name of the data label.</param>
+            <returns>The values of the data label.</returns>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetInt(System.String)">
+            <summary>
+            Get an integer data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_I".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetInt(System.String,System.Int32)">
+            <summary>
+            Get an integer data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <param name="defaultValue">The deafult value to return if the data label isn't found.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_I".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetInt(System.String,System.String)">
+            <summary>
+            Get an integer data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <param name="defaultValue">The deafult value to return if the data label isn't found.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_I".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetInt(Idefix.TxApi.Runtime.DataLabel.RequiredDataLabel)">
+            <summary>
+            Get an integer value from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The value of the data label.</returns>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetIntArray(System.String)">
+            <summary>
+            Get an array of integer values from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_AI".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetIntArray(System.String,System.Int32[])">
+            <summary>
+            Get an array of integer values from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <param name="defaultValue">The deafult value to return if the data label isn't found.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_AI".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetIntArray(Idefix.TxApi.Runtime.DataLabel.RequiredDataLabel)">
+            <summary>
+            Get an array of integers from a data label.
+            </summary>
+            <param name="label">The name of the label.</param>
+            <returns>The values of the label.</returns>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetIntList(System.String)">
+            <summary>
+            Get an list of integer values from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_AI".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetIntList(System.String,System.String)">
+            <summary>
+            Get an list of integer values from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <param name="defaultValue">The value returned if the data label doesn't exist in TP/TC.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_AI or _I".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetIntList(Idefix.TxApi.Runtime.DataLabel.RequiredDataLabel)">
+            <summary>
+            Get an list of integers from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The values of the data label.</returns>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetString(System.String)">
+            <summary>
+            Get a string data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_S".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetString(System.String,System.String)">
+            <summary>
+            Get a string data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <param name="defaultValue">The deafult value to return if the data label isn't found.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_S".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetString(Idefix.TxApi.Runtime.DataLabel.RequiredDataLabel)">
+            <summary>
+            Gets a string from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The value of the data label.</returns>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetStringArray(System.String)">
+            <summary>
+            Get an array of strings from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_AS".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetStringArray(System.String,System.String[])">
+            <summary>
+            Get an array of strings from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <param name="defaultValue">The deafult value to return if the data label isn't found.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_AS".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetStringArray(Idefix.TxApi.Runtime.DataLabel.RequiredDataLabel)">
+            <summary>
+            Get an array of string from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The values of the data label.</returns>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetStringList(System.String,System.String)">
+            <summary>
+            Get an list of strings from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <param name="defaultValue">The deafult value to return if the data label isn't found.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_AS or _SZ".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetStringList(Idefix.TxApi.Runtime.DataLabel.RequiredDataLabel)">
+            <summary>
+            Get a list of strings from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The values of the data label.</returns>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.GetStringList(System.String)">
+            <summary>
+            Get an list of strings from a data label.
+            </summary>
+            <param name="label">The name of the data label.</param>
+            <returns>The data label value.</returns>
+            <remarks>
+            Data label variables are replaced with their actual value before
+            the data label is returned.
+            <paramref name="label"/> must have the suffix "_AS, _S or _SZ".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.ProcessDataVariables(System.String)">
+            <summary>
+            Get real value of data label.
+            1, if value not contains patten match, then just return value.
+            2, if value contains patten match, return converted values.
+            </summary>
+            <param name="value">label value</param>
+            <returns>label value</returns>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.ProcessArgument(System.String,System.String,System.String@,System.String@,System.String@)">
+            <summary>
+            Get prefix/argument/suffix of label value with pattern
+            For example Value is "C:\A\$(DataPacketDescPath[TFTPServer])\Boot_start.bat"
+            frefix = C:\A\
+            argument = datapackage path with description of TFTPServer
+            suffix = \Boot_start.bat
+            </summary>
+            <param name="value">label value</param>
+            <param name="pattern">match pattern</param>
+            <param name="prefix">prefix</param>
+            <param name="suffix">suffix</param>
+            <param name="argument">matched value</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.ProcessSteamLocalDataPath(System.String,System.String)">
+            <summary>
+            Get steam local data folder path
+            </summary>
+            <param name="value">label value</param>
+            <param name="pattern">match pattern</param>
+            <returns>steam local data folder path</returns>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelHandler.ProcessDataPacketShortPath(System.String,System.String)">
+            <summary>
+            Get steam local data folder short path
+            </summary>
+            <param name="value">label value</param>
+            <param name="pattern">match pattern</param>
+            <returns>steam local data folder path</returns>
+        </member>
+        <member name="T:Ericsson.TM.DataLabelNotFoundException">
+            <summary>
+            The exception that is thrown when a data label cannot be found.
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelNotFoundException.#ctor">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelNotFoundException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelNotFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the class with serialized data.
+            </summary>
+            <param name="info">
+            The <see cref="T:System.Runtime.Serialization.SerializationInfo">SerializationInfo</see>
+            that holds the serialized object data about the exception being thrown.
+            </param>
+            <param name="context">
+            The The <see cref="T:System.Runtime.Serialization.StreamingContext">StreamingContext</see> 
+            that contains contextual information about the source or destination.
+            </param>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelNotFoundException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            When overridden in a derived class, sets the SerializationInfo with information about the exception. 
+            </summary>
+            <param name="info">
+            The <see cref="T:System.Runtime.Serialization.SerializationInfo">SerializationInfo</see>
+            that holds the serialized object data about the exception being thrown.
+            </param>
+            <param name="context">
+            The The <see cref="T:System.Runtime.Serialization.StreamingContext">StreamingContext</see> 
+            that contains contextual information about the source or destination.
+            </param>
+        </member>
+        <member name="T:Ericsson.TM.DataLabelNotUpperCase">
+            <summary>
+            The exception that is thrown when a data label isn't spelled with captial letters.
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelNotUpperCase.#ctor">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelNotUpperCase.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelNotUpperCase.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the class with serialized data.
+            </summary>
+            <param name="info">
+            The <see cref="T:System.Runtime.Serialization.SerializationInfo">SerializationInfo</see>
+            that holds the serialized object data about the exception being thrown.
+            </param>
+            <param name="context">
+            The The <see cref="T:System.Runtime.Serialization.StreamingContext">StreamingContext</see> 
+            that contains contextual information about the source or destination.
+            </param>
+        </member>
+        <member name="M:Ericsson.TM.DataLabelNotUpperCase.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            When overridden in a derived class, sets the SerializationInfo with information about the exception. 
+            </summary>
+            <param name="info">
+            The <see cref="T:System.Runtime.Serialization.SerializationInfo">SerializationInfo</see>
+            that holds the serialized object data about the exception being thrown.
+            </param>
+            <param name="context">
+            The The <see cref="T:System.Runtime.Serialization.StreamingContext">StreamingContext</see> 
+            that contains contextual information about the source or destination.
+            </param>
+        </member>
+        <member name="T:Ericsson.TM.InfoDialog">
+            <summary>
+            A simple dialog capable of displaying a text and a picture.
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.InfoDialog.#ctor(System.String,System.String)">
+            <summary>
+            Creates a dialog with a text and a picture.
+            </summary>
+            <param name="title">The window title.</param>
+            <param name="text">The text to be displayed in the dialog.</param>
+        </member>
+        <member name="P:Ericsson.TM.InfoDialog.PictureFilename">
+            <summary>
+            The filename of the picture to display in the dialog.
+            </summary>
+        </member>
+        <member name="P:Ericsson.TM.InfoDialog.FirstButtonCaption">
+            <summary>
+            The caption of the first (leftmost) button.
+            </summary>
+        </member>
+        <member name="P:Ericsson.TM.InfoDialog.SecondButtonCaption">
+            <summary>
+            The caption of the second (rightmost) button.
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.InfoDialog.Show(System.String,System.String,System.String)">
+            <summary>
+            Shows a modal dialog with a text and a picture.
+            </summary>
+            <param name="title">The window title.</param>
+            <param name="text">The text to be displayed in the dialog.</param>
+            <param name="pictureFilename">The filename of the picture to display in the dialog.</param>
+            <returns>DialogResult.OK if the first button is pressed or DialogResult.Cancel if the second button is pressed.</returns>
+        </member>
+        <member name="M:Ericsson.TM.InfoDialog.Show(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Shows a modal dialog with a text and a picture.
+            </summary>
+            <param name="title">The window title.</param>
+            <param name="text">The text to be displayed in the dialog.</param>
+            <param name="pictureFilename">The filename of the picture to display in the dialog.</param>
+            <param name="firstButtonCaption">The caption of the first (leftmost) button.</param>
+            <param name="secondButtonCaption">The caption of the second (rightmost) button.</param>
+            <returns>DialogResult.OK if the first button is pressed or DialogResult.Cancel if the second button is pressed.</returns>
+        </member>
+        <member name="F:Ericsson.TM.InfoDialog.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.InfoDialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Ericsson.TM.InfoDialog.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Ericsson.TM.Logger.DummyLogger">
+            <summary>
+            Dummy Logger wont do anything.
+            </summary>
+        </member>
+        <member name="T:Ericsson.TM.ProgressDialog">
+            <summary>
+            Use the static methods ShowModal or ShowThreaded to display a progress bar dialog for the specified time span.
+            </summary>
+        </member>
+        <member name="P:Ericsson.TM.ProgressDialog.CreateParams">
+            <summary>
+            Parameters to specify dialog style when created
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.ProgressDialog.ShowModal(System.Double,System.String)">
+            <summary>
+            Shows a modal progressbar dialog. 
+            </summary>
+            <param name="totalTime">Time in seconds to show the progressbar.</param>
+            <param name="textInfo">Text to be displayed in the progressbar.</param>
+        </member>
+        <member name="M:Ericsson.TM.ProgressDialog.ShowModal(System.TimeSpan,System.String)">
+            <summary>
+            Shows a modal progressbar dialog. 
+            </summary>
+            <param name="totalTime">Time to show the progressbar.</param>
+            <param name="textInfo">Text to be displayed in the progressbar.</param>
+        </member>
+        <member name="M:Ericsson.TM.ProgressDialog.ShowThreaded(System.Double,System.String)">
+            <summary>
+            Starts a threaded progressbar dialog. 
+            </summary>
+            <param name="totalTime">Time in seconds to show the progressbar.</param>
+            <param name="textInfo">Text to be displayed in the progressbar.</param>
+        </member>
+        <member name="M:Ericsson.TM.ProgressDialog.ShowThreaded(System.TimeSpan,System.String)">
+            <summary>
+            Starts a threaded progressbar dialog. 
+            </summary>
+            <param name="totalTime">Time to show the progressbar.</param>
+            <param name="textInfo">Text to be displayed in the progressbar.</param>
+        </member>
+        <member name="F:Ericsson.TM.ProgressDialog.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.ProgressDialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Ericsson.TM.ProgressDialog.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Ericsson.TM.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Ericsson.TM.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Ericsson.TM.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:Ericsson.TM.TypeOfTest">
+            <summary>
+            Defines what type of test currently running, can be used where different behaviour is wanted depending on type of test.
+            </summary>
+        </member>
+        <member name="F:Ericsson.TM.TypeOfTest.Node">
+            <summary>
+            The running test is of Node type
+            </summary>
+        </member>
+        <member name="F:Ericsson.TM.TypeOfTest.Prtt">
+            <summary>
+            The running test is of Prtt type
+            </summary>
+        </member>
+        <member name="F:Ericsson.TM.TypeOfTest.TrxUnit">
+            <summary>
+            The running test is of Trx/Unit type
+            </summary>
+        </member>
+        <member name="F:Ericsson.TM.TypeOfTest.Pa">
+            <summary>
+            The running test is of PA type
+            </summary>
+        </member>
+        <member name="F:Ericsson.TM.TypeOfTest.Ror">
+            <summary>
+            The running test is of ROR type
+            </summary>
+        </member>
+        <member name="F:Ericsson.TM.TypeOfTest.SmallCell">
+            <summary>
+            The running test is of SmallCell type
+            </summary>
+        </member>
+        <member name="F:Ericsson.TM.TypeOfTest.Psb">
+            <summary>
+            The running test is of PSB type
+            </summary>
+        </member>
+        <member name="F:Ericsson.TM.TypeOfTest.Chamber">
+            <summary>
+            The running test is of Chamber type
+            </summary>
+        </member>
+        <member name="T:Ericsson.TM.TextOutColor">
+            <summary>
+            The color of the text to send to the Idefix output window.
+            </summary>
+        </member>
+        <member name="F:Ericsson.TM.TextOutColor.Black">
+            <summary>
+            Black
+            </summary>
+        </member>
+        <member name="F:Ericsson.TM.TextOutColor.White">
+            <summary>
+            White
+            </summary>
+        </member>
+        <member name="F:Ericsson.TM.TextOutColor.Red">
+            <summary>
+            Red
+            </summary>
+        </member>
+        <member name="F:Ericsson.TM.TextOutColor.Green">
+            <summary>
+            Green
+            </summary>
+        </member>
+        <member name="F:Ericsson.TM.TextOutColor.Blue">
+            <summary>
+            Blue
+            </summary>
+        </member>
+        <member name="F:Ericsson.TM.TextOutColor.Yellow">
+            <summary>
+            Yellow
+            </summary>
+        </member>
+        <member name="T:Ericsson.TM.MeasurementPointValue">
+            <summary>
+            Defines what type of save method the measurement point will use.
+            </summary>
+        </member>
+        <member name="F:Ericsson.TM.MeasurementPointValue.All">
+            <summary>
+            All values measured on one measurement point are stored (TxApi SaveAdd(...) is used).
+            </summary>
+        </member>
+        <member name="F:Ericsson.TM.MeasurementPointValue.LastOnly">
+            <summary>
+            Only the last measurement value is stored when save to the same measurement point (TxApi Save(...) is used).
+            </summary>
+        </member>
+        <member name="T:Ericsson.TM.TestMethodCatchEventArgs">
+            <summary>
+            The data used in the catch events.
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.TestMethodCatchEventArgs.#ctor">
+            <summary>
+            Default ctor.
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.TestMethodCatchEventArgs.#ctor(System.Exception)">
+            <summary>
+            ctor that also sets the exception caught.
+            </summary>
+            <param name="ex">The exception caught.</param>
+        </member>
+        <member name="P:Ericsson.TM.TestMethodCatchEventArgs.Exception">
+            <summary>
+            Get and set the exception that was caught.
+            </summary>
+        </member>
+        <member name="T:Ericsson.TM.TestMethodPreConditionEventArgs">
+            <summary>
+            The data used in the pre-condition events.
+            </summary>
+        </member>
+        <member name="T:Ericsson.TM.TestMethodPostConditionEventArgs">
+            <summary>
+            The data used in the post-condition events.
+            </summary>
+        </member>
+        <member name="T:Ericsson.TM.BaseIdefix">
+            <summary>
+            Simplifiyng the most commonly used Idefix TxApi function.
+            Test methods inheriting from this class don't have to implement ITxApi.ITestMethod.
+            That is handled in this base class. The only method that has to be 
+            implemented by the derived class is CoreMeasure. Overriding CoreInit and CoreExit is optional.
+            </summary>
+            <remarks>
+            Init, Measure, and Exit catches all exceptions and prints them to the Idefix output window.
+            When a OperationCanceledException is caught, MethodResult.Abort is returned. For all
+            other exception MethodResult.Error is returned. If the optional data label "RETURN_METHOD_ERROR_B" is set to 0 
+            then MethodResult.Ok will be returned instead of MethodResult.Error when an exception is caught.
+            The data label "RETURN_METHOD_ERROR_B" does not change the behavior when a OperationCanceledException is caught.
+            Inside the try-block, CoreInit, CoreMeasure, CoreSingleMeasure and CoreExit are called. CoreMeasure or 
+            CoreSingleMeasure must be implemented by the derived class. CoreInit and CoreExit are optional. 
+            Use the contructor that takes two parameters to have the information displayed in TP Tool. 
+            If you don't care about TP tool, then the default contructor can be used. The Idefix stop button 
+            will be checked at several places, among them when a data label is read and a measurement result
+            saved. If the Idefix stop button is pressed then an OperationCanceledException is thrown. This can be 
+            disabled by adding the data label "TEST_STOP_BUTTON_B" and setting its value to 0 (false). 
+            </remarks>
+            <example>
+            <code>
+            namespace Ericsson.TM
+            {
+                public class KillJava : TestMethodBase
+                {
+                    protected override void CoreMeasure()
+                    {
+                        DieJavaDie();
+                    }
+            
+                    [System.Security.Permissions.EnvironmentPermission(System.Security.Permissions.SecurityAction.Demand, Unrestricted = true)]
+                    private static void DieJavaDie()
+                    {
+                        System.Diagnostics.Process[] x = System.Diagnostics.Process.GetProcessesByName("java");
+                        foreach (System.Diagnostics.Process y in x)
+                        {
+                            y.Kill();
+                        }
+                    }
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="P:Ericsson.TM.BaseIdefix.Logger">
+            <summary>
+            Get/create instance of Ericsson.SC.Logger.
+            </summary>
+            <exception cref="T:System.Configuration.ConfigurationErrorsException">
+            If an instance of Ericsson.SC.Logger could not be created.
+            </exception>
+        </member>
+        <member name="P:Ericsson.TM.BaseIdefix.TextOutThreadIDActive">
+            <summary>
+            Set to true to activate text out thread ID print outs. Default set to off (false).
+            [23]> Output string..
+            </summary>
+        </member>
+        <member name="P:Ericsson.TM.BaseIdefix.ThreadId">
+            <summary>
+            Get current thread Id
+            The id can be selected C++ or C# style using TextOutThreadCSharpStyle property (default state is C# style).
+            </summary>
+        </member>
+        <member name="P:Ericsson.TM.BaseIdefix.TextOutThreadCSharpStyle">
+            <summary>
+            Set true to use C# thread numbering using System.Threading.Thread.CurrentThread.ManagedThreadId
+            Set false to use C++ thread numbering using System.AppDomain.GetCurrentThreadId()
+            </summary>
+        </member>
+        <member name="P:Ericsson.TM.BaseIdefix.TypeOfTest">
+            <summary>
+            Property that defines what type of test currently running, can be used where different behaviour is wanted depending on type of test.
+            </summary>
+        </member>
+        <member name="P:Ericsson.TM.BaseIdefix.BreakMeasureGroupLoop">
+            <summary>
+            Property that makes it possible to break the loop in CoreSingleMeasure. 
+            </summary>
+        </member>
+        <member name="P:Ericsson.TM.BaseIdefix.SaveMeasurementPointMode">
+            <summary>
+            Property that makes it possible to select if TxApi Save or SaveAdd method should be used.
+            </summary>
+        </member>
+        <member name="E:Ericsson.TM.BaseIdefix.CatchInit">
+            <summary>
+            This event is raised in the catch block of Init. The event is raised before 
+            MP_NOTE is set and the error code is saved.
+            </summary>
+        </member>
+        <member name="E:Ericsson.TM.BaseIdefix.CatchMeasure">
+            <summary>
+            This event is raised in the catch block of Measure. The event is raised before 
+            MP_NOTE is set and the error code is saved.
+            </summary>
+        </member>
+        <member name="E:Ericsson.TM.BaseIdefix.CatchSingleMeasure">
+            <summary>
+            This event is raised in the catch block of CoreMeasure. The event is raised before 
+            MP_NOTE is set and the error code is saved.
+            </summary>
+        </member>
+        <member name="E:Ericsson.TM.BaseIdefix.CatchExit">
+            <summary>
+            This event is raised in the catch block of Exit. The event is raised before 
+            MP_NOTE is set and the error code is saved.
+            </summary>
+        </member>
+        <member name="E:Ericsson.TM.BaseIdefix.PreInit">
+            <summary>
+            This event is always raised before CoreInit is called in Init.
+            </summary>
+        </member>
+        <member name="E:Ericsson.TM.BaseIdefix.PreMeasure">
+            <summary>
+            This event is always raised before CoreMeasure is called in Measure.
+            </summary>
+        </member>
+        <member name="E:Ericsson.TM.BaseIdefix.PreSingleMeasure">
+            <summary>
+            This event is always raised before CoreSingleMeasure is called in CoreMeasure.
+            </summary>
+        </member>
+        <member name="E:Ericsson.TM.BaseIdefix.PreExit">
+            <summary>
+            This event is always raised before CoreExit is called in Exit.
+            </summary>
+        </member>
+        <member name="E:Ericsson.TM.BaseIdefix.PostInit">
+            <summary>
+            This event is always raised in the finally block of Init.
+            </summary>
+        </member>
+        <member name="E:Ericsson.TM.BaseIdefix.PostMeasure">
+            <summary>
+            This event is always raised in the finally block of Measure.
+            </summary>
+        </member>
+        <member name="E:Ericsson.TM.BaseIdefix.PostSingleMeasure">
+            <summary>
+            This event is always raised in the finally block of CoreMeasure.
+            </summary>
+        </member>
+        <member name="E:Ericsson.TM.BaseIdefix.PostExit">
+            <summary>
+            This event is always raised in the finally block of Exit.
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.#ctor(System.String,System.Int32)">
+            <summary>
+            TestMethodBase constructor. The parameters are used to implement ITestMethod.MethodDescription
+            and ITestMethod.NumberOfMeasurementPoints.
+            </summary>
+            <param name="methodDescription">The description of this method. Only used by TpTool.</param>
+            <param name="measurementPoints">Number of measurement point in this method. Only used by
+            TpTool. See Idefix manual for the special meaning of some special values.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.#ctor">
+            <summary>
+            Creates a new instance without setting the TP tools properties in the ITestMethods interface.
+            </summary>
+            <remarks>
+            MethodsDescription will be set to an empty string and MeasurementPoints will return 0.
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Init">
+            <summary>
+            Implementation of ITxApi.Init. Calls CoreInit within a try block, and catches all exceptions.
+            The error message from an exception is printed in Idefix output window. Checks the Idefix stop button
+            before the call to CoreInit.
+            </summary>
+            <remarks>
+            The event PreInit will always be raised inside the try block before CoreInit is called. 
+            In case of an exception, the CatchInit event will be raised in the catch block before 
+            the exception is handled by this class.
+            The event PostInit will always be raised in the finally block.
+            </remarks>
+            <returns>The result from MethodResult.Ok, unless an exception was caught. Then 
+            the return value is MethodResult.Abort for OperationCanceledException
+            exceptions and MethodResult.Error for all other exceptions.</returns>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Measure">
+            <summary>
+            Implementation of ITxApi.Measure. Calls CoreMeasure within a try block, and catches all exceptions.
+            The error message from an exception is printed in Idefix output window. Checks the Idefix stop button
+            before the call to CoreMeasure.
+            </summary>
+            <remarks>
+            The event PreMeasure will always be raised inside the try block before CoreMeasure is called. 
+            In case of an exception, the CatchMeasure event will be raised in the catch block before 
+            the exception is handled by this class.
+            The event PostMeasure will always be raised in the finally block.
+            </remarks>
+            <returns>The result from MethodResult.Ok, unless an exception was caught. Then 
+            the return value is MethodResult.Abort for OperationCanceledException
+            exceptions and MethodResult.Error for all other exceptions.</returns>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Exit">
+            <summary>
+            Implementation of ITxApi.Exit. Calls CoreExit within a try block, and catches all exceptions.
+            The error message from an exception is printed in Idefix output window. Checks the Idefix stop button
+            before the call to CoreExit.
+            </summary>
+            <remarks>
+            The event PreExit will always be raised inside the try block before CoreExit is called. 
+            In case of an exception, the CatchExit event will be raised in the catch block before 
+            the exception is handled by this class.
+            The event PostExit will always be raised in the finally block.
+            </remarks>
+            <returns>The result from MethodResult.Ok, unless an exception was caught. Then 
+            the return value is MethodResult.Abort for OperationCanceledException
+            exceptions and MethodResult.Error for all other exceptions.</returns>
+        </member>
+        <member name="P:Ericsson.TM.BaseIdefix.MethodDescription">
+            <summary>
+            The method description. Used by TpTool. The value can only be set through the constructor.
+            </summary>
+        </member>
+        <member name="P:Ericsson.TM.BaseIdefix.NumberOfMeasurementPoints">
+            <summary>
+            Number of measure points. Used by TpTool. The value can only be set through the constructor.
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.DoSampleTest">
+            <summary>
+            This method is intended to be overridden if sample based testing is being used.
+            </summary>
+            <returns>true -> Perform tests</returns>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.CoreInit">
+            <summary>
+            This method corresponds to the ITestMethod.Init method. The derived class should 
+            place its initialization code here.
+            </summary>
+            <remarks> The default implementation does nothing.</remarks>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.CoreMeasure">
+            <summary>
+            This method corresponds to the ITestMethod.Measure method. The derived class shall
+            place its measurement code here if the measurement shall not be repeated for each measurement point.
+            </summary>
+            <exception cref="T:System.Exception">Let the the method Measure take care of the error handling.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if this method is used without measurement pointer connected.</exception>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.CoreSingleMeasure">
+            <summary>
+            This method corresponds to a single run inside a Measurement.RemainingCount while-loop. The derived class shall
+            place its measurement code here if the whole measurement shall be repeated for each measurement point.
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.CoreExit">
+            <summary>
+            This method corresponds to the ITestMethod.Exit method. The derived class should 
+            place its cleanup code here.
+            </summary>
+            <remarks> The default implementation does nothing.</remarks>
+        </member>
+        <member name="P:Ericsson.TM.BaseIdefix.Data">
+            <summary>
+            Get data labels
+            </summary>
+        </member>
+        <member name="P:Ericsson.TM.BaseIdefix.IdefixRstate">
+            <summary>
+            Idefix R-state. 
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.String)">
+            <summary>
+            Saves and compares a string value towards the limits in the test criteria. 
+            The index is increased by one for each save.
+            </summary>
+            <param name="value">The value to save.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.String,System.Int32)">
+            <summary>
+            Saves and compares a string value towards the limits in the test criteria. 
+            The measurement index is not increased.
+            </summary>
+            <param name="value">The value to save.</param>
+            <param name="index">Zero-based index of the measurment point.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.String,System.String)">
+            <summary>
+            Saves and compares a string value towards the limits in the test criteria. 
+            The measurement index is not increased.
+            </summary>
+            <param name="value">The value to save.</param>
+            <param name="mpId">The name of the MP to save to.</param>
+            <remarks>
+            The name of the MPG + "." is added as a prefix to <paramref name="mpId"/>, that is 
+            if the MPG is named "FW" and Save("hello", "TEST") is called, then the complete mpId saved
+            is "FW.TEST".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Int32)">
+            <summary>
+            Saves and compares an integer value towards the limits in the test criteria. 
+            The index is increased by one for each save.
+            </summary>
+            <param name="value">The value to save.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Int32,System.Int32)">
+            <summary>
+            Saves and compares an integer value towards the limits in the test criteria. 
+            The measurement index is not increased.
+            </summary>
+            <param name="value">The value to save.</param>
+            <param name="index">Zero-based index of the measurment point.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Int32,System.String)">
+            <summary>
+            Saves and compares an integer value towards the limits in the test criteria. 
+            The measurement index is not increased.
+            </summary>
+            <param name="value">The value to save.</param>
+            <param name="mpId">The name of the MP to save to.</param>
+            <remarks>
+            The name of the MPG + "." is added as a prefix to <paramref name="mpId"/>, that is 
+            if the MPG is named "FW" and Save("hello", "TEST") is called, then the complete mpId saved
+            is "FW.TEST".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Boolean)">
+            <summary>
+            Saves and compares a boolean value towards the limits in the test criteria. 
+            The index is increased by one for each save.
+            </summary>
+            <param name="value">The value to save.</param>
+            <remarks>
+            true is saved as 1 and false a 0.
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Boolean,System.Int32)">
+            <summary>
+            Saves and compares a boolean value towards the limits in the test criteria. 
+            The measurement index is not increased.
+            </summary>
+            <param name="value">The value to save.</param>
+            <param name="index">Zero-based index of the measurment point.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Boolean,System.String)">
+            <summary>
+            Saves and compares a boolean value towards the limits in the test criteria. 
+            The measurement index is not increased.
+            </summary>
+            <param name="value">The value to save.</param>
+            <param name="mpId">The name of the MP to save to.</param>
+            <remarks>
+            The name of the MPG + "." is added as a prefix to <paramref name="mpId"/>, that is 
+            if the MPG is named "FW" and Save("hello", "TEST") is called, then the complete mpId saved
+            is "FW.TEST".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Double)">
+            <summary>
+            Saves and compares a double value towards the limits in the test criteria. 
+            The index is increased by one for each save.
+            </summary>
+            <param name="value">The value to save.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Double,System.Int32)">
+            <summary>
+            Saves and compares a double value towards the limits in the test criteria. 
+            The measurement index is not increased.
+            </summary>
+            <param name="value">The value to save.</param>
+            <param name="index">Zero-based index of the measurment point.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Double,System.String)">
+            <summary>
+            Saves and compares a double value towards the limits in the test criteria. 
+            The measurement index is not increased.
+            </summary>
+            <param name="value">The value to save.</param>
+            <param name="mpId">The name of the MP to save to.</param>
+            <remarks>
+            The name of the MPG + "." is added as a prefix to <paramref name="mpId"/>, that is 
+            if the MPG is named "FW" and Save("hello", "TEST") is called, then the complete mpId saved
+            is "FW.TEST".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Saves a curve (x- and y-values) and compares it towards the limits
+            in the test criteria. The index is increased by one for each save.
+            </summary>
+            <param name="x">Curve x-values.</param>
+            <param name="y">Curve y-values.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double},System.Int32)">
+            <summary>
+            Saves a curve (x- and y-values) and compares it towards the limits
+            in the test criteria.
+            The measurement index is not increased.
+            </summary>
+            <param name="x">Curve x-values.</param>
+            <param name="y">Curve y-values.</param>
+            <param name="index">Zero-based index of the measurment point.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double},System.String)">
+            <summary>
+            Saves a curve (x- and y-values) and compares it towards the limits
+            in the test criteria.
+            The measurement index is not increased.
+            </summary>
+            <param name="x">Curve x-values.</param>
+            <param name="y">Curve y-values.</param>
+            <param name="mpId">The name of the MP to save to.</param>
+            <remarks>
+            The name of the MPG + "." is added as a prefix to <paramref name="mpId"/>, that is 
+            if the MPG is named "FW" and Save("hello", "TEST") is called, then the complete mpId saved
+            is "FW.TEST".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Collections.Generic.IEnumerable{System.Single},System.Collections.Generic.IEnumerable{System.Single})">
+            <summary>
+            Saves a curve (x- and y-values) and compares it towards the limits
+            in the test criteria. The index is increased by one for each save.
+            </summary>
+            <param name="x">Curve x-values.</param>
+            <param name="y">Curve y-values.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Collections.Generic.IEnumerable{System.Single},System.Collections.Generic.IEnumerable{System.Single},System.Int32)">
+            <summary>
+            Saves a curve (x- and y-values) and compares it towards the limits
+            in the test criteria.
+            The measurement index is not increased.
+            </summary>
+            <param name="x">Curve x-values.</param>
+            <param name="y">Curve y-values.</param>
+            <param name="index">Zero-based index of the measurment point.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Collections.Generic.IEnumerable{System.Single},System.Collections.Generic.IEnumerable{System.Single},System.String)">
+            <summary>
+            Saves a curve (x- and y-values) and compares it towards the limits
+            in the test criteria.
+            The measurement index is not increased.
+            </summary>
+            <param name="x">Curve x-values.</param>
+            <param name="y">Curve y-values.</param>
+            <param name="mpId">The name of the MP to save to.</param>
+            <remarks>
+            The name of the MPG + "." is added as a prefix to <paramref name="mpId"/>, that is 
+            if the MPG is named "FW" and Save("hello", "TEST") is called, then the complete mpId saved
+            is "FW.TEST".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Saves a curve (x- and y-values) and compares it towards the limits
+            in the test criteria. The index is increased by one for each save.
+            </summary>
+            <param name="x">Curve x-values.</param>
+            <param name="y">Curve y-values.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+            <summary>
+            Saves a curve (x- and y-values) and compares it towards the limits
+            in the test criteria.
+            The measurement index is not increased.
+            </summary>
+            <param name="x">Curve x-values.</param>
+            <param name="y">Curve y-values.</param>
+            <param name="index">Zero-based index of the measurment point.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.String)">
+            <summary>
+            Saves a curve (x- and y-values) and compares it towards the limits
+            in the test criteria.
+            The measurement index is not increased.
+            </summary>
+            <param name="x">Curve x-values.</param>
+            <param name="y">Curve y-values.</param>
+            <param name="mpId">The name of the MP to save to.</param>
+            <remarks>
+            The name of the MPG + "." is added as a prefix to <paramref name="mpId"/>, that is 
+            if the MPG is named "FW" and Save("hello", "TEST") is called, then the complete mpId saved
+            is "FW.TEST".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte})">
+            <summary>
+            Saves a curve (x- and y-values) and compares it towards the limits
+            in the test criteria. The index is increased by one for each save.
+            </summary>
+            <param name="x">Curve x-values.</param>
+            <param name="y">Curve y-values.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},System.Int32)">
+            <summary>
+            Saves a curve (x- and y-values) and compares it towards the limits
+            in the test criteria.
+            The measurement index is not increased.
+            </summary>
+            <param name="x">Curve x-values.</param>
+            <param name="y">Curve y-values.</param>
+            <param name="index">Zero-based index of the measurment point.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},System.String)">
+            <summary>
+            Saves a curve (x- and y-values) and compares it towards the limits
+            in the test criteria.
+            The measurement index is not increased.
+            </summary>
+            <param name="x">Curve x-values.</param>
+            <param name="y">Curve y-values.</param>
+            <param name="mpId">The name of the MP to save to.</param>
+            <remarks>
+            The name of the MPG + "." is added as a prefix to <paramref name="mpId"/>, that is 
+            if the MPG is named "FW" and Save("hello", "TEST") is called, then the complete mpId saved
+            is "FW.TEST".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Collections.Generic.IEnumerable{System.Boolean},System.Collections.Generic.IEnumerable{System.Boolean})">
+            <summary>
+            Saves a curve (x- and y-values) and compares it towards the limits
+            in the test criteria. The index is increased by one for each save.
+            </summary>
+            <param name="x">Curve x-values.</param>
+            <param name="y">Curve y-values.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Collections.Generic.IEnumerable{System.Boolean},System.Collections.Generic.IEnumerable{System.Boolean},System.Int32)">
+            <summary>
+            Saves a curve (x- and y-values) and compares it towards the limits
+            in the test criteria. 
+            The measurement index is not increased.
+            </summary>
+            <param name="x">Curve x-values.</param>
+            <param name="y">Curve y-values.</param>
+            <param name="index">Zero-based index of the measurment point.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Collections.Generic.IEnumerable{System.Boolean},System.Collections.Generic.IEnumerable{System.Boolean},System.String)">
+            <summary>
+            Saves a curve (x- and y-values) and compares it towards the limits
+            in the test criteria.
+            The measurement index is not increased.
+            </summary>
+            <param name="x">Curve x-values.</param>
+            <param name="y">Curve y-values.</param>
+            <param name="mpId">The name of the MP to save to.</param>
+            <remarks>
+            The name of the MPG + "." is added as a prefix to <paramref name="mpId"/>, that is 
+            if the MPG is named "FW" and Save("hello", "TEST") is called, then the complete mpId saved
+            is "FW.TEST".
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.String,System.Int32,System.String,System.String,System.String,System.String)">
+            <summary>
+            Saves and compares a string value towards the limits in the test criteria. 
+            The measurement index is not increased.
+            </summary>
+            <param name="value">The value to save.</param>
+            <param name="index">Zero-based index of the measurment point.</param>
+            <param name="attribute1">First attribute to apply to the measurement.</param>
+            <param name="attribute2">Second attribute to apply to the measurement.</param>
+            <param name="attribute3">Third attribute to apply to the measurement.</param>
+            <param name="attribute4">Fourth attribute to apply to the measurement.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Int32,System.Int32,System.String,System.String,System.String,System.String)">
+            <summary>
+            Saves and compares an integer value towards the limits in the test criteria. 
+            The measurement index is not increased.
+            </summary>
+            <param name="value">The value to save.</param>
+            <param name="index">Zero-based index of the measurment point.</param>
+            <param name="attribute1">First attribute to apply to the measurement.</param>
+            <param name="attribute2">Second attribute to apply to the measurement.</param>
+            <param name="attribute3">Third attribute to apply to the measurement.</param>
+            <param name="attribute4">Fourth attribute to apply to the measurement.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Boolean,System.Int32,System.String,System.String,System.String,System.String)">
+            <summary>
+            Saves and compares a bool value towards the limits in the test criteria. 
+            The measurement index is not increased.
+            </summary>
+            <param name="value">The value to save.</param>
+            <param name="index">Zero-based index of the measurment point.</param>
+            <param name="attribute1">First attribute to apply to the measurement.</param>
+            <param name="attribute2">Second attribute to apply to the measurement.</param>
+            <param name="attribute3">Third attribute to apply to the measurement.</param>
+            <param name="attribute4">Fourth attribute to apply to the measurement.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Double,System.Int32,System.String,System.String,System.String,System.String)">
+            <summary>
+            Saves and compares a double value towards the limits in the test criteria. 
+            The measurement index is not increased.
+            </summary>
+            <param name="value">The value to save.</param>
+            <param name="index">Zero-based index of the measurment point.</param>
+            <param name="attribute1">First attribute to apply to the measurement.</param>
+            <param name="attribute2">Second attribute to apply to the measurement.</param>
+            <param name="attribute3">Third attribute to apply to the measurement.</param>
+            <param name="attribute4">Fourth attribute to apply to the measurement.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double},System.Int32,System.String,System.String,System.String,System.String)">
+            <summary>
+            Saves a curve (x- and y-values) and compares it towards the limits
+            in the test criteria.
+            The measurement index is not increased.
+            </summary>
+            <param name="x">Curve x-values.</param>
+            <param name="y">Curve y-values.</param>
+            <param name="index">Zero-based index of the measurment point.</param>
+            <param name="attribute1">First attribute to apply to the measurement.</param>
+            <param name="attribute2">Second attribute to apply to the measurement.</param>
+            <param name="attribute3">Third attribute to apply to the measurement.</param>
+            <param name="attribute4">Fourth attribute to apply to the measurement.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Collections.Generic.IEnumerable{System.Single},System.Collections.Generic.IEnumerable{System.Single},System.Int32,System.String,System.String,System.String,System.String)">
+            <summary>
+            Saves a curve (x- and y-values) and compares it towards the limits
+            in the test criteria. 
+            The measurement index is not increased.
+            </summary>
+            <param name="x">Curve x-values.</param>
+            <param name="y">Curve y-values.</param>
+            <param name="index">Zero-based index of the measurment point.</param>
+            <param name="attribute1">First attribute to apply to the measurement.</param>
+            <param name="attribute2">Second attribute to apply to the measurement.</param>
+            <param name="attribute3">Third attribute to apply to the measurement.</param>
+            <param name="attribute4">Fourth attribute to apply to the measurement.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Int32,System.String,System.String,System.String,System.String)">
+            <summary>
+            Saves a curve (x- and y-values) and compares it towards the limits
+            in the test criteria. 
+            The measurement index is not increased.
+            </summary>
+            <param name="x">Curve x-values.</param>
+            <param name="y">Curve y-values.</param>
+            <param name="index">Zero-based index of the measurment point.</param>
+            <param name="attribute1">First attribute to apply to the measurement.</param>
+            <param name="attribute2">Second attribute to apply to the measurement.</param>
+            <param name="attribute3">Third attribute to apply to the measurement.</param>
+            <param name="attribute4">Fourth attribute to apply to the measurement.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},System.Int32,System.String,System.String,System.String,System.String)">
+            <summary>
+            Saves a curve (x- and y-values) and compares it towards the limits
+            in the test criteria. 
+            The measurement index is not increased.
+            </summary>
+            <param name="x">Curve x-values.</param>
+            <param name="y">Curve y-values.</param>
+            <param name="index">Zero-based index of the measurment point.</param>
+            <param name="attribute1">First attribute to apply to the measurement.</param>
+            <param name="attribute2">Second attribute to apply to the measurement.</param>
+            <param name="attribute3">Third attribute to apply to the measurement.</param>
+            <param name="attribute4">Fourth attribute to apply to the measurement.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Save(System.Collections.Generic.IEnumerable{System.Boolean},System.Collections.Generic.IEnumerable{System.Boolean},System.Int32,System.String,System.String,System.String,System.String)">
+            <summary>
+            Saves a curve (x- and y-values) and compares it towards the limits
+            in the test criteria. 
+            The measurement index is not increased.
+            </summary>
+            <param name="x">Curve x-values.</param>
+            <param name="y">Curve y-values.</param>
+            <param name="index">Zero-based index of the measurment point.</param>
+            <param name="attribute1">First attribute to apply to the measurement.</param>
+            <param name="attribute2">Second attribute to apply to the measurement.</param>
+            <param name="attribute3">Third attribute to apply to the measurement.</param>
+            <param name="attribute4">Fourth attribute to apply to the measurement.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Validate(System.Int32)">
+            <summary>
+            Validates the value against the criteria limits for the current measurement.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <returns>True if the validation will yield a pass result of false if validation will yield a failed result.</returns>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Validate(System.Int32,System.Int32)">
+            <summary>
+            Validates the value against the criteria limits for the specified index.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <param name="index">The measurement point index to validate against.</param>
+            <returns>True if the validation will yield a pass result of false if validation will yield a failed result.</returns>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Validate(System.Int32,System.String)">
+            <summary>
+            Validates the value against the criteria limits for the specified measurement point name.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <param name="mpId">The measurement point name to validate against.</param>
+            <returns>True if the validation will yield a pass result of false if validation will yield a failed result.</returns>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Validate(System.Boolean)">
+            <summary>
+            Validates the value against the criteria limits for the current measurement.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <returns>True if the validation will yield a pass result of false if validation will yield a failed result.</returns>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Validate(System.Boolean,System.Int32)">
+            <summary>
+            Validates the value against the criteria limits for the specified index.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <param name="index">The measurement point index to validate against.</param>
+            <returns>True if the validation will yield a pass result of false if validation will yield a failed result.</returns>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Validate(System.Boolean,System.String)">
+            <summary>
+            Validates the value against the criteria limits for the specified measurement point name.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <param name="mpId">The measurement point name to validate against.</param>
+            <returns>True if the validation will yield a pass result of false if validation will yield a failed result.</returns>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Validate(System.Double)">
+            <summary>
+            Validates the value against the criteria limits for the current measurement.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <returns>True if the validation will yield a pass result of false if validation will yield a failed result.</returns>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Validate(System.Double,System.Int32)">
+            <summary>
+            Validates the value against the criteria limits for the specified index.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <param name="index">The measurement point index to validate against.</param>
+            <returns>True if the validation will yield a pass result of false if validation will yield a failed result.</returns>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Validate(System.Double,System.String)">
+            <summary>
+            Validates the value against the criteria limits for the specified measurement point name.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <param name="mpId">The measurement point name to validate against.</param>
+            <returns>True if the validation will yield a pass result of false if validation will yield a failed result.</returns>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Validate(System.String)">
+            <summary>
+            Validates the value against the criteria limits for the current measurement.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <returns>True if the validation will yield a pass result of false if validation will yield a failed result.</returns>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Validate(System.String,System.Int32)">
+            <summary>
+            Validates the value against the criteria limits for the specified index.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <param name="index">The measurement point index to validate against.</param>
+            <returns>True if the validation will yield a pass result of false if validation will yield a failed result.</returns>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.Validate(System.String,System.String)">
+            <summary>
+            Validates the value against the criteria limits for the specified measurement point name.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <param name="mpId">The measurement point name to validate against.</param>
+            <returns>True if the validation will yield a pass result of false if validation will yield a failed result.</returns>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.TextOutError(System.String)">
+            <summary>
+            Same as Idefix TextOutError, but fixes most of the bugs.
+            </summary>
+            <param name="message">The message to print.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.TextOutError(System.String,System.Object[])">
+            <summary>
+            Same as Idefix TextOutError, but fixes most of the bugs.
+            </summary>
+            <param name="formatItems">A string containing zero or more format items.</param>
+            <param name="args">An object array containing zero or more objects to format.</param>
+            <remarks>
+            Formats the items with the CultureInfo.InvariantCulture format provider.
+            Then prints the complete message to Idefix output.
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.TextOut(System.String)">
+            <summary>
+            Same as Idefix TextOut, but fixes most of the bugs.
+            </summary>
+            <param name="message">The message to print.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.TextOut(System.Boolean)">
+            <summary>
+            bool overload for Idefix TextOut.
+            </summary>
+            <param name="val">The value to print.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.TextOut(System.Byte)">
+            <summary>
+            byte overload for Idefix TextOut.
+            </summary>
+            <param name="val">The value to print.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.TextOut(System.Char)">
+            <summary>
+            char overload for Idefix TextOut.
+            </summary>
+            <param name="val">The value to print.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.TextOut(System.Double)">
+            <summary>
+            double overload for Idefix TextOut.
+            </summary>
+            <param name="val">The value to print.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.TextOut(System.Int16)">
+            <summary>
+            Int16 overload for Idefix TextOut.
+            </summary>
+            <param name="val">The value to print.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.TextOut(System.Int32)">
+            <summary>
+            Int32 overload for Idefix TextOut.
+            </summary>
+            <param name="val">The value to print.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.TextOut(System.Int64)">
+            <summary>
+            Int64 overload for Idefix TextOut.
+            </summary>
+            <param name="val">The value to print.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.TextOut(System.SByte)">
+            <summary>
+            SByte overload for Idefix TextOut.
+            </summary>
+            <param name="val">The value to print.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.TextOut(System.Single)">
+            <summary>
+            Single overload for Idefix TextOut.
+            </summary>
+            <param name="val">The value to print.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.TextOut(System.UInt16)">
+            <summary>
+            UInt16 overload for Idefix TextOut.
+            </summary>
+            <param name="val">The value to print.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.TextOut(System.UInt32)">
+            <summary>
+            UInt32 overload for Idefix TextOut.
+            </summary>
+            <param name="val">The value to print.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.TextOut(System.UInt64)">
+            <summary>
+            UInt64 overload for Idefix TextOut.
+            </summary>
+            <param name="val">The value to print.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.TextOut(System.String,System.Object[])">
+            <summary>
+            Same as Idefix TextOut, but fixes most of the bugs.
+            </summary>
+            <param name="formatItems">A string containing zero or more format items.</param>
+            <param name="args">An object array containing zero or more objects to format.</param>
+            <remarks>
+            Formats the items with the CultureInfo.InvariantCulture format provider.
+            Then prints the complete message to Idefix output.
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.TextOut(Ericsson.TM.TextOutColor,System.String)">
+            <summary>
+            Outputs text to the Idefix output window in the specified color.
+            Fixes the line breaks, blackslash and percent problems that Idefix
+            TextOut has.
+            </summary>
+            <param name="color">The foregound color.</param>
+            <param name="message">The message to print.</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.TextOut(Ericsson.TM.TextOutColor,System.String,System.Object[])">
+            <summary>
+            Outputs text to the Idefix output window in the specified color.
+            Fixes the line breaks, blackslash and percent problems that Idefix
+            TextOut has.
+            </summary>
+            <param name="color">The foregound color.</param>
+            <param name="formatItems">A string containing zero or more format items.</param>
+            <param name="args">An object array containing zero or more objects to format.</param>
+            <remarks>
+            Formats the items with the CultureInfo.InvariantCulture format provider.
+            Then prints the complete message to Idefix output.
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.TestStopButton">
+            <summary>
+            Checks if the Idefix Stop button has been pressed.
+            </summary>
+            <exception cref="T:System.OperationCanceledException">
+            If the Idefix Stop button is pressed.
+            </exception>
+            <remarks>
+            By default the stop button is checked. This check can be disabled by adding
+            the data label "TEST_STOP_BUTTON_B" and setting its value to 0 (false).
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.CheckRepeatButton">
+            <summary>
+            Checks if the repeat button in the pause at fail dialog has been pressed. If so set meas index to 0 to enable
+            a repeat. The repeat functionality only works for CoreSingleMeasure and when TS_AUTOREPEAT is not set.
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.FormatTextOutMessage(System.String)">
+            <summary>
+            Modifies the string sent in so it can be printer inte Idefix Output
+            without getting corrupted because of RTF control sequences.
+            The string is split into lines because Idefix can't handle newlines
+            in strings.
+            </summary>
+            <remarks>
+            Lines longer than 1023 characters are split into two lines to avoid
+            SEHException from Idefix.
+            </remarks>
+            <param name="message">The string to modify.</param>
+            <exception cref="T:System.ArgumentNullException">If s is null.</exception>
+            <returns>Each line in the modified string.</returns>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.HandleAbortCause(System.Exception)">
+            <summary>
+            Called when an exception is catched, will format error description and save error code so measurement is failed.
+            </summary>
+            <param name="ex">The exception</param>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.ShowFailDialogOnDemand(Idefix.TxApi.Constants.MeasurementResult)">
+            <summary>
+            Show fail dialog if defined by datalabels
+            </summary>
+            <param name="result">Measurement result</param>
+            <returns>True if passed and false if failed</returns>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.ShowAlternativeFailDialog">
+            <summary>
+            Prepare alternative fail dialog
+            </summary>
+            <returns>Return true if dialog has been shown</returns>
+        </member>
+        <member name="M:Ericsson.TM.BaseIdefix.PreSave">
+            <summary>
+            Overloadable method exexcuted before Measurement.Save is done
+            </summary>
+        </member>
+        <member name="T:Ericsson.TM.TestMethodErrorCodeException">
+            <summary>
+            An exception that allows custom error codes to be stored on the test protocol.
+            </summary>
+            <remarks>
+            The default error code if not specified is -10037.
+            </remarks>
+        </member>
+        <member name="M:Ericsson.TM.TestMethodErrorCodeException.#ctor">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.TestMethodErrorCodeException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:Ericsson.TM.TestMethodErrorCodeException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance specified error 
+            message and the exception that is the cause of this exception. 
+            </summary>
+            <param name="message">The error message that explains the reason for this exception.</param>
+            <param name="innerException">
+            The exception that is the cause of the current exception, or a null 
+            reference if no inner exception is specified.
+            </param>
+        </member>
+        <member name="M:Ericsson.TM.TestMethodErrorCodeException.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+            <param name="errorCode">The error code to store on the test protocol.</param>
+        </member>
+        <member name="M:Ericsson.TM.TestMethodErrorCodeException.#ctor(System.String,System.Int32,System.Exception)">
+            <summary>
+            Initializes a new instance specified error 
+            message and the exception that is the cause of this exception. 
+            </summary>
+            <param name="message">The error message that explains the reason for this exception.</param>
+            <param name="errorCode">The error code to store on the test protocol.</param>
+            <param name="innerException">
+            The exception that is the cause of the current exception, or a null 
+            reference if no inner exception is specified.
+            </param>
+        </member>
+        <member name="M:Ericsson.TM.TestMethodErrorCodeException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the class with serialized data.
+            </summary>
+            <param name="info">
+            The <see cref="T:System.Runtime.Serialization.SerializationInfo">SerializationInfo</see>
+            that holds the serialized object data about the exception being thrown.
+            </param>
+            <param name="context">
+            The The <see cref="T:System.Runtime.Serialization.StreamingContext">StreamingContext</see> 
+            that contains contextual information about the source or destination.
+            </param>
+        </member>
+        <member name="P:Ericsson.TM.TestMethodErrorCodeException.ErrorCode">
+            <summary>
+            Get and set the error code.
+            </summary>
+        </member>
+        <member name="M:Ericsson.TM.TestMethodErrorCodeException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            When overridden in a derived class, sets the SerializationInfo with information about the exception. 
+            </summary>
+            <param name="info">
+            The <see cref="T:System.Runtime.Serialization.SerializationInfo">SerializationInfo</see>
+            that holds the serialized object data about the exception being thrown.
+            </param>
+            <param name="context">
+            The The <see cref="T:System.Runtime.Serialization.StreamingContext">StreamingContext</see> 
+            that contains contextual information about the source or destination.
+            </param>
+        </member>
+    </members>
+</doc>

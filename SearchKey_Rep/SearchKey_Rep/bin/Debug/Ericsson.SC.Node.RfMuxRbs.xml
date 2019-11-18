@@ -1,0 +1,249 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ericsson.SC.Node.RfMuxRbs</name>
+    </assembly>
+    <members>
+        <member name="T:Ericsson.SC.Node.Drivers.INewRfMuxRbs">
+            <summary>
+            Interface for using the new Mux HW.
+            </summary>
+        </member>
+        <member name="M:Ericsson.SC.Node.Drivers.INewRfMuxRbs.ConnectRegular(System.String)">
+            <summary>
+            Connect the specified path in the regular box.
+            </summary>
+            <param name="path">The path to be conected.</param>
+        </member>
+        <member name="M:Ericsson.SC.Node.Drivers.INewRfMuxRbs.ConnectExtended(System.String)">
+            <summary>
+            Connect the specified path in the extended box.
+            </summary>
+            <param name="path">The path to be conected.</param>
+        </member>
+        <member name="M:Ericsson.SC.Node.Drivers.INewRfMuxRbs.IsConnectedRegular(System.String)">
+            <summary>
+            Check if a specified path is connected in the regular box.
+            </summary>
+            <param name="path">The path to check.</param>
+            <returns>true if connected.</returns>
+        </member>
+        <member name="M:Ericsson.SC.Node.Drivers.INewRfMuxRbs.IsConnectedExtended(System.String)">
+            <summary>
+            Check if a specified path is connected in the extended box.
+            </summary>
+            <param name="path">The path to check.</param>
+            <returns>true if connected.</returns>
+        </member>
+        <member name="T:Ericsson.SC.Node.Drivers.IOldRfMuxRbs">
+            <summary>
+            Interface for using the old MUX HW.
+            </summary>
+        </member>
+        <member name="M:Ericsson.SC.Node.Drivers.IOldRfMuxRbs.SwitchForUserData(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Set up paths for UserData measurement.
+            </summary>
+            <param name="sector">Sector to use. (1-N)</param>
+            <param name="branch">Branch to use. (1-N)</param>
+            <param name="umtsBand">1 if umtsBand is used.</param>
+            <param name="gsmBlockingTestEquipped">1 if gsmBlocking HW is used.</param>
+        </member>
+        <member name="M:Ericsson.SC.Node.Drivers.IOldRfMuxRbs.SwitchForMaxTxOutputPower(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Set up paths for OutputPower measurement.
+            </summary>
+            <param name="sector">Sector to use. (1-N)</param>
+            <param name="branch">Branch to use. (1-N)</param>
+            <param name="level">The level to use.</param>
+        </member>
+        <member name="M:Ericsson.SC.Node.Drivers.IOldRfMuxRbs.SwitchForRxStaticTest(System.Int32,System.Int32)">
+            <summary>
+            Set up paths for RX measurement.
+            </summary>
+            <param name="sector">Sector to use. (1-N)</param>
+            <param name="branch">Branch to use. (1-N)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ericsson.SC.Node.Drivers.IOldRfMuxRbs.GetId(Ericsson.SC.Node.Drivers.BoxType)">
+            <summary>
+            Get the ID string for a specific box (FU, TCCU, EPCU).
+            </summary>
+            <param name="boxType">The boxType to use.</param>
+            <returns>The ID of the box</returns>
+        </member>
+        <member name="M:Ericsson.SC.Node.Drivers.IOldRfMuxRbs.SetSwitches(Ericsson.SC.Node.Drivers.BoxType,System.Int32,System.Int32)">
+            <summary>
+            Set switches for a specific box.
+            </summary>
+            <param name="boxType">The Box to switch (FU, TCCU, EPCU).</param>
+            <param name="switchToSet">The switch to set.</param>
+            <param name="switchPath">The path to set.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Ericsson.SC.Node.Drivers.IRfMuxRbs">
+            <summary>
+            Interface for initializing the Mux HW.
+            </summary>
+        </member>
+        <member name="M:Ericsson.SC.Node.Drivers.IRfMuxRbs.Initialize(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Initializing the MUX.
+            </summary>
+            <param name="nameRegularBox">The logical name to use for the regular box.</param>
+            <param name="nameExtendedBox">The logical name to use for the extended box.</param>
+            <param name="useExtendedBox">If extended box is available set this parameter to true.</param>
+            <param name="useOldMux">If the old Mux HW is used set this parameter to true.</param>
+        </member>
+        <member name="P:Ericsson.SC.Node.Drivers.IRfMuxRbs.OldMux">
+            <summary>
+            Returns the interface for the old Mux HW.
+            </summary>
+        </member>
+        <member name="P:Ericsson.SC.Node.Drivers.IRfMuxRbs.NewMux">
+            <summary>
+            Returns the Interface for the new Mux HW.
+            </summary>
+        </member>
+        <member name="T:Ericsson.SC.Node.Drivers.BoxType">
+            <summary>
+            The type of Box used.
+            </summary>
+        </member>
+        <member name="F:Ericsson.SC.Node.Drivers.BoxType.Epcu">
+            <summary>
+            EPCU
+            </summary>
+        </member>
+        <member name="F:Ericsson.SC.Node.Drivers.BoxType.Tccu">
+            <summary>
+            TCCU
+            </summary>
+        </member>
+        <member name="F:Ericsson.SC.Node.Drivers.BoxType.FU">
+            <summary>
+            FU
+            </summary>
+        </member>
+        <member name="T:Ericsson.SC.Node.Drivers.RfMuxRbs">
+            <summary>
+            Class that wraps old and new RfMux drivers targeting old or new Mux HW.
+            </summary>
+        </member>
+        <member name="M:Ericsson.SC.Node.Drivers.RfMuxRbs.ReleaseComObjects">
+            <summary>
+            Determistic release of all COM objects.
+            </summary>
+            
+        </member>
+        <member name="M:Ericsson.SC.Node.Drivers.RfMuxRbs.Ericsson#SC#Node#Drivers#IRfMuxRbs#Initialize(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Configures the driver.
+            </summary>
+            <param name="nameRegularBox">The logical name for the regular box.</param>
+            <param name="nameExtendedBox">The logical name for the extended box.</param>
+            <param name="useExtendedBox">Will use extended box if true.</param>
+            <param name="useOldMux">Will use old mux HW if true.</param>
+        </member>
+        <member name="P:Ericsson.SC.Node.Drivers.RfMuxRbs.Ericsson#SC#Node#Drivers#IRfMuxRbs#OldMux">
+            <summary>
+            returns the IOldRfMuxRbs interface.
+            </summary>
+        </member>
+        <member name="P:Ericsson.SC.Node.Drivers.RfMuxRbs.Ericsson#SC#Node#Drivers#IRfMuxRbs#NewMux">
+            <summary>
+            returns the INewRfMuxRbs interface.
+            </summary>
+        </member>
+        <member name="T:Ericsson.SC.Node.Drivers.EpcuType">
+            <summary>
+            EPCU vendor
+            </summary>
+        </member>
+        <member name="F:Ericsson.SC.Node.Drivers.EpcuType.DowKey">
+            <summary>
+            DowKey
+            </summary>
+        </member>
+        <member name="F:Ericsson.SC.Node.Drivers.EpcuType.Weinschel">
+            <summary>
+            Weinschel
+            </summary>
+        </member>
+        <member name="T:Ericsson.SC.Node.Drivers.RfSwitchClient">
+            <summary>
+            Class for switching EPCU, TCCU or FU switchbox.
+            </summary>
+        </member>
+        <member name="M:Ericsson.SC.Node.Drivers.RfSwitchClient.ReleaseComObjects">
+            <summary>
+            Determistic release of all COM objects.
+            </summary>
+        </member>
+        <member name="M:Ericsson.SC.Node.Drivers.RfSwitchClient.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Construct a RfSwitchClient object.
+            </summary>
+            <param name="instrumentName">The logical name of the instrument to use.</param>
+            <param name="switches">Number of switches for the box represented by instrumentName.</param>
+            <param name="switchConfiguration">Configuration describing the number of bitpositions valid for a switch.</param>
+            <param name="attenuators">Number of attenuators for the box represented by instrumentName.</param>
+            <param name="attenuatorConfiguration">Configuration describing the number of bitpositions valid for a attenuator.</param>
+            <exception cref="T:Ericsson.SC.RuntimeException">
+            Too many switches or attenuators.
+            Unable to get ICommon interface from driver.</exception>
+        </member>
+        <member name="P:Ericsson.SC.Node.Drivers.RfSwitchClient.Id">
+            <summary>
+            Get the product number for the box.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ericsson.SC.Node.Drivers.RfSwitchClient.SetSwitch(System.Int32,System.Int32)">
+            <summary>
+            Set switch values.
+            </summary>
+            <param name="switchNumber">The switch to set.</param>
+            <param name="switchValue">The value for the specified switch.</param>
+        </member>
+        <member name="M:Ericsson.SC.Node.Drivers.RfSwitchClient.GetSwitch(System.Int32)">
+            <summary>
+            Get Switch Value
+            </summary>
+            <param name="switchNumber">The switch to get the value from.</param>
+            <returns>The switch value.</returns>
+        </member>
+        <member name="M:Ericsson.SC.Node.Drivers.RfSwitchClient.SetAttenuator(System.Int32,System.Double)">
+            <summary>
+            Set attenuator values.
+            </summary>
+            <param name="attenuator">The attenuator to set.</param>
+            <param name="value">The value for the specified attenuator.</param>
+        </member>
+        <member name="M:Ericsson.SC.Node.Drivers.RfSwitchClient.GetAttenuator(System.Int32)">
+            <summary>
+            Get Attenuator Value.
+            </summary>
+            <param name="attenuator">The attenuator to get the value from.</param>
+            <returns>The attenuator value.</returns>
+        </member>
+        <member name="P:Ericsson.SC.Node.Drivers.RfSwitchClient.BoxType">
+            <summary>
+            Returns the type id of the box.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ericsson.SC.Node.Drivers.RfSwitchClient.CheckSwitch(System.Int32)">
+            <summary>
+            Check that a specified switch is valid.
+            </summary>
+            <param name="switchNumber">The switch to check.</param>
+        </member>
+        <member name="M:Ericsson.SC.Node.Drivers.RfSwitchClient.CheckAttenuator(System.Int32)">
+            <summary>
+            Check that a specified attenuator is valid.
+            </summary>
+            <param name="attenuator">The attenuator to check.</param>
+        </member>
+    </members>
+</doc>
