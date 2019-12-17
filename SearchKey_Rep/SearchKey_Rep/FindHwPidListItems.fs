@@ -37,7 +37,7 @@ let findRightFreqWidth ( widthsStr : string )  =
     
     let foundSeq = 
        anonRecSeq
-       |> Array.filter (fun anonRec -> anonRec.Cross <> "")
+       |> Array.filter (fun anonRec -> anonRec.Cross <> "" && anonRec.Cross <> "-")
 
     let result =
         foundSeq
@@ -74,7 +74,7 @@ let getPower (case : HwPidListItems) (bands : string) =
     let mutable ProdName = case.Name 
     bands.Split ','
     |> Array.map (fun band -> band.Trim())
-    |> Array.iter (fun band -> ProdName <- ProdName.Replace(band, ""))
+    |> Array.iter (fun band -> ProdName <- Regex.Replace(ProdName, band + "(?![0-9])", "").Replace("/",""))
 
     let sss = case
     let dataFoundThroughNumber =
@@ -103,7 +103,7 @@ let getFreqWidth (case : HwPidListItems) (bands : string) =
     let mutable ProdName = case.Name 
     bands.Split ','
     |> Array.map (fun band -> band.Trim())
-    |> Array.iter (fun band -> ProdName <- ProdName.Replace(band, ""))
+    |> Array.iter (fun band -> ProdName <- Regex.Replace(ProdName, band + "(?![0-9])", "").Replace("/",""))
 
     let sss = case
     let dataFoundThroughNumber =

@@ -17,8 +17,8 @@ type AuthenticateFunctions() =
 
         member this.OnAuthenticateButtonClicked =
         
-            let info = {UserName = {AllowedStrings = [|"joshuagoldman94@gmail.com"|]; ActualString = this.Sender.UserNameTextBox.Text};
-                        Password = {AllowedStrings = [|"imale"|]; ActualString = this.Sender.PasswordTextBox.Text}
+            let info = {UserName = {AllowedStrings = [|"jogo"|]; ActualString = this.Sender.UserNameTextBox.Text};
+                        Password = {AllowedStrings = [|"Telech"|]; ActualString = this.Sender.PasswordTextBox.Text}
                             }
             let result = getAuthentication info
 

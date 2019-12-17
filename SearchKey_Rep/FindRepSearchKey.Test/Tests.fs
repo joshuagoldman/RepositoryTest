@@ -143,5 +143,5 @@ module Tests =
             |> fun x -> getPower x "B7"
             |> getFreqWidth  
 
-        Assert.True (final.Power = "20" &&
+        Assert.True (   final.Power = "20" &&
                      final.FrequenceWidth = "5")

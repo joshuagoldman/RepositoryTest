@@ -125,8 +125,8 @@ let getTags =
 let makePortSeqToString (portInfos : seq<PortInfo>) =
     portInfos
     |> Seq.map (fun band -> band.Band + ";" +
-                            band.Power + ";" +
-                            band.FrequencyWidth + ",")
+                            band.Power + "W;" +
+                            band.FrequencyWidth + "MHZ,")
     |> fun strSeq -> String.Join("kkk", strSeq).Replace("kkk", "")
     |> fun str -> str.Substring(0, str.LastIndexOf(','))
 
@@ -137,7 +137,7 @@ let getPortAttribs (portSeq : seq<Port>) =
                              |> fun x -> x.PortSeq)
 
     let letter (lettLowCase : string) =
-        "REF_" + lettLowCase.ToUpper()
+        "RF_" + lettLowCase.ToUpper()
 
     portSeq
     |> Seq.map (fun port -> new XAttribute(XName.Get (letter port.Letter.Value),

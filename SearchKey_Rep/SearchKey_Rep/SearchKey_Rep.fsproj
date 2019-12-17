@@ -69,6 +69,7 @@
     <Compile Include="AddConfigKeyDefinitions.fs" />
     <Compile Include="FindHwPidListItems.fs" />
     <Compile Include="AddHwPidListPRTT.fs" />
+    <Compile Include="ProductsExcel2TextFile.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DotNetZip">
@@ -86,6 +87,12 @@
     <Reference Include="Ericsson.TM.Node.CommonRbs6000">
       <HintPath>K:\Ericsson.TM.Node.CommonRbs6000.dll</HintPath>
     </Reference>
+    <Reference Include="ExcelDataReader">
+      <HintPath>..\packages\ExcelDataReader.3.6.0\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet">
+      <HintPath>..\packages\ExcelDataReader.DataSet.3.6.0\lib\net35\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
     <Reference Include="FlexCel">
       <HintPath>..\packages\TMS.FlexCel.6.23.0\lib\net47\FlexCel.dll</HintPath>
     </Reference>
@@ -100,6 +107,10 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="office">
+      <HintPath>..\packages\MicrosoftOfficeCore.15.0.0\lib\net35\Office.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PresentationCore">
       <Private>True</Private>
     </Reference>
@@ -112,12 +123,14 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Design">
       <Private>True</Private>
     </Reference>
     <Reference Include="System.IO">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Linq">
       <Private>True</Private>
     </Reference>

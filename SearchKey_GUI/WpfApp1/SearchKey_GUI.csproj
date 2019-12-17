@@ -86,7 +86,7 @@
     </Reference>
     <Reference Include="Ericsson.AM.LogAnalyzer, Version=7.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Gitrepos\LogAnalyzerRepo\LogAnalyzer\Ericsson.AM.LogAnalyzer\bin\Debug\netstandard2.0\Ericsson.AM.LogAnalyzer.dll</HintPath>
+      <HintPath>..\..\..\..\Gitrepos\LogAnalyzerRepo\LogAnalyzer\Ericsson.AM.LogAnalyzer\bin\Release\netstandard2.0\Ericsson.AM.LogAnalyzer.dll</HintPath>
     </Reference>
     <Reference Include="Ericsson.AM.Pqat, Version=0.2.7.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Ericsson.AM.Pqat.0.2.7\lib\netstandard2.0\Ericsson.AM.Pqat.dll</HintPath>
